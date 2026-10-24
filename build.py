@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+"""Zgradi statično stran popravimvse.si iz content/*.html v public/.
+
+Vsaka datoteka v content/ se začne z vrstico <!--{json}--> (metapodatki strani),
+sledi HTML vsebina. Zaženi: python3 build.py
+"""
+import json, re, shutil, html
+from pathlib import Path
+from datetime import date
+
+ROOT = Path(__file__).parent
+OUT = ROOT / 'public'
+SITE = 'https://popravimvse.si'
+TODAY = date.today().isoformat()
+
+BIZ = {
+    'name': 'Popravim vse',
+    'person': 'Sebastjan',
+    'legal': 'Sebastjan Stjepanovic s.p.',
+    'phone': '070 755 355',
+    'phone_e164': '+38670755355',
+    'email': 'info@popravimvse.si',
+    'rate': '35 €',
+}
+
+SERVICES = [
+    ('polaganje-keramike', 'Polaganje keramike', 'tiles'),
+    ('obnova-fug-in-silikona', 'Obnova fug in silikona', 'drop'),
+    ('odmasevanje-odtokov', 'Odmaševanje odtokov', 'drain'),
+    ('vodovodna-popravila', 'Pipe in vodovod', 'tap'),
+    ('priklop-aparatov', 'Priklop aparatov', 'oven'),
+    ('elektro-montaze', 'Luči in TV na steno', 'bulb'),
+    ('popravilo-vrat-in-oken', 'Vrata in okna', 'door'),
+    ('tesarska-dela', 'Tesarska dela in pohištvo', 'saw'),
+    ('manjsa-betonska-dela', 'Manjša betonska dela', 'trowel'),
+    ('zidarska-dela-knauf', 'Zidarska dela in knauf', 'brick'),
+]
+AREAS = [
+    ('hisni-mojster-maribor', 'Maribor z okolico', 'Hoče, Slivnica, Miklavž, Rače, Fram, Pesnica, Šentilj, Kungota, Ruše, Selnica, Duplek, Starše'),
+    ('hisni-mojster-lenart', 'Lenart in Slovenske gorice', 'Benedikt, Cerkvenjak, Sv. Ana, Sv. Trojica, Sv. Jurij v Slovenskih goricah'),
+    ('hisni-mojster-ptuj', 'Ptuj z okolico', 'Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci'),
+    ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
+]
+OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt')]
+NAV = [('/#storitve', 'Storitve'), ('/#obmocje', 'Območje'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
+
+S = 'fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"'
+ICONS = {
+    'tiles': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>',
+    'drop': f'<svg viewBox="0 0 24 24" {S}><path d="M12 3c3 4 5 6.6 5 9.2a5 5 0 0 1-10 0C7 9.6 9 7 12 3z"/><path d="M3 21c2-1.2 4-1.2 6 0s4 1.2 6 0 4-1.2 6 0"/></svg>',
+    'drain': f'<svg viewBox="0 0 24 24" {S}><circle cx="12" cy="12" r="8.5"/><path d="M8.5 8h7M7 11h10M7 14h10M8.5 17h7"/></svg>',
+    'tap': f'<svg viewBox="0 0 24 24" {S}><path d="M3 8v6"/><path d="M3 10h10a4 4 0 0 1 4 4v1"/><path d="M8 10V6h5"/><path d="M17 18.5v.5M17 21.5v.5"/></svg>',
+    'oven': f'<svg viewBox="0 0 24 24" {S}><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16"/><path d="M7.5 5.5h.01M10.5 5.5h.01"/><rect x="7" y="11" width="10" height="7"/></svg>',
+    'bulb': f'<svg viewBox="0 0 24 24" {S}><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.4 10.9c.6.5.9 1.2.9 2V16h5v-.1c0-.8.3-1.5.9-2A6 6 0 0 0 12 3z"/></svg>',
+    'door': f'<svg viewBox="0 0 24 24" {S}><path d="M6 21V3h12v18"/><path d="M3 21h18"/><path d="M15 12h.01"/></svg>',
+    'saw': f'<svg viewBox="0 0 24 24" {S}><path d="M3 17L17 3l4 4L7 21H3z"/><path d="M6.5 13.5l1.5 1.5M9.5 10.5l1.5 1.5M12.5 7.5l1.5 1.5"/></svg>',
+    'trowel': f'<svg viewBox="0 0 24 24" {S}><path d="M10 14l9-9v9h-9z"/><path d="M10 14l-2 2"/><path d="M8 16l-4.5 4.5"/></svg>',
+    'brick': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="5" width="18" height="14"/><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 5v4.7M6 9.7v4.6M12 9.7v4.6M18 9.7v4.6M9 14.3V19M15 14.3V19"/></svg>',
+    'phone': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>',
+}
+
+
+def esc(s):
+    return html.escape(s, quote=True)
+
+
+def call_btn(cls='call'):
+    return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}Pokličite {BIZ["phone"]}</a>'
+
+
+def sms_btn():
+    return f'<a class="btn-plain" href="sms:{BIZ["phone_e164"]}">Pošljite SMS s fotografijo</a>'
+
+
+def business_ld():
+    return {
+        '@type': 'HomeAndConstructionBusiness',
+        '@id': SITE + '/#podjetje',
+        'name': f'{BIZ["name"]} – {BIZ["legal"]}',
+        'alternateName': f'{BIZ["person"]} – {BIZ["name"]}',
+        'url': SITE + '/',
+        'telephone': BIZ['phone_e164'],
+        'email': BIZ['email'],
+        'priceRange': '35 € na uro',
+        'founder': {'@type': 'Person', 'name': 'Sebastjan Stjepanovic'},
+        'areaServed': [{'@type': 'City', 'name': n} for n in
+                       ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Miklavž na Dravskem polju', 'Rače',
+                        'Pesnica', 'Ruše', 'Duplek', 'Starše', 'Kidričevo', 'Hajdina', 'Benedikt', 'Cerkvenjak', 'Poljčane']],
+        'knowsAbout': [s[1] for s in SERVICES],
+    }
+
+
+def faq_ld(body):
+    qs = re.findall(r'<details>\s*<summary>(.*?)</summary>(.*?)</details>', body, re.S)
+    if not qs:
+        return None
+    strip = lambda t: re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', t)).strip()
+    return {'@type': 'FAQPage', 'mainEntity': [
+        {'@type': 'Question', 'name': strip(q), 'acceptedAnswer': {'@type': 'Answer', 'text': strip(a)}} for q, a in qs]}
+
+
+def header(current):
+    links = ''.join(
+        f'<li><a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{t}</a></li>' for h, t in NAV)
+    return f'''<a class="skip" href="#vsebina">Na vsebino</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/"><b>Popravim vse</b><span>Sebastjan, hišni mojster</span></a>
+    <nav class="nav" aria-label="Glavni meni">
+      <ul>{links}</ul>
+      <a class="call small" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}{BIZ["phone"]}</a>
+      <details class="menu"><summary>Meni</summary><ul>{links}</ul></details>
+    </nav>
+  </div>
+</header>'''
+
+
+def footer():
+    svc = ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t, _ in SERVICES)
+    ar = ''.join(f'<li><a href="/{s}/">{t}</a></li>' for s, t, _ in AREAS)
+    return f'''<footer class="site-foot">
+  <div class="wrap">
+    <div>
+      <h2>Popravim vse</h2>
+      <p>Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico.</p>
+      <p><a href="tel:{BIZ["phone_e164"]}">{BIZ["phone"]}</a><br><a href="mailto:{BIZ["email"]}">{BIZ["email"]}</a></p>
+    </div>
+    <div><h2>Storitve</h2><ul>{svc}</ul></div>
+    <div><h2>Območje</h2><ul>{ar}</ul></div>
+    <div><h2>Več</h2><ul><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
+    <p class="legal">{BIZ["legal"]}. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič.</p>
+  </div>
+</footer>
+<div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="sms:{BIZ["phone_e164"]}">SMS</a></div>'''
+
+
+def page(meta, main, path, extra_ld=()):
+    url = SITE + path
+    graph = [business_ld(), {
+        '@type': 'WebPage', '@id': url + '#stran', 'url': url, 'name': meta['title'],
+        'description': meta['description'], 'inLanguage': 'sl-SI', 'isPartOf': {'@id': SITE + '/#splet'},
+        'about': {'@id': SITE + '/#podjetje'}},
+        {'@type': 'WebSite', '@id': SITE + '/#splet', 'url': SITE + '/', 'name': 'Popravim vse', 'inLanguage': 'sl-SI'}]
+    graph += [g for g in extra_ld if g]
+    ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
+    return f'''<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(meta["title"])}</title>
+<meta name="description" content="{esc(meta["description"])}">
+<link rel="canonical" href="{url}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sl_SI">
+<meta property="og:site_name" content="Popravim vse">
+<meta property="og:title" content="{esc(meta["title"])}">
+<meta property="og:description" content="{esc(meta["description"])}">
+<meta property="og:url" content="{url}">
+<meta name="theme-color" content="#16232B">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/static/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/site.css?v={TODAY}">
+<script type="application/ld+json">{ld}</script>
+</head>
+<body>
+{header(meta.get("nav", ""))}
+<main id="vsebina">
+{main}
+</main>
+{footer()}
+</body>
+</html>
+'''
+
+
+def aside(current_slug):
+    svc = ''.join(
+        f'<li><a href="/{s}/"{" aria-current=\"page\"" if s == current_slug else ""}>{t}</a></li>' for s, t, _ in SERVICES)
+    ar = ''.join(
+        f'<li><a href="/{s}/"{" aria-current=\"page\"" if s == current_slug else ""}>{t}</a></li>' for s, t, _ in AREAS)
+    return f'''<aside class="aside" aria-label="Cena in povezave">
+  <div class="card">
+    <span class="rate">35 € na uro</span>
+    <p>Prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič.</p>
+    {call_btn("call small")}
+  </div>
+  <nav class="card" aria-label="Storitve"><h2>Storitve</h2><ul>{svc}</ul></nav>
+  <nav class="card" aria-label="Območje"><h2>Območje</h2><ul>{ar}</ul></nav>
+</aside>'''
+
+
+def cta_band():
+    return f'''<section class="cta-band">
+  <div class="wrap">
+    <div><h2>Opišite, kaj je treba popraviti</h2><p>Pokličite ali pošljite fotografijo. Okvirno oceno časa dobite vnaprej.</p></div>
+    {call_btn()}
+  </div>
+</section>'''
+
+
+def inner(meta, body, slug, crumbs):
+    crumb_html = '<nav class="crumbs" aria-label="Drobtinice"><ol><li><a href="/">Domov</a></li>' + ''.join(
+        f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
+    main = f'''<section class="page-head">
+  <div class="wrap">
+    {crumb_html}
+    <h1>{meta["h1"]}</h1>
+    <p class="lead">{meta["lead"]}</p>
+    <div class="actions">{call_btn()}{sms_btn()}</div>
+  </div>
+</section>
+<div class="wrap layout">
+  <article class="prose">
+{body}
+  </article>
+  {aside(slug)}
+</div>
+{cta_band()}'''
+    items = [{'@type': 'ListItem', 'position': 1, 'name': 'Domov', 'item': SITE + '/'}]
+    for i, (h, t) in enumerate(crumbs, 2):
+        items.append({'@type': 'ListItem', 'position': i, 'name': t, 'item': SITE + h})
+    items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': meta['crumb'], 'item': f'{SITE}/{slug}/'})
+    ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body)]
+    if meta.get('kind') == 'service':
+        ld.append({'@type': 'Service', 'name': meta['crumb'], 'serviceType': meta['crumb'], 'provider': {'@id': SITE + '/#podjetje'},
+                   'areaServed': ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica'],
+                   'offers': {'@type': 'Offer', 'priceCurrency': 'EUR', 'price': '35',
+                              'priceSpecification': {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitText': 'ura'}}})
+    return main, ld
+
+
+def home_main(body):
+    tiles = ''.join(f'<li><a href="/{s}/">{ICONS[i]}<span>{t}</span></a></li>' for s, t, i in SERVICES)
+    tiles += '<li><a href="/kontakt/" class="tile-ask"><svg viewBox="0 0 24 24" ' + S + '><path d="M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.5V14"/><path d="M12 17.5h.01"/></svg><span>Česa ni na seznamu? Vprašajte</span></a></li>'
+    tiles += '<li><div class="tile-note"><b>35 €/h</b>Prevoz vključen</div></li>'
+    return body.replace('{{TILES}}', tiles).replace('{{CALL}}', call_btn()).replace('{{SMS}}', sms_btn()) \
+               .replace('{{AREAS}}', ''.join(
+        f'<div class="area"><h3><a href="/{s}/">{t}</a></h3><p>{towns}</p></div>' for s, t, towns in AREAS)) \
+               + cta_band()
+
+
+def read(name):
+    f = ROOT / 'content' / f'{name}.html'
+    if not f.exists():
+        print(f'OPOZORILO: manjka content/{name}.html')
+        return None, None
+    raw = f.read_text(encoding='utf-8')
+    m = re.match(r'\s*<!--(.*?)-->\s*', raw, re.S)
+    return json.loads(m.group(1)), raw[m.end():]
+
+
+def write(path, text):
+    p = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(text, encoding='utf-8')
+
+
+def main():
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir()
+    shutil.copytree(ROOT / 'static', OUT / 'static')
+    for f in (ROOT / 'root').glob('*'):
+        shutil.copy(f, OUT / f.name)
+    urls = []
+
+    meta, body = read('index')
+    meta['nav'] = '/'
+    write('/', page(meta, home_main(body), '/', [faq_ld(body)]))
+    urls.append(('/', '1.0'))
+
+    for slug, title, _ in SERVICES:
+        meta, body = read(slug)
+        if meta is None: continue
+        meta['kind'] = 'service'
+        meta.setdefault('crumb', title)
+        m, ld = inner(meta, body, slug, [('/#storitve', 'Storitve')])
+        write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
+        urls.append((f'/{slug}/', '0.9'))
+    for slug, title, _ in AREAS:
+        meta, body = read(slug)
+        if meta is None: continue
+        meta.setdefault('crumb', title)
+        m, ld = inner(meta, body, slug, [('/#obmocje', 'Območje')])
+        write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
+        urls.append((f'/{slug}/', '0.9'))
+    for slug, title in OTHER:
+        meta, body = read(slug)
+        if meta is None: continue
+        meta.setdefault('crumb', title)
+        meta['nav'] = f'/{slug}/'
+        m, ld = inner(meta, body, slug, [])
+        write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
+        urls.append((f'/{slug}/', '0.7'))
+
+    meta, body = read('404')
+    if meta: (OUT / '404.html').write_text(page(meta, body, '/404.html'), encoding='utf-8')
+
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod><priority>{p}</priority></url>' for u, p in urls]
+    sm.append('</urlset>')
+    (OUT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
+    print(f'Zgrajeno: {len(urls)} strani v {OUT}')
+
+
+if __name__ == '__main__':
+    main()

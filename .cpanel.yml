@@ -1,0 +1,6 @@
+# cPanel Git Version Control: ob "Deploy HEAD Commit" kopira zgrajeno stran v public_html
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/$USER/public_html/
+    - /bin/cp -R public/. $DEPLOYPATH

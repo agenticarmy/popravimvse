@@ -1,0 +1,32 @@
+# popravimvse.si — Apache nastavitve
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+# vsepopravim.si in www → https://popravimvse.si
+RewriteCond %{HTTP_HOST} ^(www\.)?vsepopravim\.si$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www\.popravimvse\.si$ [NC]
+RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+# vedno https
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+# brez index.html v naslovu
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\.(woff2|svg|css)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml
+</IfModule>
+AddType font/woff2 .woff2

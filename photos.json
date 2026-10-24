@@ -136,6 +136,14 @@
   "delavnica": {
    "alt": "Delavnica Sebastjana Stjepanovića z delovnim pultom, orodjem in lesom",
    "cap": "Moja delavnica."
+  },
+  "priklop-modema": {
+   "alt": "Priklop mrežnih kablov v LAN in WAN vrata modema",
+   "cap": "Priklop modema in mrežnih kablov."
+  },
+  "laminat-zakljucna-letev": {
+   "alt": "Laminat z zaključno letvijo ob steni, ob njej meter",
+   "cap": "Laminat in zaključna letev."
   }
  },
  "galleries": {
@@ -200,6 +208,13 @@
   ],
   "vikend-strešje": [
    "vikend-lesni-crv-v-tramu"
+  ],
+  "talne-obloge": [
+   "laminat-zakljucna-letev",
+   "vikend-izravnana-tla"
+  ],
+  "modem": [
+   "priklop-modema"
   ]
  }
 }

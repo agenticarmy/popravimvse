@@ -39,15 +39,19 @@ CITIES = ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Slivnica'
 
 SERVICES = [
     ('polaganje-keramike', 'Polaganje keramike', 'tiles'),
+    ('polaganje-talnih-oblog', 'Laminat in talne obloge', 'floor'),
     ('obnova-fug-in-silikona', 'Obnova fug in silikona', 'drop'),
     ('odmasevanje-odtokov', 'Odmaševanje odtokov', 'drain'),
     ('vodovodna-popravila', 'Pipe in vodovod', 'tap'),
     ('priklop-aparatov', 'Priklop aparatov', 'oven'),
     ('elektro-montaze', 'Luči in TV na steno', 'bulb'),
+    ('modem-in-termostat', 'Modem, Wi-Fi in termostati', 'wifi'),
     ('popravilo-vrat-in-oken', 'Vrata in okna', 'door'),
     ('tesarska-dela', 'Tesarska dela in pohištvo', 'saw'),
     ('manjsa-betonska-dela', 'Manjša betonska dela', 'trowel'),
     ('zidarska-dela-knauf', 'Zidarska dela in knauf', 'brick'),
+    ('selitve-in-prenosi', 'Manjše selitve in prenosi', 'box'),
+    ('kosnja-in-urejanje-okolice', 'Košnja in urejanje okolice', 'grass'),
 ]
 AREAS = [
     ('hisni-mojster-maribor', 'Maribor z okolico', 'Hoče, Slivnica, Miklavž, Rače, Fram, Pesnica, Šentilj, Kungota, Ruše, Selnica, Duplek, Starše'),
@@ -123,6 +127,10 @@ ICONS = {
     'saw': f'<svg viewBox="0 0 24 24" {S}><path d="M3 17L17 3l4 4L7 21H3z"/><path d="M6.5 13.5l1.5 1.5M9.5 10.5l1.5 1.5M12.5 7.5l1.5 1.5"/></svg>',
     'trowel': f'<svg viewBox="0 0 24 24" {S}><path d="M10 14l9-9v9h-9z"/><path d="M10 14l-2 2"/><path d="M8 16l-4.5 4.5"/></svg>',
     'brick': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="5" width="18" height="14"/><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 5v4.7M6 9.7v4.6M12 9.7v4.6M18 9.7v4.6M9 14.3V19M15 14.3V19"/></svg>',
+    'floor': f'<svg viewBox="0 0 24 24" {S}><path d="M3 8h18M3 13h18M3 18h18M3 3h18v18H3z"/><path d="M9 3v5M15 8v5M7 13v5M17 18v3"/></svg>',
+    'wifi': f'<svg viewBox="0 0 24 24" {S}><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.5 12.5a9.5 9.5 0 0 1 13 0"/><path d="M8.7 16a5 5 0 0 1 6.6 0"/><path d="M12 19.5h.01"/></svg>',
+    'box': f'<svg viewBox="0 0 24 24" {S}><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>',
+    'grass': f'<svg viewBox="0 0 24 24" {S}><path d="M3 21h18"/><path d="M5 21c0-5 1-8 3-11M8 21c0-4 .5-7 2-9M12 21V9M16 21c0-4-.5-7-2-9M19 21c0-5-1-8-3-11"/></svg>',
     'phone': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>',
 }
 
@@ -175,8 +183,9 @@ def business_ld():
         'name': f'{BIZ["name"]} – {BIZ["legal"]}',
         'alternateName': [f'{BIZ["person"]} – {BIZ["name"]}', BIZ['name']],
         'legalName': BIZ['legal'],
-        'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, fuge in silikon, odtoki, '
-                       'pipe in vodovod, priklop aparatov, luči, vrata in okna, tesarska, manjša betonska in zidarska dela. '
+        'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, laminat in talne obloge, '
+                       'fuge in silikon, odtoki, pipe in vodovod, priklop aparatov, luči, modemi in termostati, vrata in okna, tesarska, '
+                       'manjša betonska in zidarska dela, manjše selitve in prenosi, košnja in urejanje okolice. '
                        '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'url': SITE + '/',

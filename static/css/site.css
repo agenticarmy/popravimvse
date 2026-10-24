@@ -259,6 +259,8 @@ strong { font-weight: 700; }
 @media (max-width: 640px) {
   body { font-size: 1rem; }
   .tiles { grid-template-columns: repeat(2, 1fr); }
+  .tiles a, .tiles .tile-note { aspect-ratio: auto; min-height: 96px; gap: .6rem; }
+  .tiles a svg { width: 1.5rem; height: 1.5rem; }
   .steps { grid-template-columns: 1fr; gap: 1.6rem; }
   .areas { grid-template-columns: 1fr; }
   .site-foot .wrap { grid-template-columns: 1fr; }

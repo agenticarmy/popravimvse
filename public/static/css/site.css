@@ -238,7 +238,7 @@ strong { font-weight: 700; }
 .site-foot li { margin-bottom: .35rem; }
 .site-foot a { color: #E9EFEC; text-decoration: none; }
 .site-foot a:hover { color: var(--level); text-decoration: underline; }
-.site-foot .legal { grid-column: 1 / -1; border-top: 1px solid #2E3E47; padding-top: 1.2rem; font-size: .85rem; color: #93A39D; }
+.site-foot .legal { grid-column: 1 / -1; max-width: none; border-top: 1px solid #2E3E47; padding-top: 1.2rem; font-size: .85rem; color: #93A39D; }
 
 /* mobile call bar */
 .callbar { display: none; }

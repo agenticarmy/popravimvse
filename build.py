@@ -188,6 +188,7 @@ def business_ld():
                        'manjša betonska in zidarska dela, manjše selitve in prenosi, košnja in urejanje okolice. '
                        '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
         'slogan': 'Če ne popravim, ne plačate nič.',
+        'knowsLanguage': 'sl',
         'url': SITE + '/',
         'image': PORTRAIT_URL,
         'telephone': BIZ['phone_e164'],
@@ -428,6 +429,7 @@ def llms_txt(urls):
 - Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Ni zavezanec za DDV.
 - Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Za material se dogovorita vnaprej.
+- Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; je odgovorno odškodninsko zavarovan.
 - Ne izvaja: novih električnih instalacij in tokokrogov, priklopa plinskih naprav, polaganja tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}.
 - Jezik: slovenščina.

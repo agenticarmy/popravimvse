@@ -326,3 +326,12 @@ figure.ph-single a { aspect-ratio: 4 / 3; }
   .intro-row, .who, .refcard { grid-template-columns: 1fr; }
   .intro-row .portrait, .who .portrait { max-width: 220px; }
 }
+
+/* obljube */
+.section.trust { padding-top: clamp(2.5rem, 6vw, 4rem); }
+.pledges { list-style: none; padding: 0; margin: 0; max-width: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+.pledges li { margin: 0; border-top: 3px solid var(--green); padding-top: 1rem; }
+.pledges h3 { margin-bottom: .4rem; }
+.pledges p { margin: 0; color: var(--ink-soft); font-size: .98rem; }
+@media (max-width: 960px) { .pledges { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .pledges { grid-template-columns: 1fr; gap: 1.4rem; } }

@@ -28,7 +28,7 @@ BIZ = {
 PERSON = {
     'name': 'Sebastjan Stjepanović',
     'job': 'Hišni mojster',
-    'bio': 'Samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu.',
+    'bio': 'Samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu, od tega 15 let v Nemčiji.',
 }
 PERSON_ID = SITE + '/o-meni/#sebastjan'
 BIZ_ID = SITE + '/#podjetje'
@@ -56,7 +56,60 @@ AREAS = [
     ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
 ]
 OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt')]
-NAV = [('/#storitve', 'Storitve'), ('/#obmocje', 'Območje'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
+REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda')]
+NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
+
+PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
+PMETA = json.loads((ROOT / 'photos_meta.json').read_text(encoding='utf-8'))
+PORTRAIT = {'alt': 'Sebastjan Stjepanović, hišni mojster', 'sizes': [(240, 300), (480, 600), (810, 1012)]}
+PORTRAIT_URL = SITE + '/static/img/sebastjan-stjepanovic-960.webp'
+_used = []  # fotografije, uporabljene na trenutni strani (za JSON-LD in og:image)
+
+
+def img_url(slug, w):
+    return f'/static/img/dela/{slug}-{w}.webp'
+
+
+def figure(slug, sizes='(max-width: 640px) 50vw, (max-width: 960px) 33vw, 260px', cls='ph'):
+    ph, m = PHOTOS['photos'][slug], PMETA[slug]['sizes']
+    if slug not in _used:
+        _used.append(slug)
+    srcset = ', '.join(f'{img_url(slug, w)} {m[w][0]}w' for w in ('480', '960', '1600'))
+    w, h = m['960']
+    return (f'<figure class="{cls}"><a href="{img_url(slug, 1600)}" target="_blank" rel="noopener">'
+            f'<img src="{img_url(slug, 960)}" srcset="{srcset}" sizes="{sizes}" width="{w}" height="{h}" '
+            f'loading="lazy" decoding="async" alt="{esc(ph["alt"])}"></a><figcaption>{ph["cap"]}</figcaption></figure>')
+
+
+def gallery(key):
+    items = PHOTOS['galleries'][key]
+    n = len(items)
+    cols = 1 if n == 1 else 2 if n in (2, 4) else 3
+    sizes = {1: '(max-width: 640px) 100vw, 420px', 2: '(max-width: 640px) 50vw, 340px', 3: '(max-width: 640px) 50vw, (max-width: 960px) 33vw, 260px'}[cols]
+    return f'<div class="gallery g{cols}">' + ''.join(figure(sl, sizes) for sl in items) + '</div>'
+
+
+def portrait(cls='portrait', sizes='(max-width: 640px) 60vw, 300px', eager=False):
+    srcset = ', '.join(f'/static/img/sebastjan-stjepanovic-{w if w != 810 else 960}.webp {w}w' for w, _ in PORTRAIT['sizes'])
+    return (f'<img class="{cls}" src="/static/img/sebastjan-stjepanovic-480.webp" srcset="{srcset}" sizes="{sizes}" '
+            f'width="480" height="600" {"" if eager else "loading=\"lazy\" "}decoding="async" alt="{PORTRAIT["alt"]}">')
+
+
+def expand(body):
+    body = re.sub(r'\{\{GALERIJA:([\w-]+)\}\}', lambda m: gallery(m.group(1)), body)
+    body = re.sub(r'\{\{FOTO:([\w-]+)\}\}', lambda m: figure(m.group(1), '(max-width: 640px) 100vw, 420px', 'ph ph-single'), body)
+    return body.replace('{{PORTRET}}', portrait())
+
+
+def images_ld():
+    out = []
+    for sl in _used:
+        ph, m = PHOTOS['photos'][sl], PMETA[sl]
+        out.append({'@type': 'ImageObject', '@id': f'{SITE}{img_url(sl, 1600)}#slika', 'contentUrl': SITE + img_url(sl, 1600),
+                    'thumbnailUrl': SITE + img_url(sl, 480), 'width': m['sizes']['1600'][0], 'height': m['sizes']['1600'][1],
+                    'caption': re.sub(r'<[^>]+>', '', ph['cap']), 'description': ph['alt'], 'dateCreated': m['date'],
+                    'creator': {'@id': PERSON_ID}, 'copyrightHolder': {'@id': PERSON_ID}, 'creditText': PERSON['name']})
+    return out
 
 S = 'fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"'
 ICONS = {
@@ -101,6 +154,7 @@ def person_ld():
         'jobTitle': PERSON['job'],
         'description': PERSON['bio'] + ' Po izobrazbi univerzitetni diplomirani ekonomist.',
         'url': SITE + '/o-meni/',
+        'image': {'@type': 'ImageObject', 'url': PORTRAIT_URL, 'width': 810, 'height': 1012, 'caption': PORTRAIT['alt']},
         'worksFor': {'@id': BIZ_ID},
         'knowsAbout': [s[1] for s in SERVICES] + ['Hišna popravila', 'Vzdrževanje stanovanj in hiš'],
         'knowsLanguage': 'sl',
@@ -126,6 +180,7 @@ def business_ld():
                        '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'url': SITE + '/',
+        'image': PORTRAIT_URL,
         'telephone': BIZ['phone_e164'],
         'email': BIZ['email'],
         'priceRange': '35 € na uro',
@@ -164,8 +219,11 @@ def sl_date(iso):
 
 def author_box(modified):
     return f'''<aside class="author" aria-label="Avtor">
+  <img class="avatar" src="/static/img/sebastjan-avatar-160.webp" width="80" height="80" loading="lazy" decoding="async" alt="">
+  <div>
   <p><strong>Avtor: <a href="/o-meni/">{PERSON["name"]}</a></strong>, samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu. Dela, ki jih opisujem, opravljam na domovih strank v Mariboru, Slovenskih goricah, na Ptuju in v Slovenski Bistrici.</p>
   <p class="updated">Posodobljeno: <time datetime="{modified}">{sl_date(modified)}</time></p>
+  </div>
 </aside>'''
 
 
@@ -206,7 +264,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
     <p class="legal">{BIZ["legal"]}. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
@@ -229,6 +287,14 @@ def page(meta, main, path, extra_ld=()):
              {'@type': 'WebSite', '@id': SITE + '/#splet', 'url': SITE + '/', 'name': 'Popravim vse', 'inLanguage': 'sl-SI',
               'publisher': {'@id': BIZ_ID}}]
     graph += [g for g in extra_ld if g]
+    imgs = images_ld()
+    if imgs:
+        graph += imgs
+        wp['primaryImageOfPage'] = {'@id': imgs[0]['@id']}
+        wp['image'] = [{'@id': i['@id']} for i in imgs]
+    og_img = imgs[0]['contentUrl'] if imgs else PORTRAIT_URL
+    if meta.get('page_type') == 'ProfilePage':
+        og_img = PORTRAIT_URL
     ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
     return f'''<!doctype html>
 <html lang="sl">
@@ -245,6 +311,8 @@ def page(meta, main, path, extra_ld=()):
 <meta property="og:description" content="{esc(meta["description"])}">
 <meta property="og:url" content="{url}">
 <meta name="author" content="{PERSON["name"]}">
+<meta property="og:image" content="{og_img}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#16232B">
 <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/static/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -289,6 +357,7 @@ def cta_band():
 
 
 def inner(meta, body, slug, crumbs):
+    body = expand(body)
     crumb_html = '<nav class="crumbs" aria-label="Drobtinice"><ol><li><a href="/">Domov</a></li>' + ''.join(
         f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
     main = f'''<section class="page-head">
@@ -312,6 +381,12 @@ def inner(meta, body, slug, crumbs):
         items.append({'@type': 'ListItem', 'position': i, 'name': t, 'item': SITE + h})
     items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': meta['crumb'], 'item': f'{SITE}/{slug}/'})
     ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body)]
+    if meta.get('kind') == 'article':
+        ld.append({'@type': 'Article', '@id': f'{SITE}/{slug}/#clanek', 'headline': meta['h1'], 'description': meta['description'],
+                   'inLanguage': 'sl-SI', 'author': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID},
+                   'datePublished': meta['published'], 'dateModified': meta['modified'], 'mainEntityOfPage': {'@id': f'{SITE}/{slug}/#stran'},
+                   'about': [{'@id': f'{SITE}/{s}/#storitev'} for s in meta.get('about', [])],
+                   'image': [SITE + img_url(sl, 1600) for sl in _used]})
     if meta.get('kind') == 'service':
         ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],
                    'description': meta['description'], 'url': f'{SITE}/{slug}/',
@@ -322,6 +397,7 @@ def inner(meta, body, slug, crumbs):
 
 
 def home_main(body):
+    body = expand(body)
     tiles = ''.join(f'<li><a href="/{s}/">{ICONS[i]}<span>{t}</span></a></li>' for s, t, i in SERVICES)
     tiles += '<li><a href="/kontakt/" class="tile-ask"><svg viewBox="0 0 24 24" ' + S + '><path d="M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.5V14"/><path d="M12 17.5h.01"/></svg><span>Česa ni na seznamu? Vprašajte</span></a></li>'
     tiles += '<li><div class="tile-note"><b>35 €/h</b>Prevoz vključen</div></li>'
@@ -337,7 +413,7 @@ def llms_txt(urls):
     ar = '\n'.join(f'- [{t}]({SITE}/{s}/): {towns}' for s, t, towns in AREAS)
     return f'''# Popravim vse – {PERSON["name"]}, hišni mojster
 
-> Samostojni hišni mojster ({BIZ["legal"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu. Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.
+> Samostojni hišni mojster ({BIZ["legal"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu (samouk, 15 let dela v Nemčiji). Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.
 
 ## Ključna dejstva
 - Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Ni zavezanec za DDV.
@@ -352,6 +428,10 @@ def llms_txt(urls):
 
 ## Območje
 {ar}
+
+## Reference
+- [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
+- [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
 
 ## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
@@ -370,6 +450,10 @@ def read(name):
     return json.loads(m.group(1)), raw[m.end():]
 
 
+def reset_used():
+    _used.clear()
+
+
 def write(path, text):
     p = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -385,6 +469,7 @@ def main():
         shutil.copy(f, OUT / f.name)
     urls = []
 
+    reset_used()
     meta, body = read('index')
     meta['nav'] = '/'
     meta['published'], meta['modified'] = git_dates('index')
@@ -392,6 +477,7 @@ def main():
     urls.append(('/', '1.0', meta['modified'], meta))
 
     for slug, title, _ in SERVICES:
+        reset_used()
         meta, body = read(slug)
         if meta is None: continue
         meta['kind'] = 'service'
@@ -401,6 +487,7 @@ def main():
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.9', meta['modified'], meta))
     for slug, title, _ in AREAS:
+        reset_used()
         meta, body = read(slug)
         if meta is None: continue
         meta.setdefault('crumb', title)
@@ -409,6 +496,7 @@ def main():
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.9', meta['modified'], meta))
     for slug, title in OTHER:
+        reset_used()
         meta, body = read(slug)
         if meta is None: continue
         meta.setdefault('crumb', title)
@@ -422,6 +510,24 @@ def main():
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.7', meta['modified'], meta))
 
+    for slug, title in REFS:
+        reset_used()
+        meta, body = read(slug.replace('/', '__'))
+        if meta is None: continue
+        meta.setdefault('crumb', title)
+        meta['nav'] = '/reference/'
+        meta['published'], meta['modified'] = git_dates(slug.replace('/', '__'))
+        if '/' in slug:
+            meta['kind'] = 'article'
+            crumbs = [('/reference/', 'Moja dela')]
+        else:
+            meta['page_type'] = 'CollectionPage'
+            crumbs = []
+        m, ld = inner(meta, body, slug, crumbs)
+        write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
+        urls.append((f'/{slug}/', '0.8', meta['modified'], meta))
+
+    reset_used()
     meta, body = read('404')
     if meta: (OUT / '404.html').write_text(page(meta, body, '/404.html'), encoding='utf-8')
 

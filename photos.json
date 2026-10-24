@@ -1,0 +1,205 @@
+{
+ "_opomba": "Fotografije del Sebastjana Stjepanovića. alt = opis za iskalnike in bralnike zaslona, cap = napis pod sliko. Datum iz imena izvirne datoteke.",
+ "photos": {
+  "vikend-kuhinja-med-izdelavo": {
+   "alt": "Kuhinja v lesenem vikendu med izdelavo: opaž prebarvan v belo, police in spodnji elementi iz lepljenega lesa",
+   "cap": "Opaž je prebrušen in prebarvan v belo, prvi elementi kuhinje že stojijo."
+  },
+  "vikend-lepljenje-plosc-za-kuhinjo": {
+   "alt": "Lepljenje in stiskanje plošč iz lepljenega lesa s spono za kuhinjske elemente",
+   "cap": "Elementi kuhinje nastajajo iz plošč lepljenega lesa, vsak po meri."
+  },
+  "vikend-susenje-lakiranega-pulta": {
+   "alt": "Lakiran lesen delovni pult se suši zunaj, nad njim visijo trakovi toaletnega papirja in stoji ventilator",
+   "cap": "Pult sem lakiral in sušil zunaj. Trakovi toaletnega papirja in ventilator so odganjali žuželke, da se niso lepile na svež lak."
+  },
+  "vikend-kuhinja-po-meri": {
+   "alt": "Končana kuhinja po meri iz masivnega lesa z lesenim pultom, pomivalnim strojem in kuhalno ploščo",
+   "cap": "Kuhinja po meri: koti prostora niso bili pravi, zato je narejen vsak element posebej."
+  },
+  "vikend-kuhinja-po-meri-v-uporabi": {
+   "alt": "Kuhinja iz masivnega lesa v uporabi, z zgornjimi omaricami in lesenim delovnim pultom",
+   "cap": "Kuhinja v uporabi."
+  },
+  "vikend-izravnana-tla": {
+   "alt": "Izravnana tla po odstranitvi starega itisona, robovi zaščiteni z zelenim lepilnim trakom",
+   "cap": "Stari itison je odstranjen, valovita in kriva tla so izravnana."
+  },
+  "vikend-polaganje-talnih-ploscic": {
+   "alt": "Polaganje velikih talnih ploščic z videzom lesa z izravnalnim sistemom",
+   "cap": "Polaganje talnih ploščic z izravnalnim sistemom, da so plošče v ravnini."
+  },
+  "vikend-talne-ploscice-videz-lesa": {
+   "alt": "Položene talne ploščice z videzom lesa v lesenem vikendu",
+   "cap": "Talne ploščice z videzom lesa."
+  },
+  "vikend-radiator-odbojna-folija": {
+   "alt": "Priključki novega radiatorja in odbojna folija na steni za grelnim telesom",
+   "cap": "Nova grelna telesa, za njimi odbojna folija, ki toploto vrača v prostor."
+  },
+  "vikend-lesni-crv-v-tramu": {
+   "alt": "Izletna luknja in rovi lesnega črva v strešnem tramu",
+   "cap": "Lesni črv v strešnih tramovih, ki sem jih saniral."
+  },
+  "vikend-stara-kopalnica-rdece-ploscice": {
+   "alt": "Stara kopalnica z rdečimi talnimi ploščicami med rušenjem",
+   "cap": "Stara kopalnica z rdečimi ploščicami pred prenovo."
+  },
+  "vikend-odstranjevanje-rdecih-ploscic": {
+   "alt": "Odstranjevanje starih rdečih ploščic, ob njih nova ploščica z videzom lesa",
+   "cap": "Odstranjevanje starih ploščic."
+  },
+  "kopalnica-stenske-ploscice-izravnalni-sistem": {
+   "alt": "Stenske ploščice z videzom lesa v kopalnici, med polaganjem z izravnalnimi sponkami",
+   "cap": "Stenske ploščice med polaganjem, z izravnalnimi sponkami."
+  },
+  "kopalnica-stenske-ploscice-videz-lesa": {
+   "alt": "Stena kopalnice s ploščicami z videzom lesa in izravnalnim sistemom",
+   "cap": "Velike ploščice zahtevajo natančno ravnino, zato izravnalni sistem."
+  },
+  "kopalnica-nizka-tus-kad": {
+   "alt": "Prenovljena kopalnica z nizko tuš kadjo, tušem in WC školjko",
+   "cap": "Končana kopalnica z nizko pohodno tuš kadjo."
+  },
+  "kopalnica-wc-in-tus": {
+   "alt": "Kopalnica s ploščicami z videzom lesa, kotličkom in priključki za tuš",
+   "cap": "Kopalnica med zaključnimi deli."
+  },
+  "drsna-omara-po-meri": {
+   "alt": "Drsna vrata omare z oblogo iz lesa in temnim pasom",
+   "cap": "Drsna omara."
+  },
+  "lesen-strop-in-omara": {
+   "alt": "Lesen strop z belimi tramovi in omara z drsnimi vrati",
+   "cap": "Lesen strop in omara."
+  },
+  "postelja-iz-lesa": {
+   "alt": "Lesena konstrukcija postelje med sestavljanjem",
+   "cap": "Postelja med sestavljanjem."
+  },
+  "lesena-galerija-podest": {
+   "alt": "Lesena galerija oziroma podest iz tramov in plošč pod stropom sobe",
+   "cap": "Lesena galerija pod stropom."
+  },
+  "konstrukcija-iz-osb-plosc": {
+   "alt": "Velika konstrukcija iz OSB plošč v garaži",
+   "cap": "Konstrukcija iz OSB plošč."
+  },
+  "montaza-pohistva-dnevna-soba": {
+   "alt": "Sestavljeno belo pohištvo v dnevni sobi: vitrini, police in TV omarica",
+   "cap": "Sestavljeno pohištvo v dnevni sobi."
+  },
+  "lesena-ograja": {
+   "alt": "Lesena ograja na vrtu",
+   "cap": "Lesena ograja."
+  },
+  "lesena-terasa": {
+   "alt": "Terasa iz lesenih talnih ploščic",
+   "cap": "Lesena terasa."
+  },
+  "vodni-filter-in-reducirni-ventil": {
+   "alt": "Vgrajen vodni filter in reducirni ventil z manometrom na vodovodni napeljavi",
+   "cap": "Vodni filter in reducirni ventil z manometrom."
+  },
+  "vodovodni-prikljucki": {
+   "alt": "Vodovodni priključki, ventili in odtok v tehničnem prostoru",
+   "cap": "Priključki in ventili v tehničnem prostoru."
+  },
+  "priklop-pipe-fleksibilne-cevi": {
+   "alt": "Merjenje fleksibilnih priključnih cevi pipe pred montažo",
+   "cap": "Fleksibilne cevi pipe pred montažo."
+  },
+  "tus-kabina": {
+   "alt": "Polkrožna tuš kabina z mešalno pipo",
+   "cap": "Tuš kabina."
+  },
+  "staro-korito-odtok": {
+   "alt": "Staro korito z odtokom pred zamenjavo, ob njem meter",
+   "cap": "Staro korito in odtok pred zamenjavo."
+  },
+  "kanalizacijske-cevi": {
+   "alt": "Kanalizacijske in vodovodne cevi v izkopu",
+   "cap": "Kanalizacijske cevi v izkopu."
+  },
+  "montaza-podboja-vrat": {
+   "alt": "Nov podboj vrat med montažo, zaščiten z lepilnim trakom",
+   "cap": "Montaža novega podboja."
+  },
+  "menjava-kljucavnice-vrat": {
+   "alt": "Vložna ključavnica vrat pred zamenjavo, ob njej meter",
+   "cap": "Merjenje ključavnice pred zamenjavo."
+  },
+  "okovje-omare": {
+   "alt": "Okovje in tečaj na leseni omari",
+   "cap": "Nastavitev okovja."
+  },
+  "delavnica": {
+   "alt": "Delavnica Sebastjana Stjepanovića z delovnim pultom, orodjem in lesom",
+   "cap": "Moja delavnica."
+  }
+ },
+ "galleries": {
+  "vikend-kuhinja": [
+   "vikend-kuhinja-med-izdelavo",
+   "vikend-lepljenje-plosc-za-kuhinjo",
+   "vikend-susenje-lakiranega-pulta",
+   "vikend-kuhinja-po-meri",
+   "vikend-kuhinja-po-meri-v-uporabi"
+  ],
+  "vikend-tla": [
+   "vikend-izravnana-tla",
+   "vikend-polaganje-talnih-ploscic",
+   "vikend-talne-ploscice-videz-lesa",
+   "vikend-radiator-odbojna-folija"
+  ],
+  "vikend-kopalnica": [
+   "vikend-stara-kopalnica-rdece-ploscice",
+   "vikend-odstranjevanje-rdecih-ploscic"
+  ],
+  "keramika": [
+   "kopalnica-nizka-tus-kad",
+   "kopalnica-stenske-ploscice-izravnalni-sistem",
+   "vikend-polaganje-talnih-ploscic",
+   "vikend-talne-ploscice-videz-lesa"
+  ],
+  "tesarska": [
+   "vikend-kuhinja-po-meri",
+   "drsna-omara-po-meri",
+   "lesen-strop-in-omara",
+   "postelja-iz-lesa",
+   "lesena-galerija-podest",
+   "montaza-pohistva-dnevna-soba"
+  ],
+  "vodovod": [
+   "vodni-filter-in-reducirni-ventil",
+   "vodovodni-prikljucki",
+   "priklop-pipe-fleksibilne-cevi",
+   "tus-kabina"
+  ],
+  "odtoki": [
+   "staro-korito-odtok",
+   "kanalizacijske-cevi"
+  ],
+  "vrata": [
+   "montaza-podboja-vrat",
+   "menjava-kljucavnice-vrat",
+   "okovje-omare"
+  ],
+  "zunaj": [
+   "lesena-ograja",
+   "lesena-terasa",
+   "konstrukcija-iz-osb-plosc"
+  ],
+  "domov": [
+   "vikend-kuhinja-po-meri",
+   "kopalnica-nizka-tus-kad",
+   "drsna-omara-po-meri",
+   "vodni-filter-in-reducirni-ventil",
+   "vikend-susenje-lakiranega-pulta",
+   "lesena-galerija-podest"
+  ],
+  "vikend-strešje": [
+   "vikend-lesni-crv-v-tramu"
+  ]
+ }
+}

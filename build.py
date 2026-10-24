@@ -165,7 +165,7 @@ def person_ld():
         'image': {'@type': 'ImageObject', 'url': PORTRAIT_URL, 'width': 810, 'height': 1012, 'caption': PORTRAIT['alt']},
         'worksFor': {'@id': BIZ_ID},
         'knowsAbout': [s[1] for s in SERVICES] + ['Hišna popravila', 'Vzdrževanje stanovanj in hiš'],
-        'knowsLanguage': 'sl',
+        'knowsLanguage': ['sl', 'de'],
         'hasOccupation': {'@type': 'Occupation', 'name': 'Hišni mojster', 'occupationLocation': [{'@type': 'City', 'name': c} for c in CITIES[:4]],
                           'skills': ', '.join(s[1] for s in SERVICES)},
         'hasCredential': {'@type': 'EducationalOccupationalCredential', 'credentialCategory': 'degree',
@@ -188,7 +188,7 @@ def business_ld():
                        'manjša betonska in zidarska dela, manjše selitve in prenosi, košnja in urejanje okolice. '
                        '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
         'slogan': 'Če ne popravim, ne plačate nič.',
-        'knowsLanguage': 'sl',
+        'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
         'image': PORTRAIT_URL,
         'telephone': BIZ['phone_e164'],
@@ -198,7 +198,7 @@ def business_ld():
         'founder': {'@id': PERSON_ID},
         'employee': {'@id': PERSON_ID},
         'contactPoint': {'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': BIZ['phone_e164'],
-                         'email': BIZ['email'], 'availableLanguage': 'sl', 'areaServed': 'SI'},
+                         'email': BIZ['email'], 'availableLanguage': ['sl', 'de'], 'areaServed': 'SI'},
         'areaServed': [{'@type': 'City', 'name': n} for n in CITIES],
         'knowsAbout': [s[1] for s in SERVICES],
         'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Storitve hišnega mojstra', 'itemListElement': [
@@ -432,7 +432,7 @@ def llms_txt(urls):
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja: novih električnih instalacij in tokokrogov, priklopa plinskih naprav, polaganja tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}.
-- Jezik: slovenščina.
+- Jezik: slovenščina in tekoča nemščina.
 
 ## Storitve
 {svc}

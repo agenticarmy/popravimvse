@@ -4,14 +4,19 @@ DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
 RewriteEngine On
+# SSL ZAČASNO IZKLOPLJEN: ko AutoSSL izda certifikat, odstrani "#" pred spodnjimi vrsticami
 # vsepopravim.si in www → https://popravimvse.si
+#RewriteCond %{HTTP_HOST} ^(www\.)?vsepopravim\.si$ [NC,OR]
+#RewriteCond %{HTTP_HOST} ^www\.popravimvse\.si$ [NC]
+#RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+# vedno https
+#RewriteCond %{HTTPS} !=on
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+# do takrat: vsepopravim.si in www → popravimvse.si (http)
 RewriteCond %{HTTP_HOST} ^(www\.)?vsepopravim\.si$ [NC,OR]
 RewriteCond %{HTTP_HOST} ^www\.popravimvse\.si$ [NC]
-RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
-# vedno https
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+RewriteRule ^(.*)$ http://popravimvse.si/$1 [R=302,L]
 # brez index.html v naslovu
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]

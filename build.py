@@ -16,10 +16,10 @@ TODAY = date.today().isoformat()
 BIZ = {
     'name': 'Popravim vse',
     'person': 'Sebastjan',
-    'legal': 'Sebastjan Stjepanovic s.p.',
+    'legal': 'Sebastjan Stjepanović s.p.',
     'phone': '070 755 355',
     'phone_e164': '+38670755355',
-    'email': 'info@popravimvse.si',
+    'email': 'popravimvsey@gmail.com',
     'rate': '35 €',
 }
 
@@ -82,7 +82,7 @@ def business_ld():
         'telephone': BIZ['phone_e164'],
         'email': BIZ['email'],
         'priceRange': '35 € na uro',
-        'founder': {'@type': 'Person', 'name': 'Sebastjan Stjepanovic'},
+        'founder': {'@type': 'Person', 'name': 'Sebastjan Stjepanović'},
         'areaServed': [{'@type': 'City', 'name': n} for n in
                        ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Miklavž na Dravskem polju', 'Rače',
                         'Pesnica', 'Ruše', 'Duplek', 'Starše', 'Kidričevo', 'Hajdina', 'Benedikt', 'Cerkvenjak', 'Poljčane']],
@@ -128,7 +128,7 @@ def footer():
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
     <div><h2>Več</h2><ul><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
-    <p class="legal">{BIZ["legal"]}. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič.</p>
+    <p class="legal">{BIZ["legal"]}. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
 <div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="sms:{BIZ["phone_e164"]}">SMS</a></div>'''
@@ -182,7 +182,7 @@ def aside(current_slug):
     return f'''<aside class="aside" aria-label="Cena in povezave">
   <div class="card">
     <span class="rate">35 € na uro</span>
-    <p>Prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič.</p>
+    <p>Prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
     {call_btn("call small")}
   </div>
   <nav class="card" aria-label="Storitve"><h2>Storitve</h2><ul>{svc}</ul></nav>

@@ -23,7 +23,9 @@ BIZ = {
     'email': 'popravimvse@gmail.com',
     'rate': '35 €',
     'same_as': [],  # povezave na Google Business, Facebook … ko obstajajo
-    'address': {},  # npr. {'addressLocality': 'Lenart v Slovenskih goricah', 'postalCode': '2230'} – ulica ni obvezna
+    'address': {'addressLocality': 'Pernica', 'postalCode': '2231'},  # izhodišče dela (brez ulice); sedež s.p. je v SEAT
+    'geo': (46.5785, 15.7269),  # Pernica
+    'seat': 'Ronkova ulica 4, 2380 Slovenj Gradec',
 }
 
 PERSON = {
@@ -210,6 +212,7 @@ def business_ld():
         d['sameAs'] = BIZ['same_as']
     if BIZ['address']:
         d['address'] = {'@type': 'PostalAddress', 'addressCountry': 'SI', 'addressRegion': 'Podravska', **BIZ['address']}
+        d['geo'] = {'@type': 'GeoCoordinates', 'latitude': BIZ['geo'][0], 'longitude': BIZ['geo'][1]}
     return d
 
 
@@ -278,7 +281,7 @@ def footer():
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
     <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
-    <p class="legal">{BIZ["legal"]}. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
+    <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
 <div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="sms:{BIZ["phone_e164"]}">SMS</a></div>'''

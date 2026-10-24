@@ -23,6 +23,7 @@ BIZ = {
     'email': 'popravimvse@gmail.com',
     'rate': '35 €',
     'same_as': [],  # povezave na Google Business, Facebook … ko obstajajo
+    'address': {},  # npr. {'addressLocality': 'Lenart v Slovenskih goricah', 'postalCode': '2230'} – ulica ni obvezna
 }
 
 PERSON = {
@@ -207,6 +208,8 @@ def business_ld():
     }
     if BIZ['same_as']:
         d['sameAs'] = BIZ['same_as']
+    if BIZ['address']:
+        d['address'] = {'@type': 'PostalAddress', 'addressCountry': 'SI', 'addressRegion': 'Podravska', **BIZ['address']}
     return d
 
 
@@ -395,7 +398,8 @@ def inner(meta, body, slug, crumbs):
         ld.append({'@type': 'Article', '@id': f'{SITE}/{slug}/#clanek', 'headline': meta['h1'], 'description': meta['description'],
                    'inLanguage': 'sl-SI', 'author': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID},
                    'datePublished': meta['published'], 'dateModified': meta['modified'], 'mainEntityOfPage': {'@id': f'{SITE}/{slug}/#stran'},
-                   'about': [{'@id': f'{SITE}/{s}/#storitev'} for s in meta.get('about', [])],
+                   'about': [{'@type': 'Service', 'name': dict((x[0], x[1]) for x in SERVICES)[sl], 'url': f'{SITE}/{sl}/',
+                              'provider': {'@id': BIZ_ID}} for sl in meta.get('about', [])],
                    'image': [SITE + img_url(sl, 1600) for sl in _used]})
     if meta.get('kind') == 'service':
         ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],

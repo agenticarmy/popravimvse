@@ -19,7 +19,7 @@ BIZ = {
     'legal': 'Sebastjan Stjepanović s.p.',
     'phone': '070 755 355',
     'phone_e164': '+38670755355',
-    'email': 'popravimvsey@gmail.com',
+    'email': 'popravimvse@gmail.com',
     'rate': '35 €',
 }
 

@@ -6,12 +6,13 @@ sledi HTML vsebina. Zaženi: python3 build.py
 """
 import json, re, shutil, html
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime, timezone
 
 ROOT = Path(__file__).parent
 OUT = ROOT / 'public'
 SITE = 'https://popravimvse.si'
 TODAY = date.today().isoformat()
+BUILT = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
 
 BIZ = {
     'name': 'Popravim vse',
@@ -171,6 +172,7 @@ def page(meta, main, path, extra_ld=()):
 {footer()}
 </body>
 </html>
+<!-- zgrajeno {BUILT} -->
 '''
 
 

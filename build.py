@@ -4,7 +4,7 @@
 Vsaka datoteka v content/ se začne z vrstico <!--{json}--> (metapodatki strani),
 sledi HTML vsebina. Zaženi: python3 build.py
 """
-import json, re, shutil, html
+import json, re, shutil, html, subprocess
 from pathlib import Path
 from datetime import date, datetime, timezone
 
@@ -22,7 +22,20 @@ BIZ = {
     'phone_e164': '+38670755355',
     'email': 'popravimvse@gmail.com',
     'rate': '35 €',
+    'same_as': [],  # povezave na Google Business, Facebook … ko obstajajo
 }
+
+PERSON = {
+    'name': 'Sebastjan Stjepanović',
+    'job': 'Hišni mojster',
+    'bio': 'Samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu.',
+}
+PERSON_ID = SITE + '/o-meni/#sebastjan'
+BIZ_ID = SITE + '/#podjetje'
+CITIES = ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Slivnica', 'Miklavž na Dravskem polju', 'Rače', 'Fram',
+          'Pesnica', 'Šentilj', 'Kungota', 'Ruše', 'Selnica ob Dravi', 'Duplek', 'Starše', 'Kidričevo', 'Hajdina', 'Videm',
+          'Markovci', 'Gorišnica', 'Destrnik', 'Juršinci', 'Benedikt', 'Cerkvenjak', 'Sveta Ana', 'Sveta Trojica v Slovenskih goricah',
+          'Sveti Jurij v Slovenskih goricah', 'Poljčane', 'Makole', 'Oplotnica']
 
 SERVICES = [
     ('polaganje-keramike', 'Polaganje keramike', 'tiles'),
@@ -73,22 +86,87 @@ def sms_btn():
     return f'<a class="btn-plain" href="sms:{BIZ["phone_e164"]}">Pošljite SMS s fotografijo</a>'
 
 
+def hour_price():
+    return {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitCode': 'HUR', 'unitText': 'ura',
+            'valueAddedTaxIncluded': False}
+
+
+def person_ld():
+    d = {
+        '@type': 'Person',
+        '@id': PERSON_ID,
+        'name': PERSON['name'],
+        'givenName': 'Sebastjan',
+        'familyName': 'Stjepanović',
+        'jobTitle': PERSON['job'],
+        'description': PERSON['bio'] + ' Po izobrazbi univerzitetni diplomirani ekonomist.',
+        'url': SITE + '/o-meni/',
+        'worksFor': {'@id': BIZ_ID},
+        'knowsAbout': [s[1] for s in SERVICES] + ['Hišna popravila', 'Vzdrževanje stanovanj in hiš'],
+        'knowsLanguage': 'sl',
+        'hasOccupation': {'@type': 'Occupation', 'name': 'Hišni mojster', 'occupationLocation': [{'@type': 'City', 'name': c} for c in CITIES[:4]],
+                          'skills': ', '.join(s[1] for s in SERVICES)},
+        'hasCredential': {'@type': 'EducationalOccupationalCredential', 'credentialCategory': 'degree',
+                          'name': 'Univerzitetni diplomirani ekonomist'},
+    }
+    if BIZ['same_as']:
+        d['sameAs'] = BIZ['same_as']
+    return d
+
+
 def business_ld():
-    return {
+    d = {
         '@type': 'HomeAndConstructionBusiness',
-        '@id': SITE + '/#podjetje',
+        '@id': BIZ_ID,
         'name': f'{BIZ["name"]} – {BIZ["legal"]}',
-        'alternateName': f'{BIZ["person"]} – {BIZ["name"]}',
+        'alternateName': [f'{BIZ["person"]} – {BIZ["name"]}', BIZ['name']],
+        'legalName': BIZ['legal'],
+        'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, fuge in silikon, odtoki, '
+                       'pipe in vodovod, priklop aparatov, luči, vrata in okna, tesarska, manjša betonska in zidarska dela. '
+                       '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
+        'slogan': 'Če ne popravim, ne plačate nič.',
         'url': SITE + '/',
         'telephone': BIZ['phone_e164'],
         'email': BIZ['email'],
         'priceRange': '35 € na uro',
-        'founder': {'@type': 'Person', 'name': 'Sebastjan Stjepanović'},
-        'areaServed': [{'@type': 'City', 'name': n} for n in
-                       ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Miklavž na Dravskem polju', 'Rače',
-                        'Pesnica', 'Ruše', 'Duplek', 'Starše', 'Kidričevo', 'Hajdina', 'Benedikt', 'Cerkvenjak', 'Poljčane']],
+        'currenciesAccepted': 'EUR',
+        'founder': {'@id': PERSON_ID},
+        'employee': {'@id': PERSON_ID},
+        'contactPoint': {'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': BIZ['phone_e164'],
+                         'email': BIZ['email'], 'availableLanguage': 'sl', 'areaServed': 'SI'},
+        'areaServed': [{'@type': 'City', 'name': n} for n in CITIES],
         'knowsAbout': [s[1] for s in SERVICES],
+        'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Storitve hišnega mojstra', 'itemListElement': [
+            {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': t, 'url': f'{SITE}/{sl}/'}, 'priceSpecification': hour_price()}
+            for sl, t, _ in SERVICES]},
     }
+    if BIZ['same_as']:
+        d['sameAs'] = BIZ['same_as']
+    return d
+
+
+def git_dates(name):
+    f = f'content/{name}.html'
+    try:
+        log = subprocess.run(['git', 'log', '--follow', '--format=%cs', '--', f], cwd=ROOT, capture_output=True, text=True).stdout.split()
+        dirty = subprocess.run(['git', 'status', '--porcelain', '--', f], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    except OSError:
+        return TODAY, TODAY
+    if not log:
+        return TODAY, TODAY
+    return log[-1], (TODAY if dirty else log[0])
+
+
+def sl_date(iso):
+    y, m, d = iso.split('-')
+    return f'{int(d)}. {int(m)}. {y}'
+
+
+def author_box(modified):
+    return f'''<aside class="author" aria-label="Avtor">
+  <p><strong>Avtor: <a href="/o-meni/">{PERSON["name"]}</a></strong>, samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu. Dela, ki jih opisujem, opravljam na domovih strank v Mariboru, Slovenskih goricah, na Ptuju in v Slovenski Bistrici.</p>
+  <p class="updated">Posodobljeno: <time datetime="{modified}">{sl_date(modified)}</time></p>
+</aside>'''
 
 
 def faq_ld(body):
@@ -137,11 +215,19 @@ def footer():
 
 def page(meta, main, path, extra_ld=()):
     url = SITE + path
-    graph = [business_ld(), {
-        '@type': 'WebPage', '@id': url + '#stran', 'url': url, 'name': meta['title'],
+    wp = {
+        '@type': meta.get('page_type', 'WebPage'), '@id': url + '#stran', 'url': url, 'name': meta['title'],
         'description': meta['description'], 'inLanguage': 'sl-SI', 'isPartOf': {'@id': SITE + '/#splet'},
-        'about': {'@id': SITE + '/#podjetje'}},
-        {'@type': 'WebSite', '@id': SITE + '/#splet', 'url': SITE + '/', 'name': 'Popravim vse', 'inLanguage': 'sl-SI'}]
+        'about': {'@id': PERSON_ID if meta.get('page_type') == 'ProfilePage' else BIZ_ID},
+        'author': {'@id': PERSON_ID}, 'reviewedBy': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID}}
+    if meta.get('published'):
+        wp['datePublished'] = meta['published']
+        wp['dateModified'] = meta['modified']
+    if meta.get('page_type') == 'ProfilePage':
+        wp['mainEntity'] = {'@id': PERSON_ID}
+    graph = [business_ld(), person_ld(), wp,
+             {'@type': 'WebSite', '@id': SITE + '/#splet', 'url': SITE + '/', 'name': 'Popravim vse', 'inLanguage': 'sl-SI',
+              'publisher': {'@id': BIZ_ID}}]
     graph += [g for g in extra_ld if g]
     ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
     return f'''<!doctype html>
@@ -158,6 +244,7 @@ def page(meta, main, path, extra_ld=()):
 <meta property="og:title" content="{esc(meta["title"])}">
 <meta property="og:description" content="{esc(meta["description"])}">
 <meta property="og:url" content="{url}">
+<meta name="author" content="{PERSON["name"]}">
 <meta name="theme-color" content="#16232B">
 <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/static/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -215,6 +302,7 @@ def inner(meta, body, slug, crumbs):
 <div class="wrap layout">
   <article class="prose">
 {body}
+{author_box(meta["modified"])}
   </article>
   {aside(slug)}
 </div>
@@ -225,10 +313,11 @@ def inner(meta, body, slug, crumbs):
     items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': meta['crumb'], 'item': f'{SITE}/{slug}/'})
     ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body)]
     if meta.get('kind') == 'service':
-        ld.append({'@type': 'Service', 'name': meta['crumb'], 'serviceType': meta['crumb'], 'provider': {'@id': SITE + '/#podjetje'},
-                   'areaServed': ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica'],
-                   'offers': {'@type': 'Offer', 'priceCurrency': 'EUR', 'price': '35',
-                              'priceSpecification': {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitText': 'ura'}}})
+        ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],
+                   'description': meta['description'], 'url': f'{SITE}/{slug}/',
+                   'provider': {'@id': BIZ_ID}, 'areaServed': [{'@type': 'City', 'name': c} for c in CITIES],
+                   'offers': {'@type': 'Offer', 'priceCurrency': 'EUR', 'price': '35', 'priceSpecification': hour_price(),
+                              'seller': {'@id': BIZ_ID}}})
     return main, ld
 
 
@@ -240,6 +329,35 @@ def home_main(body):
                .replace('{{AREAS}}', ''.join(
         f'<div class="area"><h3><a href="/{s}/">{t}</a></h3><p>{towns}</p></div>' for s, t, towns in AREAS)) \
                + cta_band()
+
+
+def llms_txt(urls):
+    m = {u: meta for u, _, _, meta in urls}
+    svc = '\n'.join(f'- [{t}]({SITE}/{s}/): {m[f"/{s}/"]["description"]}' for s, t, _ in SERVICES if f'/{s}/' in m)
+    ar = '\n'.join(f'- [{t}]({SITE}/{s}/): {towns}' for s, t, towns in AREAS)
+    return f'''# Popravim vse – {PERSON["name"]}, hišni mojster
+
+> Samostojni hišni mojster ({BIZ["legal"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu. Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.
+
+## Ključna dejstva
+- Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Ni zavezanec za DDV.
+- Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
+- Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Za material se dogovorita vnaprej.
+- Ne izvaja: novih električnih instalacij in tokokrogov, priklopa plinskih naprav, polaganja tlakovcev.
+- Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}.
+- Jezik: slovenščina.
+
+## Storitve
+{svc}
+
+## Območje
+{ar}
+
+## Ostalo
+- [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
+- [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
+- [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
+'''
 
 
 def read(name):
@@ -269,40 +387,49 @@ def main():
 
     meta, body = read('index')
     meta['nav'] = '/'
+    meta['published'], meta['modified'] = git_dates('index')
     write('/', page(meta, home_main(body), '/', [faq_ld(body)]))
-    urls.append(('/', '1.0'))
+    urls.append(('/', '1.0', meta['modified'], meta))
 
     for slug, title, _ in SERVICES:
         meta, body = read(slug)
         if meta is None: continue
         meta['kind'] = 'service'
         meta.setdefault('crumb', title)
+        meta['published'], meta['modified'] = git_dates(slug)
         m, ld = inner(meta, body, slug, [('/#storitve', 'Storitve')])
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
-        urls.append((f'/{slug}/', '0.9'))
+        urls.append((f'/{slug}/', '0.9', meta['modified'], meta))
     for slug, title, _ in AREAS:
         meta, body = read(slug)
         if meta is None: continue
         meta.setdefault('crumb', title)
+        meta['published'], meta['modified'] = git_dates(slug)
         m, ld = inner(meta, body, slug, [('/#obmocje', 'Območje')])
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
-        urls.append((f'/{slug}/', '0.9'))
+        urls.append((f'/{slug}/', '0.9', meta['modified'], meta))
     for slug, title in OTHER:
         meta, body = read(slug)
         if meta is None: continue
         meta.setdefault('crumb', title)
         meta['nav'] = f'/{slug}/'
+        meta['published'], meta['modified'] = git_dates(slug)
+        if slug == 'o-meni':
+            meta['page_type'] = 'ProfilePage'
+        elif slug == 'kontakt':
+            meta['page_type'] = 'ContactPage'
         m, ld = inner(meta, body, slug, [])
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
-        urls.append((f'/{slug}/', '0.7'))
+        urls.append((f'/{slug}/', '0.7', meta['modified'], meta))
 
     meta, body = read('404')
     if meta: (OUT / '404.html').write_text(page(meta, body, '/404.html'), encoding='utf-8')
 
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod><priority>{p}</priority></url>' for u, p in urls]
+    sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{mod}</lastmod><priority>{p}</priority></url>' for u, p, mod, _ in urls]
     sm.append('</urlset>')
     (OUT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
+    (OUT / 'llms.txt').write_text(llms_txt(urls), encoding='utf-8')
     print(f'Zgrajeno: {len(urls)} strani v {OUT}')
 
 

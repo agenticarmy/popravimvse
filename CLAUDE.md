@@ -18,3 +18,5 @@ Vsebinska pravila:
 Dejstva (25. 10. 2026): 35 €/h, prevoz vključen; prva ura v celoti, nato na minuto natančno; če ne popravi, stranka ne plača nič;
 plačilo samo z gotovino na mestu, račun za vsako delo; ni zavezanec za DDV; samo posamezniki in gospodinjstva (ne podjetja);
 sedež Ronkova ulica 4, 2380 Slovenj Gradec (pisarna), dela iz Pernice pri Mariboru.
+Čas se šteje od prihoda k stranki (stisk roke), vožnja ne; brez doplačil zvečer/vikend; material kupi stranka (Sebastjan svetuje, brez pribitka);
+če kaj ni prav (npr. silikon odstopi), popravi brezplačno; termina se drži – če je preveč zaseden, raje takoj odkloni; brez predplačila.

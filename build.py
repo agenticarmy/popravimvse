@@ -152,9 +152,14 @@ def sms_btn():
     return f'<a class="btn-plain" href="sms:{BIZ["phone_e164"]}">Pošljite SMS s fotografijo</a>'
 
 
+AUDIENCE = {'@type': 'PeopleAudience', 'audienceType': 'Posamezniki in gospodinjstva'}
+
+
 def hour_price():
     return {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitCode': 'HUR', 'unitText': 'ura',
-            'valueAddedTaxIncluded': False}
+            'eligibleQuantity': {'@type': 'QuantitativeValue', 'minValue': 1, 'unitCode': 'HUR'},
+            'description': 'Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Prevoz vključen. '
+                           'Ni zavezanec za DDV, cena je končna.'}
 
 
 def person_ld():
@@ -191,7 +196,9 @@ def business_ld():
         'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, laminat in talne obloge, '
                        'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
                        'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, košnja in urejanje okolice. '
-                       '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
+                       '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
+                       'če popravila ni mogoče opraviti, stranka ne plača nič. Plačilo z gotovino na mestu. '
+                       'Dela samo za posameznike in gospodinjstva.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
@@ -200,6 +207,7 @@ def business_ld():
         'email': BIZ['email'],
         'priceRange': '35 € na uro',
         'currenciesAccepted': 'EUR',
+        'paymentAccepted': 'Gotovina',
         'founder': {'@id': PERSON_ID},
         'employee': {'@id': PERSON_ID},
         'contactPoint': {'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': BIZ['phone_e164'],
@@ -207,7 +215,8 @@ def business_ld():
         'areaServed': [{'@type': 'City', 'name': n} for n in CITIES],
         'knowsAbout': [s[1] for s in SERVICES],
         'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Storitve hišnega mojstra', 'itemListElement': [
-            {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': t, 'url': f'{SITE}/{sl}/'}, 'priceSpecification': hour_price()}
+            {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': t, 'url': f'{SITE}/{sl}/', 'audience': AUDIENCE},
+             'priceSpecification': hour_price(), 'acceptedPaymentMethod': 'http://purl.org/goodrelations/v1#Cash'}
             for sl, t, _ in SERVICES]},
     }
     if BIZ['same_as']:
@@ -409,9 +418,9 @@ def inner(meta, body, slug, crumbs):
     if meta.get('kind') == 'service':
         ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],
                    'description': meta['description'], 'url': f'{SITE}/{slug}/',
-                   'provider': {'@id': BIZ_ID}, 'areaServed': [{'@type': 'City', 'name': c} for c in CITIES],
+                   'provider': {'@id': BIZ_ID}, 'areaServed': [{'@type': 'City', 'name': c} for c in CITIES], 'audience': AUDIENCE,
                    'offers': {'@type': 'Offer', 'priceCurrency': 'EUR', 'price': '35', 'priceSpecification': hour_price(),
-                              'seller': {'@id': BIZ_ID}}})
+                              'acceptedPaymentMethod': 'http://purl.org/goodrelations/v1#Cash', 'seller': {'@id': BIZ_ID}}})
     return main, ld
 
 

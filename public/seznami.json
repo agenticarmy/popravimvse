@@ -259,6 +259,180 @@
     "lopatice in brusni papir"
    ],
    "stene": []
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-ploscic/",
+   "naslov": "Kaj kupiti za polaganje ploščic",
+   "storitev": "https://popravimvse.si/polaganje-keramike/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Ploščice: površina + 10 % rezerve, pri velikih ploščicah ali diagonalnem polaganju okoli 15 %.",
+    "Vse škatle iz iste serije in kalibra, oznaki sta na škatli.",
+    "Lepilo: navadno (C1) za manjše stenske ploščice; fleksibilno (C2, S1) za velike ploščice, tla s talnim ogrevanjem in ploščice na ploščice.",
+    "Količina lepila: približno 3 do 6 kg na m², odvisno od velikosti ploščic. Natančno piše na vreči.",
+    "Še: fugirna masa, sanitarni silikon za kote in zaključni profili za vidne robove."
+   ],
+   "material": [
+    {
+     "ime": "Ploščice",
+     "vrsta": "Za tla z oznako za talne ploščice; za kopalnico protizdrsne.",
+     "kolicina": "Površina + 10 % (velike ali diagonalno + 15 %), zaokroženo na cele škatle.",
+     "opomba": "Serija in kaliber morata biti na vseh škatlah enaka."
+    },
+    {
+     "ime": "Lepilo za ploščice",
+     "vrsta": "C1 za manjše stenske ploščice; C2 S1 (fleksibilno) za velike ploščice, talno ogrevanje in ploščice na ploščice.",
+     "kolicina": "Približno 3–6 kg/m² glede na velikost zob lopatice; večje ploščice porabijo več.",
+     "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči."
+    },
+    {
+     "ime": "Fugirna masa",
+     "vrsta": "Cementna ali epoksi, v izbrani barvi.",
+     "kolicina": "Po tabeli na embalaži.",
+     "opomba": "Več na seznamu za obnovo fug."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "V barvi fug.",
+     "kolicina": "1–2 kartuši za kopalnico.",
+     "opomba": "Za kote in stik s kadjo ali tušem."
+    },
+    {
+     "ime": "Zaključni profili (po potrebi)",
+     "vrsta": "Za vidne robove in zunanje vogale, v barvi ali kovinski.",
+     "kolicina": "Dolžina vseh vidnih robov.",
+     "opomba": ""
+    },
+    {
+     "ime": "Osnovni premaz (po potrebi)",
+     "vrsta": "Za vpojne podlage ali kontaktni premaz za ploščice na ploščice.",
+     "kolicina": "Po izdatnosti z embalaže.",
+     "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji."
+    }
+   ],
+   "prinese_mojster": [
+    "rezalnik in brusilko za ploščice",
+    "zobate lopatice in mešalo",
+    "libelo in laser",
+    "križce za fuge in izravnalne sponke za velike ploščice",
+    "gumijasto kladivo",
+    "vedra in gobe"
+   ],
+   "stene": []
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/",
+   "naslov": "Kaj kupiti za polico ali omarico na mavčno steno",
+   "storitev": "https://popravimvse.si/montaza-tv-in-polic/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Kovinski votlinski vložki za police in omarice; priloženi plastični vložki so običajno za polno steno.",
+    "Nosilnost na vložek piše na embalaži; pri dvojni plošči je večja kot pri enojni.",
+    "Meja stene: enojna plošča nosi približno do 40 kg na element globine 30 cm, dvojna približno do 70 kg.",
+    "Kuhinjske viseče omarice in težke police pritrdim v kovinske profile ali na nosilno letev.",
+    "Če ne veste, koliko plošč ima stena, vložkov ne kupujte, ampak jih po dogovoru kupim na poti k vam."
+   ],
+   "material": [
+    {
+     "ime": "Polica ali omarica",
+     "vrsta": "S priloženimi nosilci ali obešali.",
+     "kolicina": "Po izbiri.",
+     "opomba": "Preverite, ali je nosilec za steno priložen."
+    },
+    {
+     "ime": "Kovinski votlinski vložki",
+     "vrsta": "Za mavčne plošče; dolžina glede na debelino stene (enojna ali dvojna plošča).",
+     "kolicina": "Toliko, kolikor je lukenj v nosilcih, običajno 2–4 na element.",
+     "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka."
+    },
+    {
+     "ime": "Vijaki za profile (po potrebi)",
+     "vrsta": "Vijaki za pločevino ali za suho gradnjo.",
+     "kolicina": "Po nosilcu.",
+     "opomba": "Kadar pritrdim v kovinske profile."
+    }
+   ],
+   "prinese_mojster": [
+    "detektor profilov, cevi in kablov",
+    "vrtalnik in svedre",
+    "libelo",
+    "orodje za vložke",
+    "sesalnik za prah"
+   ],
+   "stene": [
+    {
+     "stena": "Lahke stvari (slika, majhna polica)",
+     "prepoznate": "Do nekaj kg.",
+     "kupite": "Plastični ali kovinski vložki za mavčne plošče."
+    },
+    {
+     "stena": "Polica s knjigami, omarica v kopalnici",
+     "prepoznate": "Srednja teža, element globine do 30 cm.",
+     "kupite": "Kovinski votlinski vložki; pri enojni plošči skupaj največ okoli 40 kg."
+    },
+    {
+     "stena": "Kuhinjska viseča omarica, težka polica",
+     "prepoznate": "Težko obremenjena, z vrati, ki se odpirajo.",
+     "kupite": "Pritrditev v kovinske profile ali na nosilno letev. Vprašajte me prej."
+    }
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/",
+   "naslov": "Kaj kupiti za montažo kopalniške opreme",
+   "storitev": "https://popravimvse.si/kopalniska-oprema/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Oprema z nosilci: preverite, ali so vijaki in vložki priloženi in za kakšno steno so.",
+    "Za mavčno steno potrebujete posebne vložke (glejte seznam za mavčno steno).",
+    "WC deska: izmerite dolžino in širino školjke ter razmak lukenj za pritrditev.",
+    "Sanitarni silikon za tesnjenje ob tuš steni in okoli opreme v tušu.",
+    "Oprijemala za starejše morajo biti označena za oporo in pritrjena v trdno steno."
+   ],
+   "material": [
+    {
+     "ime": "Ogledalo, omarica, police, držala",
+     "vrsta": "Z nosilci in navodili za montažo.",
+     "kolicina": "Po izbiri.",
+     "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar."
+    },
+    {
+     "ime": "Vijaki in vložki",
+     "vrsta": "Iz nerjavnega materiala; za vašo steno (beton, opeka ali mavčna plošča).",
+     "kolicina": "Po nosilcih.",
+     "opomba": "Priloženi so pogosto le za polno steno."
+    },
+    {
+     "ime": "WC deska",
+     "vrsta": "Po meri školjke: dolžina, širina in razmak lukenj.",
+     "kolicina": "1 kos",
+     "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim dodatkom, prozoren ali bel.",
+     "kolicina": "1 kartuša.",
+     "opomba": "Za tuš steno in tesnjenje v tušu."
+    },
+    {
+     "ime": "Oprijemala za starejše (po potrebi)",
+     "vrsta": "Označena za oporo, z navedeno nosilnostjo.",
+     "kolicina": "Po potrebi.",
+     "opomba": "Na mavčno steno samo v profile ali na ojačitev."
+    }
+   ],
+   "prinese_mojster": [
+    "vrtalnik in svedre za keramiko",
+    "detektor cevi in kablov",
+    "libelo",
+    "lepilni trak za vrtanje",
+    "orodje za privijanje",
+    "sesalnik za prah"
+   ],
+   "stene": []
   }
  ]
 }

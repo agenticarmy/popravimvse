@@ -52,6 +52,9 @@ Material kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: https://poprav
 - [Kaj kupiti za polaganje laminata](https://popravimvse.si/kaj-kupiti/polaganje-laminata/): Koliko laminata, podloge in talnih letev kupiti, kateri razred laminata izbrati in kaj pripraviti 48 ur pred polaganjem. Seznam hišnega mojstra.
 - [Kaj kupiti za obnovo fug v kopalnici](https://popravimvse.si/kaj-kupiti/obnova-fug/): Katero fugirno maso kupiti, cementno ali epoksi, koliko je potrebujete in katero barvo izbrati. Seznam hišnega mojstra za obnovo fug.
 - [Kaj kupiti za pleskanje sobe](https://popravimvse.si/kaj-kupiti/pleskanje-sobe/): Koliko barve kupiti za sobo, katero barvo za kuhinjo, hodnik ali kopalnico ter kdaj potrebujete kit in osnovni premaz. Seznam hišnega mojstra.
+- [Kaj kupiti za polaganje ploščic](https://popravimvse.si/kaj-kupiti/polaganje-ploscic/): Koliko ploščic in lepila kupiti, katero lepilo za velike ploščice in talno ogrevanje ter kateri profili in fuge so potrebni. Seznam hišnega mojstra.
+- [Kaj kupiti za polico ali omarico na mavčno steno](https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/): Katere vložke kupiti za polico ali visečo omarico na mavčni (knauf) steni, koliko nosijo in kdaj je treba v profile. Seznam hišnega mojstra.
+- [Kaj kupiti za montažo kopalniške opreme](https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/): Kaj kupiti za ogledalo, omarico, police in držala v kopalnici, kako izmeriti WC desko in kdaj ne vrtati v ploščice. Seznam hišnega mojstra.
 
 ## Ostalo
 - [Cenik](https://popravimvse.si/cenik/): urna postavka in kako se obračuna

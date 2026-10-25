@@ -2,7 +2,7 @@
   "_opomba": "Seznami »Kaj kupiti za …«. status: osnutek (ni objavljen, samo predogled s PREVIEW=1) ali objavljeno. Polje pregledano = datum, ko je Sebastjan potrdil vsebino. iz_prakse = nasveti, ki jih je Sebastjan potrdil iz lastnih izkušenj (25. 10. 2026).",
   "hub": {
     "title": "Kaj kupiti pred prihodom mojstra: seznami | Popravim vse",
-    "description": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, fuge, laminat, pleskanje in montažo TV, koliko česa in česa vam ni treba kupiti.",
+    "description": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, fuge, ploščice, laminat, pleskanje in montaže, koliko česa in česa ni treba kupiti.",
     "h1": "Kaj kupiti pred mojim prihodom",
     "lead": "Material kupite sami, po ceni iz trgovine in brez mojega pribitka. Na teh seznamih je zapisano, kaj točno kupiti, koliko in česa vam ni treba, ker orodje prinesem jaz.",
     "crumb": "Kaj kupiti"
@@ -568,8 +568,8 @@
     },
     {
       "slug": "polaganje-ploscic",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "polaganje-keramike",
       "title": "Kaj kupiti za polaganje ploščic | Popravim vse",
       "description": "Koliko ploščic in lepila kupiti, katero lepilo za velike ploščice in talno ogrevanje ter kateri profili in fuge so potrebni. Seznam hišnega mojstra.",
@@ -691,8 +691,8 @@
     },
     {
       "slug": "polica-na-mavcno-steno",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "montaza-tv-in-polic",
       "title": "Kaj kupiti za polico ali omarico na mavčno steno | Popravim vse",
       "description": "Katere vložke kupiti za polico ali visečo omarico na mavčni (knauf) steni, koliko nosijo in kdaj je treba v profile. Seznam hišnega mojstra.",
@@ -810,8 +810,8 @@
     },
     {
       "slug": "montaza-kopalniske-opreme",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "kopalniska-oprema",
       "title": "Kaj kupiti za montažo kopalniške opreme | Popravim vse",
       "description": "Kaj kupiti za ogledalo, omarico, police in držala v kopalnici, kako izmeriti WC desko in kdaj ne vrtati v ploščice. Seznam hišnega mojstra.",

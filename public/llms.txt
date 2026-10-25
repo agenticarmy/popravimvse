@@ -45,6 +45,11 @@
 - [Moja dela](https://popravimvse.si/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda](https://popravimvse.si/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
 
+## Kaj kupiti (seznami materiala)
+Material kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: https://popravimvse.si/seznami.json
+- [Kaj kupiti za obnovo silikona v kopalnici](https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/): Kateri sanitarni silikon kupiti za tuš, kad in umivalnik, koliko kartuš potrebujete in česa vam ni treba kupiti. Seznam hišnega mojstra.
+- [Kaj kupiti za montažo TV na steno](https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/): Kateri nosilec za TV kupiti, kako preverite VESA in težo ter katere vložke potrebuje betonska, opečna ali mavčna stena. Seznam hišnega mojstra.
+
 ## Ostalo
 - [Cenik](https://popravimvse.si/cenik/): urna postavka in kako se obračuna
 - [O meni](https://popravimvse.si/o-meni/): kdo je Sebastjan Stjepanović

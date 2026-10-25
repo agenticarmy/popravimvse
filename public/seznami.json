@@ -1,0 +1,116 @@
+{
+ "opis": "Seznami materiala Popravim vse. Material kupi stranka, orodje prinese mojster.",
+ "seznami": [
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/",
+   "naslov": "Kaj kupiti za obnovo silikona v kopalnici",
+   "storitev": "https://popravimvse.si/obnova-fug-in-silikona/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Sanitarni silikon s protiglivičnim dodatkom, ki je na embalaži označen za kopalnice in tuše.",
+    "Barva: bela, prozorna ali v barvi vaših fug.",
+    "Količina: ena kartuša (300 do 310 ml) zadošča za približno 12 m tankega stika (5 × 5 mm).",
+    "Ob naravnem kamnu (marmor, granit) kupite silikon, ki je označen za naravni kamen.",
+    "Ne kupujte pištole, noža, čistil in lepilnega traku. To prinesem jaz."
+   ],
+   "material": [
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim (fungicidnim) dodatkom, označen za kopalnice, tuše in kuhinje.",
+     "kolicina": "1 kartuša 300–310 ml na približno 12 m stika 5 × 5 mm; pri širšem stiku 10 × 10 mm le približno 3 m.",
+     "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren."
+    },
+    {
+     "ime": "Silikon za naravni kamen (samo ob kamnu)",
+     "vrsta": "Nevtralno zamrežen silikon, na embalaži označen za naravni kamen.",
+     "kolicina": "Enako kot sanitarni silikon.",
+     "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu."
+    }
+   ],
+   "prinese_mojster": [
+    "pištolo za silikon",
+    "nož in strgalo za star silikon",
+    "sredstvo za odstranjevanje ostankov silikona",
+    "čistilo za razmastitev stika",
+    "lepilni trak za ravne robove",
+    "orodje za glajenje stika"
+   ],
+   "stene": []
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/",
+   "naslov": "Kaj kupiti za montažo TV na steno",
+   "storitev": "https://popravimvse.si/montaza-tv-in-polic/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Stenski nosilec z istim razmakom lukenj (VESA) kot na hrbtu televizorja, npr. 200 × 200 ali 400 × 400 mm.",
+    "Nosilnost nosilca naj bo večja od teže televizorja brez stojala.",
+    "Vrsta: fiksni nosilec je najbližje steni, nagibni pomaga pri visoki montaži, vrtljivi bolj obremeni steno.",
+    "Vložki za vašo steno: priloženi so večinoma samo za beton. Če ne veste, kakšna je stena, jih ne kupujte, ampak mi pošljite fotografijo.",
+    "Po želji: kabelski kanal in dovolj dolg HDMI kabel."
+   ],
+   "material": [
+    {
+     "ime": "Stenski nosilec za TV",
+     "vrsta": "VESA razmak kot na televizorju; nosilnost večja od teže TV; fiksni, nagibni ali vrtljivi.",
+     "kolicina": "1 kos",
+     "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža."
+    },
+    {
+     "ime": "Vložki in vijaki za steno",
+     "vrsta": "Glede na steno, glejte tabelo spodaj.",
+     "kolicina": "Toliko, kolikor ima nosilec lukenj za steno (običajno 4–6).",
+     "opomba": "Priloženi vložki so večinoma za beton."
+    },
+    {
+     "ime": "Kabelski kanal (neobvezno)",
+     "vrsta": "Samolepilni ali za privijanje, bel ali takšen, ki se ga da prepleskati.",
+     "kolicina": "Dolžina od televizorja do omarice ali vtičnice.",
+     "opomba": "Nove vtičnice za televizorjem mora narediti električar."
+    },
+    {
+     "ime": "HDMI in antenski kabel (neobvezno)",
+     "vrsta": "Dovolj dolga, pri vrtljivem nosilcu z rezervo za premikanje.",
+     "kolicina": "Po potrebi.",
+     "opomba": ""
+    }
+   ],
+   "prinese_mojster": [
+    "vrtalnik in svedre za vašo steno",
+    "detektor cevi in kablov",
+    "libelo",
+    "orodje za privijanje",
+    "vezice za kable"
+   ],
+   "stene": [
+    {
+     "stena": "Beton",
+     "prepoznate": "Zelo trda stena, vrtanje gre težko, prah je siv.",
+     "kupite": "Vložke za beton; pogosto so priloženi nosilcu."
+    },
+    {
+     "stena": "Polna opeka",
+     "prepoznate": "Rdečkast prah, vrtanje gre enakomerno.",
+     "kupite": "Univerzalne ali razpirne vložke za polno opeko."
+    },
+    {
+     "stena": "Votla (modularna) opeka",
+     "prepoznate": "Rdečkast prah, sveder med vrtanjem nenadoma »pade« v praznino.",
+     "kupite": "Vložke za votle materiale, ki se zasidrajo v votlini. Navadni razpirni vložki ne držijo."
+    },
+    {
+     "stena": "Plinobeton (porobeton)",
+     "prepoznate": "Bela, mehka stena, prah je kot moka.",
+     "kupite": "Posebne vložke za plinobeton."
+    },
+    {
+     "stena": "Mavčna plošča (knauf)",
+     "prepoznate": "Ob trkanju zveni votlo.",
+     "kupite": "Kovinske votlinske vložke ali privijanje v kovinske profile. Pri težkem televizorju ali vrtljivem nosilcu se posvetujva prej."
+    }
+   ]
+  }
+ ]
+}

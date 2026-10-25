@@ -183,6 +183,17 @@ function ui_analyze(array $r, ?array $cfg = null): array
         if (is_array($out) && array_diff($need, array_keys($out))) $out = null;
         if (is_array($out)) $out += ['razlog' => '', 'zaupanje' => 'nizko', 'ocena_razlaga' => '', 'material' => [], 'seznam_url' => '', 'preveriti_na_kraju' => [], 'opozorila' => []];
         if (is_array($out) && !in_array($out['ali_je_zame'], ['da', 'ne', 'morda'], true)) $out['ali_je_zame'] = 'morda';
+        // nekateri modeli vrnejo seznam kot besedilo z JSON-om: pretvori in obdrži samo veljavne vrstice
+        if (is_array($out)) {
+            foreach (['material', 'preveriti_na_kraju', 'opozorila'] as $f) {
+                if (is_string($out[$f])) $out[$f] = json_decode($out[$f], true) ?: ($out[$f] !== '' ? [$out[$f]] : []);
+                if (!is_array($out[$f])) $out[$f] = [];
+            }
+            $out['material'] = array_values(array_filter(array_map(fn($m) => is_array($m) && !empty($m['ime'])
+                ? ['ime' => (string)$m['ime'], 'kolicina' => (string)($m['kolicina'] ?? ''), 'opomba' => (string)($m['opomba'] ?? '')] : null, $out['material'])));
+            $out['preveriti_na_kraju'] = array_values(array_filter($out['preveriti_na_kraju'], 'is_string'));
+            $out['opozorila'] = array_values(array_filter($out['opozorila'], 'is_string'));
+        }
         if ($code !== 200 || !$out) throw new RuntimeException('Claude ni vrnil ocene' . ($err ? ": $err" : " (HTTP $code)"));
 
         $out['ocena_ur_min'] = max(0.25, (float)$out['ocena_ur_min']);
@@ -216,8 +227,10 @@ function compose_body(array $r): string
         . ' (35 € na uro, prevoz je vključen). Če popravila ni mogoče opraviti, ne plačate nič.';
     if (!empty($u['material'])) {
         $t .= "\n\nPred mojim prihodom kupite:";
-        foreach ($u['material'] as $m) $t .= "\n- {$m['ime']}: {$m['kolicina']}" . ($m['opomba'] !== '' ? " ({$m['opomba']})" : '');
+        foreach ($u['material'] as $m) $t .= "\n- {$m['ime']}" . ($m['kolicina'] !== '' ? ": {$m['kolicina']}" : '') . ($m['opomba'] !== '' ? " ({$m['opomba']})" : '');
         if ($u['seznam_url'] !== '') $t .= "\nPodrobno: {$u['seznam_url']}";
+    } elseif ($u['seznam_url'] !== '') {
+        $t .= "\n\nKaj kupiti pred mojim prihodom: {$u['seznam_url']}";
     }
     return $t;
 }

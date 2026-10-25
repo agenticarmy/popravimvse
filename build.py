@@ -195,7 +195,7 @@ def business_ld():
         'legalName': BIZ['legal'],
         'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, laminat in talne obloge, '
                        'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
-                       'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, košnja in urejanje okolice. '
+                       'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, pomoč kot druga roka, košnja, obrezovanje žive meje in urejanje okolice. '
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
                        'če popravila ni mogoče opraviti, stranka ne plača nič. Plačilo z gotovino na mestu. '
                        'Dela samo za posameznike in gospodinjstva.',

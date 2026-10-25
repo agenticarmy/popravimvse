@@ -156,12 +156,12 @@ def call_btn(cls='call'):
     return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}Pokličite {BIZ["phone"]}</a>'
 
 
-CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'
+CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="M16 10.5 21.5 7.5v9L16 13.5"/></svg>'
 
 
 def sms_btn():
     # nekoč SMS, zdaj obrazec: fotografija, video, glas ali opis (SMS ostane na /kontakt/ in v spodnji vrstici)
-    return f'<a class="btn-plain pv-cta" href="{FORM}">{CAM}Pošljite fotografijo ali video</a>'
+    return f'<a class="btn-plain pv-cta" href="{FORM}">{CAM}Posnemite video težave</a>'
 
 
 AUDIENCE = {'@type': 'PeopleAudience', 'audienceType': 'Posamezniki in gospodinjstva'}
@@ -316,11 +316,11 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Pošljite fotografijo</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
-<div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Foto: pošljite fotografijo ali video">{CAM}Foto</a></div>'''
+<div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Video: posnemite težavo">{CAM}Video</a></div>'''
 
 
 def page(meta, main, path, extra_ld=()):
@@ -402,8 +402,8 @@ def aside(current_slug):
 def cta_band():
     return f'''<section class="cta-band">
   <div class="wrap">
-    <div><h2>Opišite, kaj je treba popraviti</h2><p>Pošljite fotografijo, video ali glasovno sporočilo, ali pa pokličite. Okvirno oceno časa dobite vnaprej, brezplačno.</p></div>
-    <div class="actions">{call_btn()}<a class="btn-plain pv-cta" href="{FORM}">{CAM}Pošljite fotografijo</a></div>
+    <div><h2>Opišite, kaj je treba popraviti</h2><p>Posnemite kratek video in povejte, kaj je narobe, ali pa pokličite. Okvirno oceno časa dobite vnaprej, brezplačno.</p></div>
+    <div class="actions">{call_btn()}<a class="btn-plain pv-cta" href="{FORM}">{CAM}Posnemite video</a></div>
   </div>
 </section>'''
 
@@ -597,7 +597,7 @@ def llms_txt(urls):
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
-- Obrazec: {SITE}{FORM} – fotografija, video (do 250 MB), glasovno sporočilo in/ali opis; obvezen je samo telefon. Brez registracije.
+- Obrazec: {SITE}{FORM} – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije.
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
@@ -619,7 +619,7 @@ def llms_txt(urls):
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
 - [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
-- [Pošljite fotografijo]({SITE}{FORM}): obrazec za fotografije, video, glas in opis
+- [Posnemite video]({SITE}{FORM}): obrazec za video z glasom, fotografije in opis
 - [Zasebnost]({SITE}/zasebnost/): kako se obdelujejo podatki iz povpraševanj
 '''
 

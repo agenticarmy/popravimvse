@@ -70,20 +70,25 @@
     var li = document.createElement('li');
     li.className = 'pv-thumb pv-' + kind;
     var url = URL.createObjectURL(file), media;
-    if (kind === 'image') { media = document.createElement('img'); media.src = url; media.alt = 'Izbrana fotografija'; }
-    else if (kind === 'video') { media = document.createElement('video'); media.src = url + '#t=0.1'; media.muted = true; media.playsInline = true; media.preload = 'metadata'; media.setAttribute('aria-label', 'Izbran video'); }
-    else { media = document.createElement('audio'); media.src = url; media.controls = true; media.preload = 'metadata'; }
-    li.appendChild(media);
-    var tag = document.createElement('span'); tag.className = 'pv-tag';
-    tag.textContent = kind === 'video' ? 'Video · ' + mb(file.size) : kind === 'audio' ? 'Glasovno sporočilo' : 'Fotografija';
-    li.appendChild(tag);
+    var box = document.createElement('span'); box.className = 'pv-prev';
+    if (kind === 'image') { media = document.createElement('img'); media.src = url; media.alt = ''; }
+    else if (kind === 'video') { media = document.createElement('video'); media.src = url + '#t=0.1'; media.muted = true; media.playsInline = true; media.preload = 'metadata'; }
+    else { media = document.createElement('span'); media.className = 'pv-aud'; media.textContent = '♪'; }
+    box.appendChild(media);
+    li.appendChild(box);
+    var info = document.createElement('span'); info.className = 'pv-info';
+    var tag = document.createElement('b');
+    tag.textContent = kind === 'video' ? 'Video' : kind === 'audio' ? 'Zvočni posnetek' : 'Fotografija';
+    var st = document.createElement('small'); st.className = 'pv-st'; st.textContent = mb(file.size) + ' · nalagam …';
+    info.appendChild(tag); info.appendChild(st);
     var bar = document.createElement('span'); bar.className = 'pv-mini'; bar.innerHTML = '<i></i>';
-    li.appendChild(bar);
-    var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pv-rm'; rm.setAttribute('aria-label', 'Odstrani'); rm.textContent = '×';
+    info.appendChild(bar);
+    li.appendChild(info);
+    var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pv-rm'; rm.setAttribute('aria-label', 'Odstrani ' + tag.textContent.toLowerCase()); rm.textContent = '×';
     rm.addEventListener('click', function () { it.removed = true; it.frames.forEach(function (f) { f.removed = true; }); li.remove(); URL.revokeObjectURL(url); syncRemoved(); });
     li.appendChild(rm);
     thumbs.appendChild(li);
-    it.li = li; it.bar = bar.firstChild;
+    it.li = li; it.bar = bar.firstChild; it.st = st;
     it.promise = chain = chain.then(function () { return upload(it); });
     return it;
   }
@@ -118,9 +123,9 @@
     var tries = 0;
     function step(offset) {
       if (it.removed) return Promise.resolve();
-      if (offset >= it.file.size) { it.done = true; if (it.li) it.li.classList.add('ok'); progress(it, it.file.size); return Promise.resolve(); }
+      if (offset >= it.file.size) { it.done = true; if (it.li) { it.li.classList.add('ok'); it.st.textContent = mb(it.file.size) + ' · naloženo ✓'; } progress(it, it.file.size); return Promise.resolve(); }
       return sendChunk(it, offset).then(function (rec) { tries = 0; it.sent = rec; return step(rec); }, function (e) {
-        if (e.fatal || ++tries > 6) { it.error = e.message; if (it.li) it.li.classList.add('bad'); throw e; }
+        if (e.fatal || ++tries > 6) { it.error = e.message; if (it.li) { it.li.classList.add('bad'); it.st.textContent = 'Ni naloženo – odstranite in poskusite znova'; } throw e; }
         return new Promise(function (r) { setTimeout(r, Math.min(15000, 1000 * Math.pow(2, tries))); }).then(function () { return step(it.sent); });
       });
     }
@@ -128,7 +133,7 @@
   }
   function progress(it, sent) {
     it.sent = Math.max(it.sent, Math.min(sent, it.file.size));
-    if (it.bar) it.bar.style.width = Math.round(100 * it.sent / it.file.size) + '%';
+    if (it.bar) { var pc = Math.round(100 * it.sent / it.file.size); it.bar.style.width = pc + '%'; if (!it.done) it.st.textContent = mb(it.file.size) + ' · nalagam ' + pc + ' %'; }
     if (submitting) overall();
   }
   function overall() {
@@ -177,116 +182,19 @@
     v.addEventListener('error', function () { clearTimeout(timer); done(); });
   }
 
+  // kamera: video z glasom (glavna pot)
+  var cam = $('pv-cam');
+  cam.addEventListener('change', function () {
+    var f = cam.files && cam.files[0]; cam.value = '';
+    if (!f) return;
+    var kind = /^image\//.test(f.type) ? 'image' : 'video';
+    if (kind === 'image') shrink(f).then(function (s) { addItem(s, 'image'); });
+    else { var v = addItem(f, 'video'); if (v) frames(f, v); }
+  });
+  cam.removeAttribute('name');
+
   // brez JS ostane polje media[] v obrazcu; z JS datoteke pošiljamo po kosih
   input.removeAttribute('name');
-
-  /* ---------- glasovno sporočilo ---------- */
-  var voice = $('pv-voice'), recBtn = $('pv-rec'), help = $('pv-voice-help'), rec = null, recT = 0, timer = null, chunks = [], stream = null;
-  var ua = navigator.userAgent || '';
-  var IOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
-  var ANDROID = /Android/.test(ua);
-  var INAPP = /FBAN|FBAV|FB_IAB|Instagram|Line\/|Snapchat|Pinterest|GSA\/|Gmail|; wv\)/.test(ua);
-  var canRec = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && window.isSecureContext !== false);
-  voice.hidden = false; // tudi brez snemanja v brskalniku ponudimo video ali posnetek iz telefona
-  recBtn.addEventListener('click', function () {
-    if (rec && rec.state === 'recording') return rec.stop();
-    if (!canRec || INAPP) return showHelp(INAPP ? 'inapp' : 'unsupported');
-    startRec();
-  });
-
-  function steps() {
-    if (IOS && /CriOS/.test(ua)) return ['Odprite <b>Nastavitve</b> iPhona → <b>Chrome</b>.', 'Vklopite <b>Mikrofon</b>.', 'Vrnite se sem in tapnite <b>Poskusi znova</b>.'];
-    if (IOS) return ['V naslovni vrstici tapnite <b>aA</b> (ali ikono levo od naslova).', 'Izberite <b>Nastavitve spletnega mesta</b> (Website Settings).', 'Pri <b>Mikrofon</b> izberite <b>Vprašaj</b> ali <b>Dovoli</b>.', 'Tapnite <b>Poskusi znova</b>. Če ne pomaga: Nastavitve iPhona → Aplikacije → Safari → Mikrofon → Vprašaj.'];
-    if (ANDROID) return ['Tapnite ikono <b>levo od naslova</b> strani (ključavnica ali drsniki).', 'Izberite <b>Dovoljenja</b> → <b>Mikrofon</b> → <b>Dovoli</b>.', 'Če mikrofona tam ni: Nastavitve telefona → Aplikacije → vaš brskalnik → Dovoljenja → Mikrofon → Dovoli.', 'Tapnite <b>Poskusi znova</b>.'];
-    return ['Kliknite ikono <b>levo od naslova</b> strani v brskalniku.', 'Pri <b>Mikrofon</b> izberite <b>Dovoli</b>.', 'Kliknite <b>Poskusi znova</b>.'];
-  }
-  var MSG = {
-    denied: ['Brskalnik ne dovoli mikrofona', 'Nič hudega – najhitreje je, da posnamete kratek video in zraven poveste, kaj je narobe. Kamera telefona dovoljenja brskalnika ne potrebuje.'],
-    nomic: ['Mikrofona ni mogoče najti', 'Posnemite video s kamero telefona ali izberite glasovni posnetek, ki ga že imate.'],
-    busy: ['Mikrofon uporablja druga aplikacija', 'Zaprite klic ali aplikacijo, ki snema, in tapnite Poskusi znova. Lahko pa posnamete video.'],
-    inapp: ['Snemanje tukaj ne deluje', 'Stran ste odprli v aplikaciji (npr. Facebook, Instagram ali Gmail), ki snemanja ne dovoli. Posnemite video s kamero ali stran odprite v brskalniku: meni ⋯ → Odpri v brskalniku.'],
-    unsupported: ['Ta brskalnik ne omogoča snemanja na strani', 'Posnemite video s kamero telefona in zraven povejte, kaj je narobe, ali izberite glasovni posnetek iz telefona.']
-  };
-  function showHelp(kind) {
-    var m = MSG[kind] || MSG.denied;
-    $('pv-vh-title').textContent = m[0];
-    $('pv-vh-text').textContent = m[1];
-    var showSteps = kind === 'denied' || kind === 'busy';
-    $('pv-howto').hidden = !showSteps;
-    $('pv-howto').open = kind === 'busy';
-    $('pv-howto-steps').innerHTML = steps().map(function (x) { return '<li>' + x + '</li>'; }).join('');
-    help.hidden = false;
-    setRec('Povejte z glasom', kind === 'denied' ? 'Mikrofon ni dovoljen – izberite spodaj' : 'Izberite eno od možnosti spodaj', false);
-    recBtn.classList.add('blocked');
-    help.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(function () { $('pv-vh-title').focus({ preventScroll: true }); }, 350);
-  }
-  function hideHelp() { help.hidden = true; recBtn.classList.remove('blocked'); }
-  $('pv-retry').addEventListener('click', function () { hideHelp(); startRec(); });
-  // če uporabnik mikrofon dovoli v nastavitvah, se pomoč skrije sama
-  if (navigator.permissions && navigator.permissions.query) {
-    navigator.permissions.query({ name: 'microphone' }).then(function (st) {
-      st.onchange = function () {
-        if (st.state === 'granted' && !help.hidden) { hideHelp(); setRec('Mikrofon je dovoljen', 'Tapnite in začnite govoriti', false); }
-      };
-    }).catch(function () {});
-  }
-  // nadomestni poti: video s kamero telefona ali obstoječ posnetek
-  $('pv-vid-cap').addEventListener('change', function () {
-    var f = this.files && this.files[0]; this.value = '';
-    if (f) { var v = addItem(f, 'video'); if (v) { frames(f, v); hideHelp(); setRec('Povejte z glasom', 'Video z glasom je dodan zgoraj', false); } }
-  });
-  $('pv-aud-file').addEventListener('change', function () {
-    var f = this.files && this.files[0]; this.value = '';
-    if (!f) return;
-    if (f.type && !/^audio\/|^video\//.test(f.type)) { showErr(err, '»' + f.name + '« ni zvočni posnetek.'); return; }
-    if (addItem(f, 'audio')) { hideHelp(); setRec('Povejte z glasom', 'Posnetek je dodan zgoraj', false); }
-  });
-
-  function pickType() {
-    var t = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/webm', 'audio/ogg;codecs=opus'];
-    for (var i = 0; i < t.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t[i])) return t[i];
-    return '';
-  }
-  function setRec(label, sub, on) {
-    $('pv-rec-label').textContent = label; $('pv-rec-sub').textContent = sub;
-    recBtn.classList.toggle('on', !!on);
-    recBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-  }
-  function startRec() {
-    // takojšen odziv: uporabnik vidi, da se nekaj dogaja, medtem ko brskalnik sprašuje za dovoljenje
-    recBtn.classList.add('wait');
-    setRec('Dovolite mikrofon …', 'Potrdite okno, ki ga je odprl brskalnik', false);
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
-      recBtn.classList.remove('wait');
-      hideHelp();
-      stream = s; chunks = [];
-      var type = pickType();
-      rec = type ? new MediaRecorder(s, { mimeType: type }) : new MediaRecorder(s);
-      rec.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
-      rec.onstop = function () {
-        clearInterval(timer);
-        stream.getTracks().forEach(function (t) { t.stop(); });
-        var mt = (rec.mimeType || type || 'audio/webm').split(';')[0];
-        var blob = new Blob(chunks, { type: mt });
-        if (blob.size > 0) addItem(new File([blob], 'glasovno-sporocilo.' + (mt.indexOf('mp4') > -1 ? 'm4a' : mt.indexOf('ogg') > -1 ? 'ogg' : 'webm'), { type: mt }), 'audio');
-        setRec('Dodaj še eno glasovno sporočilo', 'Prejšnje je dodano zgoraj', false);
-      };
-      rec.start(1000);
-      recT = 0;
-      setRec('Ustavi snemanje', '0:00 – govorite, ustavite, ko končate', true);
-      timer = setInterval(function () {
-        recT++;
-        $('pv-rec-sub').textContent = Math.floor(recT / 60) + ':' + ('0' + recT % 60).slice(-2) + ' – govorite, ustavite, ko končate';
-        if (recT >= MAX_REC) rec.stop();
-      }, 1000);
-    }).catch(function (e) {
-      recBtn.classList.remove('wait');
-      var n = (e && e.name) || '';
-      showHelp(n === 'NotFoundError' || n === 'DevicesNotFoundError' || n === 'OverconstrainedError' ? 'nomic'
-        : n === 'NotReadableError' || n === 'TrackStartError' || n === 'AbortError' ? 'busy' : 'denied');
-    });
-  }
 
   /* ---------- način odgovora ---------- */
   var emailWrap = $('pv-email-wrap'), email = $('pv-email');
@@ -317,12 +225,11 @@
       showErr(err, 'Dodajte fotografijo, video ali glasovno sporočilo ali na kratko opišite težavo.');
       form.elements.opis.focus(); return;
     }
-    if (rec && rec.state === 'recording') rec.stop();
     submitting = true;
     sendBtn.disabled = true; sendBtn.textContent = 'Pošiljam …';
     $('pv-progress').hidden = false; overall();
 
-    setTimeout(function () { // počakaj, da se doda morebitni ravnokar ustavljen posnetek
+    setTimeout(function () {
       Promise.all(items.map(function (i) { return i.promise; })).then(function () {
         var failed = visible().filter(function (i) { return !i.done; });
         items.forEach(function (i) { if (i.kind === 'frame' && !i.done) i.removed = true; }); syncRemoved();
@@ -341,7 +248,7 @@
         $('pv-progress').hidden = true;
         showErr(err, e2.message + (/pokličite/.test(e2.message) ? '' : ' Če ne gre, me pokličite na 070 755 355.'));
       });
-    }, rec && rec.state !== 'inactive' ? 400 : 0);
+    }, 0);
   });
 
   function guard(e) {

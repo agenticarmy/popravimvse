@@ -1,45 +1,27 @@
 <!--{
-  "title": "Pošljite fotografijo ali video okvare | Popravim vse",
-  "description": "Pokažite mi, kaj je treba popraviti: fotografija, video, glasovno sporočilo ali opis s telefona. Brez registracije, ocena je brezplačna. 35 € na uro.",
+  "title": "Posnemite video okvare, ocena brezplačno | Popravim vse",
+  "description": "Posnemite kratek video in povejte, kaj je narobe – ali pošljite fotografijo ali opis s telefona. Brez registracije, ocena je brezplačna. 35 € na uro.",
   "h1": "Pokažite mi, kaj je treba popraviti",
-  "lead": "Fotografirajte, posnemite ali povejte z glasom. Brez registracije in brez čakanja na telefonu. Pregledam sam in vam povem, ali je delo zame, koliko časa okvirno pričakujem in kaj kupiti.",
-  "crumb": "Pošljite fotografijo"
+  "lead": "Posnemite kratek video s telefonom in med snemanjem povejte, kaj je narobe. Brez registracije in brez čakanja na telefonu. Pregledam sam in vam povem, ali je delo zame, koliko časa okvirno pričakujem in kaj kupiti.",
+  "crumb": "Posnemite video"
 }-->
 <form class="pv-form" id="pv-form" action="/api/povprasevanje.php" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
   <fieldset class="pv-step">
     <legend><span class="pv-num" aria-hidden="true">1</span>Pokažite težavo</legend>
-    <label class="pv-pick" for="pv-media">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-      <span><b>Dodaj fotografijo ali video</b><small>Odpre kamero ali galerijo</small></span>
+    <label class="pv-pick" for="pv-cam">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="M16 10.5 21.5 7.5v9L16 13.5"/></svg>
+      <span><b>Posnemite video</b><small>Med snemanjem povejte, kaj je narobe</small></span>
+    </label>
+    <input class="pv-file" type="file" id="pv-cam" name="media[]" accept="video/*" capture="environment">
+    <label class="pv-pick pv-pick2" for="pv-media">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-9 9"/></svg>
+      <span><b>Fotografija ali video iz galerije</b><small>Izberete lahko več naenkrat</small></span>
     </label>
     <input class="pv-file" type="file" id="pv-media" name="media[]" accept="image/*,video/*" multiple>
     <ul class="pv-thumbs" id="pv-thumbs" aria-live="polite"></ul>
-    <p class="pv-hint">Nasvet: eno fotografijo od daleč in eno od blizu. Pri videu je dovolj 10 do 30 sekund.</p>
+    <p class="pv-hint"><b>Nasvet:</b> 10 do 30 sekund je dovolj. Pokažite od daleč in od blizu ter povejte, kaj je narobe in od kdaj.</p>
 
-    <div class="pv-voice" id="pv-voice" hidden>
-      <button type="button" class="pv-rec" id="pv-rec">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>
-        <span><b id="pv-rec-label">Povejte z glasom</b><small id="pv-rec-sub">Kot glasovno sporočilo, do 3 minute</small></span>
-      </button>
-      <div class="pv-voice-help" id="pv-voice-help" role="alert" hidden>
-        <p class="pv-vh-title" id="pv-vh-title" tabindex="-1"></p>
-        <p class="pv-vh-text" id="pv-vh-text"></p>
-        <label class="pv-alt" for="pv-vid-cap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5 21 7.5v9l-5-3"/></svg>
-          <span><b>Posnemite video in povejte zraven</b><small>Odpre kamero telefona – posebno dovoljenje ni potrebno</small></span>
-        </label>
-        <input class="pv-file" type="file" id="pv-vid-cap" accept="video/*" capture="environment">
-        <label class="pv-alt" for="pv-aud-file">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
-          <span><b>Izberite posnetek iz telefona</b><small>Npr. iz Diktafona, Glasovnih beležk ali WhatsAppa</small></span>
-        </label>
-        <input class="pv-file" type="file" id="pv-aud-file" accept="audio/*,.m4a,.mp3,.aac,.ogg,.opus,.wav">
-        <details class="pv-howto" id="pv-howto"><summary>Ali pa dovolite mikrofon – kako</summary><ol id="pv-howto-steps"></ol>
-          <button type="button" class="btn-plain pv-retry" id="pv-retry">Poskusi znova</button></details>
-      </div>
-    </div>
-
-    <label class="pv-label" for="pv-opis">Ali napišite <small>(neobvezno, če ste dodali fotografijo ali glas)</small></label>
+    <label class="pv-label" for="pv-opis">Ali napišite <small>(neobvezno, če ste dodali video ali fotografijo)</small></label>
     <textarea id="pv-opis" name="opis" rows="4" maxlength="5000" placeholder="Npr. silikon ob kadi je črn in odstopa, kad je dolga 170 cm."></textarea>
   </fieldset>
 
@@ -133,6 +115,10 @@
   <details>
     <summary>Kaj, če ne vem, kaj je pokvarjeno?</summary>
     <p>Dovolj je, da posnamete ali opišete, kaj opazite, na primer da odtok počasi odteka ali da se vrata ne zapirajo. Drugo ugotovim sam.</p>
+  </details>
+  <details>
+    <summary>Zakaj je video boljši od fotografije?</summary>
+    <p>Na videu vidim, kaj se dogaja, na primer kako vrata drgnejo ali kje kaplja, in hkrati slišim, kaj mi poveste. Tako vam lahko oceno dam hitreje in bolj natančno.</p>
   </details>
   <details>
     <summary>Kako dolg video lahko pošljem?</summary>

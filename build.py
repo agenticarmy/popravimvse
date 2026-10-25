@@ -4,12 +4,12 @@
 Vsaka datoteka v content/ se začne z vrstico <!--{json}--> (metapodatki strani),
 sledi HTML vsebina. Zaženi: python3 build.py
 """
-import json, re, shutil, html, subprocess
+import json, re, shutil, html, subprocess, os, urllib.parse
 from pathlib import Path
 from datetime import date, datetime, timezone
 
 ROOT = Path(__file__).parent
-OUT = ROOT / 'public'
+OUT = ROOT / ('_preview' if os.environ.get('PREVIEW') == '1' else 'public')
 SITE = 'https://popravimvse.si'
 TODAY = date.today().isoformat()
 BUILT = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
@@ -66,6 +66,13 @@ REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Pren
 NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
 
 PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
+LISTS = json.loads((ROOT / 'content' / 'seznami.json').read_text(encoding='utf-8'))
+PREVIEW = os.environ.get('PREVIEW') == '1'  # PREVIEW=1 zgradi tudi osnutke seznamov (samo za pregled, ne objavljaj)
+KK = 'kaj-kupiti'
+
+
+def lists_visible():
+    return [l for l in LISTS['lists'] if l['status'] == 'objavljeno' or PREVIEW]
 PMETA = json.loads((ROOT / 'photos_meta.json').read_text(encoding='utf-8'))
 PORTRAIT = {'alt': 'Sebastjan Stjepanović, hišni mojster', 'sizes': [(240, 300), (480, 600), (810, 1012)]}
 PORTRAIT_URL = SITE + '/static/img/sebastjan-stjepanovic-960.webp'
@@ -231,7 +238,7 @@ def business_ld():
 
 
 def git_dates(name):
-    f = f'content/{name}.html'
+    f = f'content/{name}' if '.' in name else f'content/{name}.html'
     try:
         log = subprocess.run(['git', 'log', '--follow', '--format=%cs', '--', f], cwd=ROOT, capture_output=True, text=True).stdout.split()
         dirty = subprocess.run(['git', 'status', '--porcelain', '--', f], cwd=ROOT, capture_output=True, text=True).stdout.strip()
@@ -294,7 +301,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
@@ -386,8 +393,20 @@ def cta_band():
 </section>'''
 
 
+def buy_box(slug):
+    ls = [l for l in lists_visible() if l['service'] == slug]
+    if not ls:
+        return ''
+    items = ''.join(f'<li><a href="/{KK}/{l["slug"]}/">{l["h1"]}</a></li>' for l in ls)
+    return f'<aside class="buy-box"><h2>Kaj kupiti pred mojim prihodom</h2><p>Material kupite sami, po ceni iz trgovine. Tu je zapisano, kaj točno in koliko:</p><ul>{items}</ul></aside>'
+
+
 def inner(meta, body, slug, crumbs):
     body = expand(body)
+    if meta.get('kind') == 'service':
+        box = buy_box(slug)
+        if box:
+            body = body.replace('<h2>Pogosta vprašanja</h2>', box + '\n<h2>Pogosta vprašanja</h2>', 1) if '<h2>Pogosta vprašanja</h2>' in body else body + box
     crumb_html = '<nav class="crumbs" aria-label="Drobtinice"><ol><li><a href="/">Domov</a></li>' + ''.join(
         f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
     main = f'''<section class="page-head">
@@ -438,6 +457,96 @@ def home_main(body):
                + cta_band()
 
 
+def list_plain(l):
+    lines = [l['h1'] + ':'] + [f"- {m['ime']}: {m['kolicina']}" for m in l['material']]
+    lines.append(f"Seznam: {SITE}/{KK}/{l['slug']}/")
+    return '\n'.join(lines)
+
+
+def mark(t):
+    return t.replace('[POTRDI]', '<mark class="confirm">[POTRDI]</mark>')
+
+
+def list_body(l):
+    draft = '' if l['status'] == 'objavljeno' else '<p class="draft">OSNUTEK ZA PREGLED – ni objavljeno. Rumeno označene točke potrdi ali popravi Sebastjan.</p>'
+    plain = list_plain(l)
+    sms = 'sms:?&body=' + urllib.parse.quote(plain)
+    kratko = ''.join(f'<li>{mark(x)}</li>' for x in l['kratko'])
+    rows = ''.join(
+        f'<tr><td class="chk"><input type="checkbox" aria-label="Kupljeno: {esc(m["ime"])}"></td><th scope="row">{m["ime"]}</th>'
+        f'<td data-label="Katero vrsto">{m["vrsta"]}</td><td data-label="Koliko">{m["kolicina"]}</td><td data-label="Na kaj paziti">{m["opomba"]}</td></tr>' for m in l['material'])
+    walls = ''
+    if l.get('tabela_stene'):
+        walls = '<h2>Katere vložke za katero steno</h2>\n<table class="walls"><thead><tr><th>Stena</th><th>Kako jo prepoznate</th><th>Kaj kupiti</th></tr></thead><tbody>' + ''.join(
+            f'<tr><th scope="row">{w["stena"]}</th><td data-label="Kako jo prepoznate">{w["prepoznate"]}</td><td data-label="Kaj kupiti">{w["kupite"]}</td></tr>' for w in l['tabela_stene']) + '</tbody></table>'
+    tools = ', '.join(l['prinesem'])
+    napake = ''.join(f'<li>{x}</li>' for x in l['napake'])
+    koraki = ''.join(f'<li><strong>{k["ime"]}.</strong> {k["text"]}</li>' for k in l['koraki'])
+    faq = ''.join(f'<details>\n<summary>{f["q"]}</summary>\n<p>{f["a"]}</p>\n</details>\n' for f in l['faq'])
+    foto = f'{{{{FOTO:{l["foto"]}}}}}' if l.get('foto') else ''
+    reviewed = f'<p class="reviewed">Seznam je pregledal in potrdil {PERSON["name"]}, <time datetime="{l["pregledano"]}">{sl_date(l["pregledano"])}</time>.</p>' if l.get('pregledano') else ''
+    svc = dict((x[0], x[1]) for x in SERVICES)[l['service']]
+    return f"""{draft}
+<section class="answer" aria-labelledby="na-kratko">
+<h2 id="na-kratko">Na kratko: kaj kupiti</h2>
+<ul class="checks">{kratko}</ul>
+<div class="list-tools"><button type="button" class="btn-plain" data-copy="{esc(plain)}">Kopiraj seznam</button><a class="btn-plain" href="{esc(sms)}">Pošlji si po SMS</a><button type="button" class="btn-plain" onclick="window.print()">Natisni</button></div>
+</section>
+
+<h2>Seznam za nakup</h2>
+<div class="table-wrap"><table class="buy"><thead><tr><th class="chk">Kupljeno</th><th>Kaj kupiti</th><th>Katero vrsto</th><th>Koliko</th><th>Na kaj paziti</th></tr></thead><tbody>{rows}</tbody></table></div>
+{walls}
+
+<h2>Kako izračunati, koliko kupiti</h2>
+{l['izracun']}
+
+<h2>Česa vam ni treba kupiti</h2>
+<p>To prinesem jaz: {tools}. Potrošni material, kot so brusni papir, folija, lepilni trak in krpe, je vključen v ceno 35 € na uro.</p>
+
+<h2>Pogoste napake pri nakupu</h2>
+<ul>{napake}</ul>
+
+<h2>Kako poteka delo</h2>
+<ol>{koraki}</ol>
+
+<h2>Iz moje prakse</h2>
+{foto}
+<blockquote class="tip"><p>{mark(l['opomba_mojstra'])}</p><footer>{PERSON['name']}, hišni mojster</footer></blockquote>
+<p class="note">{l['meja']}</p>
+
+<h2>Ali je seznam pravi za vas?</h2>
+<p>Pošljite fotografijo po SMS-u na <a href="sms:{BIZ['phone_e164']}">{BIZ['phone']}</a> ali na <a href="mailto:{BIZ['email']}">{BIZ['email']}</a>. Brezplačno vam potrdim, ali je to pravi material za vaš primer. Če nimate prevoza, ga po dogovoru kupim na poti k vam. Več o storitvi: <a href="/{l['service']}/">{svc.lower()}</a>.</p>
+{reviewed}
+
+<h2>Pogosta vprašanja</h2>
+<div class="faq">
+{faq}</div>
+<script>document.querySelectorAll('[data-copy]').forEach(function(b){{b.addEventListener('click',function(){{navigator.clipboard.writeText(b.dataset.copy).then(function(){{b.textContent='Kopirano ✓'}})}})}})</script>"""
+
+
+def list_ld(l, meta):
+    url = f'{SITE}/{KK}/{l["slug"]}/'
+    svc = dict((x[0], x[1]) for x in SERVICES)[l['service']]
+    d = {'@type': 'HowTo', '@id': url + '#seznam', 'name': l['h1'], 'description': l['description'], 'inLanguage': 'sl-SI',
+         'author': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID}, 'mainEntityOfPage': {'@id': url + '#stran'},
+         'datePublished': meta['published'], 'dateModified': meta['modified'],
+         'about': {'@type': 'Service', 'name': svc, 'url': f'{SITE}/{l["service"]}/', 'provider': {'@id': BIZ_ID}},
+         'supply': [{'@type': 'HowToSupply', 'name': m['ime'], 'description': m['vrsta'], 'requiredQuantity': m['kolicina']} for m in l['material']],
+         'tool': [{'@type': 'HowToTool', 'name': t, 'description': 'Prinese hišni mojster.'} for t in l['prinesem']],
+         'step': [{'@type': 'HowToStep', 'position': i, 'name': k['ime'], 'text': k['text']} for i, k in enumerate(l['koraki'], 1)]}
+    if l.get('foto'):
+        d['image'] = SITE + img_url(l['foto'], 1600)
+    return d
+
+
+def lists_llms():
+    ls = lists_visible()
+    if not ls:
+        return ''
+    rows = '\n'.join(f'- [{l["h1"]}]({SITE}/{KK}/{l["slug"]}/): {l["description"]}' for l in ls)
+    return f'## Kaj kupiti (seznami materiala)\nMaterial kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: {SITE}/seznami.json\n{rows}\n\n'
+
+
 def llms_txt(urls):
     m = {u: meta for u, _, _, meta in urls}
     svc = '\n'.join(f'- [{t}]({SITE}/{s}/): {m[f"/{s}/"]["description"]}' for s, t, _ in SERVICES if f'/{s}/' in m)
@@ -474,7 +583,7 @@ def llms_txt(urls):
 - [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
 
-## Ostalo
+{lists_llms()}## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
 - [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
@@ -567,6 +676,37 @@ def main():
         m, ld = inner(meta, body, slug, crumbs)
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.8', meta['modified'], meta))
+
+    ls = lists_visible()
+    if ls:
+        hub = dict(LISTS['hub'])
+        hub['nav'] = ''
+        hub['page_type'] = 'CollectionPage'
+        hub['published'], hub['modified'] = git_dates('seznami.json')
+        cards = ''.join(f'<li><a href="/{KK}/{l["slug"]}/"><strong>{l["h1"]}</strong><span>{l["description"]}</span></a></li>' for l in ls)
+        hbody = f'<ul class="list-cards">{cards}</ul>\n<p>Ne najdete seznama za svoje delo? Pošljite mi opis ali fotografijo na <a href="sms:{BIZ["phone_e164"]}">{BIZ["phone"]}</a>, pa vam brezplačno povem, kaj kupiti.</p>'
+        reset_used()
+        m, ld = inner(hub, hbody, KK, [])
+        ld.append({'@type': 'ItemList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': i, 'url': f'{SITE}/{KK}/{l["slug"]}/', 'name': l['h1']} for i, l in enumerate(ls, 1)]})
+        write(f'/{KK}/', page(hub, m, f'/{KK}/', ld))
+        urls.append((f'/{KK}/', '0.8', hub['modified'], hub))
+        public = []
+        for l in ls:
+            reset_used()
+            meta = {k: l[k] for k in ('title', 'description', 'h1', 'lead', 'crumb')}
+            meta['published'], meta['modified'] = git_dates('seznami.json')
+            m, ld = inner(meta, list_body(l), f'{KK}/{l["slug"]}', [(f'/{KK}/', LISTS['hub']['crumb'])])
+            ld.append(list_ld(l, meta))
+            write(f'/{KK}/{l["slug"]}/', page(meta, m, f'/{KK}/{l["slug"]}/', ld))
+            urls.append((f'/{KK}/{l["slug"]}/', '0.7', meta['modified'], meta))
+            public.append({'url': f'{SITE}/{KK}/{l["slug"]}/', 'naslov': l['h1'], 'storitev': f'{SITE}/{l["service"]}/',
+                           'posodobljeno': meta['modified'], 'pregledal': PERSON['name'] if l.get('pregledano') else None,
+                           'na_kratko': [re.sub(r'<[^>]+>', '', x) for x in l['kratko']],
+                           'material': [{k: m2[k] for k in ('ime', 'vrsta', 'kolicina', 'opomba')} for m2 in l['material']],
+                           'prinese_mojster': l['prinesem'], 'stene': l.get('tabela_stene', [])})
+        (OUT / 'seznami.json').write_text(json.dumps({'opis': 'Seznami materiala Popravim vse. Material kupi stranka, orodje prinese mojster.',
+                                                      'seznami': public}, ensure_ascii=False, indent=1), encoding='utf-8')
 
     reset_used()
     meta, body = read('404')

@@ -335,3 +335,43 @@ figure.ph-single a { aspect-ratio: 4 / 3; }
 .pledges p { margin: 0; color: var(--ink-soft); font-size: .98rem; }
 @media (max-width: 960px) { .pledges { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .pledges { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+/* seznami »Kaj kupiti« */
+.answer { background: var(--tile); border: 1px solid var(--grout); border-left: 6px solid var(--green); padding: 1.1rem 1.3rem .6rem; margin: 0 0 2rem; max-width: var(--measure); }
+.answer h2 { margin-top: 0; }
+.list-tools { display: flex; flex-wrap: wrap; gap: .6rem; margin: .4rem 0 .8rem; }
+.list-tools .btn-plain { font: inherit; font-size: .95rem; cursor: pointer; }
+.table-wrap { overflow-x: auto; max-width: var(--measure); }
+.prose table.buy td, .prose table.buy th { vertical-align: top; }
+.prose table.buy .chk { width: 4.5rem; text-align: center; }
+.prose table.buy input[type=checkbox] { width: 1.3rem; height: 1.3rem; accent-color: var(--green); }
+.tip { margin: 1rem 0; padding: 1rem 1.3rem; background: var(--tile); border-left: 6px solid var(--level); max-width: var(--measure); }
+.tip p { margin: 0 0 .4rem; font-size: 1.05rem; }
+.tip footer { color: var(--ink-soft); font-size: .92rem; }
+.note { padding: .8rem 1rem; background: #FFF8E1; border: 1px solid #F0DFA0; max-width: var(--measure); }
+.reviewed { color: var(--ink-soft); font-size: .95rem; }
+.draft { padding: .7rem 1rem; background: #FDECEA; border: 2px solid #C0392B; color: #8E1B10; font-weight: 700; max-width: var(--measure); }
+mark.confirm { background: var(--level); padding: 0 .2em; }
+.buy-box { margin: 2rem 0; padding: 1rem 1.3rem; background: var(--tile); border: 1px solid var(--grout); border-left: 6px solid var(--green); max-width: var(--measure); }
+.buy-box h2 { margin-top: 0; font-size: 1.25rem; }
+.list-cards { list-style: none; padding: 0; display: grid; gap: 1rem; max-width: var(--measure); }
+.list-cards a { display: block; padding: 1rem 1.2rem; background: var(--tile); border: 1px solid var(--grout); border-left: 6px solid var(--green); color: var(--ink); text-decoration: none; }
+.list-cards a:hover { border-color: var(--ink); }
+.list-cards strong { display: block; font-size: 1.12rem; margin-bottom: .3rem; }
+.list-cards span { color: var(--ink-soft); }
+@media print {
+  .list-tools, .page-head .actions, .site-foot, .author, .faq summary::after { display: none; }
+  .layout { display: block; }
+  .answer, .tip, .note { border-color: #999; }
+}
+@media (max-width: 640px) {
+  .prose table.buy thead, .prose table.walls thead { display: none; }
+  .prose table.buy, .prose table.buy tbody, .prose table.buy tr, .prose table.buy td, .prose table.buy th,
+  .prose table.walls, .prose table.walls tbody, .prose table.walls tr, .prose table.walls td, .prose table.walls th { display: block; width: 100%; }
+  .prose table.buy tr, .prose table.walls tr { position: relative; margin: 0 0 1rem; padding: .8rem 1rem; background: var(--tile); border: 1px solid var(--grout); border-left: 6px solid var(--green); }
+  .prose table.buy td, .prose table.buy th, .prose table.walls td, .prose table.walls th { border: 0; padding: .2rem 0; text-align: left; }
+  .prose table.buy th[scope=row], .prose table.walls th[scope=row] { font-size: 1.08rem; padding-right: 2.4rem; }
+  .prose table.buy td.chk { position: absolute; top: .8rem; right: .8rem; width: auto; }
+  .prose table.buy td[data-label]::before, .prose table.walls td[data-label]::before { content: attr(data-label) ': '; font-weight: 700; }
+  .prose table.buy td[data-label]:empty { display: none; }
+}

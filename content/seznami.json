@@ -1,0 +1,114 @@
+{
+  "_opomba": "Seznami »Kaj kupiti za …«. status: osnutek (ni objavljen, samo predogled s PREVIEW=1) ali objavljeno. Polje pregledano = datum, ko je Sebastjan potrdil vsebino. Točke z [POTRDI] mora Sebastjan potrditi pred objavo.",
+  "hub": {
+    "title": "Kaj kupiti pred prihodom mojstra: seznami | Popravim vse",
+    "description": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, montažo TV in druga dela, koliko česa in česa vam ni treba kupiti, ker orodje prinesem.",
+    "h1": "Kaj kupiti pred mojim prihodom",
+    "lead": "Material kupite sami, po ceni iz trgovine in brez mojega pribitka. Na teh seznamih je zapisano, kaj točno kupiti, koliko in česa vam ni treba, ker orodje prinesem jaz.",
+    "crumb": "Kaj kupiti"
+  },
+  "lists": [
+    {
+      "slug": "obnova-silikona-v-kopalnici",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "obnova-fug-in-silikona",
+      "title": "Kaj kupiti za obnovo silikona v kopalnici | Popravim vse",
+      "description": "Kateri sanitarni silikon kupiti za tuš, kad in umivalnik, koliko kartuš potrebujete in česa vam ni treba kupiti. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za obnovo silikona v kopalnici",
+      "lead": "Za menjavo silikona ob tušu, kadi ali umivalniku v večini primerov kupite samo sanitarni silikon prave barve. Orodje in čistila prinesem jaz.",
+      "crumb": "Obnova silikona",
+      "kratko": [
+        "<strong>Sanitarni silikon</strong> s protiglivičnim dodatkom, ki je na embalaži označen za kopalnice in tuše.",
+        "<strong>Barva:</strong> bela, prozorna ali v barvi vaših fug.",
+        "<strong>Količina:</strong> ena kartuša (300 do 310 ml) zadošča za približno 12 m tankega stika (5 × 5 mm).",
+        "<strong>Ob naravnem kamnu</strong> (marmor, granit) kupite silikon, ki je označen za naravni kamen.",
+        "<strong>Ne kupujte</strong> pištole, noža, čistil in lepilnega traku. To prinesem jaz."
+      ],
+      "material": [
+        {"ime": "Sanitarni silikon", "vrsta": "S protiglivičnim (fungicidnim) dodatkom, označen za kopalnice, tuše in kuhinje.", "kolicina": "1 kartuša 300–310 ml na približno 12 m stika 5 × 5 mm; pri širšem stiku 10 × 10 mm le približno 3 m.", "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren."},
+        {"ime": "Silikon za naravni kamen (samo ob kamnu)", "vrsta": "Nevtralno zamrežen silikon, na embalaži označen za naravni kamen.", "kolicina": "Enako kot sanitarni silikon.", "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu."}
+      ],
+      "prinesem": ["pištolo za silikon", "nož in strgalo za star silikon", "sredstvo za odstranjevanje ostankov silikona", "čistilo za razmastitev stika", "lepilni trak za ravne robove", "orodje za glajenje stika"],
+      "izracun": "<p>Izmerite vse stike, ki jih želite zamenjati, in jih seštejte.</p><p><strong>Primer:</strong> kad ob dveh stenah (170 cm + 75 cm) in dva navpična kota ob tušu (2 × 1,8 m) skupaj merijo približno 6 m. Ena kartuša zadošča. Če so stiki široki več kot pol centimetra ali če obnavljate silikon v več prostorih, kupite dve.</p>",
+      "napake": [
+        "Kupijo akrilni kit ali »univerzalni« gradbeni silikon namesto sanitarnega. Ta v vlažni kopalnici hitro počrni.",
+        "Izberejo belo barvo ob sivih fugah. Silikon naj bo v barvi fug ali prozoren, sicer stik izstopa.",
+        "Kupijo navaden sanitarni silikon za marmorni pult ali kamnito tuš steno.",
+        "Upajo, da bo nov silikon zdržal čez starega. Star silikon mora v celoti ven, to naredim jaz."
+      ],
+      "koraki": [
+        {"ime": "Odstranim star silikon", "text": "Star silikon odstranim v celoti, tudi ostanke na ploščicah in kadi."},
+        {"ime": "Očistim in posušim stik", "text": "Stik razmastim in posušim, ker se silikon na vlago in ostanke ne prime."},
+        {"ime": "Nanesem nov silikon", "text": "Nanesem sanitarni silikon v enakomernem stiku in ga zgladim."},
+        {"ime": "Silikon se suši", "text": "Tuša in kadi ne uporabljajte vsaj 24 ur ali toliko, kot piše na embalaži."}
+      ],
+      "opomba_mojstra": "[POTRDI] Pri kadi pred silikoniranjem natočim vodo, da se kad pod težo usede. Tako stik ne poči, ko se prvič kopate.",
+      "foto": "kopalnica-nizka-tus-kad",
+      "meja": "Če se po odstranitvi silikona pokaže, da voda zateka za ploščice ali da je plesen globoko v fugah, sam silikon ne pomaga. To vam povem takoj, preden kupite karkoli drugega.",
+      "faq": [
+        {"q": "Koliko kartuš silikona potrebujem za kopalnico?", "a": "Za tuš ali kad običajno eno kartušo 300–310 ml. Zadošča za približno 12 m tankega stika. Za več prostorov ali širše stike kupite dve."},
+        {"q": "Kateri silikon kupiti za tuš?", "a": "Sanitarni silikon s protiglivičnim dodatkom, ki je na embalaži označen za kopalnice in tuše. Ob naravnem kamnu kupite silikon za naravni kamen."},
+        {"q": "Ali moram kupiti pištolo za silikon?", "a": "Ne. Pištolo, nož, čistila in lepilni trak prinesem sam. Kupite samo silikon."},
+        {"q": "Kdaj se lahko po menjavi silikona spet tuširam?", "a": "Najprej po 24 urah ali po času, ki ga navaja proizvajalec na embalaži. Ob koncu dela vam povem točno."},
+        {"q": "Zakaj silikon v kopalnici spet počrni?", "a": "Zaradi vlage, ki dolgo ostane na stiku. Protiglivični dodatek plesen upočasni, prepreči pa je ne. Pomaga, da po tuširanju prezračite kopalnico in obrišete vodo s stikov."}
+      ]
+    },
+    {
+      "slug": "montaza-tv-na-steno",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "montaza-tv-in-polic",
+      "title": "Kaj kupiti za montažo TV na steno | Popravim vse",
+      "description": "Kateri nosilec za TV kupiti, kako preverite VESA in težo ter katere vložke potrebuje betonska, opečna ali mavčna stena. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za montažo TV na steno",
+      "lead": "Za montažo televizorja na steno kupite stenski nosilec, ki ustreza vašemu televizorju, in po potrebi vložke za vašo steno ter kabelski kanal. Orodje prinesem jaz.",
+      "crumb": "Montaža TV na steno",
+      "kratko": [
+        "<strong>Stenski nosilec</strong> z istim razmakom lukenj (VESA) kot na hrbtu televizorja, npr. 200 × 200 ali 400 × 400 mm.",
+        "<strong>Nosilnost</strong> nosilca naj bo večja od teže televizorja brez stojala.",
+        "<strong>Vrsta:</strong> fiksni nosilec je najbližje steni, nagibni pomaga pri visoki montaži, vrtljivi bolj obremeni steno.",
+        "<strong>Vložki za vašo steno:</strong> priloženi so večinoma samo za beton. Če ne veste, kakšna je stena, jih ne kupujte, ampak mi pošljite fotografijo.",
+        "<strong>Po želji:</strong> kabelski kanal in dovolj dolg HDMI kabel."
+      ],
+      "material": [
+        {"ime": "Stenski nosilec za TV", "vrsta": "VESA razmak kot na televizorju; nosilnost večja od teže TV; fiksni, nagibni ali vrtljivi.", "kolicina": "1 kos", "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža."},
+        {"ime": "Vložki in vijaki za steno", "vrsta": "Glede na steno, glejte tabelo spodaj.", "kolicina": "Toliko, kolikor ima nosilec lukenj za steno (običajno 4–6).", "opomba": "Priloženi vložki so večinoma za beton."},
+        {"ime": "Kabelski kanal (neobvezno)", "vrsta": "Samolepilni ali za privijanje, bel ali takšen, ki se ga da prepleskati.", "kolicina": "Dolžina od televizorja do omarice ali vtičnice.", "opomba": "Nove vtičnice za televizorjem mora narediti električar."},
+        {"ime": "HDMI in antenski kabel (neobvezno)", "vrsta": "Dovolj dolga, pri vrtljivem nosilcu z rezervo za premikanje.", "kolicina": "Po potrebi.", "opomba": ""}
+      ],
+      "tabela_stene": [
+        {"stena": "Beton", "prepoznate": "Zelo trda stena, vrtanje gre težko, prah je siv.", "kupite": "Vložke za beton; pogosto so priloženi nosilcu."},
+        {"stena": "Polna opeka", "prepoznate": "Rdečkast prah, vrtanje gre enakomerno.", "kupite": "Univerzalne ali razpirne vložke za polno opeko."},
+        {"stena": "Votla (modularna) opeka", "prepoznate": "Rdečkast prah, sveder med vrtanjem nenadoma »pade« v praznino.", "kupite": "Vložke za votle materiale, ki se zasidrajo v votlini. Navadni razpirni vložki ne držijo."},
+        {"stena": "Plinobeton (porobeton)", "prepoznate": "Bela, mehka stena, prah je kot moka.", "kupite": "Posebne vložke za plinobeton."},
+        {"stena": "Mavčna plošča (knauf)", "prepoznate": "Ob trkanju zveni votlo.", "kupite": "Kovinske votlinske vložke ali privijanje v kovinske profile. Pri težkem televizorju ali vrtljivem nosilcu se posvetujva prej."}
+      ],
+      "prinesem": ["vrtalnik in svedre za vašo steno", "detektor cevi in kablov", "libelo", "orodje za privijanje", "vezice za kable"],
+      "izracun": "<p><strong>VESA razmak</strong> najdete v navodilih televizorja ali na spletni strani proizvajalca pod tehničnimi podatki. Lahko pa ga izmerite sami: razdalja med luknjami na hrbtu, vodoravno in navpično, v milimetrih.</p><p><strong>Teža</strong> je v tehničnih podatkih navedena »brez stojala«. Nosilnost nosilca naj bo večja. Primer: 55-palčni televizor tehta brez stojala običajno približno 12 do 18 kg. Nosilec naj nosi vsaj 25 kg, pri vrtljivem nosilcu še več.</p>",
+      "napake": [
+        "Nosilec izberejo po velikosti zaslona v palcih, VESA razmak pa se ne ujema.",
+        "Priložene vložke za beton uporabijo v votli opeki ali mavčni plošči.",
+        "Vrtljivi nosilec z dolgo roko montirajo na mavčno steno brez profilov.",
+        "Kupijo prekratke kable, ki pri vrtljivem nosilcu ne dosežejo.",
+        "Pričakujejo, da bo mojster pod televizor napeljal novo vtičnico. To mora narediti električar."
+      ],
+      "koraki": [
+        {"ime": "Preverim steno", "text": "Z detektorjem preverim, kje potekajo cevi in kabli, in ugotovim, iz česa je stena."},
+        {"ime": "Določiva višino", "text": "Višino določiva skupaj, običajno tako, da je sredina zaslona v višini oči, ko sedite."},
+        {"ime": "Pritrdim nosilec", "text": "Nosilec pritrdim z vložki, ki ustrezajo steni, in ga poravnam z libelo."},
+        {"ime": "Obesim televizor in uredim kable", "text": "Obesim televizor, povežem kable in jih po želji skrijem v kabelski kanal."}
+      ],
+      "opomba_mojstra": "Pred vrtanjem z detektorjem preverim, kje v steni potekajo cevi in kabli. Pri mavčni steni najprej poiščem profile, ker sama plošča težkega televizorja ne nosi zanesljivo.",
+      "foto": "montaza-pohistva-dnevna-soba",
+      "meja": "V električno napeljavo ne posegam. Nove vtičnice za televizorjem, prestavitev vtičnice ali kabla v steni mora narediti električar z obrtnim dovoljenjem.",
+      "faq": [
+        {"q": "Kateri nosilec za TV kupiti?", "a": "Tistega, ki ima isti VESA razmak kot vaš televizor in nosi več, kot televizor tehta brez stojala. Fiksni je najbližje steni, vrtljivi je praktičen, a bolj obremeni steno."},
+        {"q": "Kje najdem VESA razmak svojega televizorja?", "a": "V navodilih ali tehničnih podatkih televizorja. Lahko ga izmerite tudi sami: razdalja med luknjami na hrbtu v milimetrih, npr. 300 × 300."},
+        {"q": "Ali so vložki, priloženi nosilcu, dovolj?", "a": "Za betonsko steno običajno da. Za votlo opeko, plinobeton in mavčno ploščo potrebujete posebne vložke."},
+        {"q": "Ali lahko TV montirate na mavčno steno?", "a": "Da, z ustreznimi votlinskimi vložki ali v profile. Pri težkem televizorju ali vrtljivem nosilcu mi prej pošljite fotografijo, da preverim, ali je to varno."},
+        {"q": "Kaj, če ne vem, kakšna je moja stena?", "a": "Vložkov ne kupujte. Steno preverim na kraju, ustrezne vložke pa po dogovoru kupim na poti k vam, brezplačno. Vi mi vrnete znesek z računa."}
+      ]
+    }
+  ]
+}

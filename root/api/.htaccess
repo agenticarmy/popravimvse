@@ -1,8 +1,8 @@
-# povpraševanja: ne indeksiraj, ne predpomni, skrij pomožno datoteko
+# povpraševanja: ne indeksiraj, ne predpomni, skrij pomožne datoteke (_*.php, kontekst)
 Options -Indexes
-<Files "_lib.php">
+<FilesMatch "^_">
   Require all denied
-</Files>
+</FilesMatch>
 <IfModule mod_headers.c>
   Header set X-Robots-Tag "noindex, nofollow"
   Header set Cache-Control "no-store"

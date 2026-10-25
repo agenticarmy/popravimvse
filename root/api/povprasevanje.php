@@ -6,6 +6,7 @@
  */
 declare(strict_types=1);
 require __DIR__ . '/_lib.php';
+require __DIR__ . '/_obvestila.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
     header('Location: /povprasevanje/', true, 303);
@@ -73,7 +74,7 @@ if (!empty($_FILES['media']['name']) && is_array($_FILES['media']['name'])) {
         $files[] = ['pot' => $p, 'ime' => clean((string)$n, 120), 'tip' => $t, 'velikost' => filesize($p), 'upload' => true];
     }
 }
-$files = array_slice($files, 0, MAX_FILES);
+$files = array_slice($files, 0, MAX_SLOTS);
 
 if ($opis === '' && !$files) fail('Opišite težavo ali dodajte fotografijo, video ali glasovno sporočilo.', 422, $json);
 if (!rate_ok('oddaja', 8, 3600)) fail('Poslali ste že več povpraševanj. Če je nujno, me pokličite.', 429, $json);
@@ -85,7 +86,10 @@ mkdir($dir, 0700, true);
 $stored = [];
 foreach ($files as $n => $f) {
     [$kind, $ext] = MIME[$f['tip']];
-    $name = sprintf('%02d-%s.%s', $n + 1, $kind === 'image' ? 'foto' : ($kind === 'video' ? 'video' : 'glas'), $ext);
+    // sličice, ki jih brskalnik izreže iz videa (za UI oceno), niso prikazane kot fotografije stranke
+    if ($kind === 'image' && str_starts_with($f['ime'], 'slicica-')) $kind = 'frame';
+    $label = ['image' => 'foto', 'video' => 'video', 'audio' => 'glas', 'frame' => 'slicica'][$kind];
+    $name = sprintf('%02d-%s.%s', $n + 1, $label, $ext);
     $ok = !empty($f['upload']) ? move_uploaded_file($f['pot'], "$dir/$name") : rename($f['pot'], "$dir/$name");
     if ($ok) $stored[] = ['datoteka' => $name, 'izvirno_ime' => $f['ime'], 'tip' => $f['tip'], 'vrsta' => $kind, 'velikost' => $f['velikost']];
 }
@@ -101,63 +105,20 @@ $r = [
 ];
 save_req($r);
 
-// obvestilo Sebastjanu
-$what = counts($stored);
-$subject = 'Povpraševanje: ' . ($kraj ?: 'kraj ni naveden') . ($what ? ' – ' . $what : '') . ' (' . $tel[0] . ')';
-$ogled = admin_url($r);
-$cal = 'https://calendar.google.com/calendar/render?' . http_build_query([
-    'action' => 'TEMPLATE',
-    'text' => 'Popravim vse: ' . ($kraj ?: 'stranka') . ' – ' . ($ime ?: $tel[0]),
-    'details' => trim(mb_substr($opis, 0, 600) . "\n\nTelefon: " . $tel[0] . "\nPovpraševanje: " . $ogled),
-    'location' => $kraj,
-]);
-$smsBody = 'Pozdravljeni, tukaj Sebastjan (Popravim vse). Prejel sem vaše povpraševanje. ';
-$rows = [
-    'Telefon' => '<a href="tel:' . h($tel[1]) . '">' . h($tel[0]) . '</a>',
-    'Želi odgovor' => h(REPLY[$odg]) . ($email ? ' · <a href="mailto:' . h($email) . '">' . h($email) . '</a>' : ''),
-    'Ime' => h($ime ?: '—'),
-    'Kraj' => h($kraj ?: '—'),
-    'Priloge' => h($what ?: 'brez prilog'),
-];
-if ($agent) $rows['Poslal agent'] = h($agent);
-$tr = '';
-foreach ($rows as $k => $v) $tr .= '<tr><td style="padding:4px 12px 4px 0;color:#4B5A62;vertical-align:top">' . $k . '</td><td style="padding:4px 0"><b>' . $v . '</b></td></tr>';
-$btn = fn($href, $label, $bg = '#F2C21B') => '<a href="' . h($href) . '" style="display:inline-block;margin:0 8px 8px 0;padding:12px 16px;background:' . $bg . ';color:#16232B;border:2px solid #16232B;border-radius:4px;font-weight:700;text-decoration:none">' . $label . '</a>';
-$html = '<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.5;color:#16232B;max-width:560px">'
-    . '<h2 style="margin:0 0 12px">Novo povpraševanje</h2>'
-    . '<table style="border-collapse:collapse;margin:0 0 16px">' . $tr . '</table>'
-    . ($opis !== '' ? '<p style="margin:0 0 16px;padding:12px 14px;background:#F5F7F6;border-left:5px solid #1D6A58;white-space:pre-wrap">' . h($opis) . '</p>' : '')
-    . '<p>' . $btn($ogled, 'Odpri povpraševanje') . $btn('tel:' . $tel[1], 'Pokliči', '#ffffff')
-    . $btn('sms:' . $tel[1] . '?&body=' . rawurlencode($smsBody), 'SMS', '#ffffff') . $btn($cal, 'Dodaj v koledar', '#ffffff') . '</p>'
-    . '<p style="color:#4B5A62;font-size:14px">Fotografije in glasovna sporočila so priložena, kjer niso prevelika. Videe odprete s klikom »Odpri povpraševanje«. '
-    . 'Vsa povpraševanja: <a href="' . h(SITE . '/api/seznam.php?k=' . list_key()) . '">seznam</a>. Povpraševanje se samodejno izbriše po ' . RETENTION_DAYS . ' dneh.</p></div>';
-$text = "Novo povpraševanje\n\nTelefon: {$tel[0]}\nŽeli odgovor: " . REPLY[$odg] . ($email ? " ($email)" : '') . "\nIme: " . ($ime ?: '—')
-    . "\nKraj: " . ($kraj ?: '—') . "\nPriloge: " . ($what ?: 'brez prilog') . "\n\n$opis\n\nOdpri: $ogled\nDodaj v koledar: $cal\n";
-$attach = [];
-$sum = 0;
-foreach ($stored as $f) {
-    if ($f['vrsta'] === 'video' || $sum + $f['velikost'] > MAIL_ATTACH_MAX) continue;
-    $attach[] = ["$dir/{$f['datoteka']}", $f['datoteka'], $f['tip']];
-    $sum += $f['velikost'];
+// najprej odgovor stranki (ne čaka na UI in e-pošto) …
+ob_start();
+if ($json) {
+    http_response_code(201);
+    header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: no-store');
+    echo json_encode(['ok' => true, 'id' => $id, 'stanje' => status_url($r),
+        'sporocilo' => 'Povpraševanje je prejeto. Sebastjan ga pregleda sam in odgovori ' . REPLY_PO[$odg] . '. Termin ni potrjen, dokler ga ne potrdi Sebastjan.'],
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+} else {
+    header('Location: ' . status_url($r) . '&novo=1', true, 303);
 }
-$sent = send_mail(NOTIFY_TO, $subject, $text, $html, $attach, $email ?: null);
-if (!$sent && $attach) $sent = send_mail(NOTIFY_TO, $subject, $text, $html, [], $email ?: null); // brez prilog, če so bile težava
-$r['obvestilo_poslano'] = $sent;
-save_req($r);
+finish_response();
 
-// potrditev stranki po e-pošti (če jo je vpisala)
-if ($email !== '') {
-    $u = status_url($r);
-    send_mail($email, 'Prejel sem vaše povpraševanje – Popravim vse',
-        "Pozdravljeni,\n\nprejel sem vaše povpraševanje" . ($what ? " ($what)" : '') . ". Pregledal ga bom sam in vam odgovoril, ko končam delo pri stranki.\n\nStanje: $u\n\nSebastjan Stjepanović, Popravim vse\n" . BIZ_PHONE . "\n",
-        '<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#16232B;max-width:560px"><p>Pozdravljeni,</p><p>prejel sem vaše povpraševanje'
-        . ($what ? ' (' . h($what) . ')' : '') . '. Pregledal ga bom sam in vam odgovoril, ko končam delo pri stranki.</p><p><a href="' . h($u) . '">Poglejte stanje povpraševanja</a></p>'
-        . '<p>Sebastjan Stjepanović, Popravim vse<br>' . BIZ_PHONE . '</p></div>', [], NOTIFY_TO);
-}
-
+// … nato UI ocena (če je vključena) in obvestila
+process_new($id);
 housekeeping();
-
-if ($json) json_out(['ok' => true, 'id' => $id, 'stanje' => status_url($r),
-    'sporocilo' => 'Povpraševanje je prejeto. Sebastjan ga pregleda sam in odgovori ' . REPLY_PO[$odg] . '. Termin ni potrjen, dokler ga ne potrdi Sebastjan.'], 201);
-header('Location: ' . status_url($r) . '&novo=1', true, 303);
-exit;

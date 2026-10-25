@@ -17,7 +17,7 @@ $uid = (string)($_POST['upload_id'] ?? '');
 $idx = (int)($_POST['idx'] ?? -1);
 $offset = (int)($_POST['offset'] ?? -1);
 $size = (int)($_POST['size'] ?? 0);
-if (!preg_match('/^[a-f0-9]{32}$/', $uid) || $idx < 0 || $idx >= MAX_FILES || $offset < 0 || $size < 1) {
+if (!preg_match('/^[a-f0-9]{32}$/', $uid) || $idx < 0 || $idx >= MAX_SLOTS || $offset < 0 || $size < 1) {
     json_out(['ok' => false, 'napaka' => 'Napačna zahteva.'], 400);
 }
 if ($size > MAX_FILE_BYTES) json_out(['ok' => false, 'napaka' => 'Datoteka je prevelika (največ ' . bytes(MAX_FILE_BYTES) . '). Posnemite krajši video.'], 413);

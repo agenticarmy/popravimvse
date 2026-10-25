@@ -600,7 +600,8 @@ def llms_txt(urls):
 - Obrazec: {SITE}{FORM} – fotografija, video (do 250 MB), glasovno sporočilo in/ali opis; obvezen je samo telefon. Brez registracije.
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
-- Sebastjan vsako povpraševanje pregleda sam. Ocena je brezplačna. Termin ni potrjen, dokler ga Sebastjan osebno ne potrdi s stranko. Brez predplačila.
+- Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
+- Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na {SITE}/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo.
 - Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: {SITE}/zasebnost/
 
@@ -631,7 +632,7 @@ def openapi():
                  'description': 'Oddaja povpraševanja hišnemu mojstru Sebastjanu Stjepanoviću (Popravim vse) v imenu stranke. '
                                 'Samo posamezniki in gospodinjstva na območju Maribor, Lenart, Ptuj, Slovenska Bistrica. '
                                 '35 € na uro, prevoz vključen, ocena brezplačna. Sebastjan vsako povpraševanje pregleda sam; '
-                                'termin ni potrjen, dokler ga osebno ne potrdi s stranko. Fotografije in video pošlje stranka prek ' + SITE + FORM,
+                                'termine predlaga osebno, stranka izbere enega (/stanje.php). Fotografije in video pošlje stranka prek ' + SITE + FORM,
                  'contact': {'name': PERSON['name'], 'email': BIZ['email'], 'url': SITE + '/kontakt/'}},
         'servers': [{'url': SITE + '/api'}],
         'paths': {'/povprasevanje.php': {'post': {
@@ -654,8 +655,37 @@ def openapi():
                     'stanje': {'type': 'string', 'description': 'Osebna stran s stanjem; dodaj &format=json za strojno branje'},
                     'sporocilo': {'type': 'string'}}}}}},
                 '422': {'description': 'Manjkajoči ali napačni podatki (polje napaka)'},
-                '429': {'description': 'Preveč povpraševanj z istega naslova'}}}}},
+                '429': {'description': 'Preveč povpraševanj z istega naslova'}}}},
+            '/stanje.php': {
+                'get': {'operationId': 'stanjePovprasevanja', 'summary': 'Stanje, Sebastjanov odgovor in predlagani termini',
+                        'parameters': [{'name': 'id', 'in': 'query', 'required': True, 'schema': {'type': 'string'}},
+                                       {'name': 't', 'in': 'query', 'required': True, 'schema': {'type': 'string'}, 'description': 'Žeton iz povezave »stanje«'},
+                                       {'name': 'format', 'in': 'query', 'required': True, 'schema': {'type': 'string', 'const': 'json'}}],
+                        'responses': {'200': {'description': 'stanje, odgovor, termini (ISO 8601), potrjen_termin'}}},
+                'post': {'operationId': 'potrdiTermin', 'summary': 'Stranka izbere predlagani termin (samo s soglasjem stranke)',
+                         'requestBody': {'required': True, 'content': {'application/json': {'schema': {
+                             'type': 'object', 'required': ['id', 't'],
+                             'properties': {'id': {'type': 'string'}, 't': {'type': 'string'},
+                                            'potrdi': {'type': 'integer', 'minimum': 0, 'maximum': 2, 'description': 'Indeks termina iz seznama termini'},
+                                            'ne_ustreza': {'type': 'boolean'}, 'opomba': {'type': 'string', 'maxLength': 1000}}}}}},
+                         'responses': {'200': {'description': 'Potrjeno'}, '409': {'description': 'Ni predloga ali je termin že potrjen'}}}}},
     }
+
+
+def ui_context(urls, llms):
+    """Dejstva za UI pomočnika na strežniku (api/_kontekst.json, ni javno dostopno). En vir resnice: ista dejstva kot llms.txt."""
+    m = {u: meta for u, _, _, meta in urls}
+    facts = llms.split('## Ključna dejstva', 1)[1].split('\n## ', 1)[0]
+    ctx = {
+        'dejstva': [l[2:].strip() for l in facts.strip().splitlines() if l.startswith('- ')],
+        'storitve': [{'slug': sl, 'ime': t, 'url': f'{SITE}/{sl}/', 'opis': m.get(f'/{sl}/', {}).get('description', '')} for sl, t, _ in SERVICES],
+        'obmocja': [{'ime': t, 'kraji': towns} for _, t, towns in AREAS],
+        'kraji': CITIES,
+        'seznami': [{'url': f'{SITE}/{KK}/{l["slug"]}/', 'naslov': l['h1'], 'storitev': l['service'],
+                     'material': [{k: re.sub(r'<[^>]+>', '', str(x[k])) for k in ('ime', 'vrsta', 'kolicina', 'opomba')} for x in l['material']],
+                     'prinese_mojster': l['prinesem']} for l in LISTS['lists'] if l['status'] == 'objavljeno'],
+    }
+    (OUT / 'api' / '_kontekst.json').write_text(json.dumps(ctx, ensure_ascii=False, indent=1), encoding='utf-8')
 
 
 def read(name):
@@ -799,7 +829,9 @@ def main():
     sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{mod}</lastmod><priority>{p}</priority></url>' for u, p, mod, _ in urls]
     sm.append('</urlset>')
     (OUT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
-    (OUT / 'llms.txt').write_text(llms_txt(urls), encoding='utf-8')
+    llms = llms_txt(urls)
+    (OUT / 'llms.txt').write_text(llms, encoding='utf-8')
+    ui_context(urls, llms)
     print(f'Zgrajeno: {len(urls)} strani v {OUT}')
 
 

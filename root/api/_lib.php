@@ -4,7 +4,7 @@
  */
 declare(strict_types=1);
 
-if (basename($_SERVER['SCRIPT_FILENAME'] ?? '') === '_lib.php') { http_response_code(404); exit; }
+if (str_starts_with(basename($_SERVER['SCRIPT_FILENAME'] ?? ''), '_')) { http_response_code(404); exit; }
 date_default_timezone_set('Europe/Ljubljana');
 
 define('SITE', getenv('PV_SITE') ?: 'https://popravimvse.si'); // PV_SITE samo za lokalni preizkus
@@ -12,7 +12,8 @@ const NOTIFY_TO = 'popravimvse@gmail.com';
 const MAIL_FROM = 'povprasevanje@popravimvse.si';
 const BIZ_PHONE = '070 755 355';
 const BIZ_PHONE_E164 = '+38670755355';
-const MAX_FILES = 12;
+const MAX_FILES = 12;                     // datotek, ki jih doda stranka
+const MAX_SLOTS = 40;                     // skupaj s sličicami iz videov
 const MAX_FILE_BYTES = 250 * 1024 * 1024;   // en video do 250 MB
 const MAX_TOTAL_BYTES = 600 * 1024 * 1024;
 const MAX_TEXT = 5000;
@@ -33,6 +34,7 @@ const STATUS = [
     'prejeto' => 'Prejeto',
     'pregledujem' => 'Sebastjan pregleduje',
     'odgovorjeno' => 'Sebastjan vam je odgovoril',
+    'termin' => 'Termin potrjen',
     'zakljuceno' => 'Zaključeno',
 ];
 const REPLY = ['sms' => 'SMS', 'klic' => 'Klic', 'email' => 'E-pošta'];
@@ -166,7 +168,7 @@ function bytes(int $b): string
 function counts(array $files): string
 {
     $c = ['image' => 0, 'video' => 0, 'audio' => 0];
-    foreach ($files as $f) $c[$f['vrsta']]++;
+    foreach ($files as $f) if (isset($c[$f['vrsta']])) $c[$f['vrsta']]++;  // sličice iz videa (frame) se ne štejejo
     $out = [];
     if ($c['image']) $out[] = $c['image'] . ($c['image'] === 1 ? ' fotografija' : ($c['image'] === 2 ? ' fotografiji' : ($c['image'] < 5 ? ' fotografije' : ' fotografij')));
     if ($c['video']) $out[] = $c['video'] . ($c['video'] === 1 ? ' video' : ' videi');
@@ -258,4 +260,89 @@ function page_end(): void
 {
     echo '</main></body></html>';
     exit;
+}
+
+
+/* ---------- nastavitve (ključe vnese Sebastjan na nastavitve.php; shranjene izven public_html) ---------- */
+const CONFIG_DEFAULTS = [
+    'ui_vklop' => false,
+    'claude_kljuc' => '', 'claude_model' => 'claude-sonnet-5-5',
+    'prepis_kljuc' => '', 'prepis_model' => 'gpt-4o-transcribe',
+    'ical' => '',
+    'dnevi' => [1, 2, 3, 4, 5], 'od' => '08:00', 'do' => '18:00', 'rezerva' => 45, 'celodnevni_blokirajo' => true,
+];
+
+function config(): array
+{
+    $f = storage() . '/nastavitve.json';
+    $c = is_file($f) ? (json_decode((string)file_get_contents($f), true) ?: []) : [];
+    return array_merge(CONFIG_DEFAULTS, $c);
+}
+
+function save_config(array $c): void
+{
+    $f = storage() . '/nastavitve.json';
+    file_put_contents($f, json_encode($c, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT), LOCK_EX);
+    @chmod($f, 0600);
+}
+
+function ui_ready(?array $c = null): bool
+{
+    $c ??= config();
+    return !empty($c['ui_vklop']) && $c['claude_kljuc'] !== '';
+}
+
+/** Konča odgovor brskalniku, nato skripta teče naprej (UI analiza, e-pošta). */
+function finish_response(): void
+{
+    ignore_user_abort(true);
+    @set_time_limit(240);
+    if (function_exists('fastcgi_finish_request')) { fastcgi_finish_request(); return; }
+    if (function_exists('litespeed_finish_request')) { litespeed_finish_request(); return; }
+    $len = ob_get_length() ?: 0;
+    header('Connection: close');
+    header('Content-Length: ' . $len);
+    while (ob_get_level() > 0) ob_end_flush();
+    flush();
+}
+
+const DNI = ['nedelja', 'ponedeljek', 'torek', 'sreda', 'četrtek', 'petek', 'sobota'];
+const DNI_KRATKO = ['ned', 'pon', 'tor', 'sre', 'čet', 'pet', 'sob'];
+
+/** »torek, 27. 10. ob 8.00« */
+function sl_slot(int $ts, bool $short = false): string
+{
+    $d = (int)date('w', $ts);
+    return ($short ? DNI_KRATKO[$d] : DNI[$d]) . ', ' . date('j. n.', $ts) . ' ob ' . date('G.i', $ts);
+}
+
+/** 35 €/h, prva ura v celoti: znesek za $h ur */
+function cena(float $h): int { return (int)round(max(1.0, $h) * 35); }
+
+function ure(float $h): string
+{
+    $s = rtrim(rtrim(number_format($h, 1, ',', ''), '0'), ',');
+    if ($h != floor($h)) return $s . ' ure';
+    return $s . ($h == 1.0 ? ' ura' : ($h == 2.0 ? ' uri' : (($h == 3.0 || $h == 4.0) ? ' ure' : ' ur')));
+}
+
+function gcal_link(string $title, string $details, string $location, ?int $start = null, ?int $end = null): string
+{
+    $q = ['action' => 'TEMPLATE', 'text' => $title, 'details' => $details, 'location' => $location];
+    if ($start && $end) {
+        $q['dates'] = date('Ymd\THis', $start) . '/' . date('Ymd\THis', $end);
+        $q['ctz'] = 'Europe/Ljubljana';
+    }
+    return 'https://calendar.google.com/calendar/render?' . http_build_query($q);
+}
+
+function mail_btn(string $href, string $label, string $bg = '#F2C21B'): string
+{
+    return '<a href="' . h($href) . '" style="display:inline-block;margin:0 8px 8px 0;padding:12px 16px;background:' . $bg
+        . ';color:#16232B;border:2px solid #16232B;border-radius:4px;font-weight:700;text-decoration:none">' . $label . '</a>';
+}
+
+function mail_wrap(string $inner): string
+{
+    return '<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.5;color:#16232B;max-width:560px">' . $inner . '</div>';
 }

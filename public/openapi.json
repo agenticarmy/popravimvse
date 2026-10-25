@@ -3,7 +3,7 @@
  "info": {
   "title": "Popravim vse – povpraševanje",
   "version": "1.0",
-  "description": "Oddaja povpraševanja hišnemu mojstru Sebastjanu Stjepanoviću (Popravim vse) v imenu stranke. Samo posamezniki in gospodinjstva na območju Maribor, Lenart, Ptuj, Slovenska Bistrica. 35 € na uro, prevoz vključen, ocena brezplačna. Sebastjan vsako povpraševanje pregleda sam; termin ni potrjen, dokler ga osebno ne potrdi s stranko. Fotografije in video pošlje stranka prek https://popravimvse.si/povprasevanje/",
+  "description": "Oddaja povpraševanja hišnemu mojstru Sebastjanu Stjepanoviću (Popravim vse) v imenu stranke. Samo posamezniki in gospodinjstva na območju Maribor, Lenart, Ptuj, Slovenska Bistrica. 35 € na uro, prevoz vključen, ocena brezplačna. Sebastjan vsako povpraševanje pregleda sam; termine predlaga osebno, stranka izbere enega (/stanje.php). Fotografije in video pošlje stranka prek https://popravimvse.si/povprasevanje/",
   "contact": {
    "name": "Sebastjan Stjepanović",
    "email": "popravimvse@gmail.com",
@@ -113,6 +113,92 @@
      },
      "429": {
       "description": "Preveč povpraševanj z istega naslova"
+     }
+    }
+   }
+  },
+  "/stanje.php": {
+   "get": {
+    "operationId": "stanjePovprasevanja",
+    "summary": "Stanje, Sebastjanov odgovor in predlagani termini",
+    "parameters": [
+     {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      }
+     },
+     {
+      "name": "t",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string"
+      },
+      "description": "Žeton iz povezave »stanje«"
+     },
+     {
+      "name": "format",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "const": "json"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "stanje, odgovor, termini (ISO 8601), potrjen_termin"
+     }
+    }
+   },
+   "post": {
+    "operationId": "potrdiTermin",
+    "summary": "Stranka izbere predlagani termin (samo s soglasjem stranke)",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "required": [
+         "id",
+         "t"
+        ],
+        "properties": {
+         "id": {
+          "type": "string"
+         },
+         "t": {
+          "type": "string"
+         },
+         "potrdi": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2,
+          "description": "Indeks termina iz seznama termini"
+         },
+         "ne_ustreza": {
+          "type": "boolean"
+         },
+         "opomba": {
+          "type": "string",
+          "maxLength": 1000
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Potrjeno"
+     },
+     "409": {
+      "description": "Ni predloga ali je termin že potrjen"
      }
     }
    }

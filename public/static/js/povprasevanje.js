@@ -34,6 +34,7 @@
   function mb(b) { return b >= 1048576 ? (b / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.max(1, Math.round(b / 1024)) + ' kB'; }
   function showErr(el, msg) { el.textContent = msg; el.hidden = !msg; }
   function active() { return items.filter(function (it) { return !it.removed; }); }
+  function visible() { return active().filter(function (it) { return it.kind !== 'frame'; }); }
 
   /* ---------- fotografije: pomanjšaj na 2000 px, JPEG (odstrani EXIF in GPS) ---------- */
   function shrink(file) {
@@ -57,11 +58,15 @@
 
   /* ---------- predogled ---------- */
   function addItem(file, kind) {
-    if (active().length >= MAX_FILES) { showErr(err, 'Dodate lahko največ ' + MAX_FILES + ' datotek.'); return; }
+    if (kind !== 'frame' && visible().length >= MAX_FILES) { showErr(err, 'Dodate lahko največ ' + MAX_FILES + ' datotek.'); return; }
     if (file.size > MAX_FILE) { showErr(err, '»' + file.name + '« je prevelik (' + mb(file.size) + '). Posnemite krajši video, do ' + mb(MAX_FILE) + '.'); return; }
-    showErr(err, '');
-    var it = { idx: nextIdx++, file: file, kind: kind, sent: 0, done: false, error: '', removed: false };
+    var it = { idx: nextIdx++, file: file, kind: kind, sent: 0, done: false, error: '', removed: false, frames: [] };
     items.push(it);
+    if (kind === 'frame') { // sličica iz videa: samo za oceno, brez predogleda
+      it.promise = chain = chain.then(function () { return upload(it); });
+      return it;
+    }
+    showErr(err, '');
     var li = document.createElement('li');
     li.className = 'pv-thumb pv-' + kind;
     var url = URL.createObjectURL(file), media;
@@ -75,7 +80,7 @@
     var bar = document.createElement('span'); bar.className = 'pv-mini'; bar.innerHTML = '<i></i>';
     li.appendChild(bar);
     var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pv-rm'; rm.setAttribute('aria-label', 'Odstrani'); rm.textContent = '×';
-    rm.addEventListener('click', function () { it.removed = true; li.remove(); URL.revokeObjectURL(url); syncRemoved(); });
+    rm.addEventListener('click', function () { it.removed = true; it.frames.forEach(function (f) { f.removed = true; }); li.remove(); URL.revokeObjectURL(url); syncRemoved(); });
     li.appendChild(rm);
     thumbs.appendChild(li);
     it.li = li; it.bar = bar.firstChild;
@@ -113,17 +118,17 @@
     var tries = 0;
     function step(offset) {
       if (it.removed) return Promise.resolve();
-      if (offset >= it.file.size) { it.done = true; it.li.classList.add('ok'); progress(it, it.file.size); return Promise.resolve(); }
+      if (offset >= it.file.size) { it.done = true; if (it.li) it.li.classList.add('ok'); progress(it, it.file.size); return Promise.resolve(); }
       return sendChunk(it, offset).then(function (rec) { tries = 0; it.sent = rec; return step(rec); }, function (e) {
-        if (e.fatal || ++tries > 6) { it.error = e.message; it.li.classList.add('bad'); throw e; }
+        if (e.fatal || ++tries > 6) { it.error = e.message; if (it.li) it.li.classList.add('bad'); throw e; }
         return new Promise(function (r) { setTimeout(r, Math.min(15000, 1000 * Math.pow(2, tries))); }).then(function () { return step(it.sent); });
       });
     }
-    return step(0).catch(function (e) { showErr(err, e.message); });
+    return step(0).catch(function (e) { if (it.kind !== 'frame') showErr(err, e.message); });
   }
   function progress(it, sent) {
     it.sent = Math.max(it.sent, Math.min(sent, it.file.size));
-    it.bar.style.width = Math.round(100 * it.sent / it.file.size) + '%';
+    if (it.bar) it.bar.style.width = Math.round(100 * it.sent / it.file.size) + '%';
     if (submitting) overall();
   }
   function overall() {
@@ -141,9 +146,37 @@
       var kind = /^video\//.test(f.type) ? 'video' : /^image\//.test(f.type) ? 'image' : null;
       if (!kind) { showErr(err, '»' + f.name + '« ni fotografija ali video.'); return; }
       if (kind === 'image') shrink(f).then(function (s) { addItem(s, 'image'); });
-      else addItem(f, kind);
+      else { var v = addItem(f, kind); if (v) frames(f, v); }
     });
   });
+  /* ---------- 4 sličice iz videa (za oceno, kadar Sebastjan videa ne more pogledati takoj) ---------- */
+  function frames(file, owner) {
+    var v = document.createElement('video'), url = URL.createObjectURL(file), n = 0, times = [];
+    v.muted = true; v.playsInline = true; v.preload = 'auto'; v.src = url;
+    var done = function () { URL.revokeObjectURL(url); v.removeAttribute('src'); };
+    var timer = setTimeout(done, 20000);
+    v.addEventListener('loadedmetadata', function () {
+      var d = v.duration;
+      if (!isFinite(d) || d <= 0) { clearTimeout(timer); return done(); }
+      times = [0.12, 0.38, 0.63, 0.88].map(function (x) { return x * d; });
+      v.currentTime = times[0];
+    });
+    v.addEventListener('seeked', function () {
+      if (owner.removed || submitting) { clearTimeout(timer); return done(); }
+      var s = Math.min(1, 1024 / Math.max(v.videoWidth, v.videoHeight || 1)), c = document.createElement('canvas');
+      c.width = Math.round(v.videoWidth * s); c.height = Math.round(v.videoHeight * s);
+      if (!c.width || !c.height) { clearTimeout(timer); return done(); }
+      c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+      var i = n;
+      c.toBlob(function (b) {
+        if (b && !owner.removed && !submitting) owner.frames.push(addItem(new File([b], 'slicica-' + owner.idx + '-' + (i + 1) + '.jpg', { type: 'image/jpeg' }), 'frame'));
+      }, 'image/jpeg', 0.75);
+      n++;
+      if (n < times.length) v.currentTime = times[n]; else { clearTimeout(timer); done(); }
+    });
+    v.addEventListener('error', function () { clearTimeout(timer); done(); });
+  }
+
   // brez JS ostane polje media[] v obrazcu; z JS datoteke pošiljamo po kosih
   input.removeAttribute('name');
 
@@ -215,7 +248,7 @@
       tel.setAttribute('aria-invalid', 'true'); tel.focus(); return;
     }
     if (email.required && !email.value.trim()) { showErr(err, 'Vpišite e-pošto ali izberite SMS oziroma klic.'); email.focus(); return; }
-    if (!form.elements.opis.value.trim() && !active().length) {
+    if (!form.elements.opis.value.trim() && !visible().length) {
       showErr(err, 'Dodajte fotografijo, video ali glasovno sporočilo ali na kratko opišite težavo.');
       form.elements.opis.focus(); return;
     }
@@ -226,7 +259,8 @@
 
     setTimeout(function () { // počakaj, da se doda morebitni ravnokar ustavljen posnetek
       Promise.all(items.map(function (i) { return i.promise; })).then(function () {
-        var failed = active().filter(function (i) { return !i.done; });
+        var failed = visible().filter(function (i) { return !i.done; });
+        items.forEach(function (i) { if (i.kind === 'frame' && !i.done) i.removed = true; }); syncRemoved();
         if (failed.length) throw new Error((failed[0].error || 'Nekaterih datotek ni bilo mogoče naložiti.') + ' Odstranite jih ali poskusite znova.');
         overall();
         var fd = new FormData(form);
@@ -246,7 +280,7 @@
   });
 
   function guard(e) {
-    var busy = active().some(function (i) { return !i.done; }) || (form.elements.opis.value.trim() && !submitting);
+    var busy = visible().some(function (i) { return !i.done; }) || (form.elements.opis.value.trim() && !submitting);
     if (busy) { e.preventDefault(); e.returnValue = ''; }
   }
   window.addEventListener('beforeunload', guard);

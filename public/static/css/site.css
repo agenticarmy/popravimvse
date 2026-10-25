@@ -509,3 +509,33 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 }
 .call svg { flex: none; }
 .pv-pick small { color: var(--ink); }
+
+/* faza 2: UI predlog, odgovor, termini, nastavitve */
+.pv-reply input, .pv-reply textarea, .pv-pickslot textarea, .pv-settings input[type=password], .pv-settings input[type=number], .pv-settings input[type=time] {
+  display: block; width: 100%; box-sizing: border-box; font: inherit; font-size: max(16px, 1rem); color: var(--ink);
+  padding: .75rem .85rem; min-height: 50px; background: #fff; border: 2px solid var(--ink-soft); border-radius: var(--radius); margin: 0 0 .6rem; }
+.pv-reply textarea { min-height: 14rem; line-height: 1.5; }
+.pv-reply textarea:focus, .pv-reply input:focus, .pv-pickslot textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(29, 106, 88, .25); }
+.pv-reply .pv-send { margin: .4rem 0 .6rem; }
+.pv-reply .btn-plain { font: inherit; font-weight: 700; cursor: pointer; }
+.pv-ai { border-left: 6px solid var(--level); }
+.pv-ai h2 small { font-weight: 400; color: var(--ink-soft); font-size: .9rem; }
+.pv-ai-wait { border-left: 6px solid var(--level); font-weight: 700; }
+.pv-warn { list-style: none; padding: .6rem .9rem; margin: 0 0 1rem; background: #FDECEA; border: 2px solid #A3261B; border-radius: var(--radius); }
+.pv-warn li { margin: .2rem 0; color: #8E1B10; font-weight: 600; }
+.pv-warn li::before { content: '⚠ '; }
+.pv-transcript { margin: .5rem 0 0; padding: .5rem .7rem; background: var(--glaze); border-left: 4px solid var(--ink-soft); font-size: .95rem; }
+.pv-preview { margin: .4rem 0 .8rem; }
+.pv-preview summary { cursor: pointer; font-weight: 700; padding: .4rem 0; }
+.pv-preview .pv-quote { white-space: pre-wrap; }
+.pv-answer .pv-quote { font-size: 1.02rem; }
+.pv-pickslot h3 { margin: 1rem 0 .6rem; }
+.pv-slotbtn { display: flex; width: 100%; justify-content: center; margin: 0 0 .6rem; font: inherit; font-weight: 800; cursor: pointer; min-height: 56px; box-sizing: border-box; }
+.pv-none { font: inherit; font-weight: 700; cursor: pointer; width: 100%; justify-content: center; }
+.pv-check { display: flex; gap: .6rem; align-items: flex-start; margin: .6rem 0; font-weight: 600; }
+.pv-check input { width: 1.3rem; height: 1.3rem; margin-top: .15rem; accent-color: var(--green); flex: none; }
+.pv-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+.pv-okmsg { padding: .7rem .9rem; background: #E6F4EE; border: 2px solid var(--green); border-radius: var(--radius); font-weight: 600; }
+.pv-settings legend { font-weight: 800; font-size: 1.15rem; }
+.pv-send2 { width: 100%; justify-content: center; margin-top: .7rem; font: inherit; font-weight: 700; cursor: pointer; min-height: 52px; }
+.pv-chips input[type=checkbox] { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }

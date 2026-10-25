@@ -1,0 +1,463 @@
+{
+ "dejstva": [
+  "Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. Ni zavezanec za DDV.",
+  "Dela samo za posameznike in gospodinjstva, ne za podjetja.",
+  "Sedež s.p. je v Slovenj Gradcu (tam ima pisarno), dela pa iz Pernice pri Mariboru.",
+  "Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.",
+  "Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.",
+  "Če se po njegovem delu izkaže, da kaj ni prav (npr. silikon odstopi), pride in popravi brezplačno.",
+  "Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Brez doplačil zvečer, v soboto in nedeljo.",
+  "Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.",
+  "Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.",
+  "Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.",
+  "Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; ne daje popusta brez računa; dela sam (plača se ena oseba).",
+  "Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).",
+  "Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.",
+  "Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.",
+  "Kontakt: telefon 070 755 355 (+38670755355), SMS na isto številko, e-pošta popravimvse@gmail.com, obrazec s fotografijo, videom ali glasom: https://popravimvse.si/povprasevanje/",
+  "Jezik: slovenščina in tekoča nemščina."
+ ],
+ "storitve": [
+  {
+   "slug": "polaganje-keramike",
+   "ime": "Polaganje keramike",
+   "url": "https://popravimvse.si/polaganje-keramike/",
+   "opis": "Polaganje keramike in ploščic, manjše prenove kopalnic in zamenjava počenih ploščic. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "polaganje-talnih-oblog",
+   "ime": "Laminat in talne obloge",
+   "url": "https://popravimvse.si/polaganje-talnih-oblog/",
+   "opis": "Polaganje laminata, vinila in drugih talnih oblog z letvami in pripravo podlage. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "obnova-fug-in-silikona",
+   "ime": "Obnova fug in silikona",
+   "url": "https://popravimvse.si/obnova-fug-in-silikona/",
+   "opis": "Obnova fug v kopalnici, fugiranje ploščic in menjava silikona ob kadi in tušu. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "odmasevanje-odtokov",
+   "ime": "Odmaševanje odtokov",
+   "url": "https://popravimvse.si/odmasevanje-odtokov/",
+   "opis": "Čiščenje in odmaševanje odtokov v kuhinji, kopalnici in WC ter čiščenje sifonov. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "kopalniska-oprema",
+   "ime": "Kopalniška oprema",
+   "url": "https://popravimvse.si/kopalniska-oprema/",
+   "opis": "Montaža kopalniškega pohištva, ogledal, polic, držal in tuš sten, menjava WC deske in silikon. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "pleskanje-in-kitanje",
+   "ime": "Pleskanje in kitanje",
+   "url": "https://popravimvse.si/pleskanje-in-kitanje/",
+   "opis": "Pleskanje sten in stropov, kitanje, popravilo razpok ter obloge sten in stropov z mavčnimi ploščami. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "priklop-aparatov",
+   "ime": "Priklop aparatov",
+   "url": "https://popravimvse.si/priklop-aparatov/",
+   "opis": "Priklop pralnega, sušilnega in pomivalnega stroja na obstoječe priključke ter vgradnja pečice in nape. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "montaza-tv-in-polic",
+   "ime": "Montaža TV in polic",
+   "url": "https://popravimvse.si/montaza-tv-in-polic/",
+   "opis": "Montaža televizorja na steno, polic, garnišn, ogledal, slik in nosilcev, tudi na knauf steno. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "modem-in-termostat",
+   "ime": "Modem, Wi-Fi in termostat",
+   "url": "https://popravimvse.si/modem-in-termostat/",
+   "opis": "Priklop modema, nastavitev Wi-Fi, povezava naprav z mrežnim kablom in nastavitev pametnega termostata. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "popravilo-vrat-in-oken",
+   "ime": "Vrata in okna",
+   "url": "https://popravimvse.si/popravilo-vrat-in-oken/",
+   "opis": "Popravilo oken in vrat: nastavitev PVC oken, okovje, balkonska in drsna vrata, kljuke, ključavnice. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "slug": "tesarska-dela",
+   "ime": "Tesarska dela in pohištvo",
+   "url": "https://popravimvse.si/tesarska-dela/",
+   "opis": "Tesarska dela na domu: montaža pohištva in kuhinje, viseče omarice, police, popravila lesa. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Sl. Bistrica."
+  },
+  {
+   "slug": "selitve-in-prenosi",
+   "ime": "Manjše selitve in prenosi",
+   "url": "https://popravimvse.si/selitve-in-prenosi/",
+   "opis": "Manjše selitve, prevoz s prikolico in prenos težkih predmetov po stopnicah. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "kosnja-in-urejanje-okolice",
+   "ime": "Košnja in urejanje okolice",
+   "url": "https://popravimvse.si/kosnja-in-urejanje-okolice/",
+   "opis": "Košnja trave, obrezovanje žive meje in prevoz gramoza, peska ali zemlje z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
+  }
+ ],
+ "obmocja": [
+  {
+   "ime": "Maribor z okolico",
+   "kraji": "Hoče, Slivnica, Miklavž, Rače, Fram, Pesnica, Šentilj, Kungota, Ruše, Selnica, Duplek, Starše"
+  },
+  {
+   "ime": "Lenart in Slovenske gorice",
+   "kraji": "Benedikt, Cerkvenjak, Sv. Ana, Sv. Trojica, Sv. Jurij v Slovenskih goricah"
+  },
+  {
+   "ime": "Ptuj z okolico",
+   "kraji": "Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci"
+  },
+  {
+   "ime": "Slovenska Bistrica",
+   "kraji": "Poljčane, Makole, Oplotnica"
+  }
+ ],
+ "kraji": [
+  "Maribor",
+  "Lenart",
+  "Ptuj",
+  "Slovenska Bistrica",
+  "Hoče",
+  "Slivnica",
+  "Miklavž na Dravskem polju",
+  "Rače",
+  "Fram",
+  "Pesnica",
+  "Šentilj",
+  "Kungota",
+  "Ruše",
+  "Selnica ob Dravi",
+  "Duplek",
+  "Starše",
+  "Kidričevo",
+  "Hajdina",
+  "Videm",
+  "Markovci",
+  "Gorišnica",
+  "Destrnik",
+  "Juršinci",
+  "Benedikt",
+  "Cerkvenjak",
+  "Sveta Ana",
+  "Sveta Trojica v Slovenskih goricah",
+  "Sveti Jurij v Slovenskih goricah",
+  "Poljčane",
+  "Makole",
+  "Oplotnica"
+ ],
+ "seznami": [
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/",
+   "naslov": "Kaj kupiti za obnovo silikona v kopalnici",
+   "storitev": "obnova-fug-in-silikona",
+   "material": [
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim (fungicidnim) dodatkom, označen za kopalnice, tuše in kuhinje.",
+     "kolicina": "1 kartuša 300–310 ml na približno 12 m stika 5 × 5 mm; pri širšem stiku 10 × 10 mm le približno 3 m.",
+     "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren."
+    },
+    {
+     "ime": "Silikon za naravni kamen (samo ob kamnu)",
+     "vrsta": "Nevtralno zamrežen silikon, na embalaži označen za naravni kamen.",
+     "kolicina": "Enako kot sanitarni silikon.",
+     "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu."
+    }
+   ],
+   "prinese_mojster": [
+    "pištolo za silikon",
+    "nož in strgalo za star silikon",
+    "sredstvo za odstranjevanje ostankov silikona",
+    "čistilo za razmastitev stika",
+    "lepilni trak za ravne robove",
+    "orodje za glajenje stika"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/",
+   "naslov": "Kaj kupiti za montažo TV na steno",
+   "storitev": "montaza-tv-in-polic",
+   "material": [
+    {
+     "ime": "Stenski nosilec za TV",
+     "vrsta": "VESA razmak kot na televizorju; nosilnost večja od teže TV; fiksni, nagibni ali vrtljivi.",
+     "kolicina": "1 kos",
+     "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža."
+    },
+    {
+     "ime": "Vložki in vijaki za steno",
+     "vrsta": "Glede na steno, glejte tabelo spodaj.",
+     "kolicina": "Toliko, kolikor ima nosilec lukenj za steno (običajno 4–6).",
+     "opomba": "Priloženi vložki so večinoma za beton."
+    },
+    {
+     "ime": "Kabelski kanal (neobvezno)",
+     "vrsta": "Samolepilni ali za privijanje, bel ali takšen, ki se ga da prepleskati.",
+     "kolicina": "Dolžina od televizorja do omarice ali vtičnice.",
+     "opomba": "Nove vtičnice za televizorjem mora narediti električar."
+    },
+    {
+     "ime": "HDMI in antenski kabel (neobvezno)",
+     "vrsta": "Dovolj dolga, pri vrtljivem nosilcu z rezervo za premikanje.",
+     "kolicina": "Po potrebi.",
+     "opomba": ""
+    }
+   ],
+   "prinese_mojster": [
+    "vrtalnik in svedre za vašo steno",
+    "detektor cevi in kablov",
+    "libelo",
+    "orodje za privijanje",
+    "vezice za kable"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-laminata/",
+   "naslov": "Kaj kupiti za polaganje laminata",
+   "storitev": "polaganje-talnih-oblog",
+   "material": [
+    {
+     "ime": "Laminat",
+     "vrsta": "Razred 31 (AC3) za spalnice, 32 (AC4) za hodnik, kuhinjo in dnevno sobo. Pri talnem ogrevanju mora biti označen kot primeren.",
+     "kolicina": "Površina sobe + 5–10 % (diagonalno okoli 15 %). Zaokrožite navzgor na cele pakete.",
+     "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku."
+    },
+    {
+     "ime": "Podloga za laminat",
+     "vrsta": "Podloga, ki duši korake. Na betonu ali estrihu z vgrajeno zaporo proti vlagi ali dodatno PE folijo 0,2 mm.",
+     "kolicina": "Enako kot površina sobe.",
+     "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še."
+    },
+    {
+     "ime": "PE folija proti vlagi (po potrebi)",
+     "vrsta": "Polietilenska folija debeline vsaj 0,2 mm.",
+     "kolicina": "Površina sobe + približno 10 % za prekrivanje stikov.",
+     "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore."
+    },
+    {
+     "ime": "Talne letve",
+     "vrsta": "V barvi laminata ali bele; s sponkami ali za lepljenje.",
+     "kolicina": "Obseg sobe brez vrat + 10 %.",
+     "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej."
+    },
+    {
+     "ime": "Prehodni profili",
+     "vrsta": "Za prehod na ploščice ali drugo oblogo in za zaključek pri vratih.",
+     "kolicina": "Po en profil za vsak prehod, dolg kot širina vrat.",
+     "opomba": ""
+    }
+   ],
+   "prinese_mojster": [
+    "žago in rezalnik za laminat",
+    "udarni blok in vlečni vzvod",
+    "distančnike za razmik od stene",
+    "libelo in letev za preverjanje ravnosti",
+    "lepilni trak za stike folije",
+    "nož in meter"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-fug/",
+   "naslov": "Kaj kupiti za obnovo fug v kopalnici",
+   "storitev": "obnova-fug-in-silikona",
+   "material": [
+    {
+     "ime": "Fugirna masa",
+     "vrsta": "Cementna (za stene in tla, pri talnem ogrevanju fleksibilna) ali epoksi (za tuš in pult).",
+     "kolicina": "Po tabeli na embalaži; npr. 30 × 30 cm in fuga 5 mm ≈ 0,6 kg/m². Pri obnovi, ko fugo odstranim le delno, gre manj.",
+     "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim dodatkom, v barvi fug.",
+     "kolicina": "1 kartuša za kote in stike ene kopalnice.",
+     "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso."
+    },
+    {
+     "ime": "Rezervna ploščica (po potrebi)",
+     "vrsta": "Če je kakšna ploščica počena in jo želite zamenjati.",
+     "kolicina": "Po kosih.",
+     "opomba": "Če nimate ostankov, mi pošljite fotografijo, da poiščeva podobno."
+    }
+   ],
+   "prinese_mojster": [
+    "orodje za odstranjevanje starih fug",
+    "gumijasto lopatico za fugiranje",
+    "gobe in vedro",
+    "sesalnik za prah",
+    "pištolo za silikon",
+    "zaščitno folijo"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/pleskanje-sobe/",
+   "naslov": "Kaj kupiti za pleskanje sobe",
+   "storitev": "pleskanje-in-kitanje",
+   "material": [
+    {
+     "ime": "Barva za stene in strop",
+     "vrsta": "Notranja disperzijska; pralna za kuhinjo, hodnik in otroško sobo.",
+     "kolicina": "Površina sten in stropa, deljena z izdatnostjo z embalaže (pogosto okoli 5 m²/l za dva sloja).",
+     "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj."
+    },
+    {
+     "ime": "Kit za stene",
+     "vrsta": "Za zapolnjevanje lukenj in razpok ter glajenje.",
+     "kolicina": "Za posamezne luknje majhno pakiranje; za glajenje cele stene vprašajte mene.",
+     "opomba": ""
+    },
+    {
+     "ime": "Akrilni kit",
+     "vrsta": "Prepleskljiv, za razpoke v kotih in ob podbojih.",
+     "kolicina": "1 kartuša za sobo.",
+     "opomba": "Ne kupite silikona: barva se ga ne prime."
+    },
+    {
+     "ime": "Osnovni premaz (po potrebi)",
+     "vrsta": "Globinski ali osnovni premaz za vpojne podlage.",
+     "kolicina": "Po izdatnosti z embalaže.",
+     "opomba": "Kdaj je potreben, vam povem po fotografiji."
+    }
+   ],
+   "prinese_mojster": [
+    "valjčke in čopiče",
+    "pladenj za barvo",
+    "lestev",
+    "zaščitno folijo za tla in pohištvo",
+    "zaščitni lepilni trak",
+    "lopatice in brusni papir"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-ploscic/",
+   "naslov": "Kaj kupiti za polaganje ploščic",
+   "storitev": "polaganje-keramike",
+   "material": [
+    {
+     "ime": "Ploščice",
+     "vrsta": "Za tla z oznako za talne ploščice; za kopalnico protizdrsne.",
+     "kolicina": "Površina + 10 % (velike ali diagonalno + 15 %), zaokroženo na cele škatle.",
+     "opomba": "Serija in kaliber morata biti na vseh škatlah enaka."
+    },
+    {
+     "ime": "Lepilo za ploščice",
+     "vrsta": "C1 za manjše stenske ploščice; C2 S1 (fleksibilno) za velike ploščice, talno ogrevanje in ploščice na ploščice.",
+     "kolicina": "Približno 3–6 kg/m² glede na velikost zob lopatice; večje ploščice porabijo več.",
+     "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči."
+    },
+    {
+     "ime": "Fugirna masa",
+     "vrsta": "Cementna ali epoksi, v izbrani barvi.",
+     "kolicina": "Po tabeli na embalaži.",
+     "opomba": "Več na seznamu za obnovo fug."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "V barvi fug.",
+     "kolicina": "1–2 kartuši za kopalnico.",
+     "opomba": "Za kote in stik s kadjo ali tušem."
+    },
+    {
+     "ime": "Zaključni profili (po potrebi)",
+     "vrsta": "Za vidne robove in zunanje vogale, v barvi ali kovinski.",
+     "kolicina": "Dolžina vseh vidnih robov.",
+     "opomba": ""
+    },
+    {
+     "ime": "Osnovni premaz (po potrebi)",
+     "vrsta": "Za vpojne podlage ali kontaktni premaz za ploščice na ploščice.",
+     "kolicina": "Po izdatnosti z embalaže.",
+     "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji."
+    }
+   ],
+   "prinese_mojster": [
+    "rezalnik in brusilko za ploščice",
+    "zobate lopatice in mešalo",
+    "libelo in laser",
+    "križce za fuge in izravnalne sponke za velike ploščice",
+    "gumijasto kladivo",
+    "vedra in gobe"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/",
+   "naslov": "Kaj kupiti za polico ali omarico na mavčno steno",
+   "storitev": "montaza-tv-in-polic",
+   "material": [
+    {
+     "ime": "Polica ali omarica",
+     "vrsta": "S priloženimi nosilci ali obešali.",
+     "kolicina": "Po izbiri.",
+     "opomba": "Preverite, ali je nosilec za steno priložen."
+    },
+    {
+     "ime": "Kovinski votlinski vložki",
+     "vrsta": "Za mavčne plošče; dolžina glede na debelino stene (enojna ali dvojna plošča).",
+     "kolicina": "Toliko, kolikor je lukenj v nosilcih, običajno 2–4 na element.",
+     "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka."
+    },
+    {
+     "ime": "Vijaki za profile (po potrebi)",
+     "vrsta": "Vijaki za pločevino ali za suho gradnjo.",
+     "kolicina": "Po nosilcu.",
+     "opomba": "Kadar pritrdim v kovinske profile."
+    }
+   ],
+   "prinese_mojster": [
+    "detektor profilov, cevi in kablov",
+    "vrtalnik in svedre",
+    "libelo",
+    "orodje za vložke",
+    "sesalnik za prah"
+   ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/",
+   "naslov": "Kaj kupiti za montažo kopalniške opreme",
+   "storitev": "kopalniska-oprema",
+   "material": [
+    {
+     "ime": "Ogledalo, omarica, police, držala",
+     "vrsta": "Z nosilci in navodili za montažo.",
+     "kolicina": "Po izbiri.",
+     "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar."
+    },
+    {
+     "ime": "Vijaki in vložki",
+     "vrsta": "Iz nerjavnega materiala; za vašo steno (beton, opeka ali mavčna plošča).",
+     "kolicina": "Po nosilcih.",
+     "opomba": "Priloženi so pogosto le za polno steno."
+    },
+    {
+     "ime": "WC deska",
+     "vrsta": "Po meri školjke: dolžina, širina in razmak lukenj.",
+     "kolicina": "1 kos",
+     "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim dodatkom, prozoren ali bel.",
+     "kolicina": "1 kartuša.",
+     "opomba": "Za tuš steno in tesnjenje v tušu."
+    },
+    {
+     "ime": "Oprijemala za starejše (po potrebi)",
+     "vrsta": "Označena za oporo, z navedeno nosilnostjo.",
+     "kolicina": "Po potrebi.",
+     "opomba": "Na mavčno steno samo v profile ali na ojačitev."
+    }
+   ],
+   "prinese_mojster": [
+    "vrtalnik in svedre za keramiko",
+    "detektor cevi in kablov",
+    "libelo",
+    "lepilni trak za vrtanje",
+    "orodje za privijanje",
+    "sesalnik za prah"
+   ]
+  }
+ ]
+}

@@ -111,6 +111,154 @@
      "kupite": "Kovinske votlinske vložke ali privijanje v kovinske profile. Pri težkem televizorju ali vrtljivem nosilcu se posvetujva prej."
     }
    ]
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-laminata/",
+   "naslov": "Kaj kupiti za polaganje laminata",
+   "storitev": "https://popravimvse.si/polaganje-talnih-oblog/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Laminat: površina sobe + 5 do 10 % rezerve za razrez, pri diagonalnem polaganju okoli 15 %.",
+    "Razred: za spalnico zadošča razred 31 (AC3), za hodnik in kuhinjo vzemite razred 32 (AC4) ali več.",
+    "Podloga: enaka površina kot laminat. Na betonu ali estrihu potrebujete tudi zaporo proti vlagi (PE folija 0,2 mm), če je podloga nima že vgrajene.",
+    "Talne letve: obseg sobe brez vrat + 10 %, s pripadajočimi kotniki ali sponkami.",
+    "Profili pri vratih: prehodni profil za vsak prehod na drugo talno oblogo.",
+    "48 ur prej: neodprte pakete odložite vodoravno v sobo, kjer bo laminat položen."
+   ],
+   "material": [
+    {
+     "ime": "Laminat",
+     "vrsta": "Razred 31 (AC3) za spalnice, 32 (AC4) za hodnik, kuhinjo in dnevno sobo. Pri talnem ogrevanju mora biti označen kot primeren.",
+     "kolicina": "Površina sobe + 5–10 % (diagonalno okoli 15 %). Zaokrožite navzgor na cele pakete.",
+     "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku."
+    },
+    {
+     "ime": "Podloga za laminat",
+     "vrsta": "Podloga, ki duši korake. Na betonu ali estrihu z vgrajeno zaporo proti vlagi ali dodatno PE folijo 0,2 mm.",
+     "kolicina": "Enako kot površina sobe.",
+     "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še."
+    },
+    {
+     "ime": "PE folija proti vlagi (po potrebi)",
+     "vrsta": "Polietilenska folija debeline vsaj 0,2 mm.",
+     "kolicina": "Površina sobe + približno 10 % za prekrivanje stikov.",
+     "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore."
+    },
+    {
+     "ime": "Talne letve",
+     "vrsta": "V barvi laminata ali bele; s sponkami ali za lepljenje.",
+     "kolicina": "Obseg sobe brez vrat + 10 %.",
+     "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej."
+    },
+    {
+     "ime": "Prehodni profili",
+     "vrsta": "Za prehod na ploščice ali drugo oblogo in za zaključek pri vratih.",
+     "kolicina": "Po en profil za vsak prehod, dolg kot širina vrat.",
+     "opomba": ""
+    }
+   ],
+   "prinese_mojster": [
+    "žago in rezalnik za laminat",
+    "udarni blok in vlečni vzvod",
+    "distančnike za razmik od stene",
+    "libelo in letev za preverjanje ravnosti",
+    "lepilni trak za stike folije",
+    "nož in meter"
+   ],
+   "stene": []
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-fug/",
+   "naslov": "Kaj kupiti za obnovo fug v kopalnici",
+   "storitev": "https://popravimvse.si/obnova-fug-in-silikona/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Fugirna masa: cementna za stene in tla, epoksi za tuš in kuhinjski pult.",
+    "Za tla s talnim ogrevanjem izberite fleksibilno (elastično) fugirno maso.",
+    "Količina: na embalaži je tabela po velikosti ploščic in širini fuge. Za ploščice 30 × 30 cm in fugo 5 mm približno 0,6 kg/m².",
+    "Barva: enaka kot stare fuge ali nekoliko temnejša, ker je suha fuga svetlejša od mokre.",
+    "Sanitarni silikon za kote in stik s kadjo ali tušem, ker tam fugirna masa poči."
+   ],
+   "material": [
+    {
+     "ime": "Fugirna masa",
+     "vrsta": "Cementna (za stene in tla, pri talnem ogrevanju fleksibilna) ali epoksi (za tuš in pult).",
+     "kolicina": "Po tabeli na embalaži; npr. 30 × 30 cm in fuga 5 mm ≈ 0,6 kg/m². Pri obnovi, ko fugo odstranim le delno, gre manj.",
+     "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom."
+    },
+    {
+     "ime": "Sanitarni silikon",
+     "vrsta": "S protiglivičnim dodatkom, v barvi fug.",
+     "kolicina": "1 kartuša za kote in stike ene kopalnice.",
+     "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso."
+    },
+    {
+     "ime": "Rezervna ploščica (po potrebi)",
+     "vrsta": "Če je kakšna ploščica počena in jo želite zamenjati.",
+     "kolicina": "Po kosih.",
+     "opomba": "Če nimate ostankov, mi pošljite fotografijo, da poiščeva podobno."
+    }
+   ],
+   "prinese_mojster": [
+    "orodje za odstranjevanje starih fug",
+    "gumijasto lopatico za fugiranje",
+    "gobe in vedro",
+    "sesalnik za prah",
+    "pištolo za silikon",
+    "zaščitno folijo"
+   ],
+   "stene": []
+  },
+  {
+   "url": "https://popravimvse.si/kaj-kupiti/pleskanje-sobe/",
+   "naslov": "Kaj kupiti za pleskanje sobe",
+   "storitev": "https://popravimvse.si/pleskanje-in-kitanje/",
+   "posodobljeno": "2026-10-25",
+   "pregledal": "Sebastjan Stjepanović",
+   "na_kratko": [
+    "Barva: notranja disperzijska barva. Za kuhinjo, hodnik in otroško sobo pralna.",
+    "Količina: na embalaži piše izdatnost. Za dva sloja pogosto približno 5 m² na liter.",
+    "Vso barvo kupite naenkrat in iz iste serije ali istega mešanja, da ni razlik v odtenku.",
+    "Kit za luknje in razpoke, akrilni kit za razpoke v kotih, ker se silikon ne da prepleskati.",
+    "Osnovni premaz potrebujete na novem ometu, zelo vpojnih ali zakitanih površinah. Pri osvežitvi stare barve običajno ne."
+   ],
+   "material": [
+    {
+     "ime": "Barva za stene in strop",
+     "vrsta": "Notranja disperzijska; pralna za kuhinjo, hodnik in otroško sobo.",
+     "kolicina": "Površina sten in stropa, deljena z izdatnostjo z embalaže (pogosto okoli 5 m²/l za dva sloja).",
+     "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj."
+    },
+    {
+     "ime": "Kit za stene",
+     "vrsta": "Za zapolnjevanje lukenj in razpok ter glajenje.",
+     "kolicina": "Za posamezne luknje majhno pakiranje; za glajenje cele stene vprašajte mene.",
+     "opomba": ""
+    },
+    {
+     "ime": "Akrilni kit",
+     "vrsta": "Prepleskljiv, za razpoke v kotih in ob podbojih.",
+     "kolicina": "1 kartuša za sobo.",
+     "opomba": "Ne kupite silikona: barva se ga ne prime."
+    },
+    {
+     "ime": "Osnovni premaz (po potrebi)",
+     "vrsta": "Globinski ali osnovni premaz za vpojne podlage.",
+     "kolicina": "Po izdatnosti z embalaže.",
+     "opomba": "Kdaj je potreben, vam povem po fotografiji."
+    }
+   ],
+   "prinese_mojster": [
+    "valjčke in čopiče",
+    "pladenj za barvo",
+    "lestev",
+    "zaščitno folijo za tla in pohištvo",
+    "zaščitni lepilni trak",
+    "lopatice in brusni papir"
+   ],
+   "stene": []
   }
  ]
 }

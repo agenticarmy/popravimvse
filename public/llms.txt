@@ -49,6 +49,9 @@
 Material kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: https://popravimvse.si/seznami.json
 - [Kaj kupiti za obnovo silikona v kopalnici](https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/): Kateri sanitarni silikon kupiti za tuš, kad in umivalnik, koliko kartuš potrebujete in česa vam ni treba kupiti. Seznam hišnega mojstra.
 - [Kaj kupiti za montažo TV na steno](https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/): Kateri nosilec za TV kupiti, kako preverite VESA in težo ter katere vložke potrebuje betonska, opečna ali mavčna stena. Seznam hišnega mojstra.
+- [Kaj kupiti za polaganje laminata](https://popravimvse.si/kaj-kupiti/polaganje-laminata/): Koliko laminata, podloge in talnih letev kupiti, kateri razred laminata izbrati in kaj pripraviti 48 ur pred polaganjem. Seznam hišnega mojstra.
+- [Kaj kupiti za obnovo fug v kopalnici](https://popravimvse.si/kaj-kupiti/obnova-fug/): Katero fugirno maso kupiti, cementno ali epoksi, koliko je potrebujete in katero barvo izbrati. Seznam hišnega mojstra za obnovo fug.
+- [Kaj kupiti za pleskanje sobe](https://popravimvse.si/kaj-kupiti/pleskanje-sobe/): Koliko barve kupiti za sobo, katero barvo za kuhinjo, hodnik ali kopalnico ter kdaj potrebujete kit in osnovni premaz. Seznam hišnega mojstra.
 
 ## Ostalo
 - [Cenik](https://popravimvse.si/cenik/): urna postavka in kako se obračuna

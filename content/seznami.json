@@ -2,7 +2,7 @@
   "_opomba": "Seznami »Kaj kupiti za …«. status: osnutek (ni objavljen, samo predogled s PREVIEW=1) ali objavljeno. Polje pregledano = datum, ko je Sebastjan potrdil vsebino. iz_prakse = nasveti, ki jih je Sebastjan potrdil iz lastnih izkušenj (25. 10. 2026).",
   "hub": {
     "title": "Kaj kupiti pred prihodom mojstra: seznami | Popravim vse",
-    "description": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, montažo TV in druga dela, koliko česa in česa vam ni treba kupiti, ker orodje prinesem.",
+    "description": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, fuge, laminat, pleskanje in montažo TV, koliko česa in česa vam ni treba kupiti.",
     "h1": "Kaj kupiti pred mojim prihodom",
     "lead": "Material kupite sami, po ceni iz trgovine in brez mojega pribitka. Na teh seznamih je zapisano, kaj točno kupiti, koliko in česa vam ni treba, ker orodje prinesem jaz.",
     "crumb": "Kaj kupiti"
@@ -243,8 +243,8 @@
     },
     {
       "slug": "polaganje-laminata",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "polaganje-talnih-oblog",
       "title": "Kaj kupiti za polaganje laminata | Popravim vse",
       "description": "Koliko laminata, podloge in talnih letev kupiti, kateri razred laminata izbrati in kaj pripraviti 48 ur pred polaganjem. Seznam hišnega mojstra.",
@@ -358,8 +358,8 @@
     },
     {
       "slug": "obnova-fug",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "obnova-fug-in-silikona",
       "title": "Kaj kupiti za obnovo fug v kopalnici | Popravim vse",
       "description": "Katero fugirno maso kupiti, cementno ali epoksi, koliko je potrebujete in katero barvo izbrati. Seznam hišnega mojstra za obnovo fug.",
@@ -458,8 +458,8 @@
     },
     {
       "slug": "pleskanje-sobe",
-      "status": "osnutek",
-      "pregledano": "",
+      "status": "objavljeno",
+      "pregledano": "2026-10-25",
       "service": "pleskanje-in-kitanje",
       "title": "Kaj kupiti za pleskanje sobe: koliko barve | Popravim vse",
       "description": "Koliko barve kupiti za sobo, katero barvo za kuhinjo, hodnik ali kopalnico ter kdaj potrebujete kit in osnovni premaz. Seznam hišnega mojstra.",

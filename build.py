@@ -198,7 +198,7 @@ def business_ld():
                        'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, pomoč kot druga roka, košnja, obrezovanje žive meje in urejanje okolice. '
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
                        'če popravila ni mogoče opraviti, stranka ne plača nič. Plačilo z gotovino na mestu. '
-                       'Dela samo za posameznike in gospodinjstva.',
+                       'Dela samo za posameznike in gospodinjstva. Termina se drži; brez predplačila; račun za vsako delo.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
@@ -448,6 +448,8 @@ def llms_txt(urls):
 - Dela samo za posameznike in gospodinjstva, ne za podjetja.
 - Sedež s.p. je v Slovenj Gradcu (tam ima pisarno), dela pa iz Pernice pri Mariboru.
 - Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
+- Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
+- Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; ne daje popusta brez računa; dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Za material se dogovorita vnaprej.
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.

@@ -916,6 +916,320 @@
           "a": "Električar. Jaz ogledalo lahko pritrdim, priklop na elektriko pa ni moje delo."
         }
       ]
+    },
+    {
+      "slug": "priklop-pralnega-stroja",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "priklop-aparatov",
+      "title": "Kaj kupiti za priklop pralnega stroja | Popravim vse",
+      "description": "Katero dovodno in odtočno cev kupiti, kdaj potrebujete podaljšek ali Aquastop in kaj preveriti pred priklopom pralnega stroja. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za priklop pralnega stroja",
+      "lead": "Za priklop pralnega stroja na obstoječi ventil, odtok in vtičnico pogosto ne potrebujete ničesar, ker so cevi priložene. Dokupite le, če so cevi prekratke. Orodje prinesem jaz.",
+      "crumb": "Priklop pralnega stroja",
+      "kratko": [
+        "<strong>Najprej preverite:</strong> ali imate ventil za pralni stroj, priključek na odtoku ali sifonu in vtičnico blizu stroja.",
+        "<strong>Cevi so običajno priložene</strong> stroju in dolge približno 1 do 1,5 m.",
+        "<strong>Če so prekratke:</strong> daljša dovodna cev s priključkom 3/4 cole ali podaljšek odtočne cevi z objemko.",
+        "<strong>Po želji:</strong> Aquastop (varovalo proti izlitju), če ga stroj nima, in gumijaste podloge proti tresljajem.",
+        "<strong>Če ventila ali priključka na odtoku ni,</strong> ju mora narediti vodoinštalater. Tega ne naredim."
+      ],
+      "material": [
+        {
+          "ime": "Dovodna cev (če je priložena prekratka)",
+          "vrsta": "Za pralni stroj, s priključkom 3/4 cole na obeh koncih.",
+          "kolicina": "1 kos, dolžina od ventila do stroja z nekaj rezerve.",
+          "opomba": "Cev ne sme biti napeta ali prepognjena."
+        },
+        {
+          "ime": "Podaljšek odtočne cevi (po potrebi)",
+          "vrsta": "Podaljšek z vezno spojko in objemkami.",
+          "kolicina": "1 komplet, dolžina do odtoka.",
+          "opomba": "Predolga odtočna cev otežuje črpanje. Vzemite le toliko, kot je treba."
+        },
+        {
+          "ime": "Aquastop (po želji)",
+          "vrsta": "Varovalo, ki zapre vodo, če cev pušča.",
+          "kolicina": "1 kos",
+          "opomba": "Veliko novejših strojev ga že ima vgrajenega."
+        },
+        {
+          "ime": "Podloge proti tresljajem (po želji)",
+          "vrsta": "Gumijaste podloge pod nogice stroja.",
+          "kolicina": "1 komplet (4 kosi)",
+          "opomba": "Pomagajo na lesenih tleh in pri hrupnem ožemanju."
+        }
+      ],
+      "prinesem": [
+        "ključe in izvijače",
+        "libelo za poravnavo",
+        "vedro in krpe",
+        "tesnila in objemke za drobna popravila priklopa"
+      ],
+      "izracun": "<p>Izmerite razdaljo od ventila do mesta, kjer bo stal stroj, in od stroja do odtoka. Če je več kot približno 1 m, preverite dolžino priloženih cevi v navodilih stroja.</p><p><strong>Primer:</strong> ventil je 1,8 m od stroja, priložena dovodna cev meri 1,5 m. Kupite dovodno cev 2,5 m, da ni napeta.</p>",
+      "napake": [
+        "Pozabijo, da morajo biti transportni vijaki pred prvim pranjem odstranjeni.",
+        "Kupijo predolgo odtočno cev in jo zvijejo za stroj, kjer se prepogne.",
+        "Stroj priklopijo v podaljšek namesto neposredno v vtičnico.",
+        "Pričakujejo, da bo mojster naredil nov ventil ali odtok. To mora narediti vodoinštalater."
+      ],
+      "koraki": [
+        {
+          "ime": "Odstranim transportne vijake",
+          "text": "Odstranim transportne vijake na zadnji strani stroja in luknje zaprem s priloženimi pokrovčki."
+        },
+        {
+          "ime": "Priklopim cevi",
+          "text": "Dovodno cev priklopim na ventil, odtočno na odtok ali sifon in ju pritrdim."
+        },
+        {
+          "ime": "Poravnam stroj",
+          "text": "Stroj poravnam z libelo in nastavljivimi nogicami."
+        },
+        {
+          "ime": "Preizkusim",
+          "text": "Odprem ventil, zaženem kratko pranje in preverim, da nikjer ne kaplja."
+        }
+      ],
+      "iz_prakse": [
+        "Transportne vijake vedno odstranim in vam jih pustim, ker jih potrebujete ob naslednji selitvi stroja.",
+        "Stroj priklopim neposredno v vtičnico, ne v podaljšek, ker se ta pri velikem toku segreva.",
+        "Stroj poravnam z libelo in nogicami. Neporavnan stroj pri ožemanju poskakuje in se premika.",
+        "Na lesenih tleh priporočam gumijaste podloge proti tresljajem.",
+        "Po priklopu zaženem kratko pranje in preverim vse spoje, posebej odtok.",
+        "Svetujem, da ventil zaprete, ko greste za dlje od doma."
+      ],
+      "foto": "",
+      "meja": "V vodovodno in električno napeljavo ne posegam. Nov ventil, nov odtok, prestavitev priključkov ali nova vtičnica so delo vodoinštalaterja in električarja.",
+      "faq": [
+        {
+          "q": "Ali moram za priklop pralnega stroja kaj kupiti?",
+          "a": "Pogosto ne, ker so cevi priložene. Dokupite le daljšo dovodno cev ali podaljšek odtočne cevi, če so priložene prekratke."
+        },
+        {
+          "q": "Kakšen navoj ima dovodna cev?",
+          "a": "Običajno 3/4 cole na obeh koncih, kar je standard za pralne stroje."
+        },
+        {
+          "q": "Kaj so transportni vijaki?",
+          "a": "Vijaki, ki med prevozom držijo boben. Pred prvim pranjem jih je treba odstraniti, sicer se stroj poškoduje."
+        },
+        {
+          "q": "Kaj, če nimam ventila za pralni stroj?",
+          "a": "Nov ventil mora narediti vodoinštalater. Ko je narejen, stroj priklopim jaz."
+        }
+      ]
+    },
+    {
+      "slug": "menjava-cilindra-kljucavnice",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "popravilo-vrat-in-oken",
+      "title": "Kaj kupiti za menjavo cilindra ključavnice | Popravim vse",
+      "description": "Kako izmeriti cilinder ključavnice, koliko sme štrleti iz vrat in kaj pomenita funkcija v sili in varnostni razred. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za menjavo cilindra ključavnice",
+      "lead": "Za menjavo cilindra kupite nov cilinder prave dolžine. Dolžino izmerite od vijaka na robu vrat do zunanjega in notranjega roba okovja. Orodje prinesem jaz.",
+      "crumb": "Menjava cilindra",
+      "kratko": [
+        "<strong>Cilinder (eurocilinder)</strong> z dvema merama, npr. 30/35 mm: zunanja in notranja dolžina.",
+        "<strong>Merite od sredine pritrdilnega vijaka</strong> na robu vrat do zunanjega in do notranjega roba okovja.",
+        "<strong>Na zunanji strani sme štrleti največ približno 3 mm.</strong> Dolžine so v korakih po 5 mm, zaokrožite navzgor.",
+        "<strong>Funkcija v sili</strong> omogoča odklepanje, tudi če je ključ zataknjen na drugi strani.",
+        "<strong>Za vhodna vrata</strong> izberite cilinder z višjim varnostnim razredom in zaščito pred vlomom."
+      ],
+      "material": [
+        {
+          "ime": "Cilinder ključavnice",
+          "vrsta": "Eurocilinder, ki ustreza vratom; za vhodna vrata z varnostnim razredom in zaščito pred vlomom.",
+          "kolicina": "1 kos z mero A/B, npr. 30/35 mm.",
+          "opomba": "Pritrdilni vijak je običajno priložen."
+        },
+        {
+          "ime": "Dodatni ključi (po želji)",
+          "vrsta": "Ob nakupu povejte, koliko ključev potrebujete.",
+          "kolicina": "Po potrebi.",
+          "opomba": "Več vrat z enakim ključem: vprašajte za istozapirne cilindre."
+        }
+      ],
+      "tabela_naslov": "Kako izmerite cilinder",
+      "tabela_stolpci": [
+        "Mera",
+        "Kje merite",
+        "Opomba"
+      ],
+      "tabela_stene": [
+        {
+          "stena": "A (zunaj)",
+          "prepoznate": "Od sredine pritrdilnega vijaka do zunanjega roba okovja ali rozete.",
+          "kupite": "Cilinder sme štrleti največ približno 3 mm."
+        },
+        {
+          "stena": "B (znotraj)",
+          "prepoznate": "Od sredine pritrdilnega vijaka do notranjega roba okovja.",
+          "kupite": "Zaokrožite na naslednjo mero v korakih po 5 mm."
+        },
+        {
+          "stena": "Skupna dolžina",
+          "prepoznate": "A + B.",
+          "kupite": "Pogoste so 30/30 in 30/35 mm, vendar vedno izmerite."
+        }
+      ],
+      "prinesem": [
+        "izvijače",
+        "meter",
+        "mazivo za cilindre"
+      ],
+      "izracun": "<p>Izmerite od sredine pritrdilnega vijaka na robu vrat do zunanjega roba okovja (mera A) in do notranjega roba okovja (mera B). Dolžine cilindrov so v korakih po 5 mm, zato zaokrožite navzgor, a tako, da cilinder zunaj ne štrli več kot približno 3 mm.</p><p><strong>Primer:</strong> do zunanjega roba izmerite 32 mm, do notranjega 37 mm. Kupite cilinder 35/40 mm: zunaj štrli 3 mm, kar je še v redu.</p><p>Če niste prepričani, mi pošljite fotografijo vrat z metrom ob cilindru.</p>",
+      "napake": [
+        "Kupijo predolg cilinder, ki na zunanji strani štrli in ga je lažje izlomiti.",
+        "Zamenjata se zunanja in notranja mera pri cilindru z različnima stranema.",
+        "Merijo celotno dolžino namesto od sredine pritrdilnega vijaka.",
+        "Kupijo cilinder brez funkcije v sili, potem pa se ne da odkleniti, ko je ključ notri."
+      ],
+      "koraki": [
+        {
+          "ime": "Odstranim star cilinder",
+          "text": "Odvijem pritrdilni vijak in z ključem izvlečem star cilinder."
+        },
+        {
+          "ime": "Vstavim novega",
+          "text": "Nov cilinder vstavim, ga poravnam in privijem."
+        },
+        {
+          "ime": "Preizkusim",
+          "text": "Preizkusim vse ključe in zaklepanje z obeh strani."
+        }
+      ],
+      "iz_prakse": [
+        "Cilinder vedno merim od sredine pritrdilnega vijaka, ne celotne dolžine.",
+        "Pazim, da cilinder na zunanji strani ne štrli več kot približno 3 mm, ker ga je sicer lažje izlomiti.",
+        "Preden kupite, mi pošljite fotografijo vrat z metrom ob cilindru, da preverim mero.",
+        "Preden odidem, preizkusim vse ključe in zaklepanje z obeh strani vrat.",
+        "Cilinder namažem z grafitom ali sprejem za ključavnice, ne z oljem, ki nase lovi prah."
+      ],
+      "foto": "menjava-kljucavnice-vrat",
+      "meja": "Če se vrata ne dajo odpreti, ker je ključ izgubljen ali zlomljen v cilindru, pokličite ključavničarja. Odpiranja zaklenjenih vrat ne opravljam.",
+      "faq": [
+        {
+          "q": "Kako izmerim cilinder ključavnice?",
+          "a": "Od sredine pritrdilnega vijaka na robu vrat do zunanjega in do notranjega roba okovja. Dobite mero, npr. 30/35 mm."
+        },
+        {
+          "q": "Koliko sme cilinder štrleti iz vrat?",
+          "a": "Na zunanji strani največ približno 3 mm. Daljši štrleči del je lažje izlomiti."
+        },
+        {
+          "q": "Kaj je funkcija v sili?",
+          "a": "Cilinder se da odkleniti z druge strani, tudi če je ključ na notranji strani vstavljen."
+        },
+        {
+          "q": "Ali lahko imam za več vrat en ključ?",
+          "a": "Da, z istozapirnimi cilindri. Ob nakupu povejte, za koliko vrat jih potrebujete."
+        }
+      ]
+    },
+    {
+      "slug": "montaza-garnisne",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "montaza-tv-in-polic",
+      "title": "Kaj kupiti za montažo garnišne | Popravim vse",
+      "description": "Kako dolgo garnišno kupiti, kako visoko jo namestiti, stenska ali stropna montaža in kateri vložki so potrebni. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za montažo garnišne",
+      "lead": "Za montažo garnišne kupite drog ali tirnico prave dolžine z nosilci in po potrebi vložke za vašo steno ali strop. Orodje prinesem jaz.",
+      "crumb": "Montaža garnišne",
+      "kratko": [
+        "<strong>Dolžina:</strong> širina okna in 15 do 20 cm na vsaki strani, pri debelih zavesah malo več.",
+        "<strong>Stenska ali stropna:</strong> drog običajno na steno, tirnico pogosto na strop.",
+        "<strong>Nosilci:</strong> pri dolgih garnišnah potrebujete tudi srednji nosilec.",
+        "<strong>Vložki:</strong> priloženi so večinoma za beton ali opeko; za mavčno ploščo potrebujete votlinske.",
+        "<strong>Obročki ali drsniki</strong> za zavese, če niso priloženi."
+      ],
+      "material": [
+        {
+          "ime": "Garnišna (drog ali tirnica)",
+          "vrsta": "Stenska ali stropna, eno- ali dvotirna (za zaveso in zastor).",
+          "kolicina": "Širina okna + 15–20 cm na vsaki strani.",
+          "opomba": "Pri nakupu po meri povejte točno dolžino."
+        },
+        {
+          "ime": "Nosilci",
+          "vrsta": "Pogosto priloženi; pri dolgih garnišnah tudi srednji.",
+          "kolicina": "Najmanj 2, pri dolgih 3 ali več.",
+          "opomba": "Preverite, kaj je v kompletu."
+        },
+        {
+          "ime": "Vložki in vijaki",
+          "vrsta": "Za vašo steno ali strop (beton, opeka, mavčna plošča).",
+          "kolicina": "Po nosilcih.",
+          "opomba": "Če ne veste, kakšna je stena, jih kupim na poti k vam."
+        },
+        {
+          "ime": "Obročki ali drsniki",
+          "vrsta": "Za drog obročki, za tirnico drsniki.",
+          "kolicina": "Približno 8–10 na meter zavese.",
+          "opomba": "Pogosto priloženi."
+        }
+      ],
+      "prinesem": [
+        "vrtalnik in svedre",
+        "libelo in meter",
+        "detektor cevi in kablov",
+        "lestev",
+        "sesalnik za prah"
+      ],
+      "izracun": "<p>Izmerite širino okna in prištejte 15 do 20 cm na vsako stran. Garnišno namestim približno 10 do 15 cm nad okno.</p><p><strong>Primer:</strong> okno je široko 120 cm. Kupite garnišno dolgo 150 do 160 cm.</p>",
+      "napake": [
+        "Kupijo garnišno točno širine okna, zato zavesa tudi odprta prekriva del okna.",
+        "Ne preverijo, ali ročaj okna ali radiator ovirata zaveso.",
+        "Uporabijo priložene vložke v mavčni plošči ali stropu.",
+        "Pri dolgi garnišni pozabijo na srednji nosilec, pa se drog sčasoma povesi."
+      ],
+      "koraki": [
+        {
+          "ime": "Določiva višino in dolžino",
+          "text": "Z vami določim višino in mesto nosilcev ter ju označim z libelo."
+        },
+        {
+          "ime": "Preverim steno",
+          "text": "Z detektorjem preverim cevi in kable ter izberem vložke."
+        },
+        {
+          "ime": "Pritrdim nosilce",
+          "text": "Izvrtam luknje in pritrdim nosilce."
+        },
+        {
+          "ime": "Namestim garnišno",
+          "text": "Namestim drog ali tirnico, obročke ali drsnike in preverim, da zavesa lepo drsi."
+        }
+      ],
+      "iz_prakse": [
+        "Garnišna naj sega 15 do 20 cm čez okno na vsaki strani, da odprta zavesa ne zakriva svetlobe.",
+        "Namestim jo približno 10 do 15 cm nad okno, višje, če želite, da je prostor videti višji.",
+        "Pred montažo preverim, da ročaj okna in radiator ne ovirata zavese.",
+        "Najprej izvrtam eno luknjo in prislonim nosilec, šele nato označim ostale.",
+        "Pri dolgi garnišni vedno namestim še srednji nosilec, da se drog sčasoma ne povesi."
+      ],
+      "foto": "",
+      "meja": "Električnih rolet in senčil ne priklapljam na elektriko. Tako priključitev mora narediti električar.",
+      "faq": [
+        {
+          "q": "Kako dolga naj bo garnišna?",
+          "a": "Širina okna in 15 do 20 cm na vsaki strani, da odprta zavesa ne prekriva okna."
+        },
+        {
+          "q": "Kako visoko namestiti garnišno?",
+          "a": "Običajno 10 do 15 cm nad okno. Višje nameščena garnišna optično poviša prostor."
+        },
+        {
+          "q": "Stenska ali stropna garnišna?",
+          "a": "Drog je običajno na steni, tirnica pogosto na stropu. Pri mavčnem stropu potrebujete votlinske vložke."
+        },
+        {
+          "q": "Koliko nosilcev potrebujem?",
+          "a": "Najmanj dva, pri dolgih garnišnah še srednjega, da se drog ne povesi."
+        }
+      ]
     }
   ]
 }

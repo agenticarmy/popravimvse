@@ -477,8 +477,10 @@ def list_body(l):
         f'<td data-label="Katero vrsto">{m["vrsta"]}</td><td data-label="Koliko">{m["kolicina"]}</td><td data-label="Na kaj paziti">{m["opomba"]}</td></tr>' for m in l['material'])
     walls = ''
     if l.get('tabela_stene'):
-        walls = '<h2>Katere vložke za katero steno</h2>\n<table class="walls"><thead><tr><th>Stena</th><th>Kako jo prepoznate</th><th>Kaj kupiti</th></tr></thead><tbody>' + ''.join(
-            f'<tr><th scope="row">{w["stena"]}</th><td data-label="Kako jo prepoznate">{w["prepoznate"]}</td><td data-label="Kaj kupiti">{w["kupite"]}</td></tr>' for w in l['tabela_stene']) + '</tbody></table>'
+        h1t = l.get('tabela_naslov', 'Katere vložke za katero steno')
+        c1, c2, c3 = l.get('tabela_stolpci', ['Stena', 'Kako jo prepoznate', 'Kaj kupiti'])
+        walls = f'<h2>{h1t}</h2>\n<table class="walls"><thead><tr><th>{c1}</th><th>{c2}</th><th>{c3}</th></tr></thead><tbody>' + ''.join(
+            f'<tr><th scope="row">{w["stena"]}</th><td data-label="{c2}">{w["prepoznate"]}</td><td data-label="{c3}">{w["kupite"]}</td></tr>' for w in l['tabela_stene']) + '</tbody></table>'
     tools = ', '.join(l['prinesem'])
     napake = ''.join(f'<li>{x}</li>' for x in l['napake'])
     koraki = ''.join(f'<li><strong>{k["ime"]}.</strong> {k["text"]}</li>' for k in l['koraki'])
@@ -567,7 +569,7 @@ def llms_txt(urls):
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
 - Če se po njegovem delu izkaže, da kaj ni prav (npr. silikon odstopi), pride in popravi brezplačno.
 - Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Brez doplačil zvečer, v soboto in nedeljo.
-- Potrošni material (brusni papir, folija, lepilni trak, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
+- Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
 - Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; ne daje popusta brez računa; dela sam (plača se ena oseba).

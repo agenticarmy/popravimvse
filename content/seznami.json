@@ -565,6 +565,357 @@
           "a": "Običajno dva. Pri prehodu s temne na svetlo barvo včasih tri."
         }
       ]
+    },
+    {
+      "slug": "polaganje-ploscic",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "polaganje-keramike",
+      "title": "Kaj kupiti za polaganje ploščic | Popravim vse",
+      "description": "Koliko ploščic in lepila kupiti, katero lepilo za velike ploščice in talno ogrevanje ter kateri profili in fuge so potrebni. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za polaganje ploščic",
+      "lead": "Za polaganje ploščic kupite ploščice z rezervo, lepilo prave vrste, fugirno maso, silikon za kote in po potrebi zaključne profile. Orodje prinesem jaz.",
+      "crumb": "Polaganje ploščic",
+      "kratko": [
+        "<strong>Ploščice:</strong> površina + 10 % rezerve, pri velikih ploščicah ali diagonalnem polaganju okoli 15 %.",
+        "<strong>Vse škatle iz iste serije in kalibra</strong>, oznaki sta na škatli.",
+        "<strong>Lepilo:</strong> navadno (C1) za manjše stenske ploščice; fleksibilno (C2, S1) za velike ploščice, tla s talnim ogrevanjem in ploščice na ploščice.",
+        "<strong>Količina lepila:</strong> približno 3 do 6 kg na m², odvisno od velikosti ploščic. Natančno piše na vreči.",
+        "<strong>Še:</strong> fugirna masa, sanitarni silikon za kote in zaključni profili za vidne robove."
+      ],
+      "material": [
+        {
+          "ime": "Ploščice",
+          "vrsta": "Za tla z oznako za talne ploščice; za kopalnico protizdrsne.",
+          "kolicina": "Površina + 10 % (velike ali diagonalno + 15 %), zaokroženo na cele škatle.",
+          "opomba": "Serija in kaliber morata biti na vseh škatlah enaka."
+        },
+        {
+          "ime": "Lepilo za ploščice",
+          "vrsta": "C1 za manjše stenske ploščice; C2 S1 (fleksibilno) za velike ploščice, talno ogrevanje in ploščice na ploščice.",
+          "kolicina": "Približno 3–6 kg/m² glede na velikost zob lopatice; večje ploščice porabijo več.",
+          "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči."
+        },
+        {
+          "ime": "Fugirna masa",
+          "vrsta": "Cementna ali epoksi, v izbrani barvi.",
+          "kolicina": "Po tabeli na embalaži.",
+          "opomba": "Več na seznamu za obnovo fug."
+        },
+        {
+          "ime": "Sanitarni silikon",
+          "vrsta": "V barvi fug.",
+          "kolicina": "1–2 kartuši za kopalnico.",
+          "opomba": "Za kote in stik s kadjo ali tušem."
+        },
+        {
+          "ime": "Zaključni profili (po potrebi)",
+          "vrsta": "Za vidne robove in zunanje vogale, v barvi ali kovinski.",
+          "kolicina": "Dolžina vseh vidnih robov.",
+          "opomba": ""
+        },
+        {
+          "ime": "Osnovni premaz (po potrebi)",
+          "vrsta": "Za vpojne podlage ali kontaktni premaz za ploščice na ploščice.",
+          "kolicina": "Po izdatnosti z embalaže.",
+          "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji."
+        }
+      ],
+      "prinesem": [
+        "rezalnik in brusilko za ploščice",
+        "zobate lopatice in mešalo",
+        "libelo in laser",
+        "križce za fuge in izravnalne sponke za velike ploščice",
+        "gumijasto kladivo",
+        "vedra in gobe"
+      ],
+      "izracun": "<p>Izmerite vse površine, ki jih oblagamo, in jih seštejte. Prištejte rezervo in zaokrožite na cele škatle. Na škatli piše, koliko m² vsebuje.</p><p><strong>Primer:</strong> tla kopalnice 5 m² in stene 18 m² merijo skupaj 23 m². Z 10 % rezerve kupite okoli 25,5 m² ploščic. Lepila pri porabi 5 kg/m² potrebujete okoli 115 kg, torej 5 vreč po 25 kg.</p>",
+      "napake": [
+        "Kupijo ploščice iz dveh serij ali kalibrov, pa se na steni vidi razlika v odtenku ali velikosti.",
+        "Za velike talne ploščice ali talno ogrevanje kupijo navadno lepilo namesto fleksibilnega.",
+        "Kupijo točno toliko ploščic, kot meri površina, potem pa jih pri razrezu zmanjka.",
+        "Pozabijo na zaključne profile za vidne robove.",
+        "Po polaganju zavržejo ostanke. Nekaj ploščic shranite za morebitna popravila."
+      ],
+      "koraki": [
+        {
+          "ime": "Pripravim podlago",
+          "text": "Odstranim staro oblogo ali preverim, da stare ploščice trdno držijo, in po potrebi nanesem osnovni premaz."
+        },
+        {
+          "ime": "Določim razpored",
+          "text": "Razpored ploščic določim tako, da so ozki rezi na manj vidnih mestih."
+        },
+        {
+          "ime": "Položim ploščice",
+          "text": "Ploščice položim na lepilo, pri velikih ploščicah z izravnalnim sistemom."
+        },
+        {
+          "ime": "Fugiram in silikoniram",
+          "text": "Ko lepilo veže, fugiram in kote zatesnim s silikonom."
+        }
+      ],
+      "iz_prakse": [
+        "Pred začetkom na vseh škatlah preverim serijo in kaliber. Če se razlikujejo, ne polagam, dokler ploščic ne zamenjamo.",
+        "Ploščice jemljem izmenično iz več škatel, da se morebitne razlike v odtenku porazdelijo.",
+        "Razpored začnem tako, da so ozki rezi na manj vidnih mestih, ne ob vratih ali na sredini stene.",
+        "Preden polagam ploščice na stare, jih potrkam. Če kje zvenijo votlo, jih je treba odstraniti.",
+        "Neravna tla pred polaganjem izravnam, sicer velike ploščice ne ležijo ravno in počijo.",
+        "Pri velikih ploščicah lepilo nanesem na podlago in na ploščico, da pod njo ni praznin.",
+        "Svetujem, da nekaj ploščic shranite za poznejša popravila, ker iste serije čez leta ni več."
+      ],
+      "foto": "vikend-polaganje-talnih-ploscic",
+      "meja": "Pod tušem in ob kadi je pod ploščicami potrebna hidroizolacija. O njej se dogovoriva posebej, preden kupite material.",
+      "faq": [
+        {
+          "q": "Koliko ploščic kupiti?",
+          "a": "Površino in 10 % rezerve, pri velikih ploščicah ali diagonalnem polaganju okoli 15 %. Zaokrožite na cele škatle iz iste serije."
+        },
+        {
+          "q": "Koliko lepila za ploščice potrebujem?",
+          "a": "Približno 3 do 6 kg na m², odvisno od velikosti ploščic in zob lopatice. Za kopalnico s 23 m² obloge okoli 5 vreč po 25 kg."
+        },
+        {
+          "q": "Katero lepilo za velike ploščice?",
+          "a": "Fleksibilno lepilo razreda C2 S1. Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine."
+        },
+        {
+          "q": "Ali lahko položite ploščice na stare ploščice?",
+          "a": "Da, če stare trdno držijo in ne zvenijo votlo. Potrebna sta kontaktni premaz in fleksibilno lepilo."
+        },
+        {
+          "q": "Zakaj morajo biti vse škatle iz iste serije?",
+          "a": "Ploščice iz različnih serij se lahko razlikujejo v odtenku in velikosti, kar se na steni vidi."
+        }
+      ]
+    },
+    {
+      "slug": "polica-na-mavcno-steno",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "montaza-tv-in-polic",
+      "title": "Kaj kupiti za polico ali omarico na mavčno steno | Popravim vse",
+      "description": "Katere vložke kupiti za polico ali visečo omarico na mavčni (knauf) steni, koliko nosijo in kdaj je treba v profile. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za polico ali omarico na mavčno steno",
+      "lead": "Za polico ali visečo omarico na mavčni steni kupite kovinske votlinske vložke ali vložke, ki jih priporočim za vašo težo. Sama mavčna plošča nosi le omejeno težo, zato težje stvari pritrdim v profile.",
+      "crumb": "Polica na mavčno steno",
+      "kratko": [
+        "<strong>Kovinski votlinski vložki</strong> za police in omarice; priloženi plastični vložki so običajno za polno steno.",
+        "<strong>Nosilnost na vložek</strong> piše na embalaži; pri dvojni plošči je večja kot pri enojni.",
+        "<strong>Meja stene:</strong> enojna plošča nosi približno do 40 kg na element globine 30 cm, dvojna približno do 70 kg.",
+        "<strong>Kuhinjske viseče omarice</strong> in težke police pritrdim v kovinske profile ali na nosilno letev.",
+        "<strong>Če ne veste, koliko plošč ima stena,</strong> vložkov ne kupujte, ampak jih po dogovoru kupim na poti k vam."
+      ],
+      "material": [
+        {
+          "ime": "Polica ali omarica",
+          "vrsta": "S priloženimi nosilci ali obešali.",
+          "kolicina": "Po izbiri.",
+          "opomba": "Preverite, ali je nosilec za steno priložen."
+        },
+        {
+          "ime": "Kovinski votlinski vložki",
+          "vrsta": "Za mavčne plošče; dolžina glede na debelino stene (enojna ali dvojna plošča).",
+          "kolicina": "Toliko, kolikor je lukenj v nosilcih, običajno 2–4 na element.",
+          "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka."
+        },
+        {
+          "ime": "Vijaki za profile (po potrebi)",
+          "vrsta": "Vijaki za pločevino ali za suho gradnjo.",
+          "kolicina": "Po nosilcu.",
+          "opomba": "Kadar pritrdim v kovinske profile."
+        }
+      ],
+      "tabela_stene": [
+        {
+          "stena": "Lahke stvari (slika, majhna polica)",
+          "prepoznate": "Do nekaj kg.",
+          "kupite": "Plastični ali kovinski vložki za mavčne plošče."
+        },
+        {
+          "stena": "Polica s knjigami, omarica v kopalnici",
+          "prepoznate": "Srednja teža, element globine do 30 cm.",
+          "kupite": "Kovinski votlinski vložki; pri enojni plošči skupaj največ okoli 40 kg."
+        },
+        {
+          "stena": "Kuhinjska viseča omarica, težka polica",
+          "prepoznate": "Težko obremenjena, z vrati, ki se odpirajo.",
+          "kupite": "Pritrditev v kovinske profile ali na nosilno letev. Vprašajte me prej."
+        }
+      ],
+      "prinesem": [
+        "detektor profilov, cevi in kablov",
+        "vrtalnik in svedre",
+        "libelo",
+        "orodje za vložke",
+        "sesalnik za prah"
+      ],
+      "izracun": "<p>Seštejte težo police ali omarice in vsega, kar bo na njej. Teža knjig ali posode hitro preseže 20 kg na meter police.</p><p><strong>Primer:</strong> viseča kopalniška omarica s kozmetiko tehta okoli 15 kg. Za enojno mavčno ploščo zadoščajo 4 kovinski votlinski vložki. Kuhinjska omarica s krožniki tehta lahko 30 kg in več, zato jo pritrdim v profile.</p>",
+      "napake": [
+        "Uporabijo priložene plastične vložke, ki so namenjeni za beton ali opeko.",
+        "Težko kuhinjsko omarico obesijo samo na mavčno ploščo brez profilov.",
+        "Kupijo prekratke vložke za dvojno ploščo ali predolge za enojno.",
+        "Pozabijo, da globoka polica z vzvodom steno obremeni bolj kot plitva."
+      ],
+      "koraki": [
+        {
+          "ime": "Poiščem profile in napeljave",
+          "text": "Z detektorjem poiščem kovinske profile, cevi in kable v steni."
+        },
+        {
+          "ime": "Izberem pritrditev",
+          "text": "Glede na težo izberem vložke v ploščo ali pritrditev v profile."
+        },
+        {
+          "ime": "Pritrdim",
+          "text": "Izvrtam luknje, namestim vložke in pritrdim nosilce."
+        },
+        {
+          "ime": "Poravnam in obesim",
+          "text": "Element poravnam z libelo in preverim, da trdno drži."
+        }
+      ],
+      "iz_prakse": [
+        "V mavčnih stenah so kabli pogosto speljani skozi profile, zato pred vrtanjem vedno preverim z detektorjem.",
+        "Priložene plastične vložke za mavčno steno zamenjam s kovinskimi votlinskimi.",
+        "Vijaka v votlinskem vložku ne privijem premočno, sicer se mavec zdrobi in vložek ne drži.",
+        "Kuhinjske viseče omarice na mavčni steni vedno pritrdim v profile ali na nosilno letev, nikoli samo v ploščo."
+      ],
+      "foto": "montaza-pohistva-dnevna-soba",
+      "meja": "Če je mavčna stena poškodovana, vlažna ali zelo tanka, težkih stvari nanjo ne obesim. Povem vam, kaj je mogoče, preden kupite karkoli.",
+      "faq": [
+        {
+          "q": "Katere vložke kupiti za mavčno steno?",
+          "a": "Za police in omarice kovinske votlinske vložke za mavčne plošče. Za lahke stvari zadoščajo plastični vložki za mavčne plošče."
+        },
+        {
+          "q": "Koliko nosi mavčna stena?",
+          "a": "Enojna plošča približno do 40 kg na element globine 30 cm, dvojna približno do 70 kg, ne glede na vložek. Težje stvari pritrdim v profile."
+        },
+        {
+          "q": "Ali lahko kuhinjsko omarico obesim na mavčno steno?",
+          "a": "Da, a ne samo na ploščo. Pritrdim jo v kovinske profile ali na nosilno letev."
+        },
+        {
+          "q": "Kako vem, ali ima stena eno ali dve plošči?",
+          "a": "Tega iz sobe ne vidite. Vložkov zato ne kupujte vnaprej; ustrezne po dogovoru kupim na poti k vam, brezplačno."
+        }
+      ],
+      "tabela_naslov": "Kateri vložki za katero težo",
+      "tabela_stolpci": [
+        "Kaj obešate",
+        "Teža",
+        "Kaj kupiti"
+      ]
+    },
+    {
+      "slug": "montaza-kopalniske-opreme",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "kopalniska-oprema",
+      "title": "Kaj kupiti za montažo kopalniške opreme | Popravim vse",
+      "description": "Kaj kupiti za ogledalo, omarico, police in držala v kopalnici, kako izmeriti WC desko in kdaj ne vrtati v ploščice. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za montažo kopalniške opreme",
+      "lead": "Za montažo kopalniške opreme kupite opremo z nosilci, po potrebi ustrezne vijake in vložke ter sanitarni silikon. Svedre za keramiko in orodje prinesem jaz.",
+      "crumb": "Kopalniška oprema",
+      "kratko": [
+        "<strong>Oprema z nosilci:</strong> preverite, ali so vijaki in vložki priloženi in za kakšno steno so.",
+        "<strong>Za mavčno steno</strong> potrebujete posebne vložke (glejte seznam za mavčno steno).",
+        "<strong>WC deska:</strong> izmerite dolžino in širino školjke ter razmak lukenj za pritrditev.",
+        "<strong>Sanitarni silikon</strong> za tesnjenje ob tuš steni in okoli opreme v tušu.",
+        "<strong>Oprijemala za starejše</strong> morajo biti označena za oporo in pritrjena v trdno steno."
+      ],
+      "material": [
+        {
+          "ime": "Ogledalo, omarica, police, držala",
+          "vrsta": "Z nosilci in navodili za montažo.",
+          "kolicina": "Po izbiri.",
+          "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar."
+        },
+        {
+          "ime": "Vijaki in vložki",
+          "vrsta": "Iz nerjavnega materiala; za vašo steno (beton, opeka ali mavčna plošča).",
+          "kolicina": "Po nosilcih.",
+          "opomba": "Priloženi so pogosto le za polno steno."
+        },
+        {
+          "ime": "WC deska",
+          "vrsta": "Po meri školjke: dolžina, širina in razmak lukenj.",
+          "kolicina": "1 kos",
+          "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom."
+        },
+        {
+          "ime": "Sanitarni silikon",
+          "vrsta": "S protiglivičnim dodatkom, prozoren ali bel.",
+          "kolicina": "1 kartuša.",
+          "opomba": "Za tuš steno in tesnjenje v tušu."
+        },
+        {
+          "ime": "Oprijemala za starejše (po potrebi)",
+          "vrsta": "Označena za oporo, z navedeno nosilnostjo.",
+          "kolicina": "Po potrebi.",
+          "opomba": "Na mavčno steno samo v profile ali na ojačitev."
+        }
+      ],
+      "prinesem": [
+        "vrtalnik in svedre za keramiko",
+        "detektor cevi in kablov",
+        "libelo",
+        "lepilni trak za vrtanje",
+        "orodje za privijanje",
+        "sesalnik za prah"
+      ],
+      "izracun": "<p>Pri ogledalu ali omarici določite višino: običajno je sredina ogledala v višini oči. Spodnji rob omarice nad umivalnikom naj bo vsaj toliko višje, da pipa in roke nimajo ovir.</p><p>Pri WC deski izmerite dolžino od lukenj za pritrditev do sprednjega roba školjke, največjo širino in razmak med luknjama.</p>",
+      "napake": [
+        "Kupijo opremo za vrtanje, pa bi raje lepili, ali obratno, ne da bi preverili, iz česa je stena.",
+        "Vložki, priloženi omarici, ne ustrezajo mavčni steni.",
+        "Kupijo WC desko po videzu, ne po merah školjke.",
+        "Kupijo ogledalo z lučjo in pričakujejo, da ga bo priklopil mojster. Priklop mora narediti električar."
+      ],
+      "koraki": [
+        {
+          "ime": "Preverim steno",
+          "text": "Z detektorjem preverim cevi in kable ter ugotovim, iz česa je stena."
+        },
+        {
+          "ime": "Označim mesta",
+          "text": "Z vami določim višino in mesta, nato jih označim z libelo."
+        },
+        {
+          "ime": "Vrtam in pritrdim",
+          "text": "Izvrtam luknje s svedrom za keramiko in pritrdim nosilce."
+        },
+        {
+          "ime": "Zatesnim",
+          "text": "V tušu po potrebi zatesnim s silikonom."
+        }
+      ],
+      "iz_prakse": [
+        "Vrtam raje v ploščico kot v fugo, ker fuga v vlažnem prostoru sčasoma popusti in vložek izgubi oprijem.",
+        "Na mesto luknje nalepim križ iz lepilnega traku, da sveder na gladki ploščici ne zdrsne.",
+        "V ploščico vrtam počasi, brez udarnega načina, in sveder vmes hladim, da ploščica ne poči.",
+        "Luknje v tušu zatesnim s silikonom, da voda ne zateka v steno."
+      ],
+      "foto": "tus-kabina",
+      "meja": "V vodovodno in električno napeljavo ne posegam. Menjavo pip, priklop ogledala z lučjo in nove vtičnice opravita vodoinštalater in električar.",
+      "faq": [
+        {
+          "q": "Ali so vijaki za kopalniško omarico priloženi?",
+          "a": "Pogosto da, a običajno za polno steno. Za mavčno steno potrebujete posebne vložke."
+        },
+        {
+          "q": "Kako izmerim WC desko?",
+          "a": "Izmerite dolžino od lukenj za pritrditev do sprednjega roba, največjo širino školjke in razmak med luknjama."
+        },
+        {
+          "q": "Ali lahko vrtate v ploščice?",
+          "a": "Da, s svedrom za keramiko in brez udarnega načina, da ploščica ne poči."
+        },
+        {
+          "q": "Kdo priklopi ogledalo z lučjo?",
+          "a": "Električar. Jaz ogledalo lahko pritrdim, priklop na elektriko pa ni moje delo."
+        }
+      ]
     }
   ]
 }

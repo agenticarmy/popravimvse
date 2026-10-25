@@ -240,6 +240,331 @@
         "Velik televizor obesiva skupaj, ker se zatiči nosilca sam težko zadenejo.",
         "Med vrtanjem držim sesalnik pod luknjo, da prah ne pade na tla in pohištvo."
       ]
+    },
+    {
+      "slug": "polaganje-laminata",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "polaganje-talnih-oblog",
+      "title": "Kaj kupiti za polaganje laminata | Popravim vse",
+      "description": "Koliko laminata, podloge in talnih letev kupiti, kateri razred laminata izbrati in kaj pripraviti 48 ur pred polaganjem. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za polaganje laminata",
+      "lead": "Za polaganje laminata kupite laminat z rezervo, podlogo, talne letve in profile za prehode pri vratih. Pakete vsaj 48 ur prej odložite v sobo, kjer bo laminat. Orodje prinesem jaz.",
+      "crumb": "Polaganje laminata",
+      "kratko": [
+        "<strong>Laminat:</strong> površina sobe + 5 do 10 % rezerve za razrez, pri diagonalnem polaganju okoli 15 %.",
+        "<strong>Razred:</strong> za spalnico zadošča razred 31 (AC3), za hodnik in kuhinjo vzemite razred 32 (AC4) ali več.",
+        "<strong>Podloga:</strong> enaka površina kot laminat. Na betonu ali estrihu potrebujete tudi zaporo proti vlagi (PE folija 0,2 mm), če je podloga nima že vgrajene.",
+        "<strong>Talne letve:</strong> obseg sobe brez vrat + 10 %, s pripadajočimi kotniki ali sponkami.",
+        "<strong>Profili pri vratih:</strong> prehodni profil za vsak prehod na drugo talno oblogo.",
+        "<strong>48 ur prej:</strong> neodprte pakete odložite vodoravno v sobo, kjer bo laminat položen."
+      ],
+      "material": [
+        {
+          "ime": "Laminat",
+          "vrsta": "Razred 31 (AC3) za spalnice, 32 (AC4) za hodnik, kuhinjo in dnevno sobo. Pri talnem ogrevanju mora biti označen kot primeren.",
+          "kolicina": "Površina sobe + 5–10 % (diagonalno okoli 15 %). Zaokrožite navzgor na cele pakete.",
+          "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku."
+        },
+        {
+          "ime": "Podloga za laminat",
+          "vrsta": "Podloga, ki duši korake. Na betonu ali estrihu z vgrajeno zaporo proti vlagi ali dodatno PE folijo 0,2 mm.",
+          "kolicina": "Enako kot površina sobe.",
+          "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še."
+        },
+        {
+          "ime": "PE folija proti vlagi (po potrebi)",
+          "vrsta": "Polietilenska folija debeline vsaj 0,2 mm.",
+          "kolicina": "Površina sobe + približno 10 % za prekrivanje stikov.",
+          "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore."
+        },
+        {
+          "ime": "Talne letve",
+          "vrsta": "V barvi laminata ali bele; s sponkami ali za lepljenje.",
+          "kolicina": "Obseg sobe brez vrat + 10 %.",
+          "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej."
+        },
+        {
+          "ime": "Prehodni profili",
+          "vrsta": "Za prehod na ploščice ali drugo oblogo in za zaključek pri vratih.",
+          "kolicina": "Po en profil za vsak prehod, dolg kot širina vrat.",
+          "opomba": ""
+        }
+      ],
+      "prinesem": [
+        "žago in rezalnik za laminat",
+        "udarni blok in vlečni vzvod",
+        "distančnike za razmik od stene",
+        "libelo in letev za preverjanje ravnosti",
+        "lepilni trak za stike folije",
+        "nož in meter"
+      ],
+      "izracun": "<p>Izmerite dolžino in širino sobe in ju zmnožite. Prištejte 5 do 10 % za razrez in zaokrožite na cele pakete. Na paketu piše, koliko m² vsebuje.</p><p><strong>Primer:</strong> soba 4 × 3,5 m meri 14 m². Z 10 % rezerve je to 15,4 m². Če paket vsebuje 2,2 m², potrebujete 7 paketov (15,4 m²).</p><p><strong>Letve:</strong> obseg te sobe je 15 m. Brez vrat (0,8 m) je to 14,2 m, z 10 % rezerve približno 16 m letev.</p>",
+      "napake": [
+        "Kupijo točno toliko laminata, kot meri soba. Pri razrezu ga potem zmanjka, iste serije pa v trgovini ni več.",
+        "Za kuhinjo ali hodnik kupijo laminat razreda 31, ki se tam hitro obrabi.",
+        "Na betonsko ali estrihno podlago kupijo podlogo brez zapore proti vlagi.",
+        "Pozabijo na prehodne profile pri vratih in sponke za letve.",
+        "Pakete prinesejo v sobo šele na dan polaganja."
+      ],
+      "koraki": [
+        {
+          "ime": "Preverim podlago",
+          "text": "Preverim, ali so tla ravna, suha in trdna. Večje neravnine je treba prej izravnati."
+        },
+        {
+          "ime": "Položim folijo in podlogo",
+          "text": "Na beton ali estrih položim folijo proti vlagi in nato podlogo."
+        },
+        {
+          "ime": "Položim laminat",
+          "text": "Laminat položim z razmikom od sten, cevi in podbojev, da se lahko širi."
+        },
+        {
+          "ime": "Montiram letve in profile",
+          "text": "Na koncu namestim talne letve in prehodne profile pri vratih."
+        }
+      ],
+      "iz_prakse": [
+        "Pakete pustim vsaj 48 ur v sobi, kjer bo laminat, da se prilagodi temperaturi in vlagi prostora.",
+        "Ravnost tal preverim z dolgo letvijo. Neravnine nad približno 2 mm na meter je treba prej izravnati, sicer laminat ob hoji poka v spojih.",
+        "Povsod pustim približno 1 cm razmika od sten, cevi in podbojev, ki ga potem prekrijejo letve.",
+        "Kos, odrezan na koncu vrste, uporabim za začetek naslednje, če je dolg vsaj tretjino deske. Tako je manj odpada."
+      ],
+      "foto": "laminat-zakljucna-letev",
+      "meja": "Če so tla zelo neravna ali vlažna, je treba podlago najprej sanirati. Če voda prihaja iz tal ali sten, to ni delo za laminat. To vam povem po ogledu ali fotografiji, preden kupite material.",
+      "faq": [
+        {
+          "q": "Koliko laminata kupiti za sobo?",
+          "a": "Površino sobe in 5 do 10 % rezerve, pri diagonalnem polaganju okoli 15 %. Zaokrožite na cele pakete."
+        },
+        {
+          "q": "Kateri razred laminata izbrati?",
+          "a": "Za spalnico zadošča razred 31 (AC3). Za hodnik, kuhinjo in dnevno sobo izberite razred 32 (AC4) ali več."
+        },
+        {
+          "q": "Ali potrebujem folijo pod laminat?",
+          "a": "Na betonu ali estrihu da, če podloga nima vgrajene zapore proti vlagi. Na lesenih tleh folije proti vlagi običajno ne polagamo."
+        },
+        {
+          "q": "Zakaj mora laminat stati v sobi 48 ur?",
+          "a": "Da se prilagodi temperaturi in vlagi prostora. Sicer se lahko po polaganju razširi ali skrči in v spojih nastanejo reže."
+        },
+        {
+          "q": "Koliko talnih letev potrebujem?",
+          "a": "Obseg sobe brez širine vrat in 10 % rezerve za razrez v kotih."
+        }
+      ]
+    },
+    {
+      "slug": "obnova-fug",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "obnova-fug-in-silikona",
+      "title": "Kaj kupiti za obnovo fug v kopalnici | Popravim vse",
+      "description": "Katero fugirno maso kupiti, cementno ali epoksi, koliko je potrebujete in katero barvo izbrati. Seznam hišnega mojstra za obnovo fug.",
+      "h1": "Kaj kupiti za obnovo fug v kopalnici",
+      "lead": "Za obnovo fug kupite fugirno maso prave vrste in barve ter sanitarni silikon za kote. Stare fuge odstranim, orodje prinesem jaz.",
+      "crumb": "Obnova fug",
+      "kratko": [
+        "<strong>Fugirna masa:</strong> cementna za stene in tla, epoksi za tuš in kuhinjski pult.",
+        "<strong>Za tla s talnim ogrevanjem</strong> izberite fleksibilno (elastično) fugirno maso.",
+        "<strong>Količina:</strong> na embalaži je tabela po velikosti ploščic in širini fuge. Za ploščice 30 × 30 cm in fugo 5 mm približno 0,6 kg/m².",
+        "<strong>Barva:</strong> enaka kot stare fuge ali nekoliko temnejša, ker je suha fuga svetlejša od mokre.",
+        "<strong>Sanitarni silikon</strong> za kote in stik s kadjo ali tušem, ker tam fugirna masa poči."
+      ],
+      "material": [
+        {
+          "ime": "Fugirna masa",
+          "vrsta": "Cementna (za stene in tla, pri talnem ogrevanju fleksibilna) ali epoksi (za tuš in pult).",
+          "kolicina": "Po tabeli na embalaži; npr. 30 × 30 cm in fuga 5 mm ≈ 0,6 kg/m². Pri obnovi, ko fugo odstranim le delno, gre manj.",
+          "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom."
+        },
+        {
+          "ime": "Sanitarni silikon",
+          "vrsta": "S protiglivičnim dodatkom, v barvi fug.",
+          "kolicina": "1 kartuša za kote in stike ene kopalnice.",
+          "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso."
+        },
+        {
+          "ime": "Rezervna ploščica (po potrebi)",
+          "vrsta": "Če je kakšna ploščica počena in jo želite zamenjati.",
+          "kolicina": "Po kosih.",
+          "opomba": "Če nimate ostankov, mi pošljite fotografijo, da poiščeva podobno."
+        }
+      ],
+      "prinesem": [
+        "orodje za odstranjevanje starih fug",
+        "gumijasto lopatico za fugiranje",
+        "gobe in vedro",
+        "sesalnik za prah",
+        "pištolo za silikon",
+        "zaščitno folijo"
+      ],
+      "izracun": "<p>Izmerite površino s ploščicami, ki jo obnavljamo, na primer steno tuša ali tla kopalnice. Na embalaži fugirne mase poiščite vrstico za vašo velikost ploščic in širino fuge ter jo pomnožite s površino.</p><p><strong>Primer:</strong> tla kopalnice 5 m², ploščice 30 × 30 cm, fuga 5 mm: 5 × 0,6 = 3 kg. Ena vrečka po 5 kg zadošča.</p><p>Manjše ploščice imajo več fug, zato porabijo več mase.</p>",
+      "napake": [
+        "Kupijo navadno cementno fugo za tuš, ki se tam najhitreje izpere in počrni.",
+        "Fugirno maso uporabijo tudi v kotih in ob kadi, kjer zaradi gibanja poči. Tam mora biti silikon.",
+        "Izberejo barvo po mokrem vzorcu na embalaži. Suha fuga je svetlejša.",
+        "Kupijo barvo za fuge, čeprav so fuge razpokane. Barva osveži samo zdrave fuge."
+      ],
+      "koraki": [
+        {
+          "ime": "Odstranim stare fuge",
+          "text": "Stare fuge odstranim do primerne globine, da se nova masa dobro prime."
+        },
+        {
+          "ime": "Očistim",
+          "text": "Stike posesam in očistim prahu."
+        },
+        {
+          "ime": "Fugiram",
+          "text": "Fugirno maso vtisnem v stike in odvečno odstranim z lopatico."
+        },
+        {
+          "ime": "Očistim ploščice in silikoniram kote",
+          "text": "Ploščice očistim z vlažno gobo, kote in stike s kadjo zapolnim s silikonom."
+        }
+      ],
+      "iz_prakse": [
+        "Stare fuge odstranim dovolj globoko. Tanka plast nove mase se na staro ne prime in kmalu odpade.",
+        "V kotih in ob kadi ni fugirne mase, ampak silikon. Fugirna masa tam zaradi gibanja poči.",
+        "V tušu raje svetujem epoksi fugirno maso, ker ne vpija vode in ne počrni tako hitro kot cementna."
+      ],
+      "foto": "kopalnica-stenske-ploscice-izravnalni-sistem",
+      "meja": "Če ploščice ob trkanju zvenijo votlo ali voda zateka za oblogo, nove fuge ne pomagajo. Takrat je boljša rešitev nova keramika s hidroizolacijo. To vam povem, preden kupite material.",
+      "faq": [
+        {
+          "q": "Koliko fugirne mase potrebujem?",
+          "a": "Odvisno od velikosti ploščic in širine fuge. Tabela je na embalaži; za ploščice 30 × 30 cm in fugo 5 mm približno 0,6 kg na m²."
+        },
+        {
+          "q": "Cementna ali epoksi fugirna masa?",
+          "a": "Cementna je običajna za stene in tla. Epoksi je bolj odporna na vodo in umazanijo, zato je primerna za tuš in kuhinjski pult, a jo je težje vgraditi."
+        },
+        {
+          "q": "Katero barvo fuge izbrati?",
+          "a": "Enako kot stare fuge ali nekoliko temnejšo. Suha fuga je svetlejša kot mokra, svetle fuge v tušu pa hitreje potemnijo."
+        },
+        {
+          "q": "Ali je dovolj, če fuge samo pobarvam?",
+          "a": "Barva za fuge osveži videz zdravih fug. Razpokanih ali izpranih fug ne popravi."
+        },
+        {
+          "q": "Kdaj se lahko spet tuširam?",
+          "a": "Ko se fuga in silikon posušita, čas je naveden na embalaži. Ob koncu dela vam povem točno."
+        }
+      ]
+    },
+    {
+      "slug": "pleskanje-sobe",
+      "status": "osnutek",
+      "pregledano": "",
+      "service": "pleskanje-in-kitanje",
+      "title": "Kaj kupiti za pleskanje sobe: koliko barve | Popravim vse",
+      "description": "Koliko barve kupiti za sobo, katero barvo za kuhinjo, hodnik ali kopalnico ter kdaj potrebujete kit in osnovni premaz. Seznam hišnega mojstra.",
+      "h1": "Kaj kupiti za pleskanje sobe",
+      "lead": "Za pleskanje kupite barvo za stene in strop, po potrebi kit za razpoke in osnovni premaz. Valjčke, čopiče, folijo in trak prinesem jaz.",
+      "crumb": "Pleskanje sobe",
+      "kratko": [
+        "<strong>Barva:</strong> notranja disperzijska barva. Za kuhinjo, hodnik in otroško sobo pralna.",
+        "<strong>Količina:</strong> na embalaži piše izdatnost. Za dva sloja pogosto približno 5 m² na liter.",
+        "<strong>Vso barvo kupite naenkrat</strong> in iz iste serije ali istega mešanja, da ni razlik v odtenku.",
+        "<strong>Kit</strong> za luknje in razpoke, <strong>akrilni kit</strong> za razpoke v kotih, ker se silikon ne da prepleskati.",
+        "<strong>Osnovni premaz</strong> potrebujete na novem ometu, zelo vpojnih ali zakitanih površinah. Pri osvežitvi stare barve običajno ne."
+      ],
+      "material": [
+        {
+          "ime": "Barva za stene in strop",
+          "vrsta": "Notranja disperzijska; pralna za kuhinjo, hodnik in otroško sobo.",
+          "kolicina": "Površina sten in stropa, deljena z izdatnostjo z embalaže (pogosto okoli 5 m²/l za dva sloja).",
+          "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj."
+        },
+        {
+          "ime": "Kit za stene",
+          "vrsta": "Za zapolnjevanje lukenj in razpok ter glajenje.",
+          "kolicina": "Za posamezne luknje majhno pakiranje; za glajenje cele stene vprašajte mene.",
+          "opomba": ""
+        },
+        {
+          "ime": "Akrilni kit",
+          "vrsta": "Prepleskljiv, za razpoke v kotih in ob podbojih.",
+          "kolicina": "1 kartuša za sobo.",
+          "opomba": "Ne kupite silikona: barva se ga ne prime."
+        },
+        {
+          "ime": "Osnovni premaz (po potrebi)",
+          "vrsta": "Globinski ali osnovni premaz za vpojne podlage.",
+          "kolicina": "Po izdatnosti z embalaže.",
+          "opomba": "Kdaj je potreben, vam povem po fotografiji."
+        }
+      ],
+      "prinesem": [
+        "valjčke in čopiče",
+        "pladenj za barvo",
+        "lestev",
+        "zaščitno folijo za tla in pohištvo",
+        "zaščitni lepilni trak",
+        "lopatice in brusni papir"
+      ],
+      "izracun": "<p>Seštejte površino sten: obseg sobe krat višina, odštejte okna in vrata. Če pleskate tudi strop, prištejte površino tal. Površino delite z izdatnostjo z embalaže.</p><p><strong>Primer:</strong> soba 4 × 3 m, visoka 2,6 m. Stene: 14 m × 2,6 m = 36,4 m², brez okna in vrat približno 33 m². Strop: 12 m². Skupaj 45 m². Pri izdatnosti 5 m²/l za dva sloja potrebujete 9 litrov, torej na primer vedro 10 l.</p>",
+      "napake": [
+        "Barvo kupijo v dveh delih ali iz dveh serij, pa se na steni vidi razlika v odtenku.",
+        "Za kuhinjo in hodnik kupijo nepralno barvo, ki se je ne da obrisati.",
+        "Razpoke v kotih zapolnijo s silikonom, ki ga ni mogoče prepleskati.",
+        "Pleskajo čez plesen. Plesen je treba prej odstraniti in poiskati vzrok vlage.",
+        "Kupijo premalo barve za temno steno, ki jo želijo prebarvati na svetlo."
+      ],
+      "koraki": [
+        {
+          "ime": "Zaščitim prostor",
+          "text": "Pohištvo in tla pokrijem s folijo, robove zalepim z zaščitnim trakom."
+        },
+        {
+          "ime": "Pripravim stene",
+          "text": "Luknje in razpoke zakitam, pobrusim in po potrebi nanesem osnovni premaz."
+        },
+        {
+          "ime": "Pleskam",
+          "text": "Najprej strop, nato stene, v dveh slojih z vmesnim sušenjem."
+        },
+        {
+          "ime": "Pospravim",
+          "text": "Odstranim trak in folijo ter pospravim prostor."
+        }
+      ],
+      "iz_prakse": [
+        "Svetujem, da vso barvo kupite naenkrat in iz istega mešanja, sicer se na steni vidi razlika v odtenku.",
+        "Plesen najprej odstranim in poiščem vzrok vlage. Če čez njo samo prepleskam, se vrne.",
+        "Razpoke v kotih zapolnim z akrilnim kitom, ker se silikon ne da prepleskati.",
+        "Steno prepleskam od roba do roba brez prekinitve, da se ne vidijo prehodi med suho in mokro barvo.",
+        "Pleskam pri dnevni svetlobi, ker se pri umetni luči ne vidijo vse napake in prehodi.",
+        "Zaščitni trak odstranim, dokler je zadnji sloj še svež, da rob barve ne odstopi skupaj s trakom."
+      ],
+      "foto": "vikend-kuhinja-med-izdelavo",
+      "meja": "Če je na steni plesen ali madež od vlage, se po pleskanju kmalu vrne, dokler vzrok vlage ni odpravljen. To vam povem po fotografiji, preden kupite barvo.",
+      "faq": [
+        {
+          "q": "Koliko barve potrebujem za sobo?",
+          "a": "Površino sten in stropa delite z izdatnostjo na embalaži. Za sobo 4 × 3 m z višino 2,6 m približno 45 m², pri 5 m²/l za dva sloja torej okoli 9 litrov."
+        },
+        {
+          "q": "Katero barvo kupiti za kuhinjo in hodnik?",
+          "a": "Pralno notranjo barvo, ki jo lahko obrišete z vlažno krpo."
+        },
+        {
+          "q": "Ali potrebujem osnovni premaz?",
+          "a": "Na novem ometu, zelo vpojnih ali zakitanih površinah običajno da. Pri osvežitvi stare, zdrave barve običajno ne."
+        },
+        {
+          "q": "Ali moram kupiti valjčke in folijo?",
+          "a": "Ne. Valjčke, čopiče, folijo in zaščitni trak prinesem sam. Kupite samo barvo in po potrebi kit."
+        },
+        {
+          "q": "Koliko slojev barve je treba?",
+          "a": "Običajno dva. Pri prehodu s temne na svetlo barvo včasih tri."
+        }
+      ]
     }
   ]
 }

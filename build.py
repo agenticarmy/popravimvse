@@ -486,6 +486,10 @@ def list_body(l):
     foto = f'{{{{FOTO:{l["foto"]}}}}}' if l.get('foto') else ''
     reviewed = f'<p class="reviewed">Seznam je pregledal in potrdil {PERSON["name"]}, <time datetime="{l["pregledano"]}">{sl_date(l["pregledano"])}</time>.</p>' if l.get('pregledano') else ''
     svc = dict((x[0], x[1]) for x in SERVICES)[l['service']]
+    if l['iz_prakse']:
+        tips = '<blockquote class="tip"><ul>' + ''.join(f'<li>{mark(t)}</li>' for t in l['iz_prakse']) + f'</ul><footer>{PERSON["name"]}, hišni mojster</footer></blockquote>'
+    else:
+        tips = '<p class="draft">Tu bodo Sebastjanovi potrjeni nasveti iz prakse.</p>'
     return f"""{draft}
 <section class="answer" aria-labelledby="na-kratko">
 <h2 id="na-kratko">Na kratko: kaj kupiti</h2>
@@ -511,7 +515,7 @@ def list_body(l):
 
 <h2>Iz moje prakse</h2>
 {foto}
-<blockquote class="tip"><ul>{''.join(f'<li>{mark(t)}</li>' for t in l['iz_prakse'])}</ul><footer>{PERSON['name']}, hišni mojster</footer></blockquote>
+{tips}
 <p class="note">{l['meja']}</p>
 
 <h2>Ali je seznam pravi za vas?</h2>

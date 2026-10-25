@@ -159,7 +159,8 @@ def hour_price():
     return {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitCode': 'HUR', 'unitText': 'ura',
             'eligibleQuantity': {'@type': 'QuantitativeValue', 'minValue': 1, 'unitCode': 'HUR'},
             'description': 'Čas se šteje od prihoda k stranki. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. '
-                           'Prevoz vključen, brez doplačil zvečer in ob vikendih. Material kupi stranka. '
+                           'Prevoz vključen, brez doplačil zvečer in ob vikendih. Potrošni material vključen; material kupi stranka. '
+                           'Nadaljevanje drug dan brez nove prve ure. '
                            'Ni zavezanec za DDV, cena je končna.'}
 
 
@@ -453,6 +454,9 @@ def llms_txt(urls):
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
 - Če se po njegovem delu izkaže, da kaj ni prav (npr. silikon odstopi), pride in popravi brezplačno.
 - Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Brez doplačil zvečer, v soboto in nedeljo.
+- Potrošni material (brusni papir, folija, lepilni trak, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
+- Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.
+- Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; ne daje popusta brez računa; dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.

@@ -12,6 +12,11 @@ RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://popravimvse.si/$1 [R=301,L]
+# preimenovane storitve (okt. 2026)
+RewriteRule ^vodovodna-popravila/?$ https://popravimvse.si/kopalniska-oprema/ [R=301,L]
+RewriteRule ^elektro-montaze/?$ https://popravimvse.si/montaza-tv-in-polic/ [R=301,L]
+RewriteRule ^zidarska-dela-knauf/?$ https://popravimvse.si/pleskanje-in-kitanje/ [R=301,L]
+RewriteRule ^manjsa-betonska-dela/?$ https://popravimvse.si/kosnja-in-urejanje-okolice/ [R=301,L]
 # brez index.html v naslovu
 RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
 RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]

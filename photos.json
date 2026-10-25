@@ -115,7 +115,7 @@
   },
   "staro-korito-odtok": {
    "alt": "Staro korito z odtokom pred zamenjavo, ob njem meter",
-   "cap": "Staro korito in odtok pred zamenjavo."
+   "cap": "Staro korito in odtok."
   },
   "kanalizacijske-cevi": {
    "alt": "Kanalizacijske in vodovodne cevi v izkopu",
@@ -182,11 +182,9 @@
    "lesena-galerija-podest",
    "montaza-pohistva-dnevna-soba"
   ],
-  "vodovod": [
-   "vodni-filter-in-reducirni-ventil",
-   "vodovodni-prikljucki",
-   "priklop-pipe-fleksibilne-cevi",
-   "tus-kabina"
+  "kopalnica-oprema": [
+   "tus-kabina",
+   "kopalnica-nizka-tus-kad"
   ],
   "odtoki": [
    "staro-korito-odtok",
@@ -206,7 +204,7 @@
    "vikend-kuhinja-po-meri",
    "kopalnica-nizka-tus-kad",
    "drsna-omara-po-meri",
-   "vodni-filter-in-reducirni-ventil",
+   "lesena-terasa",
    "vikend-susenje-lakiranega-pulta",
    "lesena-galerija-podest"
   ],

@@ -45,14 +45,13 @@ SERVICES = [
     ('polaganje-talnih-oblog', 'Laminat in talne obloge', 'floor'),
     ('obnova-fug-in-silikona', 'Obnova fug in silikona', 'drop'),
     ('odmasevanje-odtokov', 'Odmaševanje odtokov', 'drain'),
-    ('vodovodna-popravila', 'Pipe in vodovod', 'tap'),
+    ('kopalniska-oprema', 'Kopalniška oprema', 'mirror'),
+    ('pleskanje-in-kitanje', 'Pleskanje in kitanje', 'roller'),
     ('priklop-aparatov', 'Priklop aparatov', 'oven'),
-    ('elektro-montaze', 'Luči in TV na steno', 'bulb'),
-    ('modem-in-termostat', 'Modem, Wi-Fi in termostati', 'wifi'),
+    ('montaza-tv-in-polic', 'Montaža TV in polic', 'tv'),
+    ('modem-in-termostat', 'Modem, Wi-Fi in termostat', 'wifi'),
     ('popravilo-vrat-in-oken', 'Vrata in okna', 'door'),
     ('tesarska-dela', 'Tesarska dela in pohištvo', 'saw'),
-    ('manjsa-betonska-dela', 'Manjša betonska dela', 'trowel'),
-    ('zidarska-dela-knauf', 'Zidarska dela in knauf', 'brick'),
     ('selitve-in-prenosi', 'Manjše selitve in prenosi', 'box'),
     ('kosnja-in-urejanje-okolice', 'Košnja in urejanje okolice', 'grass'),
 ]
@@ -130,6 +129,9 @@ ICONS = {
     'saw': f'<svg viewBox="0 0 24 24" {S}><path d="M3 17L17 3l4 4L7 21H3z"/><path d="M6.5 13.5l1.5 1.5M9.5 10.5l1.5 1.5M12.5 7.5l1.5 1.5"/></svg>',
     'trowel': f'<svg viewBox="0 0 24 24" {S}><path d="M10 14l9-9v9h-9z"/><path d="M10 14l-2 2"/><path d="M8 16l-4.5 4.5"/></svg>',
     'brick': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="5" width="18" height="14"/><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 5v4.7M6 9.7v4.6M12 9.7v4.6M18 9.7v4.6M9 14.3V19M15 14.3V19"/></svg>',
+    'mirror': f'<svg viewBox="0 0 24 24" {S}><rect x="6" y="3" width="12" height="11" rx="5.5"/><path d="M9.5 7.5l2-2M10 10.5l4-4"/><path d="M4 17h16v4H4z"/><path d="M12 17v4"/></svg>',
+    'tv': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M9 21h6M12 17v4"/><path d="M1.5 9v4M22.5 9v4"/></svg>',
+    'roller': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="3" width="15" height="6" rx="1"/><path d="M18 6h3v5h-9v3"/><rect x="10.5" y="14" width="3" height="7" rx="1"/></svg>',
     'floor': f'<svg viewBox="0 0 24 24" {S}><path d="M3 8h18M3 13h18M3 18h18M3 3h18v18H3z"/><path d="M9 3v5M15 8v5M7 13v5M17 18v3"/></svg>',
     'wifi': f'<svg viewBox="0 0 24 24" {S}><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.5 12.5a9.5 9.5 0 0 1 13 0"/><path d="M8.7 16a5 5 0 0 1 6.6 0"/><path d="M12 19.5h.01"/></svg>',
     'box': f'<svg viewBox="0 0 24 24" {S}><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>',
@@ -187,8 +189,8 @@ def business_ld():
         'alternateName': [f'{BIZ["person"]} – {BIZ["name"]}', BIZ['name']],
         'legalName': BIZ['legal'],
         'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, laminat in talne obloge, '
-                       'fuge in silikon, odtoki, pipe in vodovod, priklop aparatov, luči, modemi in termostati, vrata in okna, tesarska, '
-                       'manjša betonska in zidarska dela, manjše selitve in prenosi, košnja in urejanje okolice. '
+                       'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
+                       'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, košnja in urejanje okolice. '
                        '35 € na uro, prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'knowsLanguage': ['sl', 'de'],
@@ -437,7 +439,7 @@ def llms_txt(urls):
 - Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Za material se dogovorita vnaprej.
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
-- Ne izvaja: novih električnih instalacij in tokokrogov, priklopa plinskih naprav, polaganja tlakovcev.
+- Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}.
 - Jezik: slovenščina in tekoča nemščina.
 

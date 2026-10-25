@@ -251,7 +251,7 @@ function page_start(string $title, string $extraHead = ''): void
     echo '<!doctype html><html lang="sl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
         . '<meta name="robots" content="noindex, nofollow"><meta name="theme-color" content="#16232B">'
         . '<title>' . h($title) . '</title><link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">'
-        . '<link rel="stylesheet" href="/static/css/site.css">' . $extraHead . '</head><body class="pv-app">'
+        . '<link rel="stylesheet" href="/static/css/site.css?v=' . @filemtime(dirname(__DIR__) . '/static/css/site.css') . '">' . $extraHead . '</head><body class="pv-app">'
         . '<header class="site-head"><div class="wrap"><a class="brand" href="/"><b>Popravim vse</b><span>Sebastjan, hišni mojster</span></a>'
         . '<a class="call small" href="tel:' . BIZ_PHONE_E164 . '">' . BIZ_PHONE . '</a></div></header><main id="vsebina" class="wrap pv-main">';
 }

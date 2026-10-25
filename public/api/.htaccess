@@ -1,0 +1,9 @@
+# povpraševanja: ne indeksiraj, ne predpomni, skrij pomožno datoteko
+Options -Indexes
+<Files "_lib.php">
+  Require all denied
+</Files>
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set Cache-Control "no-store"
+</IfModule>

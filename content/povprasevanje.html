@@ -1,0 +1,129 @@
+<!--{
+  "title": "Pošljite fotografijo ali video okvare | Popravim vse",
+  "description": "Pokažite mi, kaj je treba popraviti: fotografija, video, glasovno sporočilo ali opis s telefona. Brez registracije, ocena je brezplačna. 35 € na uro.",
+  "h1": "Pokažite mi, kaj je treba popraviti",
+  "lead": "Fotografirajte, posnemite ali povejte z glasom. Brez registracije in brez čakanja na telefonu. Pregledam sam in vam povem, ali je delo zame, koliko časa okvirno pričakujem in kaj kupiti.",
+  "crumb": "Pošljite fotografijo"
+}-->
+<form class="pv-form" id="pv-form" action="/api/povprasevanje.php" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+  <fieldset class="pv-step">
+    <legend><span class="pv-num" aria-hidden="true">1</span>Pokažite težavo</legend>
+    <label class="pv-pick" for="pv-media">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      <span><b>Dodaj fotografijo ali video</b><small>Odpre kamero ali galerijo</small></span>
+    </label>
+    <input class="pv-file" type="file" id="pv-media" name="media[]" accept="image/*,video/*" multiple>
+    <ul class="pv-thumbs" id="pv-thumbs" aria-live="polite"></ul>
+    <p class="pv-hint">Nasvet: eno fotografijo od daleč in eno od blizu. Pri videu je dovolj 10 do 30 sekund.</p>
+
+    <div class="pv-voice" id="pv-voice" hidden>
+      <button type="button" class="pv-rec" id="pv-rec">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>
+        <span><b id="pv-rec-label">Povejte z glasom</b><small id="pv-rec-sub">Kot glasovno sporočilo, do 3 minute</small></span>
+      </button>
+    </div>
+
+    <label class="pv-label" for="pv-opis">Ali napišite <small>(neobvezno, če ste dodali fotografijo ali glas)</small></label>
+    <textarea id="pv-opis" name="opis" rows="4" maxlength="5000" placeholder="Npr. silikon ob kadi je črn in odstopa, kad je dolga 170 cm."></textarea>
+  </fieldset>
+
+  <fieldset class="pv-step">
+    <legend><span class="pv-num" aria-hidden="true">2</span>Kam vam odgovorim</legend>
+    <label class="pv-label" for="pv-tel">Telefon</label>
+    <input id="pv-tel" name="telefon" type="tel" inputmode="tel" autocomplete="tel" required placeholder="041 123 456" aria-describedby="pv-tel-err">
+    <p class="pv-err" id="pv-tel-err" hidden></p>
+
+    <label class="pv-label" for="pv-kraj">Kraj <small>(naselje, da vem, kam pridem)</small></label>
+    <input id="pv-kraj" name="kraj" type="text" list="pv-kraji" autocomplete="address-level2" maxlength="80" placeholder="npr. Lenart">
+    <datalist id="pv-kraji">{{KRAJI}}</datalist>
+
+    <label class="pv-label" for="pv-ime">Ime <small>(neobvezno)</small></label>
+    <input id="pv-ime" name="ime" type="text" autocomplete="given-name" maxlength="80">
+
+    <div class="pv-label" id="pv-odg-l">Kako želite odgovor?</div>
+    <div class="pv-chips" role="radiogroup" aria-labelledby="pv-odg-l">
+      <label><input type="radio" name="odgovor" value="sms" checked><span>SMS</span></label>
+      <label><input type="radio" name="odgovor" value="klic"><span>Klic</span></label>
+      <label><input type="radio" name="odgovor" value="email"><span>E-pošta</span></label>
+    </div>
+    <div class="pv-email" id="pv-email-wrap">
+      <label class="pv-label" for="pv-email">E-pošta <small>(neobvezno, pošljem vam potrditev)</small></label>
+      <input id="pv-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="120">
+    </div>
+  </fieldset>
+
+  <div class="pv-hp" aria-hidden="true"><label>Pustite prazno <input name="spletna_stran" type="text" tabindex="-1" autocomplete="off"></label></div>
+  <input type="hidden" name="js" value="">
+  <input type="hidden" name="upload_id" value="">
+  <input type="hidden" name="odstrani" value="">
+
+  <p class="pv-err pv-err-main" id="pv-err" role="alert" hidden></p>
+  <div class="pv-progress" id="pv-progress" hidden><div class="pv-bar"><span id="pv-bar"></span></div><p id="pv-progress-text">Nalagam …</p></div>
+  <button class="call pv-send" type="submit" id="pv-send">Pošlji Sebastjanu</button>
+
+  <ul class="pv-trust">
+    <li>Vsako povpraševanje pogledam sam. Ocena je brezplačna in vas ne obvezuje.</li>
+    <li>Odgovorim, ko končam delo pri stranki. Med delom je moj telefon tiho.</li>
+    <li>35 € na uro, prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič.</li>
+    <li>Fotografije in posnetke uporabim samo za oceno in se po 90 dneh samodejno izbrišejo. <a href="/zasebnost/">Zasebnost</a></li>
+  </ul>
+</form>
+<script src="/static/js/povprasevanje.js?v={{V}}" defer></script>
+
+<h2>Raje pokličete?</h2>
+<p>Pokličite <a href="tel:+38670755355">070 755 355</a> ali pošljite SMS s fotografijo na isto številko. Če ne dvignem, sem pri delu in vas pokličem, ko končam. Pišete lahko tudi na <a href="mailto:popravimvse@gmail.com">popravimvse@gmail.com</a>.</p>
+
+<h2>Kaj se zgodi po oddaji</h2>
+<ol>
+  <li><strong>Takoj dobite svojo stran s stanjem.</strong> Na njej vidite, ali sem povpraševanje že pregledal. Prijava ni potrebna.</li>
+  <li><strong>Pregledam sam.</strong> Povem vam, ali je delo zame in koliko ur okvirno pričakujem. Če je treba kaj kupiti, vam napišem, kaj in koliko.</li>
+  <li><strong>Predlagam termin.</strong> Termin velja šele, ko ga oba potrdiva. Brez predplačila, delo plačate z gotovino, ko je končano.</li>
+</ol>
+
+<h2>Kaj fotografirati, da je ocena čim bolj točna</h2>
+<ul>
+  <li><strong>Okvara od blizu in prostor od daleč.</strong> Iz fotografije od daleč vidim, kako pridem zraven.</li>
+  <li><strong>Kaj se dogaja.</strong> Če vrata drgnejo ali odtok počasi odteka, je kratek video boljši od opisa.</li>
+  <li><strong>Mere pri večjih delih.</strong> Pri ploščicah, laminatu in policah napišite približne mere ali na fotografijo položite meter.</li>
+  <li><strong>Stena ali podlaga.</strong> Pri montaži na steno povejte, ali je stena betonska, opečna ali mavčna, če to veste.</li>
+</ul>
+
+<h2>Pogosta vprašanja</h2>
+<div class="faq">
+  <details>
+    <summary>Ali moram ustvariti račun ali se prijaviti?</summary>
+    <p>Ne. Potrebujem samo telefonsko številko, da vam lahko odgovorim. Vse drugo je neobvezno.</p>
+  </details>
+  <details>
+    <summary>Koliko stane ocena?</summary>
+    <p>Ocena po fotografiji ali opisu je brezplačna in vas ne obvezuje. Plačate samo opravljeno delo, 35 € na uro, prevoz je vključen.</p>
+  </details>
+  <details>
+    <summary>Kaj se zgodi z mojimi fotografijami in posnetki?</summary>
+    <p>Uporabim jih samo za oceno dela. Vidim jih samo jaz, brez vašega dovoljenja jih ne objavim, po 90 dneh pa se samodejno izbrišejo.</p>
+  </details>
+  <details>
+    <summary>Kdaj dobim odgovor?</summary>
+    <p>Ko končam delo pri stranki. Med delom je moj telefon tiho, ker tisti čas plačuje stranka. Če sem preveč zaseden, vam to povem takoj, namesto da bi obljubil termin, ki ga ne bi mogel držati.</p>
+  </details>
+  <details>
+    <summary>Ali je s tem termin že dogovorjen?</summary>
+    <p>Ne. Termin predlagam jaz, velja pa šele, ko ga oba potrdiva.</p>
+  </details>
+  <details>
+    <summary>Kaj, če ne vem, kaj je pokvarjeno?</summary>
+    <p>Dovolj je, da posnamete ali opišete, kaj opazite, na primer da odtok počasi odteka ali da se vrata ne zapirajo. Drugo ugotovim sam.</p>
+  </details>
+  <details>
+    <summary>Kako dolg video lahko pošljem?</summary>
+    <p>En video je lahko velik do 250 MB, vendar je 10 do 30 sekund običajno dovolj. Nalaganje teče po delih, zato deluje tudi pri slabšem signalu.</p>
+  </details>
+  <details>
+    <summary>Ali lahko povpraševanje v mojem imenu pošlje asistent UI?</summary>
+    <p>Da. Asistent lahko izpolni ta obrazec ali uporabi opis za agente v datoteki llms.txt. Vsako povpraševanje vseeno pregledam sam in termin potrdim osebno z vami.</p>
+  </details>
+  <details>
+    <summary>Česa ne delam?</summary>
+    <p>Ne posegam v električno, vodovodno in plinsko napeljavo, ne betoniram in ne ometavam, ker so to dela z obrtnim dovoljenjem. Delam samo za posameznike in gospodinjstva. Če delo ni zame, vam to povem takoj.</p>
+  </details>
+</div>

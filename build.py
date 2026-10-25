@@ -61,7 +61,8 @@ AREAS = [
     ('hisni-mojster-ptuj', 'Ptuj z okolico', 'Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci'),
     ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
 ]
-OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt')]
+OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost')]
+FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
 REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda')]
 NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
 
@@ -155,8 +156,12 @@ def call_btn(cls='call'):
     return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}Pokličite {BIZ["phone"]}</a>'
 
 
+CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'
+
+
 def sms_btn():
-    return f'<a class="btn-plain" href="sms:{BIZ["phone_e164"]}">Pošljite SMS s fotografijo</a>'
+    # nekoč SMS, zdaj obrazec: fotografija, video, glas ali opis (SMS ostane na /kontakt/ in v spodnji vrstici)
+    return f'<a class="btn-plain pv-cta" href="{FORM}">{CAM}Pošljite fotografijo ali video</a>'
 
 
 AUDIENCE = {'@type': 'PeopleAudience', 'audienceType': 'Posamezniki in gospodinjstva'}
@@ -224,6 +229,16 @@ def business_ld():
                          'email': BIZ['email'], 'availableLanguage': ['sl', 'de'], 'areaServed': 'SI'},
         'areaServed': [{'@type': 'City', 'name': n} for n in CITIES],
         'knowsAbout': [s[1] for s in SERVICES],
+        'potentialAction': [
+            {'@type': 'CommunicateAction', 'name': 'Pošlji povpraševanje s fotografijo, videom, glasom ali opisom',
+             'target': {'@type': 'EntryPoint', 'urlTemplate': SITE + FORM, 'inLanguage': 'sl',
+                        'actionPlatform': ['https://schema.org/MobileWebPlatform', 'https://schema.org/DesktopWebPlatform']}},
+            {'@type': 'CommunicateAction', 'name': 'Povpraševanje za agente UI (JSON)',
+             'description': 'POST JSON na ' + SITE + '/api/povprasevanje.php; opis: ' + SITE + '/openapi.json. '
+                            'Obvezno: telefon in soglasje_stranke: true. Termin ni potrjen, dokler ga osebno ne potrdi Sebastjan.',
+             'target': {'@type': 'EntryPoint', 'urlTemplate': SITE + '/api/povprasevanje.php', 'httpMethod': 'POST',
+                        'contentType': 'application/json', 'encodingType': 'application/json'}},
+        ],
         'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Storitve hišnega mojstra', 'itemListElement': [
             {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': t, 'url': f'{SITE}/{sl}/', 'audience': AUDIENCE},
              'priceSpecification': hour_price(), 'acceptedPaymentMethod': 'http://purl.org/goodrelations/v1#Cash'}
@@ -301,11 +316,11 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="/kontakt/">Kontakt</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Pošljite fotografijo</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
-<div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="sms:{BIZ["phone_e164"]}">SMS</a></div>'''
+<div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Foto: pošljite fotografijo ali video">{CAM}Foto</a></div>'''
 
 
 def page(meta, main, path, extra_ld=()):
@@ -387,8 +402,8 @@ def aside(current_slug):
 def cta_band():
     return f'''<section class="cta-band">
   <div class="wrap">
-    <div><h2>Opišite, kaj je treba popraviti</h2><p>Pokličite ali pošljite fotografijo. Okvirno oceno časa dobite vnaprej.</p></div>
-    {call_btn()}
+    <div><h2>Opišite, kaj je treba popraviti</h2><p>Pošljite fotografijo, video ali glasovno sporočilo, ali pa pokličite. Okvirno oceno časa dobite vnaprej, brezplačno.</p></div>
+    <div class="actions">{call_btn()}<a class="btn-plain pv-cta" href="{FORM}">{CAM}Pošljite fotografijo</a></div>
   </div>
 </section>'''
 
@@ -409,22 +424,24 @@ def inner(meta, body, slug, crumbs):
             body = body.replace('<h2>Pogosta vprašanja</h2>', box + '\n<h2>Pogosta vprašanja</h2>', 1) if '<h2>Pogosta vprašanja</h2>' in body else body + box
     crumb_html = '<nav class="crumbs" aria-label="Drobtinice"><ol><li><a href="/">Domov</a></li>' + ''.join(
         f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
-    main = f'''<section class="page-head">
+    is_form = meta.get('kind') == 'form'
+    acts = '' if is_form else f'<div class="actions">{call_btn()}{sms_btn()}</div>'
+    main = f'''<div class="{"pv-form-page" if is_form else "std-page"}"><section class="page-head">
   <div class="wrap">
     {crumb_html}
     <h1>{meta["h1"]}</h1>
     <p class="lead">{meta["lead"]}</p>
-    <div class="actions">{call_btn()}{sms_btn()}</div>
+    {acts}
   </div>
 </section>
-<div class="wrap layout">
+<div class="wrap layout{" layout-solo" if is_form else ""}">
   <article class="prose">
 {body}
 {author_box(meta["modified"])}
   </article>
-  {aside(slug)}
+  {"" if is_form else aside(slug)}
 </div>
-{cta_band()}'''
+{"" if is_form else cta_band()}</div>'''
     items = [{'@type': 'ListItem', 'position': 1, 'name': 'Domov', 'item': SITE + '/'}]
     for i, (h, t) in enumerate(crumbs, 2):
         items.append({'@type': 'ListItem', 'position': i, 'name': t, 'item': SITE + h})
@@ -521,7 +538,7 @@ def list_body(l):
 <p class="note">{l['meja']}</p>
 
 <h2>Ali je seznam pravi za vas?</h2>
-<p>Pošljite fotografijo po SMS-u na <a href="sms:{BIZ['phone_e164']}">{BIZ['phone']}</a> ali na <a href="mailto:{BIZ['email']}">{BIZ['email']}</a>. Brezplačno vam potrdim, ali je to pravi material za vaš primer. Če nimate prevoza, ga po dogovoru kupim na poti k vam. Več o storitvi: <a href="/{l['service']}/">{svc.lower()}</a>.</p>
+<p><a href="{FORM}">Pošljite fotografijo ali kratek video</a>, SMS na <a href="sms:{BIZ['phone_e164']}">{BIZ['phone']}</a> ali e-pošto na <a href="mailto:{BIZ['email']}">{BIZ['email']}</a>. Brezplačno vam potrdim, ali je to pravi material za vaš primer. Če nimate prevoza, ga po dogovoru kupim na poti k vam. Več o storitvi: <a href="/{l['service']}/">{svc.lower()}</a>.</p>
 {reviewed}
 
 <h2>Pogosta vprašanja</h2>
@@ -576,8 +593,16 @@ def llms_txt(urls):
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
-- Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}.
+- Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}, obrazec s fotografijo, videom ali glasom: {SITE}{FORM}
 - Jezik: slovenščina in tekoča nemščina.
+
+## Povpraševanje (za ljudi in agente UI)
+- Obrazec: {SITE}{FORM} – fotografija, video (do 250 MB), glasovno sporočilo in/ali opis; obvezen je samo telefon. Brez registracije.
+- Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
+- Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
+- Sebastjan vsako povpraševanje pregleda sam. Ocena je brezplačna. Termin ni potrjen, dokler ga Sebastjan osebno ne potrdi s stranko. Brez predplačila.
+- Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
+- Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: {SITE}/zasebnost/
 
 ## Storitve
 {svc}
@@ -593,7 +618,44 @@ def llms_txt(urls):
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
 - [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
+- [Pošljite fotografijo]({SITE}{FORM}): obrazec za fotografije, video, glas in opis
+- [Zasebnost]({SITE}/zasebnost/): kako se obdelujejo podatki iz povpraševanj
 '''
+
+
+def openapi():
+    """Opis vmesnika za agente UI (povpraševanje v imenu stranke)."""
+    return {
+        'openapi': '3.1.0',
+        'info': {'title': 'Popravim vse – povpraševanje', 'version': '1.0',
+                 'description': 'Oddaja povpraševanja hišnemu mojstru Sebastjanu Stjepanoviću (Popravim vse) v imenu stranke. '
+                                'Samo posamezniki in gospodinjstva na območju Maribor, Lenart, Ptuj, Slovenska Bistrica. '
+                                '35 € na uro, prevoz vključen, ocena brezplačna. Sebastjan vsako povpraševanje pregleda sam; '
+                                'termin ni potrjen, dokler ga osebno ne potrdi s stranko. Fotografije in video pošlje stranka prek ' + SITE + FORM,
+                 'contact': {'name': PERSON['name'], 'email': BIZ['email'], 'url': SITE + '/kontakt/'}},
+        'servers': [{'url': SITE + '/api'}],
+        'paths': {'/povprasevanje.php': {'post': {
+            'operationId': 'oddajPovprasevanje', 'summary': 'Oddaj povpraševanje (besedilo)',
+            'requestBody': {'required': True, 'content': {'application/json': {'schema': {
+                'type': 'object', 'required': ['telefon', 'opis', 'soglasje_stranke'],
+                'properties': {
+                    'telefon': {'type': 'string', 'description': 'Telefon stranke, npr. 041 123 456 ali +38641123456'},
+                    'opis': {'type': 'string', 'maxLength': 5000, 'description': 'Kaj je treba popraviti, mere, podlaga, želeni termin'},
+                    'kraj': {'type': 'string', 'description': 'Naselje stranke', 'examples': CITIES[:4]},
+                    'ime': {'type': 'string'},
+                    'odgovor': {'type': 'string', 'enum': ['sms', 'klic', 'email'], 'default': 'sms'},
+                    'email': {'type': 'string', 'format': 'email', 'description': 'Obvezno, če je odgovor email'},
+                    'agent': {'type': 'string', 'description': 'Ime agenta ali asistenta, ki oddaja povpraševanje'},
+                    'soglasje_stranke': {'type': 'boolean', 'const': True,
+                                         'description': 'Stranka je soglašala z oddajo povpraševanja in deljenjem telefonske številke'}}}}}},
+            'responses': {
+                '201': {'description': 'Prejeto', 'content': {'application/json': {'schema': {'type': 'object', 'properties': {
+                    'ok': {'type': 'boolean'}, 'id': {'type': 'string'},
+                    'stanje': {'type': 'string', 'description': 'Osebna stran s stanjem; dodaj &format=json za strojno branje'},
+                    'sporocilo': {'type': 'string'}}}}}},
+                '422': {'description': 'Manjkajoči ali napačni podatki (polje napaka)'},
+                '429': {'description': 'Preveč povpraševanj z istega naslova'}}}}},
+    }
 
 
 def read(name):
@@ -621,8 +683,11 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(ROOT / 'static', OUT / 'static')
-    for f in (ROOT / 'root').glob('*'):
-        shutil.copy(f, OUT / f.name)
+    for f in (ROOT / 'root').iterdir():
+        if f.is_dir():
+            shutil.copytree(f, OUT / f.name)
+        else:
+            shutil.copy(f, OUT / f.name)
     urls = []
 
     reset_used()
@@ -666,6 +731,18 @@ def main():
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.7', meta['modified'], meta))
 
+    reset_used()
+    meta, body = read('povprasevanje')
+    if meta:
+        meta['kind'] = 'form'
+        meta['page_type'] = 'ContactPage'
+        meta['published'], meta['modified'] = git_dates('povprasevanje')
+        body = body.replace('{{KRAJI}}', ''.join(f'<option value="{esc(c)}">' for c in CITIES)).replace('{{V}}', BUILT[:10])
+        m, ld = inner(meta, body, 'povprasevanje', [('/kontakt/', 'Kontakt')])
+        write(FORM, page(meta, m, FORM, ld))
+        urls.append((FORM, '0.9', meta['modified'], meta))
+    (OUT / 'openapi.json').write_text(json.dumps(openapi(), ensure_ascii=False, indent=1), encoding='utf-8')
+
     for slug, title in REFS:
         reset_used()
         meta, body = read(slug.replace('/', '__'))
@@ -690,7 +767,7 @@ def main():
         hub['page_type'] = 'CollectionPage'
         hub['published'], hub['modified'] = git_dates('seznami.json')
         cards = ''.join(f'<li><a href="/{KK}/{l["slug"]}/"><strong>{l["h1"]}</strong><span>{l["description"]}</span></a></li>' for l in ls)
-        hbody = f'<ul class="list-cards">{cards}</ul>\n<p>Ne najdete seznama za svoje delo? Pošljite mi opis ali fotografijo na <a href="sms:{BIZ["phone_e164"]}">{BIZ["phone"]}</a>, pa vam brezplačno povem, kaj kupiti.</p>'
+        hbody = f'<ul class="list-cards">{cards}</ul>\n<p>Ne najdete seznama za svoje delo? <a href="{FORM}">Pošljite mi fotografijo ali opis</a>, pa vam brezplačno povem, kaj kupiti.</p>'
         reset_used()
         m, ld = inner(hub, hbody, KK, [])
         ld.append({'@type': 'ItemList', 'itemListElement': [

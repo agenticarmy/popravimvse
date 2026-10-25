@@ -1,0 +1,121 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Popravim vse – povpraševanje",
+  "version": "1.0",
+  "description": "Oddaja povpraševanja hišnemu mojstru Sebastjanu Stjepanoviću (Popravim vse) v imenu stranke. Samo posamezniki in gospodinjstva na območju Maribor, Lenart, Ptuj, Slovenska Bistrica. 35 € na uro, prevoz vključen, ocena brezplačna. Sebastjan vsako povpraševanje pregleda sam; termin ni potrjen, dokler ga osebno ne potrdi s stranko. Fotografije in video pošlje stranka prek https://popravimvse.si/povprasevanje/",
+  "contact": {
+   "name": "Sebastjan Stjepanović",
+   "email": "popravimvse@gmail.com",
+   "url": "https://popravimvse.si/kontakt/"
+  }
+ },
+ "servers": [
+  {
+   "url": "https://popravimvse.si/api"
+  }
+ ],
+ "paths": {
+  "/povprasevanje.php": {
+   "post": {
+    "operationId": "oddajPovprasevanje",
+    "summary": "Oddaj povpraševanje (besedilo)",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "required": [
+         "telefon",
+         "opis",
+         "soglasje_stranke"
+        ],
+        "properties": {
+         "telefon": {
+          "type": "string",
+          "description": "Telefon stranke, npr. 041 123 456 ali +38641123456"
+         },
+         "opis": {
+          "type": "string",
+          "maxLength": 5000,
+          "description": "Kaj je treba popraviti, mere, podlaga, želeni termin"
+         },
+         "kraj": {
+          "type": "string",
+          "description": "Naselje stranke",
+          "examples": [
+           "Maribor",
+           "Lenart",
+           "Ptuj",
+           "Slovenska Bistrica"
+          ]
+         },
+         "ime": {
+          "type": "string"
+         },
+         "odgovor": {
+          "type": "string",
+          "enum": [
+           "sms",
+           "klic",
+           "email"
+          ],
+          "default": "sms"
+         },
+         "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Obvezno, če je odgovor email"
+         },
+         "agent": {
+          "type": "string",
+          "description": "Ime agenta ali asistenta, ki oddaja povpraševanje"
+         },
+         "soglasje_stranke": {
+          "type": "boolean",
+          "const": true,
+          "description": "Stranka je soglašala z oddajo povpraševanja in deljenjem telefonske številke"
+         }
+        }
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Prejeto",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "ok": {
+           "type": "boolean"
+          },
+          "id": {
+           "type": "string"
+          },
+          "stanje": {
+           "type": "string",
+           "description": "Osebna stran s stanjem; dodaj &format=json za strojno branje"
+          },
+          "sporocilo": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Manjkajoči ali napačni podatki (polje napaka)"
+     },
+     "429": {
+      "description": "Preveč povpraševanj z istega naslova"
+     }
+    }
+   }
+  }
+ }
+}

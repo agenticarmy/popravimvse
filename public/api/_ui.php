@@ -162,17 +162,27 @@ function ui_analyze(array $r, ?array $cfg = null): array
         $content[] = ['type' => 'text', 'text' => "<povprasevanje>\nKraj: " . ($r['kraj'] ?: 'ni naveden') . "\nIme: " . ($r['ime'] ?: 'ni navedeno')
             . "\nVir: " . ($r['vir'] === 'agent' ? 'oddal agent UI v imenu stranke' . ($r['agent'] ? " ({$r['agent']})" : '') : 'obrazec na spletni strani')
             . "\nOpis stranke:\n" . ($r['opis'] !== '' ? $r['opis'] : '(brez opisa)')
-            . "\n\nPrepisi glasovnih sporočil in videov:" . ($tx ?: ' (ni posnetkov)') . "\n</povprasevanje>\n\nPripravi oceno z orodjem oceni_povprasevanje."];
+            . "\n\nPrepisi glasovnih sporočil in videov:" . ($tx ?: ' (ni posnetkov)') . "\n</povprasevanje>\n\nPripravi oceno. Odgovori IZKLJUČNO s klicem orodja oceni_povprasevanje, brez drugega besedila."];
 
         [$code, $j, $err] = http_json((getenv('PV_ANTHROPIC_URL') ?: 'https://api.anthropic.com') . '/v1/messages', [
             'x-api-key: ' . $cfg['claude_kljuc'], 'anthropic-version: 2023-06-01', 'content-type: application/json',
         ], json_encode([
             'model' => $cfg['claude_model'], 'max_tokens' => 2500, 'system' => ui_system($ctx),
-            'tools' => [ui_tool($ctx)], 'tool_choice' => ['type' => 'tool', 'name' => 'oceni_povprasevanje'],
+            'tools' => [ui_tool($ctx)], 'tool_choice' => ['type' => 'auto'], // novejši modeli ne dovolijo vsiljenega orodja
             'messages' => [['role' => 'user', 'content' => $content]],
         ], JSON_UNESCAPED_UNICODE), 120);
         $out = null;
-        foreach ($j['content'] ?? [] as $c) if (($c['type'] ?? '') === 'tool_use') $out = $c['input'];
+        $txt = '';
+        foreach ($j['content'] ?? [] as $c) {
+            if (($c['type'] ?? '') === 'tool_use') $out = $c['input'];
+            if (($c['type'] ?? '') === 'text') $txt .= $c['text'];
+        }
+        // rezerva: model je oceno vrnil kot JSON v besedilu
+        if (!$out && preg_match('/\{.*\}/s', $txt, $m)) $out = json_decode($m[0], true);
+        $need = ['povzetek', 'storitev', 'ali_je_zame', 'ocena_ur_min', 'ocena_ur_max', 'osnutek'];
+        if (is_array($out) && array_diff($need, array_keys($out))) $out = null;
+        if (is_array($out)) $out += ['razlog' => '', 'zaupanje' => 'nizko', 'ocena_razlaga' => '', 'material' => [], 'seznam_url' => '', 'preveriti_na_kraju' => [], 'opozorila' => []];
+        if (is_array($out) && !in_array($out['ali_je_zame'], ['da', 'ne', 'morda'], true)) $out['ali_je_zame'] = 'morda';
         if ($code !== 200 || !$out) throw new RuntimeException('Claude ni vrnil ocene' . ($err ? ": $err" : " (HTTP $code)"));
 
         $out['ocena_ur_min'] = max(0.25, (float)$out['ocena_ur_min']);

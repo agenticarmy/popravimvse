@@ -181,11 +181,68 @@
   input.removeAttribute('name');
 
   /* ---------- glasovno sporočilo ---------- */
-  var voice = $('pv-voice'), recBtn = $('pv-rec'), rec = null, recT = 0, timer = null, chunks = [], stream = null;
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder) {
-    voice.hidden = false;
-    recBtn.addEventListener('click', function () { rec && rec.state === 'recording' ? rec.stop() : startRec(); });
+  var voice = $('pv-voice'), recBtn = $('pv-rec'), help = $('pv-voice-help'), rec = null, recT = 0, timer = null, chunks = [], stream = null;
+  var ua = navigator.userAgent || '';
+  var IOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  var ANDROID = /Android/.test(ua);
+  var INAPP = /FBAN|FBAV|FB_IAB|Instagram|Line\/|Snapchat|Pinterest|GSA\/|Gmail|; wv\)/.test(ua);
+  var canRec = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder && window.isSecureContext !== false);
+  voice.hidden = false; // tudi brez snemanja v brskalniku ponudimo video ali posnetek iz telefona
+  recBtn.addEventListener('click', function () {
+    if (rec && rec.state === 'recording') return rec.stop();
+    if (!canRec || INAPP) return showHelp(INAPP ? 'inapp' : 'unsupported');
+    startRec();
+  });
+
+  function steps() {
+    if (IOS && /CriOS/.test(ua)) return ['Odprite <b>Nastavitve</b> iPhona → <b>Chrome</b>.', 'Vklopite <b>Mikrofon</b>.', 'Vrnite se sem in tapnite <b>Poskusi znova</b>.'];
+    if (IOS) return ['V naslovni vrstici tapnite <b>aA</b> (ali ikono levo od naslova).', 'Izberite <b>Nastavitve spletnega mesta</b> (Website Settings).', 'Pri <b>Mikrofon</b> izberite <b>Vprašaj</b> ali <b>Dovoli</b>.', 'Tapnite <b>Poskusi znova</b>. Če ne pomaga: Nastavitve iPhona → Aplikacije → Safari → Mikrofon → Vprašaj.'];
+    if (ANDROID) return ['Tapnite ikono <b>levo od naslova</b> strani (ključavnica ali drsniki).', 'Izberite <b>Dovoljenja</b> → <b>Mikrofon</b> → <b>Dovoli</b>.', 'Če mikrofona tam ni: Nastavitve telefona → Aplikacije → vaš brskalnik → Dovoljenja → Mikrofon → Dovoli.', 'Tapnite <b>Poskusi znova</b>.'];
+    return ['Kliknite ikono <b>levo od naslova</b> strani v brskalniku.', 'Pri <b>Mikrofon</b> izberite <b>Dovoli</b>.', 'Kliknite <b>Poskusi znova</b>.'];
   }
+  var MSG = {
+    denied: ['Brskalnik ne dovoli mikrofona', 'Nič hudega – najhitreje je, da posnamete kratek video in zraven poveste, kaj je narobe. Kamera telefona dovoljenja brskalnika ne potrebuje.'],
+    nomic: ['Mikrofona ni mogoče najti', 'Posnemite video s kamero telefona ali izberite glasovni posnetek, ki ga že imate.'],
+    busy: ['Mikrofon uporablja druga aplikacija', 'Zaprite klic ali aplikacijo, ki snema, in tapnite Poskusi znova. Lahko pa posnamete video.'],
+    inapp: ['Snemanje tukaj ne deluje', 'Stran ste odprli v aplikaciji (npr. Facebook, Instagram ali Gmail), ki snemanja ne dovoli. Posnemite video s kamero ali stran odprite v brskalniku: meni ⋯ → Odpri v brskalniku.'],
+    unsupported: ['Ta brskalnik ne omogoča snemanja na strani', 'Posnemite video s kamero telefona in zraven povejte, kaj je narobe, ali izberite glasovni posnetek iz telefona.']
+  };
+  function showHelp(kind) {
+    var m = MSG[kind] || MSG.denied;
+    $('pv-vh-title').textContent = m[0];
+    $('pv-vh-text').textContent = m[1];
+    var showSteps = kind === 'denied' || kind === 'busy';
+    $('pv-howto').hidden = !showSteps;
+    $('pv-howto').open = kind === 'busy';
+    $('pv-howto-steps').innerHTML = steps().map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    help.hidden = false;
+    setRec('Povejte z glasom', kind === 'denied' ? 'Mikrofon ni dovoljen – izberite spodaj' : 'Izberite eno od možnosti spodaj', false);
+    recBtn.classList.add('blocked');
+    help.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(function () { $('pv-vh-title').focus({ preventScroll: true }); }, 350);
+  }
+  function hideHelp() { help.hidden = true; recBtn.classList.remove('blocked'); }
+  $('pv-retry').addEventListener('click', function () { hideHelp(); startRec(); });
+  // če uporabnik mikrofon dovoli v nastavitvah, se pomoč skrije sama
+  if (navigator.permissions && navigator.permissions.query) {
+    navigator.permissions.query({ name: 'microphone' }).then(function (st) {
+      st.onchange = function () {
+        if (st.state === 'granted' && !help.hidden) { hideHelp(); setRec('Mikrofon je dovoljen', 'Tapnite in začnite govoriti', false); }
+      };
+    }).catch(function () {});
+  }
+  // nadomestni poti: video s kamero telefona ali obstoječ posnetek
+  $('pv-vid-cap').addEventListener('change', function () {
+    var f = this.files && this.files[0]; this.value = '';
+    if (f) { var v = addItem(f, 'video'); if (v) { frames(f, v); hideHelp(); setRec('Povejte z glasom', 'Video z glasom je dodan zgoraj', false); } }
+  });
+  $('pv-aud-file').addEventListener('change', function () {
+    var f = this.files && this.files[0]; this.value = '';
+    if (!f) return;
+    if (f.type && !/^audio\/|^video\//.test(f.type)) { showErr(err, '»' + f.name + '« ni zvočni posnetek.'); return; }
+    if (addItem(f, 'audio')) { hideHelp(); setRec('Povejte z glasom', 'Posnetek je dodan zgoraj', false); }
+  });
+
   function pickType() {
     var t = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/webm', 'audio/ogg;codecs=opus'];
     for (var i = 0; i < t.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t[i])) return t[i];
@@ -197,7 +254,12 @@
     recBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
   }
   function startRec() {
+    // takojšen odziv: uporabnik vidi, da se nekaj dogaja, medtem ko brskalnik sprašuje za dovoljenje
+    recBtn.classList.add('wait');
+    setRec('Dovolite mikrofon …', 'Potrdite okno, ki ga je odprl brskalnik', false);
     navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      recBtn.classList.remove('wait');
+      hideHelp();
       stream = s; chunks = [];
       var type = pickType();
       rec = type ? new MediaRecorder(s, { mimeType: type }) : new MediaRecorder(s);
@@ -218,8 +280,11 @@
         $('pv-rec-sub').textContent = Math.floor(recT / 60) + ':' + ('0' + recT % 60).slice(-2) + ' – govorite, ustavite, ko končate';
         if (recT >= MAX_REC) rec.stop();
       }, 1000);
-    }).catch(function () {
-      showErr(err, 'Mikrofon ni dovoljen. Dovolite ga v nastavitvah brskalnika ali težavo opišite z besedilom.');
+    }).catch(function (e) {
+      recBtn.classList.remove('wait');
+      var n = (e && e.name) || '';
+      showHelp(n === 'NotFoundError' || n === 'DevicesNotFoundError' || n === 'OverconstrainedError' ? 'nomic'
+        : n === 'NotReadableError' || n === 'TrackStartError' || n === 'AbortError' ? 'busy' : 'denied');
     });
   }
 

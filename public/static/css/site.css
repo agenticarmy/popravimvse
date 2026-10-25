@@ -539,3 +539,24 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .pv-settings legend { font-weight: 800; font-size: 1.15rem; }
 .pv-send2 { width: 100%; justify-content: center; margin-top: .7rem; font: inherit; font-weight: 700; cursor: pointer; min-height: 52px; }
 .pv-chips input[type=checkbox] { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+
+/* glasovno sporočilo: čakanje na dovoljenje in pomoč, če mikrofon ni dovoljen */
+.pv-rec.wait { background: var(--glaze); }
+.pv-rec.wait svg { animation: pv-pulse 1s ease-in-out infinite; }
+.pv-rec.blocked { border-style: dashed; box-shadow: none; }
+.pv-voice-help { margin: .7rem 0 0; padding: .9rem; background: #FFF8E1; border: 2px solid var(--level-deep); border-radius: var(--radius); }
+.pv-vh-title { font-weight: 800; font-size: 1.05rem; margin: 0 0 .3rem; }
+.pv-vh-title:focus { outline: none; }
+.pv-vh-text { margin: 0 0 .8rem; font-size: .97rem; }
+.pv-alt { display: flex; align-items: center; gap: .8rem; width: 100%; min-height: 60px; padding: .7rem .9rem; margin: 0 0 .6rem; box-sizing: border-box;
+  background: var(--tile); color: var(--ink); border: 2px solid var(--ink); border-radius: var(--radius); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.pv-alt:first-of-type { background: var(--level); box-shadow: 3px 3px 0 var(--ink); }
+.pv-alt:active { transform: translate(2px, 2px); box-shadow: none; }
+.pv-alt svg { width: 1.8rem; height: 1.8rem; flex: none; }
+.pv-alt span { display: flex; flex-direction: column; line-height: 1.25; }
+.pv-alt small { color: var(--ink); font-size: .88rem; }
+.pv-howto { margin: .3rem 0 0; }
+.pv-howto summary { cursor: pointer; font-weight: 700; padding: .5rem 0; color: var(--green-deep); }
+.pv-howto ol { margin: .2rem 0 .8rem; padding-left: 1.3rem; font-size: .95rem; }
+.pv-howto li { margin: 0 0 .35rem; }
+.pv-retry { font: inherit; font-weight: 700; cursor: pointer; width: 100%; justify-content: center; }

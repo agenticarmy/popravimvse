@@ -375,3 +375,5 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
   .prose table.buy td[data-label]::before, .prose table.walls td[data-label]::before { content: attr(data-label) ': '; font-weight: 700; }
   .prose table.buy td[data-label]:empty { display: none; }
 }
+.tip ul { margin: 0 0 .5rem; padding-left: 1.2rem; }
+.tip li { margin: 0 0 .5rem; }

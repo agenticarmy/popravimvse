@@ -511,7 +511,7 @@ def list_body(l):
 
 <h2>Iz moje prakse</h2>
 {foto}
-<blockquote class="tip"><p>{mark(l['opomba_mojstra'])}</p><footer>{PERSON['name']}, hišni mojster</footer></blockquote>
+<blockquote class="tip"><ul>{''.join(f'<li>{mark(t)}</li>' for t in l['iz_prakse'])}</ul><footer>{PERSON['name']}, hišni mojster</footer></blockquote>
 <p class="note">{l['meja']}</p>
 
 <h2>Ali je seznam pravi za vas?</h2>

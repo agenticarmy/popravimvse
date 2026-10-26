@@ -145,21 +145,21 @@
    "alt": "Laminat z zaključno letvijo ob steni, ob njej meter",
    "cap": "Laminat in zaključna letev."
   },
-  "kanaleta-smradna-zapora-pred": {
-   "alt": "Siva smradna zapora v odprti tuš kanaleti, ki ni do konca potisnjena na odtok; stene kanalete z oblogami",
-   "cap": "Pred: smradna zapora ni bila do konca potisnjena na odtok, zato ni tesnila in voda je odtekla."
+  "kanaleta-smradna-zapora-posevna": {
+   "alt": "Siva smradna zapora poševno v tuš kanaleti, ni potisnjena na odtok; voda je pod režo odtoka, na stenah kanalete obloge",
+   "cap": "Pred: smradna zapora stoji poševno in voda je pod režo odtoka. Pot smradu iz kanalizacije je odprta."
   },
-  "kanaleta-odtok-brez-smradne-zapore": {
-   "alt": "Odprta tuš kanaleta z odstranjeno smradno zaporo, prst v rokavici na odprtini odtoka, na dnu obloge",
-   "cap": "Pred: smradna zapora je ven, na dnu kanalete so obloge. Tu je iz kanalizacije prihajal smrad."
+  "kanaleta-odtok-odprt-brez-smradne-zapore": {
+   "alt": "Odprta tuš kanaleta, smradna zapora brez teflona leži zunaj, voda je odtekla in odtok je odprt",
+   "cap": "Pred: smradna zapora je zunaj, še brez teflona. Voda je odtekla, odtok je odprt."
   },
-  "smradna-zapora-tesnilo-s-teflonom": {
-   "alt": "Očiščena siva smradna zapora za tuš kanaleto z gumijastim tesnilom, ovitim s teflonskim trakom",
-   "cap": "Po: smradno zaporo sem očistil, tesnilo pa ovil s teflonskim trakom, da se na odtok tesno prilega."
+  "smradna-zapora-zatesnjena-s-teflonom": {
+   "alt": "Očiščena siva smradna zapora za tuš kanaleto, tesnilo ovito s teflonskim trakom",
+   "cap": "Po: smradna zapora je očiščena, tesnilo pa zatesnjeno s teflonskim trakom."
   },
-  "kanaleta-smradna-zapora-namescena": {
-   "alt": "Smradna zapora, do konca potisnjena na odtok v očiščeni tuš kanaleti",
-   "cap": "Po: smradna zapora je do konca potisnjena na odtok in spet zadrži vodo, ki zapira pot smradu."
+  "kanaleta-voda-pokriva-rezo-odtoka": {
+   "alt": "Smradna zapora do konca potisnjena na odtok v tuš kanaleti, voda pokriva režo odtoka",
+   "cap": "Po: smradna zapora deluje. Voda pokriva režo odtoka in zapira pot smradu."
   }
  },
  "galleries": {
@@ -205,7 +205,7 @@
   "odtoki": [
    "staro-korito-odtok",
    "kanalizacijske-cevi",
-   "kanaleta-smradna-zapora-namescena"
+   "kanaleta-voda-pokriva-rezo-odtoka"
   ],
   "vrata": [
    "montaza-podboja-vrat",
@@ -236,12 +236,12 @@
    "priklop-modema"
   ],
   "kanaleta-pred": [
-   "kanaleta-smradna-zapora-pred",
-   "kanaleta-odtok-brez-smradne-zapore"
+   "kanaleta-smradna-zapora-posevna",
+   "kanaleta-odtok-odprt-brez-smradne-zapore"
   ],
   "kanaleta-po": [
-   "smradna-zapora-tesnilo-s-teflonom",
-   "kanaleta-smradna-zapora-namescena"
+   "smradna-zapora-zatesnjena-s-teflonom",
+   "kanaleta-voda-pokriva-rezo-odtoka"
   ]
  }
 }

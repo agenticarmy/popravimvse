@@ -611,7 +611,7 @@
    ]
   }
  },
- "kanaleta-smradna-zapora-pred": {
+ "kanaleta-smradna-zapora-posevna": {
   "date": "2026-10-26",
   "sizes": {
    "480": [
@@ -628,7 +628,7 @@
    ]
   }
  },
- "kanaleta-odtok-brez-smradne-zapore": {
+ "kanaleta-odtok-odprt-brez-smradne-zapore": {
   "date": "2026-10-26",
   "sizes": {
    "480": [
@@ -645,7 +645,7 @@
    ]
   }
  },
- "smradna-zapora-tesnilo-s-teflonom": {
+ "smradna-zapora-zatesnjena-s-teflonom": {
   "date": "2026-10-26",
   "sizes": {
    "480": [
@@ -662,7 +662,7 @@
    ]
   }
  },
- "kanaleta-smradna-zapora-namescena": {
+ "kanaleta-voda-pokriva-rezo-odtoka": {
   "date": "2026-10-26",
   "sizes": {
    "480": [

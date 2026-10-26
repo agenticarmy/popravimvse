@@ -61,7 +61,7 @@ AREAS = [
     ('hisni-mojster-ptuj', 'Ptuj z okolico', 'Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci'),
     ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
 ]
-OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost')]
+OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost')]
 FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
 REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda'),
         ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete')]
@@ -361,7 +361,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
   </div>
 </footer>
@@ -531,6 +531,19 @@ def mark(t):
     return t.replace('[POTRDI]', '<mark class="confirm">[POTRDI]</mark>')
 
 
+CALCS = {'obnova-silikona-v-kopalnici', 'polaganje-laminata', 'obnova-fug', 'pleskanje-sobe', 'polaganje-ploscic',
+         'menjava-cilindra-kljucavnice', 'montaza-garnisne'}  # kalkulator v static/js/kalkulator.js
+
+
+def calc_box(slug):
+    """Interaktivni kalkulator materiala (računa po pravilih iz razdelka »Kako izračunati«)."""
+    if slug not in CALCS:
+        return ''
+    return (f'<link rel="stylesheet" href="/static/css/kalkulator.css?v={TODAY}">'
+            f'<div class="calc" data-calc="{slug}"></div>'
+            f'<script src="/static/js/kalkulator.js?v={TODAY}" defer></script>')
+
+
 def list_body(l):
     draft = '' if l['status'] == 'objavljeno' else '<p class="draft">OSNUTEK ZA PREGLED – ni objavljeno. Rumeno označene točke potrdi ali popravi Sebastjan.</p>'
     plain = list_plain(l)
@@ -569,6 +582,7 @@ def list_body(l):
 
 <h2>Kako izračunati, koliko kupiti</h2>
 {l['izracun']}
+{calc_box(l['slug'])}
 
 <h2>Česa vam ni treba kupiti</h2>
 <p>To prinesem jaz: {tools}. Potrošni material, kot so brusni papir, folija, lepilni trak in krpe, je vključen v ceno 35 € na uro.</p>
@@ -665,6 +679,7 @@ def llms_txt(urls):
 
 {lists_llms()}## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
+- [Priprava na obisk]({SITE}/pred-obiskom/): kako stranka prihrani čas in denar (material, prostor, dostop, drobna popravila)
 - [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video]({SITE}{FORM}): obrazec za video z glasom, fotografije in opis

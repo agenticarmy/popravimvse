@@ -71,6 +71,7 @@ Material kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: https://poprav
 
 ## Ostalo
 - [Cenik](https://popravimvse.si/cenik/): urna postavka in kako se obračuna
+- [Priprava na obisk](https://popravimvse.si/pred-obiskom/): kako stranka prihrani čas in denar (material, prostor, dostop, drobna popravila)
 - [O meni](https://popravimvse.si/o-meni/): kdo je Sebastjan Stjepanović
 - [Kontakt](https://popravimvse.si/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video](https://popravimvse.si/povprasevanje/): obrazec za video z glasom, fotografije in opis

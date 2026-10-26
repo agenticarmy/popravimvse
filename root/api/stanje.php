@@ -88,7 +88,7 @@ page_start('Stanje povpraševanja | Popravim vse');
 <div class="pv-done" role="status">
   <h1>Termin je potrjen</h1>
   <p class="lead">Pridem <b><?= h(sl_slot((int)$p['potrjen'])) ?></b>. Če se kaj spremeni, me pokličite na <a href="tel:<?= BIZ_PHONE_E164 ?>"><?= BIZ_PHONE ?></a>.</p>
-  <p><a class="call" href="<?= h(status_url($r)) ?>&amp;ics=1">Dodaj v moj koledar</a></p>
+  <p class="pv-actions"><a class="call" href="<?= h(status_url($r)) ?>&amp;ics=1">Dodaj v moj koledar</a><a class="btn-plain" href="/pred-obiskom/">Kako se pripraviti</a></p>
 </div>
 <?php else: ?>
 <h1>Stanje vašega povpraševanja</h1>

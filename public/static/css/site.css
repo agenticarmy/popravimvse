@@ -345,6 +345,9 @@ figure.ph-single a { aspect-ratio: 4 / 3; }
 .prose table.buy td, .prose table.buy th { vertical-align: top; }
 .prose table.buy .chk { width: 4.5rem; text-align: center; }
 .prose table.buy input[type=checkbox] { width: 1.3rem; height: 1.3rem; accent-color: var(--green); }
+.prose table.buy .shops { display: block; margin-top: .35rem; font-size: .9rem; font-weight: 400; }
+.prose table.buy .shops a { white-space: nowrap; }
+.prose .shops-note { font-size: .95rem; max-width: var(--measure); }
 .tip { margin: 1rem 0; padding: 1rem 1.3rem; background: var(--tile); border-left: 6px solid var(--level); max-width: var(--measure); }
 .tip p { margin: 0 0 .4rem; font-size: 1.05rem; }
 .tip footer { color: var(--ink-soft); font-size: .92rem; }

@@ -72,6 +72,34 @@ PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
 LISTS = json.loads((ROOT / 'content' / 'seznami.json').read_text(encoding='utf-8'))
 PREVIEW = os.environ.get('PREVIEW') == '1'  # PREVIEW=1 zgradi tudi osnutke seznamov (samo za pregled, ne objavljaj)
 KK = 'kaj-kupiti'
+_kk_file = ROOT / 'content' / 'kje-kupiti.json'
+KJE_KUPITI = json.loads(_kk_file.read_text(encoding='utf-8')) if _kk_file.exists() else {'trgovine': [], 'postavke': {}, 'seznami': {}}
+
+
+def shop_links(slug, ime):
+    """Povezave na izbrane izdelke v trgovinah (brez cen) za postavko seznama."""
+    out = []
+    for pid in KJE_KUPITI.get('seznami', {}).get(slug, {}).get(ime, []):
+        post = KJE_KUPITI['postavke'].get(pid, {})
+        for t in KJE_KUPITI['trgovine']:
+            x = post.get(t['id'])
+            if x and x.get('url'):
+                out.append({'trgovina': t['ime'], 'url': x['url'], 'izdelek': x.get('izdelek', ''),
+                            'vrsta': post.get('vrsta', 'izdelek'), 'oznaka': post.get('oznaka', '')})
+    return out
+
+
+def shop_html(slug, ime):
+    links = shop_links(slug, ime)
+    if not links:
+        return ''
+    parts = []
+    for x in links:
+        what = f'izbira v kategoriji {x["izdelek"]}' if x['vrsta'] == 'kategorija' else x['izdelek']
+        label = x['trgovina'] + (f' ({x["oznaka"]})' if x['oznaka'] else '')
+        parts.append(f'<a href="{esc(x["url"])}" rel="noopener nofollow" target="_blank" title="{esc(what)}">{esc(label)}</a>')
+    return '<span class="shops">Poglejte v: ' + ' · '.join(parts) + '</span>'
+
 
 
 def lists_visible():
@@ -546,13 +574,22 @@ def calc_box(slug):
             f'<script src="/static/js/kalkulator.js?v={TODAY}" defer></script>')
 
 
+def shops_note(l):
+    if not any(shop_links(l['slug'], m['ime']) for m in l['material']):
+        return ''
+    d = sl_date(KJE_KUPITI['preverjeno'])
+    return (f'<p class="shops-note">Pri postavkah sem v Bauhausu, OBI-ju in Merkurju izbral najcenejši izdelek, ki ustreza zgornjim zahtevam '
+            f'(preverjeno {d}). Kjer izberete sami (velikost, barva, mere), povezava vodi na ustrezno skupino izdelkov. '
+            'Ceno preverite v trgovini: v spletni trgovini in v poslovalnici je lahko različna. Od trgovin ne dobim provizije.</p>\n')
+
+
 def list_body(l):
     draft = '' if l['status'] == 'objavljeno' else '<p class="draft">OSNUTEK ZA PREGLED – ni objavljeno. Rumeno označene točke potrdi ali popravi Sebastjan.</p>'
     plain = list_plain(l)
     sms = 'sms:?&body=' + urllib.parse.quote(plain)
     kratko = ''.join(f'<li>{mark(x)}</li>' for x in l['kratko'])
     rows = ''.join(
-        f'<tr><td class="chk"><input type="checkbox" aria-label="Kupljeno: {esc(m["ime"])}"></td><th scope="row">{m["ime"]}</th>'
+        f'<tr><td class="chk"><input type="checkbox" aria-label="Kupljeno: {esc(m["ime"])}"></td><th scope="row">{m["ime"]}{shop_html(l["slug"], m["ime"])}</th>'
         f'<td data-label="Katero vrsto">{m["vrsta"]}</td><td data-label="Koliko">{m["kolicina"]}</td><td data-label="Na kaj paziti">{m["opomba"]}</td></tr>' for m in l['material'])
     walls = ''
     if l.get('tabela_stene'):
@@ -579,7 +616,7 @@ def list_body(l):
 </section>
 
 <h2>Seznam za nakup</h2>
-<div class="table-wrap"><table class="buy"><thead><tr><th class="chk">Kupljeno</th><th>Kaj kupiti</th><th>Katero vrsto</th><th>Koliko</th><th>Na kaj paziti</th></tr></thead><tbody>{rows}</tbody></table></div>
+{shops_note(l)}<div class="table-wrap"><table class="buy"><thead><tr><th class="chk">Kupljeno</th><th>Kaj kupiti</th><th>Katero vrsto</th><th>Koliko</th><th>Na kaj paziti</th></tr></thead><tbody>{rows}</tbody></table></div>
 {walls}
 
 <h2>Kako izračunati, koliko kupiti</h2>
@@ -882,7 +919,7 @@ def main():
             public.append({'url': f'{SITE}/{KK}/{l["slug"]}/', 'naslov': l['h1'], 'storitev': f'{SITE}/{l["service"]}/',
                            'posodobljeno': meta['modified'], 'pregledal': PERSON['name'] if l.get('pregledano') else None,
                            'na_kratko': [re.sub(r'<[^>]+>', '', x) for x in l['kratko']],
-                           'material': [{k: m2[k] for k in ('ime', 'vrsta', 'kolicina', 'opomba')} for m2 in l['material']],
+                           'material': [dict({k: m2[k] for k in ('ime', 'vrsta', 'kolicina', 'opomba')}, kje_kupiti=[{k: x[k] for k in ('trgovina', 'izdelek', 'url', 'vrsta')} for x in shop_links(l['slug'], m2['ime'])]) for m2 in l['material']],
                            'prinese_mojster': l['prinesem'], 'stene': l.get('tabela_stene', [])})
         (OUT / 'seznami.json').write_text(json.dumps({'opis': 'Seznami materiala Popravim vse. Material kupi stranka, orodje prinese mojster.',
                                                       'seznami': public}, ensure_ascii=False, indent=1), encoding='utf-8')

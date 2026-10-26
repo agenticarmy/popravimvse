@@ -19,13 +19,15 @@
      "ime": "Sanitarni silikon",
      "vrsta": "S protiglivičnim (fungicidnim) dodatkom, označen za kopalnice, tuše in kuhinje.",
      "kolicina": "1 kartuša 300–310 ml na približno 12 m stika 5 × 5 mm; pri širšem stiku 10 × 10 mm le približno 3 m.",
-     "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren."
+     "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren.",
+     "kje_kupiti": []
     },
     {
      "ime": "Silikon za naravni kamen (samo ob kamnu)",
      "vrsta": "Nevtralno zamrežen silikon, na embalaži označen za naravni kamen.",
      "kolicina": "Enako kot sanitarni silikon.",
-     "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu."
+     "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -56,25 +58,29 @@
      "ime": "Stenski nosilec za TV",
      "vrsta": "VESA razmak kot na televizorju; nosilnost večja od teže TV; fiksni, nagibni ali vrtljivi.",
      "kolicina": "1 kos",
-     "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža."
+     "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža.",
+     "kje_kupiti": []
     },
     {
      "ime": "Vložki in vijaki za steno",
      "vrsta": "Glede na steno, glejte tabelo spodaj.",
      "kolicina": "Toliko, kolikor ima nosilec lukenj za steno (običajno 4–6).",
-     "opomba": "Priloženi vložki so večinoma za beton."
+     "opomba": "Priloženi vložki so večinoma za beton.",
+     "kje_kupiti": []
     },
     {
      "ime": "Kabelski kanal (neobvezno)",
      "vrsta": "Samolepilni ali za privijanje, bel ali takšen, ki se ga da prepleskati.",
      "kolicina": "Dolžina od televizorja do omarice ali vtičnice.",
-     "opomba": "Nove vtičnice za televizorjem mora narediti električar."
+     "opomba": "Nove vtičnice za televizorjem mora narediti električar.",
+     "kje_kupiti": []
     },
     {
      "ime": "HDMI in antenski kabel (neobvezno)",
      "vrsta": "Dovolj dolga, pri vrtljivem nosilcu z rezervo za premikanje.",
      "kolicina": "Po potrebi.",
-     "opomba": ""
+     "opomba": "",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -131,31 +137,36 @@
      "ime": "Laminat",
      "vrsta": "Razred 31 (AC3) za spalnice, 32 (AC4) za hodnik, kuhinjo in dnevno sobo. Pri talnem ogrevanju mora biti označen kot primeren.",
      "kolicina": "Površina sobe + 5–10 % (diagonalno okoli 15 %). Zaokrožite navzgor na cele pakete.",
-     "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku."
+     "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku.",
+     "kje_kupiti": []
     },
     {
      "ime": "Podloga za laminat",
      "vrsta": "Podloga, ki duši korake. Na betonu ali estrihu z vgrajeno zaporo proti vlagi ali dodatno PE folijo 0,2 mm.",
      "kolicina": "Enako kot površina sobe.",
-     "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še."
+     "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še.",
+     "kje_kupiti": []
     },
     {
      "ime": "PE folija proti vlagi (po potrebi)",
      "vrsta": "Polietilenska folija debeline vsaj 0,2 mm.",
      "kolicina": "Površina sobe + približno 10 % za prekrivanje stikov.",
-     "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore."
+     "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore.",
+     "kje_kupiti": []
     },
     {
      "ime": "Talne letve",
      "vrsta": "V barvi laminata ali bele; s sponkami ali za lepljenje.",
      "kolicina": "Obseg sobe brez vrat + 10 %.",
-     "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej."
+     "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej.",
+     "kje_kupiti": []
     },
     {
      "ime": "Prehodni profili",
      "vrsta": "Za prehod na ploščice ali drugo oblogo in za zaključek pri vratih.",
      "kolicina": "Po en profil za vsak prehod, dolg kot širina vrat.",
-     "opomba": ""
+     "opomba": "",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -186,19 +197,22 @@
      "ime": "Fugirna masa",
      "vrsta": "Cementna (za stene in tla, pri talnem ogrevanju fleksibilna) ali epoksi (za tuš in pult).",
      "kolicina": "Po tabeli na embalaži; npr. 30 × 30 cm in fuga 5 mm ≈ 0,6 kg/m². Pri obnovi, ko fugo odstranim le delno, gre manj.",
-     "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom."
+     "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom.",
+     "kje_kupiti": []
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "S protiglivičnim dodatkom, v barvi fug.",
      "kolicina": "1 kartuša za kote in stike ene kopalnice.",
-     "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso."
+     "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso.",
+     "kje_kupiti": []
     },
     {
      "ime": "Rezervna ploščica (po potrebi)",
      "vrsta": "Če je kakšna ploščica počena in jo želite zamenjati.",
      "kolicina": "Po kosih.",
-     "opomba": "Če nimate ostankov, mi pošljite fotografijo, da poiščeva podobno."
+     "opomba": "Če nimate ostankov, mi pošljite fotografijo, da poiščeva podobno.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -229,25 +243,29 @@
      "ime": "Barva za stene in strop",
      "vrsta": "Notranja disperzijska; pralna za kuhinjo, hodnik in otroško sobo.",
      "kolicina": "Površina sten in stropa, deljena z izdatnostjo z embalaže (pogosto okoli 5 m²/l za dva sloja).",
-     "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj."
+     "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj.",
+     "kje_kupiti": []
     },
     {
      "ime": "Kit za stene",
      "vrsta": "Za zapolnjevanje lukenj in razpok ter glajenje.",
      "kolicina": "Za posamezne luknje majhno pakiranje; za glajenje cele stene vprašajte mene.",
-     "opomba": ""
+     "opomba": "",
+     "kje_kupiti": []
     },
     {
      "ime": "Akrilni kit",
      "vrsta": "Prepleskljiv, za razpoke v kotih in ob podbojih.",
      "kolicina": "1 kartuša za sobo.",
-     "opomba": "Ne kupite silikona: barva se ga ne prime."
+     "opomba": "Ne kupite silikona: barva se ga ne prime.",
+     "kje_kupiti": []
     },
     {
      "ime": "Osnovni premaz (po potrebi)",
      "vrsta": "Globinski ali osnovni premaz za vpojne podlage.",
      "kolicina": "Po izdatnosti z embalaže.",
-     "opomba": "Kdaj je potreben, vam povem po fotografiji."
+     "opomba": "Kdaj je potreben, vam povem po fotografiji.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -278,37 +296,43 @@
      "ime": "Ploščice",
      "vrsta": "Za tla z oznako za talne ploščice; za kopalnico protizdrsne.",
      "kolicina": "Površina + 10 % (velike ali diagonalno + 15 %), zaokroženo na cele škatle.",
-     "opomba": "Serija in kaliber morata biti na vseh škatlah enaka."
+     "opomba": "Serija in kaliber morata biti na vseh škatlah enaka.",
+     "kje_kupiti": []
     },
     {
      "ime": "Lepilo za ploščice",
      "vrsta": "C1 za manjše stenske ploščice; C2 S1 (fleksibilno) za velike ploščice, talno ogrevanje in ploščice na ploščice.",
      "kolicina": "Približno 3–6 kg/m² glede na velikost zob lopatice; večje ploščice porabijo več.",
-     "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči."
+     "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči.",
+     "kje_kupiti": []
     },
     {
      "ime": "Fugirna masa",
      "vrsta": "Cementna ali epoksi, v izbrani barvi.",
      "kolicina": "Po tabeli na embalaži.",
-     "opomba": "Več na seznamu za obnovo fug."
+     "opomba": "Več na seznamu za obnovo fug.",
+     "kje_kupiti": []
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "V barvi fug.",
      "kolicina": "1–2 kartuši za kopalnico.",
-     "opomba": "Za kote in stik s kadjo ali tušem."
+     "opomba": "Za kote in stik s kadjo ali tušem.",
+     "kje_kupiti": []
     },
     {
      "ime": "Zaključni profili (po potrebi)",
      "vrsta": "Za vidne robove in zunanje vogale, v barvi ali kovinski.",
      "kolicina": "Dolžina vseh vidnih robov.",
-     "opomba": ""
+     "opomba": "",
+     "kje_kupiti": []
     },
     {
      "ime": "Osnovni premaz (po potrebi)",
      "vrsta": "Za vpojne podlage ali kontaktni premaz za ploščice na ploščice.",
      "kolicina": "Po izdatnosti z embalaže.",
-     "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji."
+     "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -339,19 +363,22 @@
      "ime": "Polica ali omarica",
      "vrsta": "S priloženimi nosilci ali obešali.",
      "kolicina": "Po izbiri.",
-     "opomba": "Preverite, ali je nosilec za steno priložen."
+     "opomba": "Preverite, ali je nosilec za steno priložen.",
+     "kje_kupiti": []
     },
     {
      "ime": "Kovinski votlinski vložki",
      "vrsta": "Za mavčne plošče; dolžina glede na debelino stene (enojna ali dvojna plošča).",
      "kolicina": "Toliko, kolikor je lukenj v nosilcih, običajno 2–4 na element.",
-     "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka."
+     "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka.",
+     "kje_kupiti": []
     },
     {
      "ime": "Vijaki za profile (po potrebi)",
      "vrsta": "Vijaki za pločevino ali za suho gradnjo.",
      "kolicina": "Po nosilcu.",
-     "opomba": "Kadar pritrdim v kovinske profile."
+     "opomba": "Kadar pritrdim v kovinske profile.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -397,31 +424,36 @@
      "ime": "Ogledalo, omarica, police, držala",
      "vrsta": "Z nosilci in navodili za montažo.",
      "kolicina": "Po izbiri.",
-     "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar."
+     "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar.",
+     "kje_kupiti": []
     },
     {
      "ime": "Vijaki in vložki",
      "vrsta": "Iz nerjavnega materiala; za vašo steno (beton, opeka ali mavčna plošča).",
      "kolicina": "Po nosilcih.",
-     "opomba": "Priloženi so pogosto le za polno steno."
+     "opomba": "Priloženi so pogosto le za polno steno.",
+     "kje_kupiti": []
     },
     {
      "ime": "WC deska",
      "vrsta": "Po meri školjke: dolžina, širina in razmak lukenj.",
      "kolicina": "1 kos",
-     "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom."
+     "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom.",
+     "kje_kupiti": []
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "S protiglivičnim dodatkom, prozoren ali bel.",
      "kolicina": "1 kartuša.",
-     "opomba": "Za tuš steno in tesnjenje v tušu."
+     "opomba": "Za tuš steno in tesnjenje v tušu.",
+     "kje_kupiti": []
     },
     {
      "ime": "Oprijemala za starejše (po potrebi)",
      "vrsta": "Označena za oporo, z navedeno nosilnostjo.",
      "kolicina": "Po potrebi.",
-     "opomba": "Na mavčno steno samo v profile ali na ojačitev."
+     "opomba": "Na mavčno steno samo v profile ali na ojačitev.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -452,25 +484,29 @@
      "ime": "Dovodna cev (če je priložena prekratka)",
      "vrsta": "Za pralni stroj, s priključkom 3/4 cole na obeh koncih.",
      "kolicina": "1 kos, dolžina od ventila do stroja z nekaj rezerve.",
-     "opomba": "Cev ne sme biti napeta ali prepognjena."
+     "opomba": "Cev ne sme biti napeta ali prepognjena.",
+     "kje_kupiti": []
     },
     {
      "ime": "Podaljšek odtočne cevi (po potrebi)",
      "vrsta": "Podaljšek z vezno spojko in objemkami.",
      "kolicina": "1 komplet, dolžina do odtoka.",
-     "opomba": "Predolga odtočna cev otežuje črpanje. Vzemite le toliko, kot je treba."
+     "opomba": "Predolga odtočna cev otežuje črpanje. Vzemite le toliko, kot je treba.",
+     "kje_kupiti": []
     },
     {
      "ime": "Aquastop (po želji)",
      "vrsta": "Varovalo, ki zapre vodo, če cev pušča.",
      "kolicina": "1 kos",
-     "opomba": "Veliko novejših strojev ga že ima vgrajenega."
+     "opomba": "Veliko novejših strojev ga že ima vgrajenega.",
+     "kje_kupiti": []
     },
     {
      "ime": "Podloge proti tresljajem (po želji)",
      "vrsta": "Gumijaste podloge pod nogice stroja.",
      "kolicina": "1 komplet (4 kosi)",
-     "opomba": "Pomagajo na lesenih tleh in pri hrupnem ožemanju."
+     "opomba": "Pomagajo na lesenih tleh in pri hrupnem ožemanju.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -499,13 +535,15 @@
      "ime": "Cilinder ključavnice",
      "vrsta": "Eurocilinder, ki ustreza vratom; za vhodna vrata z varnostnim razredom in zaščito pred vlomom.",
      "kolicina": "1 kos z mero A/B, npr. 30/35 mm.",
-     "opomba": "Pritrdilni vijak je običajno priložen."
+     "opomba": "Pritrdilni vijak je običajno priložen.",
+     "kje_kupiti": []
     },
     {
      "ime": "Dodatni ključi (po želji)",
      "vrsta": "Ob nakupu povejte, koliko ključev potrebujete.",
      "kolicina": "Po potrebi.",
-     "opomba": "Več vrat z enakim ključem: vprašajte za istozapirne cilindre."
+     "opomba": "Več vrat z enakim ključem: vprašajte za istozapirne cilindre.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [
@@ -549,25 +587,29 @@
      "ime": "Garnišna (drog ali tirnica)",
      "vrsta": "Stenska ali stropna, eno- ali dvotirna (za zaveso in zastor).",
      "kolicina": "Širina okna + 15–20 cm na vsaki strani.",
-     "opomba": "Pri nakupu po meri povejte točno dolžino."
+     "opomba": "Pri nakupu po meri povejte točno dolžino.",
+     "kje_kupiti": []
     },
     {
      "ime": "Nosilci",
      "vrsta": "Pogosto priloženi; pri dolgih garnišnah tudi srednji.",
      "kolicina": "Najmanj 2, pri dolgih 3 ali več.",
-     "opomba": "Preverite, kaj je v kompletu."
+     "opomba": "Preverite, kaj je v kompletu.",
+     "kje_kupiti": []
     },
     {
      "ime": "Vložki in vijaki",
      "vrsta": "Za vašo steno ali strop (beton, opeka, mavčna plošča).",
      "kolicina": "Po nosilcih.",
-     "opomba": "Če ne veste, kakšna je stena, jih kupim na poti k vam."
+     "opomba": "Če ne veste, kakšna je stena, jih kupim na poti k vam.",
+     "kje_kupiti": []
     },
     {
      "ime": "Obročki ali drsniki",
      "vrsta": "Za drog obročki, za tirnico drsniki.",
      "kolicina": "Približno 8–10 na meter zavese.",
-     "opomba": "Pogosto priloženi."
+     "opomba": "Pogosto priloženi.",
+     "kje_kupiti": []
     }
    ],
    "prinese_mojster": [

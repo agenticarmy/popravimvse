@@ -154,6 +154,10 @@ def video_ld(v, page_url):
     return out
 
 
+IMG_LICENSE = {'copyrightNotice': '© Sebastjan Stjepanović', 'license': SITE + '/zasebnost/#fotografije',
+               'acquireLicensePage': SITE + '/kontakt/'}
+
+
 def images_ld():
     out = []
     for sl in _used:
@@ -161,7 +165,8 @@ def images_ld():
         out.append({'@type': 'ImageObject', '@id': f'{SITE}{img_url(sl, 1600)}#slika', 'contentUrl': SITE + img_url(sl, 1600),
                     'thumbnailUrl': SITE + img_url(sl, 480), 'width': m['sizes']['1600'][0], 'height': m['sizes']['1600'][1],
                     'caption': re.sub(r'<[^>]+>', '', ph['cap']), 'description': ph['alt'], 'dateCreated': m['date'],
-                    'creator': {'@id': PERSON_ID}, 'copyrightHolder': {'@id': PERSON_ID}, 'creditText': PERSON['name']})
+                    'creator': {'@id': PERSON_ID}, 'copyrightHolder': {'@id': PERSON_ID}, 'creditText': PERSON['name'],
+                    **IMG_LICENSE})
     return out
 
 S = 'fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"'
@@ -225,7 +230,8 @@ def person_ld():
         'jobTitle': PERSON['job'],
         'description': PERSON['bio'] + ' Po izobrazbi univerzitetni diplomirani ekonomist.',
         'url': SITE + '/o-meni/',
-        'image': {'@type': 'ImageObject', 'url': PORTRAIT_URL, 'width': 810, 'height': 1012, 'caption': PORTRAIT['alt']},
+        'image': {'@type': 'ImageObject', 'url': PORTRAIT_URL, 'contentUrl': PORTRAIT_URL, 'width': 810, 'height': 1012, 'caption': PORTRAIT['alt'],
+                  'creator': {'@id': PERSON_ID}, 'copyrightHolder': {'@id': PERSON_ID}, 'creditText': PERSON['name'], **IMG_LICENSE},
         'worksFor': {'@id': BIZ_ID},
         'knowsAbout': [s[1] for s in SERVICES] + ['Hišna popravila', 'Vzdrževanje stanovanj in hiš'],
         'knowsLanguage': ['sl', 'de'],

@@ -7,7 +7,10 @@ Postopek:
 1. Uredi `content/*.html` (JSON glava: title ≤ 65 znakov, description 70–160 znakov, h1, lead, crumb) ali `build.py`.
 2. Nova poslovna dejstva (cena, plačilo, publika, območje) vnesi povsod: vsebina, FAQ (`<details>` → FAQPage), JSON-LD v `build.py` (business_ld, hour_price, Service), `llms.txt` (Ključna dejstva). Brez protislovij med stranmi.
 3. `python3 build.py`, nato preveri: vsi JSON-LD bloki se parsajo, dolžine meta, sitemap, 301 v `root/.htaccess` za odstranjene strani.
-4. Commit + push; objava v cPanelu: Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit (`.cpanel.yml` kopira `public/` v `public_html`). Preveri živo stran.
+4. Commit + push. Objava je samodejna: cron v cPanelu vsakih 10 minut naredi `git pull` z GitHuba (main) in, če je kaj novega,
+   Deploy (`.cpanel.yml` kopira `public/` v `public_html`); dnevnik `/home/igvzfmyz/deploy.log`. Vse na `main` gre torej v živo v ≤ 10 min,
+   zato spremembe strani pripravi na ločeni veji in jih na `main` prenesi šele, ko Sebastjan reče »objavi«. Po objavi preveri živo stran.
+   Ročno (če cron ne dela): Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit.
 
 Vsebinska pravila:
 - Preprost jezik, kratki citabilni stavki, konkretni primeri in številke. Ne izmišljuj dejstev.

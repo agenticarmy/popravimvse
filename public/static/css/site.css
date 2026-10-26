@@ -579,3 +579,12 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .pv-thumb.bad .pv-st { color: #8E1B10; font-weight: 600; }
 .pv-thumb .pv-rm { position: static; flex: none; width: 44px; height: 44px; border: 2px solid var(--ink-soft); background: #fff; color: var(--ink); font-size: 1.5rem; border-radius: 50%; }
 .pv-thumbs + .pv-hint { margin-top: 1rem; }
+
+/* video (YouTube) in poglavja */
+.video { margin: 0 0 1.2em; max-width: var(--measure); }
+.video-frame { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border: 5px solid var(--grout); border-radius: 2px; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video figcaption { font-size: .9rem; color: var(--ink-soft); padding-top: .45rem; }
+.chapters { list-style: none; padding: 0; columns: 2 18rem; column-gap: 2rem; }
+.chapters li { break-inside: avoid; margin: 0 0 .35rem; display: grid; grid-template-columns: 3.4em minmax(0, 1fr); }
+.chapters time { font-variant-numeric: tabular-nums; font-weight: 700; }

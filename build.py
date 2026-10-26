@@ -63,7 +63,8 @@ AREAS = [
 ]
 OTHER = [('cenik', 'Cenik'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost')]
 FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
-REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda')]
+REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda'),
+        ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete')]
 NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
 
 PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
@@ -113,6 +114,44 @@ def expand(body):
     body = re.sub(r'\{\{GALERIJA:([\w-]+)\}\}', lambda m: gallery(m.group(1)), body)
     body = re.sub(r'\{\{FOTO:([\w-]+)\}\}', lambda m: figure(m.group(1), '(max-width: 640px) 100vw, 420px', 'ph ph-single'), body)
     return body.replace('{{PORTRET}}', portrait())
+
+
+def yt_time(sec):
+    return f'{sec // 60}:{sec % 60:02d}'
+
+
+def video_html(v):
+    """YouTube video (youtube-nocookie) in seznam poglavij s povezavami na čas v videu."""
+    if not v or not v.get('youtube_id'):
+        return ''
+    vid = v['youtube_id']
+    chap = ''.join(f'<li><a href="https://www.youtube.com/watch?v={vid}&amp;t={c[0]}s" target="_blank" rel="noopener">'
+                   f'<time>{yt_time(c[0])}</time></a> {esc(c[1])}</li>' for c in v.get('chapters', []))
+    return (f'<figure class="video"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
+            f'title="{esc(v["name"])}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            f'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+            f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])}). <a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener">Odpri na YouTubu</a></figcaption></figure>'
+            + (f'<h3>Vsebina videa</h3><ol class="chapters">{chap}</ol>' if chap else ''))
+
+
+def video_ld(v, page_url):
+    if not v or not v.get('youtube_id'):
+        return None
+    vid = v['youtube_id']
+    watch = f'https://www.youtube.com/watch?v={vid}'
+    out = {'@type': 'VideoObject', '@id': page_url + '#video', 'name': v['name'], 'description': v['description'],
+           'thumbnailUrl': [f'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg', f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg'],
+           'uploadDate': v['upload_date'], 'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S',
+           'embedUrl': f'https://www.youtube-nocookie.com/embed/{vid}', 'url': watch, 'inLanguage': 'sl-SI',
+           'creator': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID}}
+    if v.get('transcript'):
+        out['transcript'] = v['transcript']
+    ch = v.get('chapters', [])
+    if ch:
+        out['hasPart'] = [{'@type': 'Clip', 'name': c[1], 'startOffset': c[0],
+                           'endOffset': ch[i + 1][0] if i + 1 < len(ch) else v['seconds'], 'url': f'{watch}&t={c[0]}s'}
+                          for i, c in enumerate(ch)]
+    return out
 
 
 def images_ld():
@@ -417,7 +456,7 @@ def buy_box(slug):
 
 
 def inner(meta, body, slug, crumbs):
-    body = expand(body)
+    body = expand(body).replace('{{VIDEO}}', video_html(meta.get('video')))
     if meta.get('kind') == 'service':
         box = buy_box(slug)
         if box:
@@ -446,7 +485,7 @@ def inner(meta, body, slug, crumbs):
     for i, (h, t) in enumerate(crumbs, 2):
         items.append({'@type': 'ListItem', 'position': i, 'name': t, 'item': SITE + h})
     items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': meta['crumb'], 'item': f'{SITE}/{slug}/'})
-    ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body)]
+    ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body), video_ld(meta.get('video'), f'{SITE}/{slug}/')]
     if meta.get('kind') == 'article':
         ld.append({'@type': 'Article', '@id': f'{SITE}/{slug}/#clanek', 'headline': meta['h1'], 'description': meta['description'],
                    'inLanguage': 'sl-SI', 'author': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID},
@@ -454,6 +493,8 @@ def inner(meta, body, slug, crumbs):
                    'about': [{'@type': 'Service', 'name': dict((x[0], x[1]) for x in SERVICES)[sl], 'url': f'{SITE}/{sl}/',
                               'provider': {'@id': BIZ_ID}} for sl in meta.get('about', [])],
                    'image': [SITE + img_url(sl, 1600) for sl in _used]})
+        if video_ld(meta.get('video'), ''):
+            ld[-1]['video'] = {'@id': f'{SITE}/{slug}/#video'}
     if meta.get('kind') == 'service':
         ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],
                    'description': meta['description'], 'url': f'{SITE}/{slug}/',
@@ -614,6 +655,7 @@ def llms_txt(urls):
 ## Reference
 - [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
+- [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video (16 min) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 {lists_llms()}## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna

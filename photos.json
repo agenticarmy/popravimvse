@@ -144,6 +144,22 @@
   "laminat-zakljucna-letev": {
    "alt": "Laminat z zaključno letvijo ob steni, ob njej meter",
    "cap": "Laminat in zaključna letev."
+  },
+  "kanaleta-smradna-zapora-pred": {
+   "alt": "Siva smradna zapora v odprti tuš kanaleti, ki ni do konca potisnjena na odtok; stene kanalete z oblogami",
+   "cap": "Pred: smradna zapora ni bila do konca potisnjena na odtok, zato ni tesnila in voda je odtekla."
+  },
+  "kanaleta-odtok-brez-smradne-zapore": {
+   "alt": "Odprta tuš kanaleta z odstranjeno smradno zaporo, prst v rokavici na odprtini odtoka, na dnu obloge",
+   "cap": "Pred: smradna zapora je ven, na dnu kanalete so obloge. Tu je iz kanalizacije prihajal smrad."
+  },
+  "smradna-zapora-tesnilo-s-teflonom": {
+   "alt": "Očiščena siva smradna zapora za tuš kanaleto z gumijastim tesnilom, ovitim s teflonskim trakom",
+   "cap": "Po: smradno zaporo sem očistil, tesnilo pa ovil s teflonskim trakom, da se na odtok tesno prilega."
+  },
+  "kanaleta-smradna-zapora-namescena": {
+   "alt": "Smradna zapora, do konca potisnjena na odtok v očiščeni tuš kanaleti",
+   "cap": "Po: smradna zapora je do konca potisnjena na odtok in spet zadrži vodo, ki zapira pot smradu."
   }
  },
  "galleries": {
@@ -188,7 +204,8 @@
   ],
   "odtoki": [
    "staro-korito-odtok",
-   "kanalizacijske-cevi"
+   "kanalizacijske-cevi",
+   "kanaleta-smradna-zapora-namescena"
   ],
   "vrata": [
    "montaza-podboja-vrat",
@@ -217,6 +234,14 @@
   ],
   "modem": [
    "priklop-modema"
+  ],
+  "kanaleta-pred": [
+   "kanaleta-smradna-zapora-pred",
+   "kanaleta-odtok-brez-smradne-zapore"
+  ],
+  "kanaleta-po": [
+   "smradna-zapora-tesnilo-s-teflonom",
+   "kanaleta-smradna-zapora-namescena"
   ]
  }
 }

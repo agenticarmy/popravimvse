@@ -65,6 +65,9 @@ Material kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: https://poprav
 - [Kaj kupiti za polaganje ploščic](https://popravimvse.si/kaj-kupiti/polaganje-ploscic/): Koliko ploščic in lepila kupiti, katero lepilo za velike ploščice in talno ogrevanje ter kateri profili in fuge so potrebni. Seznam hišnega mojstra.
 - [Kaj kupiti za polico ali omarico na mavčno steno](https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/): Katere vložke kupiti za polico ali visečo omarico na mavčni (knauf) steni, koliko nosijo in kdaj je treba v profile. Seznam hišnega mojstra.
 - [Kaj kupiti za montažo kopalniške opreme](https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/): Kaj kupiti za ogledalo, omarico, police in držala v kopalnici, kako izmeriti WC desko in kdaj ne vrtati v ploščice. Seznam hišnega mojstra.
+- [Kaj kupiti za priklop pralnega stroja](https://popravimvse.si/kaj-kupiti/priklop-pralnega-stroja/): Katero dovodno in odtočno cev kupiti, kdaj potrebujete podaljšek ali Aquastop in kaj preveriti pred priklopom pralnega stroja. Seznam hišnega mojstra.
+- [Kaj kupiti za menjavo cilindra ključavnice](https://popravimvse.si/kaj-kupiti/menjava-cilindra-kljucavnice/): Kako izmeriti cilinder ključavnice, koliko sme štrleti iz vrat in kaj pomenita funkcija v sili in varnostni razred. Seznam hišnega mojstra.
+- [Kaj kupiti za montažo garnišne](https://popravimvse.si/kaj-kupiti/montaza-garnisne/): Kako dolgo garnišno kupiti, kako visoko jo namestiti, stenska ali stropna montaža in kateri vložki so potrebni. Seznam hišnega mojstra.
 
 ## Ostalo
 - [Cenik](https://popravimvse.si/cenik/): urna postavka in kako se obračuna

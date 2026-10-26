@@ -20,14 +20,46 @@
      "vrsta": "S protiglivičnim (fungicidnim) dodatkom, označen za kopalnice, tuše in kuhinje.",
      "kolicina": "1 kartuša 300–310 ml na približno 12 m stika 5 × 5 mm; pri širšem stiku 10 × 10 mm le približno 3 m.",
      "opomba": "Akrilni kit ali gradbeni silikon za tuš ni primeren.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Sanitarni silikon (Bela, 300 ml) – BAUHAUS (Turbo)",
+       "url": "https://www.bauhaus.si/silikon/sanitarni-silikon/p/26268877",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "OBI sanitarni silikon Bel 310 ml",
+       "url": "https://www.obi.si/p/obi-sanitarni-silikon-bel-310-ml-167412",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ACETATNI SILIKON SIKA SANISIL BEL 300ML",
+       "url": "https://www.merkur.si/sanitarni-silikon-sika-sanisil-bel-300ml/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Silikon za naravni kamen (samo ob kamnu)",
      "vrsta": "Nevtralno zamrežen silikon, na embalaži označen za naravni kamen.",
      "kolicina": "Enako kot sanitarni silikon.",
      "opomba": "Navaden silikon lahko na marmorju ali granitu pusti madeže ob robu.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Mapei Univerzalni silikon Mapesil LM 999 (Prozorna, 310 ml, kartuša)",
+       "url": "https://www.bauhaus.si/silikon/mapei-univerzalni-silikon-mapesil-lm-999/p/26401821",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "SILIKONSKA TESNILNA MASA MAPEI MAPESIL LM 100 BELA 310 ML",
+       "url": "https://www.merkur.si/silikonska-tesnilna-masa-mapei-mapesil-lm-100-bela-310-ml/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -59,28 +91,104 @@
      "vrsta": "VESA razmak kot na televizorju; nosilnost večja od teže TV; fiksni, nagibni ali vrtljivi.",
      "kolicina": "1 kos",
      "opomba": "Ne izbirajte samo po palcih zaslona. Odločata VESA razmak in teža.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Stenski nosilci za TV",
+       "url": "https://www.bauhaus.si/stenski-tv-nosilci/c/10002613",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Stenski nosilci za TV",
+       "url": "https://www.obi.si/c/tehnika-876/varnost-in-hisna-tehnika-891/avdio-in-video-981/video-oprema-1546",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Stenski nosilci za TV",
+       "url": "https://www.merkur.si/televizorji-in-avdio/avdio-video-dodatki/tv-nosilci/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Vložki in vijaki za steno",
      "vrsta": "Glede na steno, glejte tabelo spodaj.",
      "kolicina": "Toliko, kolikor ima nosilec lukenj za steno (običajno 4–6).",
      "opomba": "Priloženi vložki so večinoma za beton.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Stabilit Set univerzalnih moznikov z ovratnikom (6 x 50 mm, 10 kos, z vijaki)",
+       "url": "https://www.bauhaus.si/univerzalni-zidni-vlozki/stabilit-set-univerzalnih-moznikov-z-ovratnikom/p/23511554",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "LUX-TOOLS Večnamenski zidni vložek z vijakom Ø 6 mm x 33 mm 50 kosov",
+       "url": "https://www.obi.si/p/lux-tools-vecnamenski-zidni-vlozek-z-vijakom-oe-6-mm-x-33-mm-50-kosov-991996",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ZIDNI VLOŽEK Z VIJAKOM SET VLOŽKI Z VIJAKI TUVT VL6X30+8X40+V.4.5X40+5X50",
+       "url": "https://www.merkur.si/zidni-vlozek-z-vijakom-set-vlozki-z-vijaki-tuvt-vl6x30-8x40-v-4-5x40-5x50/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Kabelski kanal (neobvezno)",
      "vrsta": "Samolepilni ali za privijanje, bel ali takšen, ki se ga da prepleskati.",
      "kolicina": "Dolžina od televizorja do omarice ali vtičnice.",
      "opomba": "Nove vtičnice za televizorjem mora narediti električar.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Mini kabelski kanal (2 m x 15 mm x 10 mm, bela)",
+       "url": "https://www.bauhaus.si/kabelski-kanali/mini-kabelski-kanal/p/23111325",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Kabelski kanal 15 mm x 10 mm bel 2 m",
+       "url": "https://www.obi.si/p/kabelski-kanal-15-mm-x-10-mm-bel-2-m-980606",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "PVC KANAL NIK-1S 15X17 2M BELI SAMOLEPILNI",
+       "url": "https://www.merkur.si/pvc-kanal-nik-1s-15x17-2m-beli-samolepilni/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "HDMI in antenski kabel (neobvezno)",
      "vrsta": "Dovolj dolga, pri vrtljivem nosilcu z rezervo za premikanje.",
      "kolicina": "Po potrebi.",
      "opomba": "",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Schwaiger HDMI-kabel (2 m, črn, 18 Gbit/s)",
+       "url": "https://www.bauhaus.si/hdmi-kabli/schwaiger-hdmi-kabel/p/20699734",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Priključni HDMI-kabel 2 m pozlačen Črne barve HDMI0200 043 (Schwaiger)",
+       "url": "https://www.obi.si/p/prikljucni-hdmi-kabel-2-m-pozlacen-crne-barve-hdmi0200-043-923699",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "POVEZOVALNI KABEL MOYE CONNECT HDMI 2.0 4K 2M",
+       "url": "https://www.merkur.si/povezovalni-kabel-moye-connect-hdmi-2-0-4k-2m/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -138,35 +246,124 @@
      "vrsta": "Razred 31 (AC3) za spalnice, 32 (AC4) za hodnik, kuhinjo in dnevno sobo. Pri talnem ogrevanju mora biti označen kot primeren.",
      "kolicina": "Površina sobe + 5–10 % (diagonalno okoli 15 %). Zaokrožite navzgor na cele pakete.",
      "opomba": "Vse pakete kupite iz iste serije, da ni razlik v odtenku.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Laminat",
+       "url": "https://www.bauhaus.si/laminat/c/10000478",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Laminat",
+       "url": "https://www.obi.si/c/talne-obloge-201/laminat-parket-in-vinilne-talne-obloge-893/laminat-514",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Laminat",
+       "url": "https://www.merkur.si/gradnja/stenske-in-talne-obloge/laminati/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Podloga za laminat",
      "vrsta": "Podloga, ki duši korake. Na betonu ali estrihu z vgrajeno zaporo proti vlagi ali dodatno PE folijo 0,2 mm.",
      "kolicina": "Enako kot površina sobe.",
      "opomba": "Nekateri laminati imajo podlogo že nalepljeno. Takrat je ne kupujte, folijo proti vlagi pa po potrebi še.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Podložna podloga Selitac (10,63 m², 3 mm)",
+       "url": "https://www.bauhaus.si/talna-zvocna-izolacija-in-podloge/podlozna-podloga-selitac/p/23610460",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Parketna in laminatna podloga Selitflex 3 mm 10 m² z Aquastop",
+       "url": "https://www.obi.si/p/parketna-in-laminatna-podloga-selitflex-3-mm-10-m2-z-aquastop-923710",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "PODLOGA IZ UM. MATERIALA ISOFLEX INTEGRA BASE 3 MM SMART XPS/PET 1.18X5.1M (6 M2)",
+       "url": "https://www.merkur.si/podloga-iz-um-materiala-floorexperts-integra-base-3-mm-smart-xps-pet-1-18x5-1m-6-m2/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "PE folija proti vlagi (po potrebi)",
      "vrsta": "Polietilenska folija debeline vsaj 0,2 mm.",
      "kolicina": "Površina sobe + približno 10 % za prekrivanje stikov.",
      "opomba": "Samo na betonu ali estrihu in samo, če podloga nima vgrajene zapore.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Probau Gradbena folija (25 m x 2 m x 0,2 mm, polietilen, transluzentna)",
+       "url": "https://www.bauhaus.si/gradbene-folije/probau-gradbena-folija/p/13862355",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "PE FOLIJA PLASTA GRAD.FOLIJA TIP 200 100M2 4X25M 100% RECIKLI.(RPE)",
+       "url": "https://www.merkur.si/pe-folija-plasta-grad-folija-tip-200-100m2-4x25m-100-recikli-rpe/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Talne letve",
      "vrsta": "V barvi laminata ali bele; s sponkami ali za lepljenje.",
      "kolicina": "Obseg sobe brez vrat + 10 %.",
      "opomba": "Preverite, ali so sponke in kotniki priloženi ali jih je treba kupiti posebej.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Talne letve (za laminat)",
+       "url": "https://www.bauhaus.si/talne-letve/c/10001972",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Talne letve (za laminat)",
+       "url": "https://www.obi.si/c/bivanje-874/zakljucne-letve-4842",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Talne letve (za laminat)",
+       "url": "https://www.merkur.si/gradnja/stenske-in-talne-obloge/dodatki-za-talne-obloge/zakljucne-letve/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Prehodni profili",
      "vrsta": "Za prehod na ploščice ali drugo oblogo in za zaključek pri vratih.",
      "kolicina": "Po en profil za vsak prehod, dolg kot širina vrat.",
      "opomba": "",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Prehodni profili za tla",
+       "url": "https://www.bauhaus.si/prehodni-profili/c/10000487",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Prehodni profili za tla",
+       "url": "https://www.obi.si/c/tehnika-876/zeleznina-in-okovje-887/profili-in-plocevina-1876/profili-1877",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Prehodni profili za tla",
+       "url": "https://www.merkur.si/gradnja/stenske-in-talne-obloge/dodatki-za-talne-obloge/alu-profili-za-talne-obloge/",
+       "vrsta": "kategorija"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -198,14 +395,52 @@
      "vrsta": "Cementna (za stene in tla, pri talnem ogrevanju fleksibilna) ali epoksi (za tuš in pult).",
      "kolicina": "Po tabeli na embalaži; npr. 30 × 30 cm in fuga 5 mm ≈ 0,6 kg/m². Pri obnovi, ko fugo odstranim le delno, gre manj.",
      "opomba": "Epoksi masa je bolj odporna, a dražja in zahtevnejša za vgradnjo. Odločiva se pred nakupom.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Fugirna masa Murexin FM 60 Flex (4 kg, siva)",
+       "url": "https://www.bauhaus.si/fugirne-mase/fugirna-masa/p/30175570",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Murexin Fugirna masa FM 60 Flex bela 4 kg",
+       "url": "https://www.obi.si/p/murexin-fugirna-masa-fm-60-flex-bela-4-kg-259655",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "FUGIRNA MASA MAPEI ULTRACOLOR PLUS 100 5 KG BELA",
+       "url": "https://www.merkur.si/fugirna-masa-mapei-ultracolor-plus-100-5-kg-bela/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "S protiglivičnim dodatkom, v barvi fug.",
      "kolicina": "1 kartuša za kote in stike ene kopalnice.",
      "opomba": "Kot med steno in tlemi ter stik s kadjo nista za fugirno maso.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Sanitarni silikon (Bela, 300 ml) – BAUHAUS (Turbo)",
+       "url": "https://www.bauhaus.si/silikon/sanitarni-silikon/p/26268877",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "OBI sanitarni silikon Bel 310 ml",
+       "url": "https://www.obi.si/p/obi-sanitarni-silikon-bel-310-ml-167412",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ACETATNI SILIKON SIKA SANISIL BEL 300ML",
+       "url": "https://www.merkur.si/sanitarni-silikon-sika-sanisil-bel-300ml/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Rezervna ploščica (po potrebi)",
@@ -244,28 +479,122 @@
      "vrsta": "Notranja disperzijska; pralna za kuhinjo, hodnik in otroško sobo.",
      "kolicina": "Površina sten in stropa, deljena z izdatnostjo z embalaže (pogosto okoli 5 m²/l za dva sloja).",
      "opomba": "Pri prehodu s temne na svetlo barvo bo morda potreben tretji sloj.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Stenska barva (Mat, 15 l) – notranja disperzijska barva SWINGCOLOR, bela",
+       "url": "https://www.bauhaus.si/disperzijska-bela-barva/stenska-barva/p/22247476",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Sipol Notranja barva bela 15 l",
+       "url": "https://www.obi.si/p/sipol-notranja-barva-bela-15-l-913656",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "NOTRANJA ZIDNA BARVA JUB JUPOL BASIC 15 L",
+       "url": "https://www.merkur.si/notranja-zidna-barva-jub-jupol-basic-15-l/",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Jub Stenska barva Gold Supreme (Mat, 10 l)",
+       "url": "https://www.bauhaus.si/disperzijska-bela-barva/jub-stenska-barva-gold-supreme/p/32436307",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "JUB Vrhunsko pokrivna notranja pralna barva Jupol Gold supreme bela 15 l",
+       "url": "https://www.obi.si/p/jub-vrhunsko-pokrivna-notranja-pralna-barva-jupol-gold-supreme-bela-15-l-341691",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "NOTRANJA ZIDNA BARVA JUB JUPOL GOLD BELI SUPREME 15 L",
+       "url": "https://www.merkur.si/notranja-zidna-barva-jub-jupol-gold-beli-supreme-15-l/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Kit za stene",
      "vrsta": "Za zapolnjevanje lukenj in razpok ter glajenje.",
      "kolicina": "Za posamezne luknje majhno pakiranje; za glajenje cele stene vprašajte mene.",
      "opomba": "",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Knauf Polnilni kit Fugenfit (5 kg)",
+       "url": "https://www.bauhaus.si/kiti-in-fugirne-mase/knauf-polnilni-kit-fugenfit/p/13865400",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "JUB Univerzalna mavčna izravnalna masa Juboglet Universal 4 kg",
+       "url": "https://www.obi.si/p/jub-univerzalna-mavcna-izravnalna-masa-juboglet-universal-4-kg-243953",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "SUHA IZRAVNALNA MASA MUREXIN KEMAGLET FX 4 KG",
+       "url": "https://www.merkur.si/izravnalna-masa-za-steno-kema-kemaglet-fx-4-kg/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Akrilni kit",
      "vrsta": "Prepleskljiv, za razpoke v kotih in ob podbojih.",
      "kolicina": "1 kartuša za sobo.",
      "opomba": "Ne kupite silikona: barva se ga ne prime.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Adaptol Acryl (Bela, 280 ml)",
+       "url": "https://www.bauhaus.si/akrilne-mase/adaptol-acryl/p/30817243",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "TKK Akrilna tesnilna masa Seal Acryl bela 280 ml",
+       "url": "https://www.obi.si/p/tkk-akrilna-tesnilna-masa-seal-acryl-bela-280-ml-286482",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "AKRILNA TESNILNA MASA ZA TESNJENJE GRADBENIH MATERIALOV 280 ML BELA (TKK SEAL)",
+       "url": "https://www.merkur.si/akrilna-tesnilna-masa-za-tesnjenje-gradbenih-materialov-280-ml-bela/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Osnovni premaz (po potrebi)",
      "vrsta": "Globinski ali osnovni premaz za vpojne podlage.",
      "kolicina": "Po izdatnosti z embalaže.",
      "opomba": "Kdaj je potreben, vam povem po fotografiji.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Temeljni premaz SWINGCOLOR (Brezbarvna, 5 l)",
+       "url": "https://www.bauhaus.si/globinski-in-oprijemni-temeljni-premazi/temeljni-premaz/p/25653346",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "JUB Akrilni osnovni premaz in plastifikator Akril Emulzija bela 5 kg",
+       "url": "https://www.obi.si/p/jub-akrilni-osnovni-premaz-in-plastifikator-akril-emulzija-bela-5-kg-598426",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "VEZNI PREDPREMAZ HENKEL ACB CERESIT CT 17 5L PROFI PRIMER - AKRILNA EMULZIJA",
+       "url": "https://www.merkur.si/vezni-predpremaz-henkel-acb-ceresit-ct-17-5l-profi-primer-akrilna-emulzija-3571776/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -297,42 +626,192 @@
      "vrsta": "Za tla z oznako za talne ploščice; za kopalnico protizdrsne.",
      "kolicina": "Površina + 10 % (velike ali diagonalno + 15 %), zaokroženo na cele škatle.",
      "opomba": "Serija in kaliber morata biti na vseh škatlah enaka.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Ploščice (stenske in talne)",
+       "url": "https://www.bauhaus.si/ploscice/c/10000499",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Ploščice (stenske in talne)",
+       "url": "https://www.obi.si/c/gradnja-877/ploscice-308",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Ploščice (stenske in talne)",
+       "url": "https://www.merkur.si/kopalnica/ploscice/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Lepilo za ploščice",
      "vrsta": "C1 za manjše stenske ploščice; C2 S1 (fleksibilno) za velike ploščice, talno ogrevanje in ploščice na ploščice.",
      "kolicina": "Približno 3–6 kg/m² glede na velikost zob lopatice; večje ploščice porabijo več.",
      "opomba": "Navadno lepilo je pogosto primerno le za ploščice do 50 cm dolžine. Preverite na vreči.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Probau Lepilo za ploščice (za notranjo uporabo, 25 kg)",
+       "url": "https://www.bauhaus.si/lepila-za-ploscice/probau-lepilo-za-ploscice/p/21021084",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Lepilo za ploščice 25 kg za notranje in zunanje področje",
+       "url": "https://www.obi.si/p/lepilo-za-ploscice-25-kg-za-notranje-in-zunanje-podrocje-103769",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "LEPILO ZA PLOŠČICE BAUMIT BAUMACOL BASIC 25KG C1",
+       "url": "https://www.merkur.si/lepilo-za-ploscice-baumit-baumacol-basic-25kg-c1/",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Mapei Fleksibilno lepilo Keraflex Maxi S1 Zero (Siva, 25 kg)",
+       "url": "https://www.bauhaus.si/lepila-za-ploscice/mapei-fleksibilno-lepilo-keraflex-maxi-s1-zero/p/31897798",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Murexin 25 kg Fleksibilno lepilo Kemakol Flex 170",
+       "url": "https://www.obi.si/p/murexin-25-kg-fleksibilno-lepilo-kemakol-flex-170-767736",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "LEPILO ZA PLOŠČICE HENKEL ACB CERESIT CM 17 SIV 25 KG C2TES1 - SUPER FLEXIBLE",
+       "url": "https://www.merkur.si/lepilo-za-ploscice-henkel-ceresit-cm-17-25kg-super-flex/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Fugirna masa",
      "vrsta": "Cementna ali epoksi, v izbrani barvi.",
      "kolicina": "Po tabeli na embalaži.",
      "opomba": "Več na seznamu za obnovo fug.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Fugirna masa Murexin FM 60 Flex (4 kg, siva)",
+       "url": "https://www.bauhaus.si/fugirne-mase/fugirna-masa/p/30175570",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Murexin Fugirna masa FM 60 Flex bela 4 kg",
+       "url": "https://www.obi.si/p/murexin-fugirna-masa-fm-60-flex-bela-4-kg-259655",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "FUGIRNA MASA MAPEI ULTRACOLOR PLUS 100 5 KG BELA",
+       "url": "https://www.merkur.si/fugirna-masa-mapei-ultracolor-plus-100-5-kg-bela/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "V barvi fug.",
      "kolicina": "1–2 kartuši za kopalnico.",
      "opomba": "Za kote in stik s kadjo ali tušem.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Sanitarni silikon (Bela, 300 ml) – BAUHAUS (Turbo)",
+       "url": "https://www.bauhaus.si/silikon/sanitarni-silikon/p/26268877",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "OBI sanitarni silikon Bel 310 ml",
+       "url": "https://www.obi.si/p/obi-sanitarni-silikon-bel-310-ml-167412",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ACETATNI SILIKON SIKA SANISIL BEL 300ML",
+       "url": "https://www.merkur.si/sanitarni-silikon-sika-sanisil-bel-300ml/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Zaključni profili (po potrebi)",
      "vrsta": "Za vidne robove in zunanje vogale, v barvi ali kovinski.",
      "kolicina": "Dolžina vseh vidnih robov.",
      "opomba": "",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Zaključni profili za ploščice",
+       "url": "https://www.bauhaus.si/profili-za-ploscice/c/10000833",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Zaključni profili za ploščice",
+       "url": "https://www.obi.si/c/gradnja-877/oprema-za-ploscice-312/letve-za-ploscice-311",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Zaključni profili za ploščice",
+       "url": "https://www.merkur.si/kopalnica/zakljucne-letve-in-krizci/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Osnovni premaz (po potrebi)",
      "vrsta": "Za vpojne podlage ali kontaktni premaz za ploščice na ploščice.",
      "kolicina": "Po izdatnosti z embalaže.",
      "opomba": "Kdaj je potreben, vam povem po ogledu ali fotografiji.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Temeljni premaz SWINGCOLOR (Brezbarvna, 5 l)",
+       "url": "https://www.bauhaus.si/globinski-in-oprijemni-temeljni-premazi/temeljni-premaz/p/25653346",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "JUB Akrilni osnovni premaz in plastifikator Akril Emulzija bela 5 kg",
+       "url": "https://www.obi.si/p/jub-akrilni-osnovni-premaz-in-plastifikator-akril-emulzija-bela-5-kg-598426",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "VEZNI PREDPREMAZ HENKEL ACB CERESIT CT 17 5L PROFI PRIMER - AKRILNA EMULZIJA",
+       "url": "https://www.merkur.si/vezni-predpremaz-henkel-acb-ceresit-ct-17-5l-profi-primer-akrilna-emulzija-3571776/",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Ceresit Kvarčni temeljni premaz CT 19 (5 kg)",
+       "url": "https://www.bauhaus.si/globinski-in-oprijemni-temeljni-premazi/ceresit-kvarcni-temeljni-premaz-ct-19/p/26842411",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Ceresit Kontaktni predpremaz CT19 Super Grip 5 kg",
+       "url": "https://www.obi.si/p/ceresit-kontaktni-predpremaz-ct19-super-grip-5-kg-341970",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "VEZNI PREDPREMAZ HENKEL ACB CERESIT CT 19 5KG - SUPER GRIP",
+       "url": "https://www.merkur.si/vezni-predpremaz-henkel-acb-ceresit-ct-19-5kg-super-grip/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -364,21 +843,78 @@
      "vrsta": "S priloženimi nosilci ali obešali.",
      "kolicina": "Po izbiri.",
      "opomba": "Preverite, ali je nosilec za steno priložen.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Stenske police in nosilci za police",
+       "url": "https://www.bauhaus.si/stenski-regali-in-vodila/c/10000083",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Stenske police in nosilci za police",
+       "url": "https://www.obi.si/c/bivanje-874/gospodinjstvo-884/organizacija-885/regali-in-police-1320",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Stenske police in nosilci za police",
+       "url": "https://www.merkur.si/delavnica/okovje/stavbno-okovje/nosilci-za-police/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Kovinski votlinski vložki",
      "vrsta": "Za mavčne plošče; dolžina glede na debelino stene (enojna ali dvojna plošča).",
      "kolicina": "Toliko, kolikor je lukenj v nosilcih, običajno 2–4 na element.",
      "opomba": "Okvirno do približno 30 kg na vložek pri enojni in 50 kg pri dvojni plošči, odvisno od izdelka.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Fischer Zidni vložek za votle stene HM (8 x 46 mm, M4, 20 kos, z vijaki)",
+       "url": "https://www.bauhaus.si/pritrditev-v-votline/fischer-zidni-vlozek-za-votle-stene-hm/p/22318886",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Fischer Kovinski vložek za votle prostore HM 4 x 46 S B z vijakom (20 kosi)",
+       "url": "https://www.obi.si/p/fischer-kovinski-vlozek-za-votle-prostore-hm-4-x-46-s-b-z-vijakom-20-kosi-445466",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "PREDMONTIRANI ELEMENT FISCHER HM 4X46 S B KOVINSKI VLOŽEK Z VIJ- 4X52",
+       "url": "https://www.merkur.si/predmontirani-element-hm-4x46-s-b-kovinski-vlozek-z-vij-4x52/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Vijaki za profile (po potrebi)",
      "vrsta": "Vijaki za pločevino ali za suho gradnjo.",
      "kolicina": "Po nosilcu.",
      "opomba": "Kadar pritrdim v kovinske profile.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Profi Depot Vijak za hitro gradnjo (3,5 x 25 mm, 200 kos)",
+       "url": "https://www.bauhaus.si/vijaki-za-plocevino-kovino-in-kleparski-vijaki/profi-depot-vijak-za-hitro-gradnjo/p/10804419",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Gix Vijak tip A 3,9 mm x 25 mm 200 kosov",
+       "url": "https://www.obi.si/p/gix-vijak-tip-a-3-9-mm-x-25-mm-200-kosov-519530",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "PRITRDILNI MATERIAL VIJAK TN 25 MM ZAV=200KOM BAUMARKT (Knauf)",
+       "url": "https://www.merkur.si/pritrdilni-material-vijak-tn-25-mm-zav-200kom-baumarkt/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -425,35 +961,130 @@
      "vrsta": "Z nosilci in navodili za montažo.",
      "kolicina": "Po izbiri.",
      "opomba": "Ogledala z lučjo in vtičnice v kopalnici priklopi električar.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Kopalniška ogledala, omarice in dodatki (držala)",
+       "url": "https://www.bauhaus.si/kopalniska-galanterija/c/10001784",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Kopalniška ogledala, omarice in dodatki (držala)",
+       "url": "https://www.obi.si/c/kopalnica-4159/dodatki-za-kopalnico-1188",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Kopalniška ogledala, omarice in dodatki (držala)",
+       "url": "https://www.merkur.si/kopalnica/kopalnisko-pohistvo/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Vijaki in vložki",
      "vrsta": "Iz nerjavnega materiala; za vašo steno (beton, opeka ali mavčna plošča).",
      "kolicina": "Po nosilcih.",
      "opomba": "Priloženi so pogosto le za polno steno.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Profi Depot Vijak za iverne plošče A2 (3,5 x 30 mm, nerjavno jeklo, TX, 200 kos)",
+       "url": "https://www.bauhaus.si/vijaki-za-les-in-iverne-plosce/profi-depot-vijak-za-iverne-plosce-a2/p/10805281",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Spax Univerzalni vijak z ugrezno glavo in utorom T-Star plus Ø3,5 x 40 mm 30 kos",
+       "url": "https://www.obi.si/p/spax-univerzalni-vijak-z-ugrezno-glavo-in-utorom-t-star-plus-oe3-5-x-40-mm-30-kos-712932",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "RF UNIVERZALNI VIJAK 4.0X45 A2 VGREZNJENA GLAVA",
+       "url": "https://www.merkur.si/rf-univerzalni-vijak-4-0x45-a2-vgreznjena-glava/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "WC deska",
      "vrsta": "Po meri školjke: dolžina, širina in razmak lukenj.",
      "kolicina": "1 kos",
      "opomba": "Mere vzemite pred nakupom ali mi pošljite fotografijo školjke z metrom.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "WC deske",
+       "url": "https://www.bauhaus.si/wc-deske/c/10000387",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "WC deske",
+       "url": "https://www.obi.si/c/kopalnica-4159/stranisca-4183/wc-deske-1199",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "WC deske",
+       "url": "https://www.merkur.si/kopalnica/sanitarna-keramika-in-wc-deske/deske-za-wc-skoljke/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Sanitarni silikon",
      "vrsta": "S protiglivičnim dodatkom, prozoren ali bel.",
      "kolicina": "1 kartuša.",
      "opomba": "Za tuš steno in tesnjenje v tušu.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Sanitarni silikon (Bela, 300 ml) – BAUHAUS (Turbo)",
+       "url": "https://www.bauhaus.si/silikon/sanitarni-silikon/p/26268877",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "OBI sanitarni silikon Bel 310 ml",
+       "url": "https://www.obi.si/p/obi-sanitarni-silikon-bel-310-ml-167412",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ACETATNI SILIKON SIKA SANISIL BEL 300ML",
+       "url": "https://www.merkur.si/sanitarni-silikon-sika-sanisil-bel-300ml/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Oprijemala za starejše (po potrebi)",
      "vrsta": "Označena za oporo, z navedeno nosilnostjo.",
      "kolicina": "Po potrebi.",
      "opomba": "Na mavčno steno samo v profile ali na ojačitev.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Oprijemala / ročaji za kopalnico",
+       "url": "https://www.bauhaus.si/varnost-v-kopalnici/c/10000398",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Oprijemala / ročaji za kopalnico",
+       "url": "https://www.obi.si/c/kopalnica-4159/dodatki-za-kopalnico-1188/varnost-v-kopalnici-1197",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Oprijemala / ročaji za kopalnico",
+       "url": "https://www.merkur.si/kopalnica/kopalniski-dodatki/invalid-program/",
+       "vrsta": "kategorija"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -485,14 +1116,46 @@
      "vrsta": "Za pralni stroj, s priključkom 3/4 cole na obeh koncih.",
      "kolicina": "1 kos, dolžina od ventila do stroja z nekaj rezerve.",
      "opomba": "Cev ne sme biti napeta ali prepognjena.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Dotočna cev (200 cm, siva)",
+       "url": "https://www.bauhaus.si/dovodne-in-odvodne-cevi/dotocna-cev/p/13345140",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Dovodna cev 3 m",
+       "url": "https://www.obi.si/p/dovodna-cev-3-m-418902",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "DEL ZA PRAL.IN SUŠ.STROJ SICCABO CEV DOVODNA 2.0 M",
+       "url": "https://www.merkur.si/del-za-pral-in-sus-stroj-siccabo-cev-dovodna-2-0-m-s-kolenom/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Podaljšek odtočne cevi (po potrebi)",
      "vrsta": "Podaljšek z vezno spojko in objemkami.",
      "kolicina": "1 komplet, dolžina do odtoka.",
      "opomba": "Predolga odtočna cev otežuje črpanje. Vzemite le toliko, kot je treba.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Podaljšek za odtočno cev (plastika, 150 cm)",
+       "url": "https://www.bauhaus.si/dovodne-in-odvodne-cevi/podaljsek-za-odtocno-cev/p/13340499",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "DEL ZA PRAL.IN SUŠ.STROJ SICCABO CEV ODVODNA 2.5 M S KOLENOM",
+       "url": "https://www.merkur.si/del-za-pral-in-sus-stroj-siccabo-cev-odvodna-2-5-m-s-kolenom/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Aquastop (po želji)",
@@ -506,7 +1169,26 @@
      "vrsta": "Gumijaste podloge pod nogice stroja.",
      "kolicina": "1 komplet (4 kosi)",
      "opomba": "Pomagajo na lesenih tleh in pri hrupnem ožemanju.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Wenko Gumijasti blažilnik (4-del.)",
+       "url": "https://www.bauhaus.si/pralni-in-susilni-stroji/wenko-gumijasti-blazilnik/p/21805002",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Blažilnik tresljajev 4 kosi",
+       "url": "https://www.obi.si/p/blazilnik-tresljajev-4-kosi-156748",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "DODATEK ZA PRALNI IN SUŠILNI STROJ ELECTROLUX E4WHPA02",
+       "url": "https://www.merkur.si/dodatek-za-pralni-in-susilni-stroj-electrolux-e4whpa02/",
+       "vrsta": "izdelek"
+      }
+     ]
     }
    ],
    "prinese_mojster": [
@@ -536,7 +1218,26 @@
      "vrsta": "Eurocilinder, ki ustreza vratom; za vhodna vrata z varnostnim razredom in zaščito pred vlomom.",
      "kolicina": "1 kos z mero A/B, npr. 30/35 mm.",
      "opomba": "Pritrdilni vijak je običajno priložen.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Cilindri za ključavnice (eurocilindri)",
+       "url": "https://www.bauhaus.si/cilindricni-vlozki/c/10000054",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Cilindri za ključavnice (eurocilindri)",
+       "url": "https://www.obi.si/c/tehnika-876/varnost-in-hisna-tehnika-891/varnostna-oprema-677/profilni-cilindri-1020",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Cilindri za ključavnice (eurocilindri)",
+       "url": "https://www.merkur.si/delavnica/okovje/stavbno-okovje/cilindricni-vlozki/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Dodatni ključi (po želji)",
@@ -588,7 +1289,26 @@
      "vrsta": "Stenska ali stropna, eno- ali dvotirna (za zaveso in zastor).",
      "kolicina": "Širina okna + 15–20 cm na vsaki strani.",
      "opomba": "Pri nakupu po meri povejte točno dolžino.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Garnišne (drogovi in tirnice)",
+       "url": "https://www.bauhaus.si/karnise-za-zavese/c/10000703",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Garnišne (drogovi in tirnice)",
+       "url": "https://www.obi.si/c/bivanje-874/vse-za-okna-1048/drogovi-in-vodila-za-zavese-1051",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Garnišne (drogovi in tirnice)",
+       "url": "https://www.merkur.si/vse-za-dom/dekorativni-program/karnise-in-tracnice/",
+       "vrsta": "kategorija"
+      }
+     ]
     },
     {
      "ime": "Nosilci",
@@ -602,14 +1322,52 @@
      "vrsta": "Za vašo steno ali strop (beton, opeka, mavčna plošča).",
      "kolicina": "Po nosilcih.",
      "opomba": "Če ne veste, kakšna je stena, jih kupim na poti k vam.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Stabilit Set univerzalnih moznikov z ovratnikom (6 x 50 mm, 10 kos, z vijaki)",
+       "url": "https://www.bauhaus.si/univerzalni-zidni-vlozki/stabilit-set-univerzalnih-moznikov-z-ovratnikom/p/23511554",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "LUX-TOOLS Večnamenski zidni vložek z vijakom Ø 6 mm x 33 mm 50 kosov",
+       "url": "https://www.obi.si/p/lux-tools-vecnamenski-zidni-vlozek-z-vijakom-oe-6-mm-x-33-mm-50-kosov-991996",
+       "vrsta": "izdelek"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "ZIDNI VLOŽEK Z VIJAKOM SET VLOŽKI Z VIJAKI TUVT VL6X30+8X40+V.4.5X40+5X50",
+       "url": "https://www.merkur.si/zidni-vlozek-z-vijakom-set-vlozki-z-vijaki-tuvt-vl6x30-8x40-v-4-5x40-5x50/",
+       "vrsta": "izdelek"
+      }
+     ]
     },
     {
      "ime": "Obročki ali drsniki",
      "vrsta": "Za drog obročki, za tirnico drsniki.",
      "kolicina": "Približno 8–10 na meter zavese.",
      "opomba": "Pogosto priloženi.",
-     "kje_kupiti": []
+     "kje_kupiti": [
+      {
+       "trgovina": "Bauhaus",
+       "izdelek": "Obročki in drsniki za zavese",
+       "url": "https://www.bauhaus.si/obroci-za-gardine/c/10004965",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "OBI",
+       "izdelek": "Obročki in drsniki za zavese",
+       "url": "https://www.obi.si/c/bivanje-874/vse-za-okna-1048/karnise-za-zavese-1050",
+       "vrsta": "kategorija"
+      },
+      {
+       "trgovina": "Merkur",
+       "izdelek": "Obročki in drsniki za zavese",
+       "url": "https://www.merkur.si/vse-za-dom/dekorativni-program/karnise-in-tracnice/pribor-za-karnise/",
+       "vrsta": "kategorija"
+      }
+     ]
     }
    ],
    "prinese_mojster": [

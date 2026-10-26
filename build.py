@@ -93,12 +93,16 @@ def shop_html(slug, ime):
     links = shop_links(slug, ime)
     if not links:
         return ''
-    parts = []
+    groups = {}
     for x in links:
-        what = f'izbira v kategoriji {x["izdelek"]}' if x['vrsta'] == 'kategorija' else x['izdelek']
-        label = x['trgovina'] + (f' ({x["oznaka"]})' if x['oznaka'] else '')
-        parts.append(f'<a href="{esc(x["url"])}" rel="noopener nofollow" target="_blank" title="{esc(what)}">{esc(label)}</a>')
-    return '<span class="shops">Poglejte v: ' + ' · '.join(parts) + '</span>'
+        groups.setdefault(x['oznaka'], []).append(x)
+    rows = []
+    for ozn, xs in groups.items():
+        parts = [f'<a href="{esc(x["url"])}" rel="noopener nofollow" target="_blank" '
+                 f'title="{esc("izbira v skupini " + x["izdelek"] if x["vrsta"] == "kategorija" else x["izdelek"])}">{esc(x["trgovina"])}</a>' for x in xs]
+        lead = f'{ozn[0].upper() + ozn[1:]}: ' if (ozn and len(groups) > 1) else ('Poglejte v: ' if len(groups) == 1 else 'Navadna: ' if not ozn else '')
+        rows.append(f'<span class="shops">{lead}{" · ".join(parts)}</span>')
+    return ''.join(rows)
 
 
 
@@ -667,7 +671,7 @@ def lists_llms():
     if not ls:
         return ''
     rows = '\n'.join(f'- [{l["h1"]}]({SITE}/{KK}/{l["slug"]}/): {l["description"]}' for l in ls)
-    return f'## Kaj kupiti (seznami materiala)\nMaterial kupi stranka po Sebastjanovem nasvetu. Strojno berljivo: {SITE}/seznami.json\n{rows}\n\n'
+    return f'## Kaj kupiti (seznami materiala)\nMaterial kupi stranka po Sebastjanovem nasvetu. Pri postavkah so povezave na najcenejši ustrezen izdelek v Bauhausu, OBI-ju in Merkurju (brez cen, polje kje_kupiti). Strojno berljivo: {SITE}/seznami.json\n{rows}\n\n'
 
 
 def llms_txt(urls):

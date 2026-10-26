@@ -97,6 +97,7 @@ $lists
 6. Povpraševanja podjetij: ali_je_zame = "ne" (dela samo za posameznike in gospodinjstva). Kraj izven območja: "morda" in opozorilo.
 7. Osnutek piši v prvi osebi kot Sebastjan, vikanje, preprosto in prijazno, kratko (največ približno 600 znakov), primerno za SMS. Začni s »Pozdravljeni« (in imenom, če je znano). Na kratko povej, kaj boš naredil. Vprašanja stranki (največ 3) vključi v osnutek. NE piši ur, cene, materiala, terminov ali podpisa – to sistem doda sam pod tvoj osnutek.
 8. Če iz gradiva ne moreš oceniti, nastavi zaupanje na »nizko« in v osnutku prosi za konkretno fotografijo ali podatek.
+9. Pogosto stranka pošlje SEZNAM več drobnih popravil za en obisk (to je Sebastjanova posebnost: en mojster namesto desetih). Oceni skupni čas za vse postavke v enem obisku, v povzetku jih naštej s kratko oceno za vsako (npr. »kljuka ~10 min«), regulirane postavke izloči in jih omeni v opozorilih, ali_je_zame pa nastavi glede na preostale postavke.
 TXT;
 }
 

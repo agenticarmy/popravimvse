@@ -1,0 +1,106 @@
+<!--{
+  "title": "Drobna popravila na domu v enem obisku | Popravim vse",
+  "description": "Škripajoče okno, majava kljuka, povešena omarica, odkrušen laminat: vse malenkosti uredim v enem obisku. En mojster namesto desetih, 35 € na uro.",
+  "h1": "Drobna popravila v enem obisku",
+  "lead": "Okno škripa, kljuka se maje, krilo omare visi, laminat je odkrušen, držalo za tuš je dotrajano. Vsaka stvar je majhna, skupaj pa vas jezijo leta. Namesto da iščete deset različnih mojstrov, pokličete enega, ki jih uredi vse v enem obisku.",
+  "crumb": "Drobna popravila"
+}-->
+<link rel="stylesheet" href="/static/css/seznam.css?v={{V}}">
+<h2>Zakaj en mojster za vse malenkosti</h2>
+<ul class="checks">
+  <li><strong>En klic, en termin, en prihod.</strong> Ne usklajujete desetih mojstrov in ne čakate desetkrat doma.</li>
+  <li><strong>Malenkosti niso premajhne.</strong> Majhno delo je zame normalno delo, ne nadležno.</li>
+  <li><strong>Plačate samo čas pri vas.</strong> Prva ura stane 35 €, nato štejem na minuto natančno. Prevoz je vključen, en sam, ne za vsako popravilo posebej.</li>
+  <li><strong>Več stvari, ena ura.</strong> Če prvo popravilo končam prej, v preostanku ure uredim naslednje s seznama.</li>
+  <li><strong>En račun.</strong> Za ves obisk dobite en račun. Plačate z gotovino, ko je delo končano.</li>
+</ul>
+
+<h2 id="seznam">Sestavite svoj seznam popravil</h2>
+<p>Obkljukajte, kar vas doma jezi, in dopišite, česar ni na seznamu. Seznam mi pošljete skupaj s kratkim videom, v katerem pokažete vse stvari po vrsti. Iz tega vam povem, koliko časa okvirno pričakujem in kaj morda kupiti.</p>
+<form class="ds-form" id="ds-form" action="/povprasevanje/" method="get">
+  <fieldset class="ds-group">
+    <legend>Vrata in okna</legend>
+    <label><input type="checkbox" name="s" value="Vrata drgnejo ali se težko zapirajo"><span>Vrata drgnejo ali se težko zapirajo</span></label>
+    <label><input type="checkbox" name="s" value="Kljuka se maje ali je pokvarjena"><span>Kljuka se maje ali je pokvarjena</span></label>
+    <label><input type="checkbox" name="s" value="Okno škripa ali težko zapira"><span>Okno škripa ali težko zapira</span></label>
+    <label><input type="checkbox" name="s" value="Menjava cilindra ključavnice"><span>Menjava cilindra ključavnice</span></label>
+  </fieldset>
+  <fieldset class="ds-group">
+    <legend>Omare, predali in pohištvo</legend>
+    <label><input type="checkbox" name="s" value="Krilo omare je povešeno ali krivo"><span>Krilo omare je povešeno ali krivo</span></label>
+    <label><input type="checkbox" name="s" value="Predal se ne zapira ali je odpadel"><span>Predal se ne zapira ali je odpadel</span></label>
+    <label><input type="checkbox" name="s" value="Sestavljanje kosa pohištva"><span>Sestavljanje kosa pohištva</span></label>
+  </fieldset>
+  <fieldset class="ds-group">
+    <legend>Kopalnica</legend>
+    <label><input type="checkbox" name="s" value="Zamenjava držala za tuš ali obešalnika"><span>Zamenjava držala za tuš ali obešalnika</span></label>
+    <label><input type="checkbox" name="s" value="Silikon ob kadi ali tušu je črn ali odstopa"><span>Silikon ob kadi ali tušu je črn ali odstopa</span></label>
+    <label><input type="checkbox" name="s" value="Odtok počasi odteka"><span>Odtok počasi odteka</span></label>
+    <label><input type="checkbox" name="s" value="Ogledalo, omarica ali polica v kopalnici"><span>Ogledalo, omarica ali polica v kopalnici</span></label>
+    <label><input type="checkbox" name="s" value="Menjava WC deske"><span>Menjava WC deske</span></label>
+  </fieldset>
+  <fieldset class="ds-group">
+    <legend>Stene</legend>
+    <label><input type="checkbox" name="s" value="Obešanje slike, police ali ogledala"><span>Obešanje slike, police ali ogledala</span></label>
+    <label><input type="checkbox" name="s" value="Montaža garnišne"><span>Montaža garnišne</span></label>
+    <label><input type="checkbox" name="s" value="Montaža televizorja na steno"><span>Montaža televizorja na steno</span></label>
+    <label><input type="checkbox" name="s" value="Zakrpati luknje v steni"><span>Zakrpati luknje v steni</span></label>
+  </fieldset>
+  <fieldset class="ds-group">
+    <legend>Tla</legend>
+    <label><input type="checkbox" name="s" value="Odkrušen ali poškodovan laminat"><span>Odkrušen ali poškodovan laminat</span></label>
+    <label><input type="checkbox" name="s" value="Talna letev odstopa"><span>Talna letev odstopa</span></label>
+    <label><input type="checkbox" name="s" value="Počena ploščica"><span>Počena ploščica</span></label>
+  </fieldset>
+  <fieldset class="ds-group">
+    <legend>Aparati in naprave</legend>
+    <label><input type="checkbox" name="s" value="Priklop pralnega stroja na obstoječe priključke"><span>Priklop pralnega stroja na obstoječe priključke</span></label>
+    <label><input type="checkbox" name="s" value="Nastavitev modema ali Wi-Fi"><span>Nastavitev modema ali Wi-Fi</span></label>
+    <label><input type="checkbox" name="s" value="Nastavitev pametnega termostata"><span>Nastavitev pametnega termostata</span></label>
+  </fieldset>
+  <div class="ds-other">
+    <label for="ds-drugo">Česa ni na seznamu? <small>(vsako stvar v svojo vrstico)</small></label>
+    <textarea id="ds-drugo" name="drugo" rows="3" placeholder="Npr. vrata balkona ne tesnijo&#10;stol se maje"></textarea>
+  </div>
+  <div class="ds-bar">
+    <p class="ds-count" id="ds-count" aria-live="polite">Izberite stvari s seznama.</p>
+    <button class="call ds-send" type="submit">Pošlji seznam s posnetkom</button>
+  </div>
+</form>
+<script src="/static/js/seznam.js?v={{V}}" defer></script>
+
+<h2>Kako poteka</h2>
+<ol>
+  <li><strong>Sestavite seznam.</strong> Obkljukajte zgoraj ali si stvari zapišite na listek.</li>
+  <li><strong>Posnemite en video.</strong> Pojdite od stvari do stvari in povejte, kaj je narobe. Video in seznam pošljete na strani <a href="/povprasevanje/">Posnemite video</a>.</li>
+  <li><strong>Povem vam, koliko časa pričakujem</strong> in ali je treba kaj kupiti. Vse to brezplačno in vas ne obvezuje.</li>
+  <li><strong>Pridem enkrat in uredim vse po vrsti.</strong> Če česa ne uspem končati, nadaljujem drug dan brez nove prve ure.</li>
+</ol>
+<p>Kako prihraniti še več časa, preberite na strani <a href="/pred-obiskom/">Priprava na obisk</a>.</p>
+
+<h2>Česa ne delam</h2>
+<p>Ne posegam v električno, vodovodno in plinsko napeljavo, ne betoniram in ne ometavam, ker so to dela z obrtnim dovoljenjem. Če je kaj takega na vašem seznamu, vam to povem takoj, preostalo pa uredim.</p>
+
+<h2>Pogosta vprašanja</h2>
+<div class="faq">
+  <details>
+    <summary>Ali pridete tudi samo zaradi ene majhne stvari?</summary>
+    <p>Da. Prva ura stane 35 € in prevoz je vključen. Če stvar uredim prej, v preostanku ure uredim še kaj drugega, zato si zapišite vse malenkosti, ki vas jezijo.</p>
+  </details>
+  <details>
+    <summary>Koliko stane obisk z več popravili?</summary>
+    <p>35 € na uro za čas, ko sem pri vas. Prva ura se plača v celoti, nato štejem na minuto natančno. Vožnja se ne šteje. Po videu ali seznamu vam vnaprej povem, koliko ur okvirno pričakujem.</p>
+  </details>
+  <details>
+    <summary>Kaj, če med delom najdete še kaj?</summary>
+    <p>Povem vam in vprašam, ali želite, da uredim tudi to. Brez vašega soglasja ne delam ničesar dodatnega.</p>
+  </details>
+  <details>
+    <summary>Kaj, če česa na seznamu ne morem popraviti?</summary>
+    <p>Če popravila ni mogoče opraviti, ga ne plačate. Če je delo z obrtnim dovoljenjem, na primer elektrika ali vodovod, vam to povem že po videu.</p>
+  </details>
+  <details>
+    <summary>Ali moram kupiti material?</summary>
+    <p>Material, ki ostane pri vas, kupite sami po ceni iz trgovine. Po videu vam brezplačno povem, kaj točno kupiti. Drobni potrošni material prinesem jaz.</p>
+  </details>
+</div>

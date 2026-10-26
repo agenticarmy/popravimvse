@@ -41,6 +41,7 @@ CITIES = ['Maribor', 'Lenart', 'Ptuj', 'Slovenska Bistrica', 'Hoče', 'Slivnica'
           'Sveti Jurij v Slovenskih goricah', 'Poljčane', 'Makole', 'Oplotnica']
 
 SERVICES = [
+    ('drobna-popravila', 'Drobna popravila v enem obisku', 'tools'),
     ('polaganje-keramike', 'Polaganje keramike', 'tiles'),
     ('polaganje-talnih-oblog', 'Laminat in talne obloge', 'floor'),
     ('obnova-fug-in-silikona', 'Obnova fug in silikona', 'drop'),
@@ -113,7 +114,7 @@ def portrait(cls='portrait', sizes='(max-width: 640px) 60vw, 300px', eager=False
 def expand(body):
     body = re.sub(r'\{\{GALERIJA:([\w-]+)\}\}', lambda m: gallery(m.group(1)), body)
     body = re.sub(r'\{\{FOTO:([\w-]+)\}\}', lambda m: figure(m.group(1), '(max-width: 640px) 100vw, 420px', 'ph ph-single'), body)
-    return body.replace('{{PORTRET}}', portrait())
+    return body.replace('{{PORTRET}}', portrait()).replace('{{V}}', TODAY)
 
 
 def yt_time(sec):
@@ -188,6 +189,7 @@ ICONS = {
     'wifi': f'<svg viewBox="0 0 24 24" {S}><path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M5.5 12.5a9.5 9.5 0 0 1 13 0"/><path d="M8.7 16a5 5 0 0 1 6.6 0"/><path d="M12 19.5h.01"/></svg>',
     'box': f'<svg viewBox="0 0 24 24" {S}><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>',
     'grass': f'<svg viewBox="0 0 24 24" {S}><path d="M3 21h18"/><path d="M5 21c0-5 1-8 3-11M8 21c0-4 .5-7 2-9M12 21V9M16 21c0-4-.5-7-2-9M19 21c0-5-1-8-3-11"/></svg>',
+    'tools': f'<svg viewBox="0 0 24 24" {S}><path d="M14.5 5.5a4 4 0 0 0-5 5L4 16v4h4l5.5-5.5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/><path d="M4 4h5M4 7h3"/></svg>',
     'phone': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3h3l1.5 4.5-2 1.5a12 12 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A17 17 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>',
 }
 
@@ -252,7 +254,7 @@ def business_ld():
         'name': f'{BIZ["name"]} – {BIZ["legal"]}',
         'alternateName': [f'{BIZ["person"]} – {BIZ["name"]}', BIZ['name']],
         'legalName': BIZ['legal'],
-        'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico: keramika, laminat in talne obloge, '
+        'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico. En mojster namesto desetih: več drobnih popravil v enem obisku. Keramika, laminat in talne obloge, '
                        'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
                        'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, pomoč kot druga roka, košnja, obrezovanje žive meje in urejanje okolice. '
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
@@ -642,6 +644,7 @@ def llms_txt(urls):
 ## Ključna dejstva
 - Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. Ni zavezanec za DDV.
 - Dela samo za posameznike in gospodinjstva, ne za podjetja.
+- En mojster namesto desetih: v enem obisku uredi več drobnih popravil hkrati (kljuke, okna, vrata, krila omar, predali, laminat, držala, silikon, police, slike, garnišne …). Stranka plača en prihod in čas pri njej, ne vsakega mojstra posebej. Seznam za obkljukanje: {SITE}/drobna-popravila/
 - Sedež s.p. je v Slovenj Gradcu (tam ima pisarno), dela pa iz Pernice pri Mariboru.
 - Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.

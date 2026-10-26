@@ -24,3 +24,4 @@ sedež Ronkova ulica 4, 2380 Slovenj Gradec (pisarna), dela iz Pernice pri Marib
 Čas se šteje od prihoda k stranki (stisk roke), vožnja ne; brez doplačil zvečer/vikend; material kupi stranka (Sebastjan svetuje, brez pribitka);
 potrošni material vključen; nakup materiala na poti k stranki brezplačen (vrne znesek z računa); nadaljevanje drug dan brez nove prve ure; zmanjka orodja = se ne šteje;
 če kaj ni prav (npr. silikon odstopi), popravi brezplačno; termina se drži – če je preveč zaseden, raje takoj odkloni; brez predplačila.
+Glavna prednost (USP, 27. 10. 2026): en mojster namesto desetih – več drobnih popravil v enem obisku (/drobna-popravila/ s seznamom za obkljukanje).

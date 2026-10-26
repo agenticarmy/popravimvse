@@ -5,6 +5,7 @@
 ## Ključna dejstva
 - Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. Ni zavezanec za DDV.
 - Dela samo za posameznike in gospodinjstva, ne za podjetja.
+- En mojster namesto desetih: v enem obisku uredi več drobnih popravil hkrati (kljuke, okna, vrata, krila omar, predali, laminat, držala, silikon, police, slike, garnišne …). Stranka plača en prihod in čas pri njej, ne vsakega mojstra posebej. Seznam za obkljukanje: https://popravimvse.si/drobna-popravila/
 - Sedež s.p. je v Slovenj Gradcu (tam ima pisarno), dela pa iz Pernice pri Mariboru.
 - Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
@@ -30,6 +31,7 @@
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: https://popravimvse.si/zasebnost/
 
 ## Storitve
+- [Drobna popravila v enem obisku](https://popravimvse.si/drobna-popravila/): Škripajoče okno, majava kljuka, povešena omarica, odkrušen laminat: vse malenkosti uredim v enem obisku. En mojster namesto desetih, 35 € na uro.
 - [Polaganje keramike](https://popravimvse.si/polaganje-keramike/): Polaganje keramike in ploščic, manjše prenove kopalnic in zamenjava počenih ploščic. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica.
 - [Laminat in talne obloge](https://popravimvse.si/polaganje-talnih-oblog/): Polaganje laminata, vinila in drugih talnih oblog z letvami in pripravo podlage. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica.
 - [Obnova fug in silikona](https://popravimvse.si/obnova-fug-in-silikona/): Obnova fug v kopalnici, fugiranje ploščic in menjava silikona ob kadi in tušu. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica.

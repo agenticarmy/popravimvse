@@ -25,6 +25,19 @@
   form.classList.add('pv-js');
   form.noValidate = true; // lastna, prijaznejša sporočila namesto brskalnikovih
 
+  // seznam s strani /drobna-popravila/ (?s=…&drugo=…) se vpiše v opis
+  try {
+    var q = new URLSearchParams(location.search), items = q.getAll('s');
+    (q.get('drugo') || '').split('\n').forEach(function (x) { if (x.trim()) items.push(x.trim()); });
+    if (items.length && !form.elements.opis.value.trim()) {
+      form.elements.opis.value = 'Moj seznam popravil:\n' + items.map(function (x) { return '- ' + x; }).join('\n') + '\n';
+      var note = document.createElement('p');
+      note.className = 'pv-okmsg';
+      note.textContent = 'Vaš seznam (' + items.length + ') je vpisan v opis spodaj. Zdaj posnemite video, v katerem pokažete vse stvari po vrsti.';
+      form.insertBefore(note, form.firstChild);
+    }
+  } catch (e) {}
+
   fetch(API + '?info=1', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (i) {
     if (i.chunk) CHUNK = i.chunk;
     if (i.max_file) MAX_FILE = i.max_file;

@@ -22,7 +22,7 @@ Dejstva (25. 10. 2026): 35 €/h, prevoz vključen; prva ura v celoti, nato na m
 plačilo samo z gotovino na mestu, račun za vsako delo; ni zavezanec za DDV; samo posamezniki in gospodinjstva (ne podjetja);
 sedež Ronkova ulica 4, 2380 Slovenj Gradec (pisarna), dela iz Pernice pri Mariboru.
 Čas se šteje od prihoda k stranki (stisk roke), vožnja ne; brez doplačil zvečer/vikend; material kupi stranka (Sebastjan svetuje, brez pribitka);
-potrošni material vključen; nakup materiala na poti k stranki brezplačen (vrne znesek z računa); nadaljevanje drug dan brez nove prve ure; zmanjka orodja = se ne šteje;
+potrošni material vključen; nakup materiala na poti k stranki brezplačen samo, če stranka nima prevoza (po dogovoru; vrne znesek z računa); nadaljevanje drug dan brez nove prve ure; zmanjka orodja = se ne šteje;
 če kaj ni prav (npr. silikon odstopi), popravi brezplačno; termina se drži – če je preveč zaseden, raje takoj odkloni; brez predplačila.
 Pomočnik »Poskusite sami« (27. 10. 2026): UI klepet na vsaki strani (root/api/klepet.php, static/js/klepet.js), svetuje najcenejšo samopomoč, varnostna pravila (brez elektrike, vode pod tlakom, plina), predaja v obrazec; proračun 20 $/mesec (nastavitve), pogovori se shranijo samo s soglasjem 90 dni (/api/klepeti.php).
 Glavna prednost (USP, 27. 10. 2026): en mojster namesto desetih – več drobnih popravil v enem obisku (/drobna-popravila/ s seznamom za obkljukanje).

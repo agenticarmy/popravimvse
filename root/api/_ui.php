@@ -170,7 +170,7 @@ function ui_analyze(array $r, ?array $cfg = null): array
         [$code, $j, $err] = http_json((getenv('PV_ANTHROPIC_URL') ?: 'https://api.anthropic.com') . '/v1/messages', [
             'x-api-key: ' . $cfg['claude_kljuc'], 'anthropic-version: 2023-06-01', 'content-type: application/json',
         ], json_encode([
-            'model' => $cfg['claude_model'], 'max_tokens' => 2500, 'system' => ui_system($ctx),
+            'model' => $cfg['claude_model'], 'max_tokens' => 6000, 'system' => ui_system($ctx), // max_tokens vključuje razmišljanje modela
             'tools' => [ui_tool($ctx)], 'tool_choice' => ['type' => 'auto'], // novejši modeli ne dovolijo vsiljenega orodja
             'messages' => [['role' => 'user', 'content' => $content]],
         ], JSON_UNESCAPED_UNICODE), 120);

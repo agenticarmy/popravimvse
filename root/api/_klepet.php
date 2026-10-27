@@ -6,8 +6,9 @@ require_once __DIR__ . '/_ui.php';
 
 const KL_MAX_MSG = 600;            // znakov v enem sporočilu obiskovalca
 const KL_MAX_TURNS = 15;           // sporočil obiskovalca v enem pogovoru
-const KL_MAX_REPLY = 4000;         // znakov v enem odgovoru (za preverjanje zgodovine)
-const KL_MAX_TOKENS = 900;
+const KL_MAX_REPLY = 6000;         // znakov v enem odgovoru (za preverjanje zgodovine)
+const KL_MAX_TOKENS = 3000;        // vključuje tudi razmišljanje modela (novejši modeli razmišljajo privzeto)
+const KL_EFFORT = 'medium';        // za klepet: hitreje in ceneje kot privzeti »high«
 
 /** Cene v USD na milijon žetonov [vhod, izhod, zapis v predpomnilnik, branje iz predpomnilnika]. */
 const KL_PRICES = [
@@ -130,7 +131,7 @@ Pri vsakem nasvetu, kjer obstaja tveganje (orodje, lestev, kemikalije, prah), do
 Ne postavljaj zdravstvenih diagnoz in ne svetuj pri pravnih sporih; pri takih vprašanjih vljudno napoti drugam.
 
 ## Kako odgovarjaš
-- Slovensko (če obiskovalec piše v drugem jeziku, v tem jeziku), vikaš, preprosto, prijazno in kratko: običajno do 120 besed. Daljši odgovor samo za navodila po korakih.
+- Slovensko (če obiskovalec piše v drugem jeziku, v tem jeziku), v pravilni knjižni slovenščini, vikaš z malo začetnico (vi, vam), preprosto, prijazno in kratko: običajno do 120 besed, navodila po korakih največ približno 250 besed.
 - Če ne veš dovolj, najprej postavi eno ali dve vprašanji (kaj točno je narobe, kakšno orodje imajo, ali so že kaj poskusili). Lahko predlagaš, naj opišejo, kar vidijo.
 - Navodila piši kot oštevilčene korake (vrstica začne z »1.«). Posamezne točke lahko začneš z »- «. Pomembno lahko označiš z **krepko**. Brez naslovov, tabel in drugih oznak.
 - Navedi, katero orodje in material potrebujejo, najprej najcenejšo možnost. Cen trgovin si ne izmišljuj; lahko rečeš »nekaj evrov«. Ne navajaj blagovnih znamk.

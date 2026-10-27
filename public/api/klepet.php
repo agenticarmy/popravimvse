@@ -79,7 +79,7 @@ $model = $cfg['klepet_model'] ?: $cfg['claude_model'];
 [$code, $j, $err] = http_json((getenv('PV_ANTHROPIC_URL') ?: 'https://api.anthropic.com') . '/v1/messages', [
     'x-api-key: ' . $cfg['claude_kljuc'], 'anthropic-version: 2023-06-01', 'content-type: application/json',
 ], json_encode([
-    'model' => $model, 'max_tokens' => KL_MAX_TOKENS,
+    'model' => $model, 'max_tokens' => KL_MAX_TOKENS, 'output_config' => ['effort' => KL_EFFORT],
     'system' => [['type' => 'text', 'text' => kl_system($ctx, $path), 'cache_control' => ['type' => 'ephemeral']]],
     'messages' => $msgs,
 ], JSON_UNESCAPED_UNICODE), 60);
@@ -93,6 +93,10 @@ if ($code !== 200 || trim($text) === '') {
 kl_add_usage(kl_cost($j['usage'] ?? [], $model), $isNew);
 
 [$reply, $handoff] = kl_split(trim($text));
+if (($j['stop_reason'] ?? '') === 'max_tokens') { // odrezan odgovor: obdrži cele vrstice in povej, kako nadaljevati
+    $cut = mb_strrpos($reply, "\n");
+    $reply = rtrim($cut !== false && $cut > 200 ? mb_substr($reply, 0, $cut) : $reply) . "\n\n(Odgovor je bil predolg. Napišite »nadaljuj«, pa ga dokončam.)";
+}
 $reply = mb_substr($reply, 0, KL_MAX_REPLY);
 $n = count($msgs); // indeks tega odgovora v zgodovini
 

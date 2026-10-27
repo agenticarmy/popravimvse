@@ -95,7 +95,7 @@ page_start('Nastavitve | Popravim vse');
     <input id="kp" name="klepet_proracun" type="number" min="0" max="500" step="1" value="<?= (int)$cfg['klepet_proracun'] ?>">
     <label class="pv-label" for="km">Model za pomočnika</label>
     <input id="km" name="klepet_model" type="text" value="<?= h($cfg['klepet_model']) ?>" spellcheck="false">
-    <p class="pv-hint">Uporablja isti ključ za Claude kot zgoraj. Dodatno nastavite mesečno omejitev porabe tudi v konzoli Anthropic (Settings → Limits).</p>
+    <p class="pv-hint">Uporablja isti ključ za Claude kot zgoraj. Dodatno nastavite mesečno omejitev porabe tudi v konzoli Anthropic: <a href="https://platform.claude.com/settings/billing" target="_blank" rel="noopener">Billing → Spend limits</a>.</p>
   </fieldset>
 
   <fieldset class="pv-step">

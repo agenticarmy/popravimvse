@@ -4,7 +4,7 @@
 Vsaka datoteka v content/ se začne z vrstico <!--{json}--> (metapodatki strani),
 sledi HTML vsebina. Zaženi: python3 build.py
 """
-import json, re, shutil, html, subprocess, os, urllib.parse
+import json, re, hashlib, shutil, html, subprocess, os, urllib.parse
 from pathlib import Path
 from datetime import date, datetime, timezone
 
@@ -143,7 +143,18 @@ def portrait(cls='portrait', sizes='(max-width: 640px) 60vw, 300px', eager=False
             f'width="480" height="600" {"" if eager else "loading=\"lazy\" "}decoding="async" alt="{PORTRAIT["alt"]}">')
 
 
+def asset_v(url):
+    """Različica datoteke = kratek hash vsebine, da obiskovalci po spremembi takoj dobijo novo CSS/JS (predpomnilnik 30 dni)."""
+    f = ROOT / url.lstrip('/').split('?')[0]
+    return hashlib.md5(f.read_bytes()).hexdigest()[:10] if f.exists() else TODAY
+
+
+def versioned(body):
+    return re.sub(r'(/static/[\w./-]+)\?v=\{\{V\}\}', lambda m: f'{m.group(1)}?v={asset_v(m.group(1))}', body)
+
+
 def expand(body):
+    body = versioned(body)
     body = re.sub(r'\{\{GALERIJA:([\w-]+)\}\}', lambda m: gallery(m.group(1)), body)
     body = re.sub(r'\{\{FOTO:([\w-]+)\}\}', lambda m: figure(m.group(1), '(max-width: 640px) 100vw, 420px', 'ph ph-single'), body)
     return body.replace('{{PORTRET}}', portrait()).replace('{{V}}', TODAY)
@@ -447,7 +458,7 @@ def page(meta, main, path, extra_ld=()):
 <meta name="theme-color" content="#16232B">
 <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/static/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v={TODAY}">
+<link rel="stylesheet" href="/static/css/site.css?v={asset_v("/static/css/site.css")}">
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
@@ -573,9 +584,9 @@ def calc_box(slug):
     """Interaktivni kalkulator materiala (računa po pravilih iz razdelka »Kako izračunati«)."""
     if slug not in CALCS:
         return ''
-    return (f'<link rel="stylesheet" href="/static/css/kalkulator.css?v={TODAY}">'
+    return (f'<link rel="stylesheet" href="/static/css/kalkulator.css?v={asset_v("/static/css/kalkulator.css")}">'
             f'<div class="calc" data-calc="{slug}"></div>'
-            f'<script src="/static/js/kalkulator.js?v={TODAY}" defer></script>')
+            f'<script src="/static/js/kalkulator.js?v={asset_v("/static/js/kalkulator.js")}" defer></script>')
 
 
 def shops_note(l):
@@ -874,7 +885,8 @@ def main():
         meta['kind'] = 'form'
         meta['page_type'] = 'ContactPage'
         meta['published'], meta['modified'] = git_dates('povprasevanje')
-        body = body.replace('{{KRAJI}}', ''.join(f'<option value="{esc(c)}">' for c in CITIES)).replace('{{V}}', BUILT[:10])
+        body = body.replace('{{KRAJI}}', ''.join(f'<option value="{esc(c)}">' for c in CITIES))
+        body = versioned(body)
         m, ld = inner(meta, body, 'povprasevanje', [('/kontakt/', 'Kontakt')])
         write(FORM, page(meta, m, FORM, ld))
         urls.append((FORM, '0.9', meta['modified'], meta))

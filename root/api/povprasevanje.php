@@ -103,6 +103,13 @@ $r = [
     'vir' => $isJson ? 'agent' : (empty($in['js']) ? 'obrazec-brez-js' : 'obrazec'), 'agent' => $agent,
     'naprava' => mb_substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200),
 ];
+// pogovor s pomočnikom (samo če ga je obiskovalec dovolil shraniti)
+$kid = (string)($in['klepet_id'] ?? '');
+if ($kid !== '' && kl_valid_id($kid) && hash_equals(kl_token($kid), (string)($in['klepet_t'] ?? '')) && ($kc = kl_load($kid))) {
+    $r['klepet'] = $kid;
+    $kc['povprasevanje'] = $id;
+    file_put_contents(kl_file($kid), json_encode($kc, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), LOCK_EX);
+}
 save_req($r);
 
 // najprej odgovor stranki (ne čaka na UI in e-pošto) …

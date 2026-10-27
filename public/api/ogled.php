@@ -104,6 +104,15 @@ page_start('Povpraševanje ' . $r['id'] . ' | Popravim vse', $running ? '<meta h
 <?php endif; ?>
 
 <?php if ($r['opis'] !== ''): ?><p class="pv-quote"><?= nl2br(h($r['opis'])) ?></p><?php endif; ?>
+<?php $kc = !empty($r['klepet']) ? kl_load($r['klepet']) : null; if ($kc): ?>
+<details class="pv-card pv-chatlog">
+  <summary><b>Pogovor s pomočnikom »Poskusite sami«</b> pred povpraševanjem (<?= (int)(count($kc['sporocila'] ?? []) / 2) ?>×)</summary>
+  <?php foreach ($kc['sporocila'] ?? [] as $m): ?>
+    <p class="pv-small"><b><?= $m['vloga'] === 'obiskovalec' ? 'Stranka' : 'Pomočnik' ?></b></p>
+    <p<?= $m['vloga'] === 'obiskovalec' ? ' class="pv-quote"' : '' ?>><?= nl2br(h($m['besedilo'])) ?></p>
+  <?php endforeach; ?>
+</details>
+<?php endif; ?>
 
 <?php
 $media = array_filter($r['datoteke'], fn($f) => $f['vrsta'] !== 'frame');

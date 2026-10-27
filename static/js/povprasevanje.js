@@ -49,6 +49,8 @@
       form.insertBefore(kn, form.firstChild);
     }
     sessionStorage.removeItem('pv-klepet-povzetek');
+    var kr = JSON.parse(sessionStorage.getItem('pv-klepet-ref') || 'null');
+    if (kr && kr.id && kr.t) { form.elements.klepet_id.value = kr.id; form.elements.klepet_t.value = kr.t; }
   } catch (e) {}
 
   fetch(API + '?info=1', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (i) {

@@ -41,6 +41,7 @@ function notify_new(array $r): void
         'Priloge' => h($what ?: 'brez prilog'),
     ];
     if ($r['agent']) $rows['Poslal agent'] = h($r['agent']);
+    if (!empty($r['klepet'])) $rows['Pred tem'] = 'pogovor s pomočnikom (v povpraševanju)';
     $tr = '';
     foreach ($rows as $k => $v) $tr .= '<tr><td style="padding:4px 12px 4px 0;color:#4B5A62;vertical-align:top">' . $k . '</td><td style="padding:4px 0"><b>' . $v . '</b></td></tr>';
     $hasDraft = ($r['ui']['stanje'] ?? '') === 'ok';
@@ -53,7 +54,8 @@ function notify_new(array $r): void
         . '<p style="color:#4B5A62;font-size:14px">Fotografije in glasovna sporočila so priložena, kjer niso prevelika. Videe odprete s klikom na gumb zgoraj. '
         . 'Vsa povpraševanja: <a href="' . h(SITE . '/api/seznam.php?k=' . list_key()) . '">seznam</a>. Povpraševanje se samodejno izbriše po ' . RETENTION_DAYS . ' dneh.</p>');
     $text = "Novo povpraševanje\n\nTelefon: {$r['telefon']}\nŽeli odgovor: " . REPLY[$r['odgovor']] . ($r['email'] ? " ({$r['email']})" : '')
-        . "\nIme: " . ($r['ime'] ?: '—') . "\nKraj: " . ($r['kraj'] ?: '—') . "\nPriloge: " . ($what ?: 'brez prilog') . "\n\n{$r['opis']}\n\n"
+        . "\nIme: " . ($r['ime'] ?: '—') . "\nKraj: " . ($r['kraj'] ?: '—') . "\nPriloge: " . ($what ?: 'brez prilog')
+        . (!empty($r['klepet']) ? "\nPred tem: pogovor s pomočnikom (v povpraševanju)" : '') . "\n\n{$r['opis']}\n\n"
         . ($ui ? "Predlog UI: {$ui['povzetek']}\n\n" : '') . "Odpri: $ogled\n";
     $attach = [];
     $sum = 0;

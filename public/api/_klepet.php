@@ -32,9 +32,7 @@ const KL_POG = ['pogovor', 'pogovora', 'pogovori', 'pogovorov'];
 const KL_ODG = ['odgovor', 'odgovora', 'odgovori', 'odgovorov'];
 const KL_VPR = ['vprašanje', 'vprašanji', 'vprašanja', 'vprašanj'];
 
-function kl_valid_id(string $id): bool { return (bool)preg_match('/^k\d{8}-[a-z0-9]{8}$/', $id); }
 function kl_new_id(): string { return 'k' . date('Ymd') . '-' . substr(bin2hex(random_bytes(8)), 0, 8); }
-function kl_token(string $id): string { return substr(hash_hmac('sha256', 'klepet|' . $id, secret()), 0, 24); }
 
 /** Podpis odgovora pomočnika, da obiskovalec v zgodovini ne more podtakniti »odgovorov«. */
 function kl_sig(string $id, int $i, string $text): string { return substr(hash_hmac('sha256', "klepet-odg|$id|$i|$text", secret()), 0, 20); }
@@ -77,10 +75,15 @@ function kl_budget_left(?array $c = null): bool
 }
 
 /* ---------- hramba (samo s soglasjem) ---------- */
-function kl_file(string $id): string { return storage('klepet/pogovori') . '/' . $id . '.json'; }
-
-function kl_save(string $id, array $conv): void
+/** Shrani preverjen pogovor ($msgs v obliki API: role/content). Kliče se samo s soglasjem obiskovalca. */
+function kl_store(string $id, string $path, array $msgs, ?string $handoff): void
 {
+    $conv = kl_load($id) ?? [];
+    $conv += ['id' => $id, 'zacetek' => date('c'), 'stran' => $path, 'predaja' => null];
+    $conv['soglasje'] = date('c');
+    $conv['zadnje'] = date('c');
+    $conv['sporocila'] = array_map(fn($m) => ['vloga' => $m['role'] === 'user' ? 'obiskovalec' : 'pomocnik', 'besedilo' => $m['content']], $msgs);
+    if ($handoff) $conv['predaja'] = $handoff;
     file_put_contents(kl_file($id), json_encode($conv, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), LOCK_EX);
 }
 

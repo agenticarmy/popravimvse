@@ -42,6 +42,7 @@
 .kl-intro p { margin: 0 0 .5rem; }
 .kl-intro .kl-quote { font-weight: 700; }
 .kl-small { font-size: .82rem; color: var(--ink-soft, #4B5A62); }
+.kl-block { display: block; margin: .25rem 0 .55rem; font-weight: 400; }
 .kl-consent { display: flex; gap: .55rem; align-items: flex-start; font-size: .9rem; margin: .6rem 0 .2rem; cursor: pointer; }
 .kl-consent input { width: 1.2rem; height: 1.2rem; margin: .15rem 0 0; flex: none; accent-color: var(--green, #1D6A58); }
 

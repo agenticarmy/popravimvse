@@ -124,9 +124,20 @@
     var a = el('a', '', 'Zasebnost'); a.href = '/zasebnost/#pomocnik'; s.appendChild(a);
     var lab = el('label', 'kl-consent');
     consent = el('input'); consent.type = 'checkbox'; consent.checked = !!st.soglasje;
-    consent.addEventListener('change', function () { st.soglasje = consent.checked; save(); });
+    consent.addEventListener('change', function () {
+      st.soglasje = consent.checked; save();
+      if (st.predaja && log.querySelector('.kl-hand')) handCard(st.predaja);
+      if (st.id && st.hist.length) {
+        fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ akcija: 'soglasje', id: st.id, t: st.t, zgodovina: st.hist, soglasje: st.soglasje, predaja: st.predaja, stran: location.pathname }) }).catch(function () {});
+      }
+    });
     lab.appendChild(consent);
-    lab.appendChild(el('span', '', 'Dovolim, da se pogovor (brez imena in naslova) shrani za 90 dni, da Sebastjan vidi, kaj ljudi zanima, in izboljša nasvete. Neobvezno.'));
+    var ct = el('span');
+    ct.appendChild(el('strong', '', 'Shrani pogovor za Sebastjana. '));
+    ct.appendChild(document.createTextNode('Če boste vseeno potrebovali mojstra in mu pošljete video prek gumba v tem oknu, bo Sebastjan že poznal vašo težavo in vam je ne bo treba opisovati znova.'));
+    ct.appendChild(el('small', 'kl-small kl-block', 'Shrani se 90 dni, brez imena in naslova. Pomaga tudi izboljšati nasvete. Neobvezno.'));
+    lab.appendChild(ct);
     box.appendChild(q); box.appendChild(p); box.appendChild(s); box.appendChild(lab);
     return box;
   }
@@ -151,6 +162,8 @@
     var old = log.querySelector('.kl-hand'); if (old) old.remove();
     var c = el('div', 'kl-msg kl-hand');
     c.appendChild(el('p', '', 'To je bolje prepustiti Sebastjanu. Pošljite mu kratek video, ocena je brezplačna.'));
+    c.appendChild(el('small', 'kl-small kl-block', st.soglasje ? 'Sebastjan bo videl ta pogovor, zato vam težave ne bo treba opisovati znova.'
+      : 'Kratek povzetek se prenese v obrazec. Če želite, da Sebastjan vidi ves pogovor, obkljukajte »Shrani pogovor« na vrhu.'));
     var a = el('a', 'kl-btn', 'Pošljite video Sebastjanu'); a.href = FORM;
     a.addEventListener('click', function () { handoff(summary); });
     c.appendChild(a);
@@ -159,7 +172,11 @@
   }
 
   function handoff(summary) {
-    try { if (summary) sessionStorage.setItem('pv-klepet-povzetek', summary); } catch (e) {}
+    try {
+      if (summary) sessionStorage.setItem('pv-klepet-povzetek', summary);
+      if (st.soglasje && st.id && st.hist.length) sessionStorage.setItem('pv-klepet-ref', JSON.stringify({ id: st.id, t: st.t }));
+      else sessionStorage.removeItem('pv-klepet-ref');
+    } catch (e) {}
   }
 
   function grow() { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight + 4, 128) + 'px'; }

@@ -163,7 +163,9 @@ function ui_analyze(array $r, ?array $cfg = null): array
         $content[] = ['type' => 'text', 'text' => "<povprasevanje>\nKraj: " . ($r['kraj'] ?: 'ni naveden') . "\nIme: " . ($r['ime'] ?: 'ni navedeno')
             . "\nVir: " . ($r['vir'] === 'agent' ? 'oddal agent UI v imenu stranke' . ($r['agent'] ? " ({$r['agent']})" : '') : 'obrazec na spletni strani')
             . "\nOpis stranke:\n" . ($r['opis'] !== '' ? $r['opis'] : '(brez opisa)')
-            . "\n\nPrepisi glasovnih sporočil in videov:" . ($tx ?: ' (ni posnetkov)') . "\n</povprasevanje>\n\nPripravi oceno. Odgovori IZKLJUČNO s klicem orodja oceni_povprasevanje, brez drugega besedila."];
+            . "\n\nPrepisi glasovnih sporočil in videov:" . ($tx ?: ' (ni posnetkov)')
+            . (!empty($r['klepet']) && ($kc = kl_load($r['klepet'])) ? "\n\nPogovor stranke s pomočnikom »Poskusite sami« pred povpraševanjem (kaj je že poskusila):\n" . kl_text($kc) : '')
+            . "\n</povprasevanje>\n\nPripravi oceno. Odgovori IZKLJUČNO s klicem orodja oceni_povprasevanje, brez drugega besedila."];
 
         [$code, $j, $err] = http_json((getenv('PV_ANTHROPIC_URL') ?: 'https://api.anthropic.com') . '/v1/messages', [
             'x-api-key: ' . $cfg['claude_kljuc'], 'anthropic-version: 2023-06-01', 'content-type: application/json',

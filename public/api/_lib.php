@@ -263,6 +263,26 @@ function page_end(): void
 }
 
 
+/* ---------- pogovori s pomočnikom »Poskusite sami« (shranjeni samo s soglasjem) ---------- */
+function kl_valid_id(string $id): bool { return (bool)preg_match('/^k\d{8}-[a-z0-9]{8}$/', $id); }
+function kl_token(string $id): string { return substr(hash_hmac('sha256', 'klepet|' . $id, secret()), 0, 24); }
+function kl_file(string $id): string { return storage('klepet/pogovori') . '/' . $id . '.json'; }
+
+function kl_load(string $id): ?array
+{
+    if (!kl_valid_id($id) || !is_file(kl_file($id))) return null;
+    return json_decode((string)file_get_contents(kl_file($id)), true) ?: null;
+}
+
+/** Pogovor kot besedilo (za UI oceno in e-pošto). */
+function kl_text(array $c, int $max = 6000): string
+{
+    $t = '';
+    foreach ($c['sporocila'] ?? [] as $m) $t .= ($m['vloga'] === 'obiskovalec' ? 'Obiskovalec: ' : 'Pomočnik: ') . $m['besedilo'] . "\n\n";
+    return mb_substr(trim($t), 0, $max);
+}
+
+
 /* ---------- nastavitve (ključe vnese Sebastjan na nastavitve.php; shranjene izven public_html) ---------- */
 const CONFIG_DEFAULTS = [
     'ui_vklop' => false,

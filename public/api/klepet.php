@@ -23,10 +23,6 @@ if ($origin !== '' && $origin !== SITE) json_out(['ok' => false, 'napaka' => 'Na
 $in = json_decode((string)file_get_contents('php://input', false, null, 0, 200_000), true);
 if (!is_array($in)) json_out(['ok' => false, 'napaka' => 'Napačna zahteva.'], 400);
 
-$msg = clean((string)($in['sporocilo'] ?? ''), KL_MAX_MSG + 50);
-if ($msg === '') json_out(['ok' => false, 'napaka' => 'Napišite vprašanje.'], 400);
-if (mb_strlen($msg) > KL_MAX_MSG) json_out(['ok' => false, 'napaka' => 'Sporočilo je predolgo. Največ ' . KL_MAX_MSG . ' znakov.'], 400);
-
 $id = (string)($in['id'] ?? '');
 $isNew = $id === '';
 if ($isNew) $id = kl_new_id();
@@ -45,6 +41,23 @@ foreach (array_values($hist) as $i => $h) {
     $msgs[] = ['role' => $role === 'obiskovalec' ? 'user' : 'assistant', 'content' => $txt];
 }
 if (count($msgs) % 2 !== 0) json_out(['ok' => false, 'napaka' => 'Pogovora ni bilo mogoče nadaljevati. Začnite novega.', 'nov' => true], 400);
+
+// samo sprememba soglasja (kljukica) za obstoječ pogovor: shrani ali izbriši, brez klica UI
+if (($in['akcija'] ?? '') === 'soglasje') {
+    if ($isNew || !$msgs) json_out(['ok' => true, 'shranjeno' => false]);
+    if (!rate_ok('klepet-soglasje', 30, 3600)) json_out(['ok' => false, 'napaka' => 'Preveč sprememb.'], 429);
+    if (!empty($in['soglasje'])) {
+        $pred = clean((string)($in['predaja'] ?? ''), 600);
+        kl_store($id, (string)($in['stran'] ?? '/'), $msgs, $pred !== '' ? $pred : null);
+        json_out(['ok' => true, 'shranjeno' => true]);
+    }
+    if (is_file(kl_file($id))) @unlink(kl_file($id));
+    json_out(['ok' => true, 'shranjeno' => false]);
+}
+
+$msg = clean((string)($in['sporocilo'] ?? ''), KL_MAX_MSG + 50);
+if ($msg === '') json_out(['ok' => false, 'napaka' => 'Napišite vprašanje.'], 400);
+if (mb_strlen($msg) > KL_MAX_MSG) json_out(['ok' => false, 'napaka' => 'Sporočilo je predolgo. Največ ' . KL_MAX_MSG . ' znakov.'], 400);
 if (count($msgs) / 2 >= KL_MAX_TURNS) {
     json_out(['ok' => false, 'napaka' => 'Pogovor je dosegel omejitev. Če težave niste rešili, pošljite video Sebastjanu – ocena je brezplačna.', 'konec' => true], 429);
 }
@@ -85,15 +98,7 @@ $n = count($msgs); // indeks tega odgovora v zgodovini
 
 // shrani samo s soglasjem (brez IP in brez podatkov brskalnika)
 if (!empty($in['soglasje'])) {
-    $f = kl_file($id);
-    $conv = is_file($f) ? (json_decode((string)file_get_contents($f), true) ?: []) : [];
-    $conv += ['id' => $id, 'zacetek' => date('c'), 'stran' => $path, 'predaja' => null];
-    $conv['soglasje'] = date('c');
-    $conv['zadnje'] = date('c');
-    $conv['sporocila'] = array_map(fn($m) => ['vloga' => $m['role'] === 'user' ? 'obiskovalec' : 'pomocnik', 'besedilo' => $m['content']],
-        array_merge(array_slice($msgs, 0, -1), [['role' => 'user', 'content' => $msg], ['role' => 'assistant', 'content' => $reply]]));
-    if ($handoff) $conv['predaja'] = $handoff;
-    kl_save($id, $conv);
+    kl_store($id, $path, array_merge(array_slice($msgs, 0, -1), [['role' => 'user', 'content' => $msg], ['role' => 'assistant', 'content' => $reply]]), $handoff);
 } elseif (is_file(kl_file($id))) {
     @unlink(kl_file($id)); // soglasje preklicano
 }

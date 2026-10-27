@@ -5,7 +5,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/",
    "naslov": "Kaj kupiti za obnovo silikona v kopalnici",
    "storitev": "https://popravimvse.si/obnova-fug-in-silikona/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Sanitarni silikon s protiglivičnim dodatkom, ki je na embalaži označen za kopalnice in tuše.",
@@ -76,7 +76,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/",
    "naslov": "Kaj kupiti za montažo TV na steno",
    "storitev": "https://popravimvse.si/montaza-tv-in-polic/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Stenski nosilec z istim razmakom lukenj (VESA) kot na hrbtu televizorja, npr. 200 × 200 ali 400 × 400 mm.",
@@ -230,7 +230,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/polaganje-laminata/",
    "naslov": "Kaj kupiti za polaganje laminata",
    "storitev": "https://popravimvse.si/polaganje-talnih-oblog/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Laminat: površina sobe + 5 do 10 % rezerve za razrez, pri diagonalnem polaganju okoli 15 %.",
@@ -380,7 +380,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/obnova-fug/",
    "naslov": "Kaj kupiti za obnovo fug v kopalnici",
    "storitev": "https://popravimvse.si/obnova-fug-in-silikona/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Fugirna masa: cementna za stene in tla, epoksi za tuš in kuhinjski pult.",
@@ -464,7 +464,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/pleskanje-sobe/",
    "naslov": "Kaj kupiti za pleskanje sobe",
    "storitev": "https://popravimvse.si/pleskanje-in-kitanje/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Barva: notranja disperzijska barva. Za kuhinjo, hodnik in otroško sobo pralna.",
@@ -611,7 +611,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/polaganje-ploscic/",
    "naslov": "Kaj kupiti za polaganje ploščic",
    "storitev": "https://popravimvse.si/polaganje-keramike/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Ploščice: površina + 10 % rezerve, pri velikih ploščicah ali diagonalnem polaganju okoli 15 %.",
@@ -828,7 +828,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/",
    "naslov": "Kaj kupiti za polico ali omarico na mavčno steno",
    "storitev": "https://popravimvse.si/montaza-tv-in-polic/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Kovinski votlinski vložki za police in omarice; priloženi plastični vložki so običajno za polno steno.",
@@ -946,7 +946,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/",
    "naslov": "Kaj kupiti za montažo kopalniške opreme",
    "storitev": "https://popravimvse.si/kopalniska-oprema/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Oprema z nosilci: preverite, ali so vijaki in vložki priloženi in za kakšno steno so.",
@@ -1101,13 +1101,13 @@
    "url": "https://popravimvse.si/kaj-kupiti/priklop-pralnega-stroja/",
    "naslov": "Kaj kupiti za priklop pralnega stroja",
    "storitev": "https://popravimvse.si/priklop-aparatov/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Najprej preverite: ali imate ventil za pralni stroj, priključek na odtoku ali sifonu in vtičnico blizu stroja.",
     "Cevi so običajno priložene stroju in dolge približno 1 do 1,5 m.",
     "Če so prekratke: daljša dovodna cev s priključkom 3/4 cole ali podaljšek odtočne cevi z objemko.",
-    "Po želji: Aquastop (varovalo proti izlitju), če ga stroj nima, in gumijaste podloge proti tresljajem.",
+    "Po želji: gumijaste podloge proti tresljajem.",
     "Če ventila ali priključka na odtoku ni, ju mora narediti vodoinštalater. Tega ne naredim."
    ],
    "material": [
@@ -1158,13 +1158,6 @@
      ]
     },
     {
-     "ime": "Aquastop (po želji)",
-     "vrsta": "Varovalo, ki zapre vodo, če cev pušča.",
-     "kolicina": "1 kos",
-     "opomba": "Veliko novejših strojev ga že ima vgrajenega.",
-     "kje_kupiti": []
-    },
-    {
      "ime": "Podloge proti tresljajem (po želji)",
      "vrsta": "Gumijaste podloge pod nogice stroja.",
      "kolicina": "1 komplet (4 kosi)",
@@ -1203,7 +1196,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/menjava-cilindra-kljucavnice/",
    "naslov": "Kaj kupiti za menjavo cilindra ključavnice",
    "storitev": "https://popravimvse.si/popravilo-vrat-in-oken/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Cilinder (eurocilinder) z dvema merama, npr. 30/35 mm: zunanja in notranja dolžina.",
@@ -1274,7 +1267,7 @@
    "url": "https://popravimvse.si/kaj-kupiti/montaza-garnisne/",
    "naslov": "Kaj kupiti za montažo garnišne",
    "storitev": "https://popravimvse.si/montaza-tv-in-polic/",
-   "posodobljeno": "2026-10-26",
+   "posodobljeno": "2026-10-27",
    "pregledal": "Sebastjan Stjepanović",
    "na_kratko": [
     "Dolžina: širina okna in 15 do 20 cm na vsaki strani, pri debelih zavesah malo več.",

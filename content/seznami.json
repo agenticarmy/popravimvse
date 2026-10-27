@@ -923,7 +923,7 @@
       "pregledano": "2026-10-26",
       "service": "priklop-aparatov",
       "title": "Kaj kupiti za priklop pralnega stroja | Popravim vse",
-      "description": "Katero dovodno in odtočno cev kupiti, kdaj potrebujete podaljšek ali Aquastop in kaj preveriti pred priklopom pralnega stroja. Seznam hišnega mojstra.",
+      "description": "Katero dovodno in odtočno cev kupiti, kdaj potrebujete podaljšek in kaj preveriti pred priklopom pralnega stroja. Seznam hišnega mojstra.",
       "h1": "Kaj kupiti za priklop pralnega stroja",
       "lead": "Za priklop pralnega stroja na obstoječi ventil, odtok in vtičnico pogosto ne potrebujete ničesar, ker so cevi priložene. Dokupite le, če so cevi prekratke. Orodje prinesem jaz.",
       "crumb": "Priklop pralnega stroja",
@@ -931,7 +931,7 @@
         "<strong>Najprej preverite:</strong> ali imate ventil za pralni stroj, priključek na odtoku ali sifonu in vtičnico blizu stroja.",
         "<strong>Cevi so običajno priložene</strong> stroju in dolge približno 1 do 1,5 m.",
         "<strong>Če so prekratke:</strong> daljša dovodna cev s priključkom 3/4 cole ali podaljšek odtočne cevi z objemko.",
-        "<strong>Po želji:</strong> Aquastop (varovalo proti izlitju), če ga stroj nima, in gumijaste podloge proti tresljajem.",
+        "<strong>Po želji:</strong> gumijaste podloge proti tresljajem.",
         "<strong>Če ventila ali priključka na odtoku ni,</strong> ju mora narediti vodoinštalater. Tega ne naredim."
       ],
       "material": [
@@ -946,12 +946,6 @@
           "vrsta": "Podaljšek z vezno spojko in objemkami.",
           "kolicina": "1 komplet, dolžina do odtoka.",
           "opomba": "Predolga odtočna cev otežuje črpanje. Vzemite le toliko, kot je treba."
-        },
-        {
-          "ime": "Aquastop (po želji)",
-          "vrsta": "Varovalo, ki zapre vodo, če cev pušča.",
-          "kolicina": "1 kos",
-          "opomba": "Veliko novejših strojev ga že ima vgrajenega."
         },
         {
           "ime": "Podloge proti tresljajem (po želji)",

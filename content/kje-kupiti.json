@@ -346,10 +346,6 @@
         "izdelek": "DEL ZA PRAL.IN SUŠ.STROJ SICCABO CEV ODVODNA 2.5 M S KOLENOM"
       }
     },
-    "P21": {
-      "ime": "Aquastop",
-      "vrsta": "izdelek"
-    },
     "P22": {
       "ime": "Podloge proti tresljajem za pralni stroj",
       "vrsta": "izdelek",
@@ -694,9 +690,6 @@
       ],
       "Podaljšek odtočne cevi (po potrebi)": [
         "P20"
-      ],
-      "Aquastop (po želji)": [
-        "P21"
       ],
       "Podloge proti tresljajem (po želji)": [
         "P22"

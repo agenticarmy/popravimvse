@@ -4,7 +4,7 @@
  */
 declare(strict_types=1);
 require __DIR__ . '/_lib.php';
-require __DIR__ . '/_ui.php';
+require __DIR__ . '/_klepet.php';
 
 $k = (string)($_GET['k'] ?? $_POST['k'] ?? '');
 if (!hash_equals(list_key(), $k)) { http_response_code(404); exit; }
@@ -23,6 +23,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         if (preg_match('/^[a-z0-9.\-]{3,60}$/', $v)) $c[$f] = $v;
     }
     $c['ui_vklop'] = !empty($_POST['ui_vklop']);
+    $c['klepet_vklop'] = !empty($_POST['klepet_vklop']);
+    $c['klepet_proracun'] = max(0, min(500, (int)($_POST['klepet_proracun'] ?? 20)));
+    $v = trim((string)($_POST['klepet_model'] ?? ''));
+    if (preg_match('/^[a-z0-9.\-]{3,60}$/', $v)) $c['klepet_model'] = $v;
     $c['celodnevni_blokirajo'] = !empty($_POST['celodnevni_blokirajo']);
     $c['dnevi'] = array_values(array_filter(array_map('intval', (array)($_POST['dnevi'] ?? [])), fn($d) => $d >= 1 && $d <= 7));
     foreach (['od', 'do'] as $f) if (preg_match('/^([01]\d|2[0-3]):[0-5]\d$/', (string)($_POST[$f] ?? ''))) $c[$f] = $_POST[$f];
@@ -80,6 +84,18 @@ page_start('Nastavitve | Popravim vse');
     <?php if ($cfg['claude_kljuc'] !== ''): ?><label class="pv-check"><input type="checkbox" name="claude_kljuc_brisi" value="1"> Izbriši ključ</label><?php endif; ?>
     <label class="pv-label" for="cm">Model</label>
     <input id="cm" name="claude_model" type="text" value="<?= h($cfg['claude_model']) ?>" spellcheck="false">
+  </fieldset>
+
+  <fieldset class="pv-step">
+    <legend>Pomočnik »Poskusite sami« na vsaki strani</legend>
+    <?php $u = kl_usage(); ?>
+    <label class="pv-check"><input type="checkbox" name="klepet_vklop" value="1" <?= $cfg['klepet_vklop'] ? 'checked' : '' ?>> Vključen (obiskovalcem pomaga, da težavo odpravijo sami)</label>
+    <p class="pv-hint">Ta mesec: <?= kl_n((int)$u['pogovori'], KL_POG) ?>, <?= kl_n((int)$u['odgovori'], KL_ODG) ?>, poraba <?= number_format((float)$u['usd'], 2, ',', '') ?> $ od <?= (int)$cfg['klepet_proracun'] ?> $. Ko je proračun porabljen, se pomočnik do naslednjega meseca sam izklopi. <a href="/api/klepeti.php?k=<?= h($k) ?>">Shranjeni pogovori</a></p>
+    <label class="pv-label" for="kp">Mesečni proračun (USD; 20 $ je manj kot 20 €)</label>
+    <input id="kp" name="klepet_proracun" type="number" min="0" max="500" step="1" value="<?= (int)$cfg['klepet_proracun'] ?>">
+    <label class="pv-label" for="km">Model za pomočnika</label>
+    <input id="km" name="klepet_model" type="text" value="<?= h($cfg['klepet_model']) ?>" spellcheck="false">
+    <p class="pv-hint">Uporablja isti ključ za Claude kot zgoraj. Dodatno nastavite mesečno omejitev porabe tudi v konzoli Anthropic (Settings → Limits).</p>
   </fieldset>
 
   <fieldset class="pv-step">

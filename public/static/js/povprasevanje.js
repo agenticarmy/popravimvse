@@ -38,6 +38,19 @@
     }
   } catch (e) {}
 
+  // povzetek iz pomočnika »Poskusite sami«
+  try {
+    var kp = sessionStorage.getItem('pv-klepet-povzetek');
+    if (kp && !form.elements.opis.value.trim()) {
+      form.elements.opis.value = kp + '\n';
+      var kn = document.createElement('p');
+      kn.className = 'pv-okmsg';
+      kn.textContent = 'Povzetek iz pogovora s pomočnikom je vpisan v opis. Dodajte še kratek video, v katerem pokažete težavo.';
+      form.insertBefore(kn, form.firstChild);
+    }
+    sessionStorage.removeItem('pv-klepet-povzetek');
+  } catch (e) {}
+
   fetch(API + '?info=1', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (i) {
     if (i.chunk) CHUNK = i.chunk;
     if (i.max_file) MAX_FILE = i.max_file;

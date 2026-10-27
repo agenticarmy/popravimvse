@@ -155,6 +155,248 @@
   "Makole",
   "Oplotnica"
  ],
+ "strani": [
+  {
+   "pot": "/",
+   "url": "https://popravimvse.si/",
+   "naslov": "Hišni mojster Maribor, Lenart, Ptuj | Popravim vse",
+   "opis": "Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico: vse drobne popravke uredim v enem obisku, od kljuk do keramike. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/drobna-popravila/",
+   "url": "https://popravimvse.si/drobna-popravila/",
+   "naslov": "Drobna popravila v enem obisku",
+   "opis": "Škripajoče okno, majava kljuka, povešena omarica, odkrušen laminat: vse malenkosti uredim v enem obisku. En mojster namesto desetih, 35 € na uro."
+  },
+  {
+   "pot": "/polaganje-keramike/",
+   "url": "https://popravimvse.si/polaganje-keramike/",
+   "naslov": "Polaganje keramike in manjše prenove kopalnic",
+   "opis": "Polaganje keramike in ploščic, manjše prenove kopalnic in zamenjava počenih ploščic. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/polaganje-talnih-oblog/",
+   "url": "https://popravimvse.si/polaganje-talnih-oblog/",
+   "naslov": "Polaganje laminata in talnih oblog",
+   "opis": "Polaganje laminata, vinila in drugih talnih oblog z letvami in pripravo podlage. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/obnova-fug-in-silikona/",
+   "url": "https://popravimvse.si/obnova-fug-in-silikona/",
+   "naslov": "Obnova fug v kopalnici in menjava silikona",
+   "opis": "Obnova fug v kopalnici, fugiranje ploščic in menjava silikona ob kadi in tušu. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/odmasevanje-odtokov/",
+   "url": "https://popravimvse.si/odmasevanje-odtokov/",
+   "naslov": "Čiščenje in odmaševanje odtokov",
+   "opis": "Čiščenje in odmaševanje odtokov v kuhinji, kopalnici in WC ter čiščenje sifonov. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/kopalniska-oprema/",
+   "url": "https://popravimvse.si/kopalniska-oprema/",
+   "naslov": "Montaža kopalniškega pohištva in opreme",
+   "opis": "Montaža kopalniškega pohištva, ogledal, polic, držal in tuš sten, menjava WC deske in silikon. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/pleskanje-in-kitanje/",
+   "url": "https://popravimvse.si/pleskanje-in-kitanje/",
+   "naslov": "Pleskanje, kitanje sten in knauf obloge",
+   "opis": "Pleskanje sten in stropov, kitanje, popravilo razpok ter obloge sten in stropov z mavčnimi ploščami. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/priklop-aparatov/",
+   "url": "https://popravimvse.si/priklop-aparatov/",
+   "naslov": "Priklop pralnega stroja in vgradnja kuhinjskih aparatov",
+   "opis": "Priklop pralnega, sušilnega in pomivalnega stroja na obstoječe priključke ter vgradnja pečice in nape. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/montaza-tv-in-polic/",
+   "url": "https://popravimvse.si/montaza-tv-in-polic/",
+   "naslov": "Montaža TV na steno, polic in garnišn",
+   "opis": "Montaža televizorja na steno, polic, garnišn, ogledal, slik in nosilcev, tudi na knauf steno. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/modem-in-termostat/",
+   "url": "https://popravimvse.si/modem-in-termostat/",
+   "naslov": "Priklop modema, nastavitev Wi-Fi in pametnega termostata",
+   "opis": "Priklop modema, nastavitev Wi-Fi, povezava naprav z mrežnim kablom in nastavitev pametnega termostata. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/popravilo-vrat-in-oken/",
+   "url": "https://popravimvse.si/popravilo-vrat-in-oken/",
+   "naslov": "Popravilo oken in vrat",
+   "opis": "Popravilo oken in vrat: nastavitev PVC oken, okovje, balkonska in drsna vrata, kljuke, ključavnice. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
+  },
+  {
+   "pot": "/tesarska-dela/",
+   "url": "https://popravimvse.si/tesarska-dela/",
+   "naslov": "Tesarska dela in montaža pohištva",
+   "opis": "Tesarska dela na domu: montaža pohištva in kuhinje, viseče omarice, police, popravila lesa. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Sl. Bistrica."
+  },
+  {
+   "pot": "/selitve-in-prenosi/",
+   "url": "https://popravimvse.si/selitve-in-prenosi/",
+   "naslov": "Manjše selitve in prenos težkih predmetov",
+   "opis": "Manjše selitve, prevoz s prikolico in prenos težkih predmetov po stopnicah. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/kosnja-in-urejanje-okolice/",
+   "url": "https://popravimvse.si/kosnja-in-urejanje-okolice/",
+   "naslov": "Košnja trave, obrezovanje žive meje in urejanje okolice",
+   "opis": "Košnja trave, obrezovanje žive meje in prevoz gramoza, peska ali zemlje z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
+  },
+  {
+   "pot": "/hisni-mojster-maribor/",
+   "url": "https://popravimvse.si/hisni-mojster-maribor/",
+   "naslov": "Hišni mojster v Mariboru z okolico",
+   "opis": "Hišni mojster v Mariboru: odtoki, keramika, fuge, pleskanje, vrata, montaža TV in pohištva. Tudi Hoče, Miklavž, Rače in Ruše. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/hisni-mojster-lenart/",
+   "url": "https://popravimvse.si/hisni-mojster-lenart/",
+   "naslov": "Hišni mojster za Lenart in Slovenske gorice",
+   "opis": "Hišni mojster za Lenart in Slovenske gorice: odtoki, keramika, vrata, tesarska dela, košnja. Benedikt, Cerkvenjak, Sv. Ana. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/hisni-mojster-ptuj/",
+   "url": "https://popravimvse.si/hisni-mojster-ptuj/",
+   "naslov": "Hišni mojster na Ptuju z okolico",
+   "opis": "Hišni mojster na Ptuju: keramika, odmaševanje odtokov, fuge, pleskanje, priklop aparatov, vrata. Tudi Kidričevo, Hajdina, Videm. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/hisni-mojster-slovenska-bistrica/",
+   "url": "https://popravimvse.si/hisni-mojster-slovenska-bistrica/",
+   "naslov": "Hišni mojster v Slovenski Bistrici",
+   "opis": "Hišni mojster v Slovenski Bistrici, Poljčanah, Makolah in Oplotnici: odtoki, keramika, fuge, vrata, pleskanje, montaža TV. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/cenik/",
+   "url": "https://popravimvse.si/cenik/",
+   "naslov": "Cenik hišnega mojstra",
+   "opis": "Cenik hišnega mojstra: 35 € na uro za keramiko, odtoke, pleskanje, vrata in ostala dela. Prevoz vključen v Mariboru, Lenartu, na Ptuju in v Slovenski Bistrici."
+  },
+  {
+   "pot": "/pred-obiskom/",
+   "url": "https://popravimvse.si/pred-obiskom/",
+   "naslov": "Kako se pripraviti na moj obisk",
+   "opis": "Nekaj minut priprave prihrani vaš denar: material, prostor, dostop in seznam drobnih popravil. Čas štejem od prihoda, na minuto natančno."
+  },
+  {
+   "pot": "/o-meni/",
+   "url": "https://popravimvse.si/o-meni/",
+   "naslov": "Sem Sebastjan, hišni mojster",
+   "opis": "Sebastjan Stjepanović, samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu. Maribor, Lenart, Ptuj, Slovenska Bistrica. 35 € na uro."
+  },
+  {
+   "pot": "/kontakt/",
+   "url": "https://popravimvse.si/kontakt/",
+   "naslov": "Kontakt",
+   "opis": "Pokličite ali pošljite SMS s fotografijo na 070 755 355. Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/zasebnost/",
+   "url": "https://popravimvse.si/zasebnost/",
+   "naslov": "Zasebnost",
+   "opis": "Kako ravnam s fotografijami, videi, telefonsko številko in pogovori s pomočnikom (izbris po 90 dneh) ter kdo ima pravice do fotografij na strani."
+  },
+  {
+   "pot": "/povprasevanje/",
+   "url": "https://popravimvse.si/povprasevanje/",
+   "naslov": "Pokažite mi, kaj je treba popraviti",
+   "opis": "Posnemite kratek video in povejte, kaj je narobe – ali pošljite fotografijo ali opis s telefona. Brez registracije, ocena je brezplačna. 35 € na uro."
+  },
+  {
+   "pot": "/reference/",
+   "url": "https://popravimvse.si/reference/",
+   "naslov": "Moja dela",
+   "opis": "Fotografije del hišnega mojstra Sebastjana Stjepanovića: keramika in kopalnice, kuhinje in omare po meri, odtoki, vrata, terase. 35 € na uro, prevoz vključen."
+  },
+  {
+   "pot": "/reference/prenova-lesenega-vikenda/",
+   "url": "https://popravimvse.si/reference/prenova-lesenega-vikenda/",
+   "naslov": "Prenova 40 let starega lesenega vikenda",
+   "opis": "Prenova 40 let starega lesenega vikenda: kuhinja po meri iz lepljenega lesa, izravnana tla in ploščice, nova kopalnica, ogrevanje in sanacija lesnega črva."
+  },
+  {
+   "pot": "/reference/smrad-iz-tus-kanalete/",
+   "url": "https://popravimvse.si/reference/smrad-iz-tus-kanalete/",
+   "naslov": "Smrad iz tuš kanalete: vzrok in rešitev",
+   "opis": "Video in fotografije pred in po: zakaj je iz tuš kanalete smrdelo po kanalizaciji, kako sem smradno zaporo očistil, zatesnil in preizkusil z vodo."
+  },
+  {
+   "pot": "/kaj-kupiti/",
+   "url": "https://popravimvse.si/kaj-kupiti/",
+   "naslov": "Kaj kupiti pred mojim prihodom",
+   "opis": "Seznami materiala hišnega mojstra: kaj kupiti za silikon, fuge, ploščice, laminat, pleskanje in montaže, koliko česa in česa ni treba kupiti."
+  },
+  {
+   "pot": "/kaj-kupiti/obnova-silikona-v-kopalnici/",
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/",
+   "naslov": "Kaj kupiti za obnovo silikona v kopalnici",
+   "opis": "Kateri sanitarni silikon kupiti za tuš, kad in umivalnik, koliko kartuš potrebujete in česa vam ni treba kupiti. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/montaza-tv-na-steno/",
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-tv-na-steno/",
+   "naslov": "Kaj kupiti za montažo TV na steno",
+   "opis": "Kateri nosilec za TV kupiti, kako preverite VESA in težo ter katere vložke potrebuje betonska, opečna ali mavčna stena. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/polaganje-laminata/",
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-laminata/",
+   "naslov": "Kaj kupiti za polaganje laminata",
+   "opis": "Koliko laminata, podloge in talnih letev kupiti, kateri razred laminata izbrati in kaj pripraviti 48 ur pred polaganjem. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/obnova-fug/",
+   "url": "https://popravimvse.si/kaj-kupiti/obnova-fug/",
+   "naslov": "Kaj kupiti za obnovo fug v kopalnici",
+   "opis": "Katero fugirno maso kupiti, cementno ali epoksi, koliko je potrebujete in katero barvo izbrati. Seznam hišnega mojstra za obnovo fug."
+  },
+  {
+   "pot": "/kaj-kupiti/pleskanje-sobe/",
+   "url": "https://popravimvse.si/kaj-kupiti/pleskanje-sobe/",
+   "naslov": "Kaj kupiti za pleskanje sobe",
+   "opis": "Koliko barve kupiti za sobo, katero barvo za kuhinjo, hodnik ali kopalnico ter kdaj potrebujete kit in osnovni premaz. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/polaganje-ploscic/",
+   "url": "https://popravimvse.si/kaj-kupiti/polaganje-ploscic/",
+   "naslov": "Kaj kupiti za polaganje ploščic",
+   "opis": "Koliko ploščic in lepila kupiti, katero lepilo za velike ploščice in talno ogrevanje ter kateri profili in fuge so potrebni. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/polica-na-mavcno-steno/",
+   "url": "https://popravimvse.si/kaj-kupiti/polica-na-mavcno-steno/",
+   "naslov": "Kaj kupiti za polico ali omarico na mavčno steno",
+   "opis": "Katere vložke kupiti za polico ali visečo omarico na mavčni (knauf) steni, koliko nosijo in kdaj je treba v profile. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/montaza-kopalniske-opreme/",
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-kopalniske-opreme/",
+   "naslov": "Kaj kupiti za montažo kopalniške opreme",
+   "opis": "Kaj kupiti za ogledalo, omarico, police in držala v kopalnici, kako izmeriti WC desko in kdaj ne vrtati v ploščice. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/priklop-pralnega-stroja/",
+   "url": "https://popravimvse.si/kaj-kupiti/priklop-pralnega-stroja/",
+   "naslov": "Kaj kupiti za priklop pralnega stroja",
+   "opis": "Katero dovodno in odtočno cev kupiti, kdaj potrebujete podaljšek in kaj preveriti pred priklopom pralnega stroja. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/menjava-cilindra-kljucavnice/",
+   "url": "https://popravimvse.si/kaj-kupiti/menjava-cilindra-kljucavnice/",
+   "naslov": "Kaj kupiti za menjavo cilindra ključavnice",
+   "opis": "Kako izmeriti cilinder ključavnice, koliko sme štrleti iz vrat in kaj pomenita funkcija v sili in varnostni razred. Seznam hišnega mojstra."
+  },
+  {
+   "pot": "/kaj-kupiti/montaza-garnisne/",
+   "url": "https://popravimvse.si/kaj-kupiti/montaza-garnisne/",
+   "naslov": "Kaj kupiti za montažo garnišne",
+   "opis": "Kako dolgo garnišno kupiti, kako visoko jo namestiti, stenska ali stropna montaža in kateri vložki so potrebni. Seznam hišnega mojstra."
+  }
+ ],
  "seznami": [
   {
    "url": "https://popravimvse.si/kaj-kupiti/obnova-silikona-v-kopalnici/",

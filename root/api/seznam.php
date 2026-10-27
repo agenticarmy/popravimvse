@@ -13,7 +13,7 @@ foreach (glob(storage('povprasevanja') . '/*/meta.json') ?: [] as $mf) {
 usort($rows, fn($a, $b) => strcmp($b['ustvarjeno'], $a['ustvarjeno']));
 
 page_start('Povpraševanja | Popravim vse');
-echo '<h1>Povpraševanja</h1><p class="pv-small"><a href="/api/nastavitve.php?k=' . h(list_key()) . '">Nastavitve: UI pomočnik, koledar, delovni čas</a>' . (ui_ready() ? ' · UI je vključen' : ' · UI ni vključen') . '</p>';
+echo '<h1>Povpraševanja</h1><p class="pv-small"><a href="/api/nastavitve.php?k=' . h(list_key()) . '">Nastavitve: UI pomočnik, koledar, delovni čas</a> · <a href="/api/klepeti.php?k=' . h(list_key()) . '">Pogovori s pomočnikom</a>' . (ui_ready() ? ' · UI je vključen' : ' · UI ni vključen') . '</p>';
 if (!$rows) echo '<p class="lead">Še ni povpraševanj.</p>';
 echo '<ul class="pv-list">';
 foreach ($rows as $r) {

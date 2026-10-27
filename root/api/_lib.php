@@ -85,10 +85,10 @@ function json_out(array $data, int $code = 200): never
     exit;
 }
 
-/** Največ $max dogodkov v $window sekundah na IP in vrsto. */
-function rate_ok(string $bucket, int $max, int $window): bool
+/** Največ $max dogodkov v $window sekundah na IP in vrsto ($global: skupaj za vse obiskovalce). */
+function rate_ok(string $bucket, int $max, int $window, bool $global = false): bool
 {
-    $f = storage('omejitve') . '/' . sha1($bucket . '|' . client_ip());
+    $f = storage('omejitve') . '/' . sha1($bucket . '|' . ($global ? 'vsi' : client_ip()));
     $fh = fopen($f, 'c+');
     if (!$fh) return true;
     flock($fh, LOCK_EX);
@@ -266,6 +266,7 @@ function page_end(): void
 /* ---------- nastavitve (ključe vnese Sebastjan na nastavitve.php; shranjene izven public_html) ---------- */
 const CONFIG_DEFAULTS = [
     'ui_vklop' => false,
+    'klepet_vklop' => true, 'klepet_model' => 'claude-sonnet-5-5', 'klepet_proracun' => 20, // pomočnik »Poskusite sami«; proračun v USD na mesec (strožje od 20 €)
     'claude_kljuc' => '', 'claude_model' => 'claude-sonnet-5-5',
     'prepis_kljuc' => '', 'prepis_model' => 'gpt-4o-transcribe',
     'ical' => '',

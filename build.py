@@ -467,6 +467,7 @@ def page(meta, main, path, extra_ld=()):
 {main}
 </main>
 {footer()}
+<script src="/static/js/klepet.js?v={asset_v("/static/js/klepet.js")}" data-css="/static/css/klepet.css?v={asset_v("/static/css/klepet.css")}" defer></script>
 </body>
 </html>
 <!-- zgrajeno {BUILT} -->
@@ -717,6 +718,7 @@ def llms_txt(urls):
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
+- Na vsaki strani je pomočnik »Poskusite sami« (umetna inteligenca, brezplačno): obiskovalcu svetuje, kako težavo odpraviti sam in čim ceneje z orodjem, ki ga ima, in odkrito pove, kdaj je bolje poklicati mojstra. Pri elektriki, vodi pod tlakom in plinu ne daje navodil, ampak napoti k usposobljenemu obrtniku. Ne dogovarja terminov in ni namenjen agentom (ti naj uporabijo obrazec ali API zgoraj).
 - Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na {SITE}/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo.
 - Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: {SITE}/zasebnost/
@@ -799,6 +801,8 @@ def ui_context(urls, llms):
         'storitve': [{'slug': sl, 'ime': t, 'url': f'{SITE}/{sl}/', 'opis': m.get(f'/{sl}/', {}).get('description', '')} for sl, t, _ in SERVICES],
         'obmocja': [{'ime': t, 'kraji': towns} for _, t, towns in AREAS],
         'kraji': CITIES,
+        'strani': [{'pot': u, 'url': f'{SITE}{u}', 'naslov': meta.get('h1') or meta.get('title', ''), 'opis': meta.get('description', '')}
+                   for u, _, _, meta in urls if meta],
         'seznami': [{'url': f'{SITE}/{KK}/{l["slug"]}/', 'naslov': l['h1'], 'storitev': l['service'],
                      'material': [{k: re.sub(r'<[^>]+>', '', str(x[k])) for k in ('ime', 'vrsta', 'kolicina', 'opomba')} for x in l['material']],
                      'prinese_mojster': l['prinesem']} for l in LISTS['lists'] if l['status'] == 'objavljeno'],

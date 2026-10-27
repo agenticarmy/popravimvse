@@ -26,6 +26,7 @@
 - Za agente: POST JSON na https://popravimvse.si/api/povprasevanje.php, opis polj v https://popravimvse.si/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
+- Na vsaki strani je pomočnik »Poskusite sami« (umetna inteligenca, brezplačno): obiskovalcu svetuje, kako težavo odpraviti sam in čim ceneje z orodjem, ki ga ima, in odkrito pove, kdaj je bolje poklicati mojstra. Pri elektriki, vodi pod tlakom in plinu ne daje navodil, ampak napoti k usposobljenemu obrtniku. Ne dogovarja terminov in ni namenjen agentom (ti naj uporabijo obrazec ali API zgoraj).
 - Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na https://popravimvse.si/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo.
 - Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: https://popravimvse.si/zasebnost/

@@ -1,0 +1,71 @@
+/* Pomočnik »Poskusite sami« – gumb na vsaki strani in okno za pogovor */
+.kl-fab {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 40;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .7rem 1rem; border: 2px solid var(--ink, #16232B); border-radius: 999px;
+  background: var(--tile, #fff); color: var(--ink, #16232B);
+  font: inherit; font-weight: 700; font-size: .95rem; line-height: 1.1; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(22, 35, 43, .18);
+  -webkit-tap-highlight-color: transparent;
+}
+.kl-fab svg { width: 1.25rem; height: 1.25rem; stroke: var(--green, #1D6A58); flex: none; }
+.kl-fab:hover { background: var(--green, #1D6A58); color: #fff; }
+.kl-fab:hover svg { stroke: #fff; }
+.kl-fab:focus-visible, .kl-panel button:focus-visible, .kl-panel textarea:focus-visible, .kl-panel a:focus-visible { outline: 3px solid var(--level, #F2C21B); outline-offset: 2px; }
+.kl-fab[hidden], .kl-panel[hidden] { display: none; }
+@media (max-width: 640px) {
+  /* nad črno vrstico s klicem */
+  .kl-fab { bottom: calc(4.6rem + env(safe-area-inset-bottom)); right: .8rem; padding: .6rem .85rem; font-size: .9rem; }
+}
+
+.kl-panel {
+  position: fixed; z-index: 60; right: 1rem; bottom: 1rem;
+  width: min(420px, calc(100vw - 2rem)); height: min(640px, calc(100vh - 2rem)); height: min(640px, calc(100dvh - 2rem));
+  display: flex; flex-direction: column;
+  background: var(--glaze, #F5F7F6); color: var(--ink, #16232B);
+  border: 2px solid var(--ink, #16232B); border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(22, 35, 43, .3);
+  font-size: 1rem; line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .kl-panel { inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0; }
+  body.kl-open { overflow: hidden; }
+}
+.kl-head { display: flex; align-items: center; gap: .6rem; padding: .7rem .8rem .7rem 1rem; background: var(--ink, #16232B); color: #fff; }
+.kl-head h2 { margin: 0; font-size: 1.05rem; line-height: 1.2; flex: 1; }
+.kl-head small { display: block; font-weight: 400; font-size: .8rem; opacity: .85; }
+.kl-head button { background: transparent; border: 1px solid rgba(255, 255, 255, .6); color: #fff; border-radius: 4px; font: inherit; font-size: .85rem; padding: .35rem .6rem; cursor: pointer; min-height: 2.25rem; }
+.kl-head .kl-x { font-size: 1.3rem; line-height: 1; width: 2.4rem; padding: 0; }
+
+.kl-log { flex: 1; overflow-y: auto; padding: 1rem; overscroll-behavior: contain; }
+.kl-intro { background: var(--tile, #fff); border: 1px solid var(--grout, #CBD3CF); border-left: 5px solid var(--green, #1D6A58); padding: .8rem .9rem; margin: 0 0 1rem; }
+.kl-intro p { margin: 0 0 .5rem; }
+.kl-intro .kl-quote { font-weight: 700; }
+.kl-small { font-size: .82rem; color: var(--ink-soft, #4B5A62); }
+.kl-consent { display: flex; gap: .55rem; align-items: flex-start; font-size: .9rem; margin: .6rem 0 .2rem; cursor: pointer; }
+.kl-consent input { width: 1.2rem; height: 1.2rem; margin: .15rem 0 0; flex: none; accent-color: var(--green, #1D6A58); }
+
+.kl-msg { max-width: 92%; margin: 0 0 .8rem; padding: .6rem .8rem; border-radius: 6px; overflow-wrap: anywhere; }
+.kl-msg p, .kl-msg ol, .kl-msg ul { margin: 0 0 .5rem; }
+.kl-msg > :last-child { margin-bottom: 0; }
+.kl-msg ol, .kl-msg ul { padding-left: 1.3rem; }
+.kl-msg li { margin: 0 0 .25rem; }
+.kl-me { margin-left: auto; background: var(--ink, #16232B); color: #fff; white-space: pre-wrap; }
+.kl-bot { background: var(--tile, #fff); border: 1px solid var(--grout, #CBD3CF); }
+.kl-bot a { color: var(--green-deep, #124738); font-weight: 600; }
+.kl-typing { color: var(--ink-soft, #4B5A62); font-style: italic; }
+.kl-err { background: #FDF2F2; border: 1px solid #E3B7B7; color: #7A1F1F; }
+.kl-hand { background: #FFF8DC; border: 1px solid var(--level-deep, #D9A900); }
+.kl-hand p { margin: 0 0 .6rem; font-weight: 600; }
+.kl-btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; padding: .6rem .9rem; min-height: 2.75rem;
+  border: 2px solid var(--ink, #16232B); border-radius: 4px; background: var(--level, #F2C21B); color: var(--ink, #16232B);
+  font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+.kl-btn.plain { background: var(--tile, #fff); }
+
+.kl-form { display: flex; gap: .5rem; align-items: flex-end; padding: .7rem .8rem calc(.7rem + env(safe-area-inset-bottom)); border-top: 1px solid var(--grout, #CBD3CF); background: var(--tile, #fff); }
+.kl-form textarea { flex: 1; min-height: 2.75rem; max-height: 8rem; resize: none; padding: .55rem .7rem; border: 2px solid var(--ink, #16232B); border-radius: 4px; font: inherit; font-size: 1rem; line-height: 1.4; background: #fff; color: var(--ink, #16232B); }
+.kl-form button { flex: none; min-height: 2.75rem; padding: 0 1rem; }
+.kl-form button[disabled] { opacity: .55; cursor: wait; }
+.kl-foot { display: flex; justify-content: space-between; gap: .6rem; padding: 0 .9rem .6rem; background: var(--tile, #fff); font-size: .8rem; color: var(--ink-soft, #4B5A62); }
+.kl-foot a { color: inherit; }
+@media print { .kl-fab, .kl-panel { display: none !important; } }

@@ -18,7 +18,7 @@ Vsebinska pravila:
 - V referenci o vikendu ohrani omembo električnega bojlerja in preureditve ogrevanja.
 - Fotografije: brez gesel/nalepk, tretjih oseb, registrskih tablic, AI slik; odstrani EXIF/GPS.
 
-Dejstva (25. 10. 2026): 35 €/h, prevoz vključen; prva ura v celoti, nato na minuto natančno; če ne popravi, stranka ne plača nič;
+Dejstva (25. 10. 2026): 35 €/h, prevoz vključen; prva ura v celoti, nato na minuto natančno; če ne popravi, stranka ne plača nič (natančno: /cenik/#jamstvo – nič, če okvare ne more odpraviti, dela ni mogoče dobiti, je potreben pooblaščeni serviser ali se na kraju izkaže delo z obrtnim dovoljenjem; porabljeni čas s celo prvo uro, če stranka ne nadaljuje mogočega popravila, ne kupi potrebnega dela ali delo prekine; pred preseganjem ocene vpraša);
 plačilo samo z gotovino na mestu, račun za vsako delo; ni zavezanec za DDV; samo posamezniki in gospodinjstva (ne podjetja);
 sedež Ronkova ulica 4, 2380 Slovenj Gradec (pisarna), dela iz Pernice pri Mariboru.
 Čas se šteje od prihoda k stranki (stisk roke), vožnja ne; brez doplačil zvečer/vikend; material kupi stranka (Sebastjan svetuje, brez pribitka);

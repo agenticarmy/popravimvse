@@ -225,7 +225,7 @@ function compose_body(array $r): string
     $t .= "\n\n" . ($a == $b
         ? 'Okvirno pričakujem ' . ure($a) . ', to je približno ' . cena($a) . ' €'
         : 'Okvirno pričakujem ' . str_replace([' ure', ' uri', ' ura', ' ur'], '', ure($a)) . '–' . ure($b) . ', to je približno ' . cena($a) . '–' . cena($b) . ' €')
-        . ' (35 € na uro, prevoz je vključen). Če popravila ni mogoče opraviti, ne plačate nič.';
+        . ' (35 € na uro, prevoz je vključen). Če med delom vidim, da bo trajalo dlje, se ustavim in vas vprašam. Če okvare ne morem odpraviti, ne plačate nič: ' . SITE . '/cenik/#jamstvo';
     if (!empty($u['material'])) {
         $t .= "\n\nPred mojim prihodom kupite:";
         foreach ($u['material'] as $m) $t .= "\n- {$m['ime']}" . ($m['kolicina'] !== '' ? ": {$m['kolicina']}" : '') . ($m['opomba'] !== '' ? " ({$m['opomba']})" : '');

@@ -258,7 +258,7 @@ def business_ld():
                        'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
                        'modemi in pametni termostati, vrata in okna, tesarska dela in pohištvo, manjše selitve in prenosi, pomoč kot druga roka, košnja, obrezovanje žive meje in urejanje okolice. '
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
-                       'če popravila ni mogoče opraviti, stranka ne plača nič. Plačilo z gotovino na mestu. '
+                       'če okvare ne more odpraviti (tudi če dela ni mogoče dobiti ali gre za delo z obrtnim dovoljenjem), stranka ne plača nič; če se stranka odloči, da popravila, ki je mogoče, ne nadaljuje, ali ne želi kupiti potrebnega dela, plača porabljeni čas. Plačilo z gotovino na mestu. '
                        'Dela samo za posameznike in gospodinjstva. Termina se drži; brez predplačila; račun za vsako delo; '
                        'če kaj ni prav, popravi brezplačno; brez doplačil zvečer in ob vikendih; material kupi stranka po njegovem nasvetu.',
         'slogan': 'Če ne popravim, ne plačate nič.',
@@ -364,7 +364,7 @@ def footer():
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
     <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
-    <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
+    <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
   </div>
 </footer>
 <div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Video: posnemite težavo">{CAM}Video</a></div>'''
@@ -438,7 +438,7 @@ def aside(current_slug):
     return f'''<aside class="aside" aria-label="Cena in povezave">
   <div class="card">
     <span class="rate">35 € na uro</span>
-    <p>Prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič. Nisem zavezanec za DDV.</p>
+    <p>Prevoz je vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
     {call_btn("call small")}
   </div>
   <nav class="card" aria-label="Storitve"><h2>Storitve</h2><ul>{svc}</ul></nav>
@@ -639,14 +639,14 @@ def llms_txt(urls):
     ar = '\n'.join(f'- [{t}]({SITE}/{s}/): {towns}' for s, t, towns in AREAS)
     return f'''# Popravim vse – {PERSON["name"]}, hišni mojster
 
-> Samostojni hišni mojster ({BIZ["legal"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu (samouk, 15 let dela v Nemčiji). Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če popravila ni mogoče opraviti, stranka ne plača nič.
+> Samostojni hišni mojster ({BIZ["legal"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu (samouk, 15 let dela v Nemčiji). Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če okvare ne more odpraviti, stranka ne plača nič (podrobno spodaj).
 
 ## Ključna dejstva
 - Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. Ni zavezanec za DDV.
 - Dela samo za posameznike in gospodinjstva, ne za podjetja.
 - En mojster namesto desetih: v enem obisku uredi več drobnih popravil hkrati (kljuke, okna, vrata, krila omar, predali, laminat, držala, silikon, police, slike, garnišne …). Stranka plača en prihod in čas pri njej, ne vsakega mojstra posebej. Seznam za obkljukanje: {SITE}/drobna-popravila/
 - Sedež s.p. je v Slovenj Gradcu (tam ima pisarno), dela pa iz Pernice pri Mariboru.
-- Če popravila ni mogoče opraviti, stranka ne plača ne časa ne prevoza.
+- Če Sebastjan okvare ne more odpraviti (ne zna ali ne more, nadomestnega dela ni mogoče dobiti, potreben je pooblaščeni serviser ali se na kraju izkaže, da gre za delo z obrtnim dovoljenjem), stranka ne plača ne časa ne prevoza. Če se popravilo da opraviti, a se stranka odloči, da ga ne nadaljuje, ne želi kupiti potrebnega dela ali delo prekine, plača porabljeni čas (prva ura v celoti, nato na minuto). Preden preseže oceno, vpraša za soglasje. Podrobno: {SITE}/cenik/#jamstvo
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
 - Če se po njegovem delu izkaže, da kaj ni prav (npr. silikon odstopi), pride in popravi brezplačno.
 - Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Brez doplačil zvečer, v soboto in nedeljo.

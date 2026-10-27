@@ -140,7 +140,8 @@ page_start('Stanje povpraševanja | Popravim vse');
     <li>Povem vam, ali je delo zame in koliko ur okvirno pričakujem.</li>
     <li>Če je treba kaj kupiti, vam napišem, kaj in koliko. Material kupite sami, po ceni iz trgovine.</li>
     <li>Predlagam termin. Termin velja šele, ko ga oba potrdiva.</li>
-    <li>Cena je 35 € na uro, prevoz je vključen. Če popravila ni mogoče opraviti, ne plačate nič.</li>
+    <li>Cena je 35 € na uro, prevoz je vključen. Če okvare ne morem odpraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj to velja</a>).</li>
+    <li>Če med delom vidim, da bo trajalo dlje od ocene, se ustavim in vas vprašam. Brez vašega soglasja ne nadaljujem.</li>
   </ul>
 </section>
 <?php endif; ?>

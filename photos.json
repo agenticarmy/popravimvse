@@ -160,6 +160,30 @@
   "kanaleta-voda-pokriva-rezo-odtoka": {
    "alt": "Smradna zapora do konca potisnjena na odtok v tuš kanaleti, voda pokriva režo odtoka",
    "cap": "Po: smradna zapora deluje. Voda pokriva režo odtoka in zapira pot smradu."
+  },
+  "fuga-odpadla-ob-tusu": {
+   "alt": "Odpadla fuga v kotu tuš kabine med najnižjo in naslednjo vrsto ploščic",
+   "cap": "Fuga je v kotu tuša odpadla. Spodnja ploščica je bila nekoč položena krivo, zato se tam nabira voda."
+  },
+  "fuga-zascitena-z-lepilnim-trakom": {
+   "alt": "Tuš kabina s talno kanaleto, nad odpadlo fugo nalepljen zelen lepilni trak",
+   "cap": "Do popravila fugo zaščitim z lepilnim trakom. Voda med tuširanjem odteka čez, fuga pa se suši."
+  },
+  "lepilni-trak-strehica-nad-fugo": {
+   "alt": "Lepilni trak je prilepljen samo na zgornjo ploščico, spodnji rob je zavihan kot strehica nad fugo",
+   "cap": "Trak je prilepljen samo zgoraj, spodaj je zavihan. Fuga ni zaprta, zato lahko diha."
+  },
+  "sesalec-filter-in-scetka-ociscena": {
+   "alt": "Razstavljen akumulatorski sesalec: posoda, očiščen filter in ščetka",
+   "cap": "Akumulatorski sesalec po čiščenju: posoda, filter, spihan s kompresorjem, in ščetka brez las."
+  },
+  "robotska-kosilnica-ob-kolesnici": {
+   "alt": "Robotska kosilnica na trati ob globoki kolesnici, ki jo je izkopala",
+   "cap": "Robotska kosilnica ob kolesnici, ki jo je sama izkopala ob razmejitveni žici."
+  },
+  "kolesnica-robotske-kosilnice": {
+   "alt": "Roka v globoki kolesnici v travi, ki jo je naredila robotska kosilnica",
+   "cap": "Kolesnica je tako globoka, da se kosilnica v njej zatakne."
   }
  },
  "galleries": {
@@ -242,6 +266,15 @@
   "kanaleta-po": [
    "smradna-zapora-zatesnjena-s-teflonom",
    "kanaleta-voda-pokriva-rezo-odtoka"
+  ],
+  "fuga-tus": [
+   "fuga-odpadla-ob-tusu",
+   "fuga-zascitena-z-lepilnim-trakom",
+   "lepilni-trak-strehica-nad-fugo"
+  ],
+  "robotska-kosilnica": [
+   "robotska-kosilnica-ob-kolesnici",
+   "kolesnica-robotske-kosilnice"
   ]
  }
 }

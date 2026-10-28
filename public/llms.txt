@@ -57,7 +57,7 @@
 ## Reference
 - [Moja dela](https://popravimvse.si/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda](https://popravimvse.si/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
-- [Smrad iz tuš kanalete](https://popravimvse.si/reference/smrad-iz-tus-kanalete/): video (16 min) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
+- [Smrad iz tuš kanalete](https://popravimvse.si/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 ## Kaj kupiti (seznami materiala)
 Material kupi stranka po Sebastjanovem nasvetu. Pri postavkah so povezave na najcenejši ustrezen izdelek v Bauhausu, OBI-ju in Merkurju (brez cen, polje kje_kupiti). Strojno berljivo: https://popravimvse.si/seznami.json

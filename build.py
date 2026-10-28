@@ -733,7 +733,7 @@ def llms_txt(urls):
 ## Reference
 - [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
-- [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video (16 min) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
+- [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 {lists_llms()}## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna

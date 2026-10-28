@@ -708,6 +708,7 @@ def llms_txt(urls):
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; za vsako delo izda račun (popusta za delo brez računa ni); dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).
+- Na željo stranke ves čas dela snema z akcijsko kamero na prsih (dokaz za stranko in zanj, da med delom nič ne izgine); posnetek hrani 30 dni, na zahtevo stranka dobi kopijo. Za YouTube uporabi del posnetka samo s posebnim dovoljenjem stranke, ki ni pogoj za snemanje: le kader dela, brez ljudi in drugih prostorov, stranka ga vidi pred objavo. Podrobno: {SITE}/zasebnost/#snemanje
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}, obrazec s fotografijo, videom ali glasom: {SITE}{FORM}
@@ -719,7 +720,7 @@ def llms_txt(urls):
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
 - Na vsaki strani je pomočnik »Poskusite sami« (umetna inteligenca, brezplačno): obiskovalcu svetuje, kako težavo odpraviti sam in čim ceneje z orodjem, ki ga ima, in odkrito pove, kdaj je bolje poklicati mojstra. Pri elektriki, vodi pod tlakom in plinu ne daje navodil, ampak napoti k usposobljenemu obrtniku. Ne dogovarja terminov in ni namenjen agentom (ti naj uporabijo obrazec ali API zgoraj).
-- Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na {SITE}/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo.
+- Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na {SITE}/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo. Neobvezno: snemanje_zascita in snemanje_youtube (true/false) – izbira stranke o snemanju med delom; samo z izrecnim soglasjem stranke (spremembo pošljete s snemanje_shrani: true).
 - Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: {SITE}/zasebnost/
 
@@ -787,7 +788,10 @@ def openapi():
                              'type': 'object', 'required': ['id', 't'],
                              'properties': {'id': {'type': 'string'}, 't': {'type': 'string'},
                                             'potrdi': {'type': 'integer', 'minimum': 0, 'maximum': 2, 'description': 'Indeks termina iz seznama termini'},
-                                            'ne_ustreza': {'type': 'boolean'}, 'opomba': {'type': 'string', 'maxLength': 1000}}}}}},
+                                            'ne_ustreza': {'type': 'boolean'}, 'opomba': {'type': 'string', 'maxLength': 1000},
+                                            'snemanje_zascita': {'type': 'boolean', 'description': 'Stranka želi, da Sebastjan med delom ves čas snema (hrani 30 dni). Samo z izrecnim soglasjem stranke.'},
+                                            'snemanje_youtube': {'type': 'boolean', 'description': 'Stranka dovoli uporabo dela posnetka (samo kader dela) za YouTube. Samo z izrecnim soglasjem stranke.'},
+                                            'snemanje_shrani': {'type': 'boolean', 'description': 'Samo sprememba izbire o snemanju (tudi po potrditvi termina).'}}}}}},
                          'responses': {'200': {'description': 'Potrjeno'}, '409': {'description': 'Ni predloga ali je termin že potrjen'}}}}},
     }
 

@@ -187,6 +187,18 @@
          "opomba": {
           "type": "string",
           "maxLength": 1000
+         },
+         "snemanje_zascita": {
+          "type": "boolean",
+          "description": "Stranka želi, da Sebastjan med delom ves čas snema (hrani 30 dni). Samo z izrecnim soglasjem stranke."
+         },
+         "snemanje_youtube": {
+          "type": "boolean",
+          "description": "Stranka dovoli uporabo dela posnetka (samo kader dela) za YouTube. Samo z izrecnim soglasjem stranke."
+         },
+         "snemanje_shrani": {
+          "type": "boolean",
+          "description": "Samo sprememba izbire o snemanju (tudi po potrditvi termina)."
          }
         }
        }

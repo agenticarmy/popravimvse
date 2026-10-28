@@ -93,12 +93,15 @@ function notify_slot(array $r, ?int $ts, string $note = ''): bool
         $cal = gcal_link('Popravim vse: ' . ($r['kraj'] ?: 'stranka') . ' – ' . ($r['ime'] ?: $r['telefon']),
             trim(mb_substr($r['opis'], 0, 500) . "\n\nTelefon: {$r['telefon']}\nPovpraševanje: $ogled"), $r['kraj'], $ts, $end);
         $subject = 'Termin potrjen: ' . sl_slot($ts, true) . ' – ' . ($r['kraj'] ?: $r['telefon']);
+        $sn = $r['snemanje'] ?? null;
+        $snTxt = $sn ? 'Snemanje: zaščitni posnetek ' . ($sn['zascita'] ? 'DA' : 'ne') . ', YouTube ' . ($sn['youtube'] ? 'DA (pred objavo pokaži stranki)' : 'ne') : 'Snemanje: stranka ni izbrala (vprašaj ob prihodu)';
         $html = mail_wrap('<h2 style="margin:0 0 12px">Stranka je potrdila termin</h2><p><b>' . h(sl_slot($ts)) . '</b><br>'
             . h($r['kraj'] ?: '') . ' · <a href="tel:' . h($r['telefon_e164']) . '">' . h($r['telefon']) . '</a></p>'
             . ($note !== '' ? '<p style="padding:10px 12px;background:#F5F7F6;border-left:5px solid #1D6A58">' . nl2br(h($note)) . '</p>' : '')
+            . '<p><b>' . h($snTxt) . '</b></p>'
             . '<p>' . mail_btn($cal, 'Dodaj v Google Koledar') . mail_btn($ogled, 'Odpri povpraševanje', '#ffffff') . '</p>'
             . '<p style="color:#4B5A62;font-size:14px">Naslov se dogovorita po telefonu, če ga še nimate.</p>');
-        $text = "Stranka je potrdila termin: " . sl_slot($ts) . "\n{$r['kraj']} · {$r['telefon']}\n\nDodaj v koledar: $cal\nOdpri: $ogled\n";
+        $text = "Stranka je potrdila termin: " . sl_slot($ts) . "\n{$r['kraj']} · {$r['telefon']}\n$snTxt\n\nDodaj v koledar: $cal\nOdpri: $ogled\n";
     } else {
         $subject = 'Noben termin ne ustreza – ' . ($r['kraj'] ?: $r['telefon']);
         $html = mail_wrap('<h2 style="margin:0 0 12px">Stranki noben predlagani termin ne ustreza</h2>'

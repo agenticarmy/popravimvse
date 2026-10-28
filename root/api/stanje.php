@@ -23,6 +23,27 @@ if (!$r || !hash_equals($r['token'], $t)) {
 }
 $p = $r['predlog'] ?? null;
 
+/** Izbira stranke o snemanju med delom (obe kljukici neobvezni in neodvisni). */
+function snemanje_iz(array $in): array
+{
+    return ['zascita' => !empty($in['snemanje_zascita']), 'youtube' => !empty($in['snemanje_youtube']), 'cas' => date('c')];
+}
+
+// sprememba izbire o snemanju (tudi po potrditvi termina)
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && !empty($in['snemanje_shrani'])) {
+    $old = $r['snemanje'] ?? null;
+    $r['snemanje'] = snemanje_iz($in);
+    save_req($r);
+    if (!$old || $old['zascita'] !== $r['snemanje']['zascita'] || $old['youtube'] !== $r['snemanje']['youtube']) {
+        $t = 'Snemanje: zaščitni posnetek ' . ($r['snemanje']['zascita'] ? 'DA' : 'ne') . ', YouTube ' . ($r['snemanje']['youtube'] ? 'DA' : 'ne');
+        send_mail(NOTIFY_TO, 'Sprememba snemanja – ' . ($r['kraj'] ?: $r['telefon']), "Stranka je spremenila izbiro o snemanju.\n$t\n\nOdpri: " . admin_url($r) . "\n",
+            mail_wrap('<h2 style="margin:0 0 12px">Stranka je spremenila izbiro o snemanju</h2><p><b>' . h($t) . '</b></p><p>' . mail_btn(admin_url($r), 'Odpri povpraševanje') . '</p>'));
+    }
+    if ($isJson) json_out(['ok' => true, 'snemanje' => $r['snemanje']]);
+    header('Location: ' . status_url($r) . '#snemanje', true, 303);
+    exit;
+}
+
 // potrditev termina (stranka ali njen agent)
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && $p && empty($p['potrjen'])) {
     $note = clean((string)($in['opomba'] ?? ''), 1000);
@@ -32,6 +53,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && $p && empty($p['potrjen'
         $r['predlog']['potrjeno_cas'] = date('c');
         $r['predlog']['opomba_stranke'] = $note;
         unset($r['predlog']['ne_ustreza']);
+        if (isset($in['snemanje_izbira']) || isset($in['snemanje_zascita']) || isset($in['snemanje_youtube'])) $r['snemanje'] = snemanje_iz($in);
         save_req($r);
         set_status($r, 'termin');
         notify_slot($r, $ts, $note);
@@ -60,9 +82,21 @@ if (($_GET['format'] ?? '') === 'json') {
         'odgovor' => $p ? $p['besedilo'] : null,
         'termini' => $p ? array_map(fn($ts) => date('c', $ts), $p['termini']) : [],
         'potrjen_termin' => !empty($p['potrjen']) ? date('c', $p['potrjen']) : null,
+        'snemanje' => $r['snemanje'] ?? null,
         'kako_potrditi' => $p && empty($p['potrjen']) && $p['termini']
             ? 'POST JSON na ' . SITE . '/api/stanje.php z {"id","t","potrdi": indeks termina (0, 1, 2)} ali {"ne_ustreza": true, "opomba": "…"}; samo s soglasjem stranke.' : null]);
 }
+
+function snemanje_polja(array $r): void
+{
+    $s = $r['snemanje'] ?? ['zascita' => false, 'youtube' => false]; ?>
+  <div class="pv-rec-choice">
+    <input type="hidden" name="snemanje_izbira" value="1">
+    <label class="pv-check"><input type="checkbox" name="snemanje_zascita" value="1" <?= $s['zascita'] ? 'checked' : '' ?>> <span><b>Med delom ves čas snemajte</b> z akcijsko kamero na prsih (zaščita za oba). Posnetek hranite 30 dni, nato ga izbrišete; na zahtevo dobim kopijo.</span></label>
+    <label class="pv-check"><input type="checkbox" name="snemanje_youtube" value="1" <?= $s['youtube'] ? 'checked' : '' ?>> <span><b>Del posnetka smete uporabiti za YouTube:</b> samo kader dela, brez mene, drugih ljudi in drugih prostorov. Pred objavo mi ga pokažete in lahko rečem ne.</span></label>
+    <p class="pv-small">Oboje je neobvezno, neodvisno eno od drugega in ga lahko kadar koli spremenite. Ob prihodu vas še enkrat vprašam. <a href="/zasebnost/#snemanje">Več o snemanju</a></p>
+  </div>
+<?php }
 
 $order = array_keys(STATUS);
 $cur = array_search($r['status'], $order, true);
@@ -101,6 +135,8 @@ page_start('Stanje povpraševanja | Popravim vse');
   <?php if ($p['termini'] && empty($p['potrjen'])): ?>
     <form method="post" class="pv-pickslot">
       <input type="hidden" name="id" value="<?= h($r['id']) ?>"><input type="hidden" name="t" value="<?= h($r['token']) ?>">
+      <h3>Snemanje med delom <small>(neobvezno)</small></h3>
+      <?php snemanje_polja($r); ?>
       <h3>Izberite termin</h3>
       <?php foreach ($p['termini'] as $i => $ts): if ($ts <= time()) continue; ?>
         <button class="<?= $i === 0 ? 'call' : 'btn-plain' ?> pv-slotbtn" name="potrdi" value="<?= $i ?>"><?= h(sl_slot($ts)) ?></button>
@@ -111,6 +147,17 @@ page_start('Stanje povpraševanja | Popravim vse');
       <?php if (!empty($p['ne_ustreza'])): ?><p class="pv-small">Sporočili ste, da vam noben termin ne ustreza. Sebastjan se vam oglasi.</p><?php endif; ?>
     </form>
   <?php endif; ?>
+</section>
+<?php endif; ?>
+
+<?php if (!empty($p['potrjen'])): ?>
+<section class="pv-card" id="snemanje">
+  <h2>Snemanje med delom</h2>
+  <form method="post">
+    <input type="hidden" name="id" value="<?= h($r['id']) ?>"><input type="hidden" name="t" value="<?= h($r['token']) ?>">
+    <?php snemanje_polja($r); ?>
+    <button class="btn-plain" name="snemanje_shrani" value="1">Shrani izbiro</button>
+  </form>
 </section>
 <?php endif; ?>
 

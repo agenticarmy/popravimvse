@@ -103,6 +103,9 @@ page_start('Povpraševanje ' . $r['id'] . ' | Popravim vse', $running ? '<meta h
 </div>
 <?php endif; ?>
 
+<?php if (isset($r['snemanje'])): $sn = $r['snemanje']; ?>
+<p class="<?= $sn['zascita'] || $sn['youtube'] ? 'pv-okmsg' : 'pv-small' ?>"><b>Snemanje:</b> zaščitni posnetek <?= $sn['zascita'] ? 'DA (hrani 30 dni)' : 'ne' ?> · YouTube <?= $sn['youtube'] ? 'DA (pred objavo pokaži stranki)' : 'ne' ?> <small>(<?= h(sl_time($sn['cas'])) ?>)</small></p>
+<?php endif; ?>
 <?php if ($r['opis'] !== ''): ?><p class="pv-quote"><?= nl2br(h($r['opis'])) ?></p><?php endif; ?>
 <?php $kc = !empty($r['klepet']) ? kl_load($r['klepet']) : null; if ($kc): ?>
 <details class="pv-card pv-chatlog">

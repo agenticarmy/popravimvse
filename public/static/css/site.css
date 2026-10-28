@@ -546,6 +546,9 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .pv-none { font: inherit; font-weight: 700; cursor: pointer; width: 100%; justify-content: center; }
 .pv-check { display: flex; gap: .6rem; align-items: flex-start; margin: .6rem 0; font-weight: 600; }
 .pv-check input { width: 1.3rem; height: 1.3rem; margin-top: .15rem; accent-color: var(--green); flex: none; }
+.pv-rec-choice { margin: .4rem 0 1rem; padding: .8rem .9rem; background: var(--glaze); border: 1px solid var(--grout); border-radius: var(--radius); }
+.pv-rec-choice .pv-check { font-weight: 400; }
+.pv-rec-choice .pv-small { margin: .4rem 0 0; }
 .pv-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
 .pv-okmsg { padding: .7rem .9rem; background: #E6F4EE; border: 2px solid var(--green); border-radius: var(--radius); font-weight: 600; }
 .pv-settings legend { font-weight: 800; font-size: 1.15rem; }

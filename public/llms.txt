@@ -23,7 +23,7 @@
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
-- Obrazec: https://popravimvse.si/povprasevanje/ – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije.
+- Obrazec: https://popravimvse.si/povprasevanje/ – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): https://popravimvse.si/povprasevanje/#primer
 - Za agente: POST JSON na https://popravimvse.si/api/povprasevanje.php, opis polj v https://popravimvse.si/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
@@ -43,7 +43,7 @@
 - [Priklop aparatov](https://popravimvse.si/priklop-aparatov/): Priklop pralnega, sušilnega in pomivalnega stroja na obstoječe priključke ter vgradnja pečice in nape. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart.
 - [Montaža TV in polic](https://popravimvse.si/montaza-tv-in-polic/): Montaža televizorja na steno, polic, garnišn, ogledal, slik in nosilcev, tudi na knauf steno. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart.
 - [Modem, Wi-Fi in termostat](https://popravimvse.si/modem-in-termostat/): Priklop modema, nastavitev Wi-Fi, povezava naprav z mrežnim kablom in nastavitev pametnega termostata. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart.
-- [Vrata in okna](https://popravimvse.si/popravilo-vrat-in-oken/): Popravilo oken in vrat: nastavitev PVC oken, okovje, balkonska in drsna vrata, kljuke, ključavnice. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart.
+- [Vrata in okna](https://popravimvse.si/popravilo-vrat-in-oken/): Popravilo oken in vrat: nastavitev PVC oken, okovje, balkonska in drsna vrata, kljuke, ključavnice, zataknjene rolete. 35 € na uro, prevoz vključen.
 - [Tesarska dela in pohištvo](https://popravimvse.si/tesarska-dela/): Tesarska dela na domu: montaža pohištva in kuhinje, viseče omarice, police, popravila lesa. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Sl. Bistrica.
 - [Manjše selitve in prenosi](https://popravimvse.si/selitve-in-prenosi/): Manjše selitve, prevoz s prikolico in prenos težkih predmetov po stopnicah. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica.
 - [Košnja in urejanje okolice](https://popravimvse.si/kosnja-in-urejanje-okolice/): Košnja trave, obrezovanje žive meje in prevoz gramoza, peska ali zemlje z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj.

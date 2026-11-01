@@ -168,7 +168,12 @@ def yt_time(sec):
 
 
 def video_html(v):
-    """YouTube video (youtube-nocookie) in seznam poglavij s povezavami na čas v videu."""
+    """YouTube video (youtube-nocookie) in seznam poglavij s povezavami na čas v videu.
+    Video na lastnem strežniku: 'src' (+ 'poster', 'width', 'height') namesto 'youtube_id'."""
+    if v and v.get('src'):
+        return (f'<figure class="video video-own"><video controls playsinline preload="none" poster="{v["poster"]}" '
+                f'width="{v.get("width", 720)}" height="{v.get("height", 1280)}"><source src="{v["src"]}" type="video/mp4"></video>'
+                f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])})</figcaption></figure>')
     if not v or not v.get('youtube_id'):
         return ''
     vid = v['youtube_id']
@@ -192,6 +197,14 @@ def video_anchor(i):
 
 
 def video_ld(v, page_url, i=0):
+    if v and v.get('src'):
+        out = {'@type': 'VideoObject', '@id': page_url + video_anchor(i), 'name': v['name'], 'description': v['description'],
+               'thumbnailUrl': SITE + v['poster'], 'contentUrl': SITE + v['src'], 'uploadDate': v['upload_date'],
+               'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S', 'inLanguage': 'sl-SI',
+               'width': v.get('width', 720), 'height': v.get('height', 1280), 'publisher': {'@id': BIZ_ID}}
+        if v.get('transcript'):
+            out['transcript'] = v['transcript']
+        return out
     if not v or not v.get('youtube_id'):
         return None
     vid = v['youtube_id']
@@ -741,7 +754,7 @@ def llms_txt(urls):
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
-- Obrazec: {SITE}{FORM} – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije.
+- Obrazec: {SITE}{FORM} – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): {SITE}{FORM}#primer
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.

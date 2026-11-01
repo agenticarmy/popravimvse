@@ -62,11 +62,17 @@
     var was = (read() || {}).analitika;
     save(ok);
     hide();
+    status();
     if (ok) return load();
     gtag('consent', 'update', { analytics_storage: 'denied' });
     window['ga-disable-' + GA] = true;
     dropCookies();
     if (was && loaded) location.reload();
+  }
+
+  function status() {
+    var el = document.getElementById('privolitev-stanje'), s = read();
+    if (el) el.textContent = !s ? 'še niste izbrali' : s.analitika ? 'merjenje obiskov ste dovolili' : 'merjenje obiskov ste zavrnili';
   }
 
   function hide() { if (bar) { bar.remove(); bar = null; } }
@@ -116,8 +122,7 @@
     var s = read();
     if (s && s.analitika) load();
     else if (!s) show();
-    var stat = document.getElementById('privolitev-stanje');
-    if (stat) stat.textContent = !s ? 'še niste izbrali' : s.analitika ? 'merjenje obiskov ste dovolili' : 'merjenje obiskov ste zavrnili';
+    status();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

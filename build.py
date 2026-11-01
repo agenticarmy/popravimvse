@@ -178,12 +178,22 @@ def video_html(v):
             + (f'<h3>Vsebina videa</h3><ol class="chapters">{chap}</ol>' if chap else ''))
 
 
-def video_ld(v, page_url):
+def video_list(meta):
+    """'video' je lahko en slovar ali seznam slovarjev (več videov na eni strani)."""
+    v = meta.get('video')
+    return v if isinstance(v, list) else ([v] if v else [])
+
+
+def video_anchor(i):
+    return '#video' if i == 0 else f'#video-{i + 1}'
+
+
+def video_ld(v, page_url, i=0):
     if not v or not v.get('youtube_id'):
         return None
     vid = v['youtube_id']
     watch = f'https://www.youtube.com/watch?v={vid}'
-    out = {'@type': 'VideoObject', '@id': page_url + '#video', 'name': v['name'], 'description': v['description'],
+    out = {'@type': 'VideoObject', '@id': page_url + video_anchor(i), 'name': v['name'], 'description': v['description'],
            'thumbnailUrl': [f'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg', f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg'],
            'uploadDate': v['upload_date'], 'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S',
            'embedUrl': f'https://www.youtube-nocookie.com/embed/{vid}', 'url': watch, 'inLanguage': 'sl-SI',
@@ -508,7 +518,9 @@ def buy_box(slug):
 
 
 def inner(meta, body, slug, crumbs):
-    body = expand(body).replace('{{VIDEO}}', video_html(meta.get('video')))
+    body = expand(body)
+    for i, v in enumerate(video_list(meta)):
+        body = body.replace('{{VIDEO}}' if i == 0 else '{{VIDEO%d}}' % (i + 1), video_html(v))
     if meta.get('kind') == 'service':
         box = buy_box(slug)
         if box:
@@ -537,7 +549,8 @@ def inner(meta, body, slug, crumbs):
     for i, (h, t) in enumerate(crumbs, 2):
         items.append({'@type': 'ListItem', 'position': i, 'name': t, 'item': SITE + h})
     items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': meta['crumb'], 'item': f'{SITE}/{slug}/'})
-    ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body), video_ld(meta.get('video'), f'{SITE}/{slug}/')]
+    vlds = [video_ld(v, f'{SITE}/{slug}/', i) for i, v in enumerate(video_list(meta))]
+    ld = [{'@type': 'BreadcrumbList', 'itemListElement': items}, faq_ld(body)] + [x for x in vlds if x]
     if meta.get('kind') == 'article':
         ld.append({'@type': 'Article', '@id': f'{SITE}/{slug}/#clanek', 'headline': meta['h1'], 'description': meta['description'],
                    'inLanguage': 'sl-SI', 'author': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID},
@@ -545,8 +558,9 @@ def inner(meta, body, slug, crumbs):
                    'about': [{'@type': 'Service', 'name': dict((x[0], x[1]) for x in SERVICES)[sl], 'url': f'{SITE}/{sl}/',
                               'provider': {'@id': BIZ_ID}} for sl in meta.get('about', [])],
                    'image': [SITE + img_url(sl, 1600) for sl in _used]})
-        if video_ld(meta.get('video'), ''):
-            ld[-1]['video'] = {'@id': f'{SITE}/{slug}/#video'}
+        vids = [{'@id': x['@id']} for x in vlds if x]
+        if vids:
+            ld[-1]['video'] = vids[0] if len(vids) == 1 else vids
     if meta.get('kind') == 'service':
         ld.append({'@type': 'Service', '@id': f'{SITE}/{slug}/#storitev', 'name': meta['crumb'], 'serviceType': meta['crumb'],
                    'description': meta['description'], 'url': f'{SITE}/{slug}/',
@@ -733,6 +747,7 @@ def llms_txt(urls):
 ## Reference
 - [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
+- [Robotska kosilnica se zakoplje]({SITE}/kosnja-in-urejanje-okolice/): dva videa na YouTubu – 1. del, vzrok (https://youtu.be/4AGaFRrJJFc), in 2. del, izvedba (https://youtu.be/nnKltgmSdh8); kolesnice ob razmejitveni žici zasute z zemljo s krtin, posejana trava, čez jeklena mreža z luknjicami 1 × 1 cm, pritrjena s klini od sredine proti robovom; material približno 25 €, sanacija okoli 15 minut, preostanek prve ure za druga drobna popravila pri stranki
 - [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 {lists_llms()}## Ostalo

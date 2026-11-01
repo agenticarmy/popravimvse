@@ -15,7 +15,7 @@ TODAY = date.today().isoformat()
 BUILT = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
 # Google Analytics 4: ID merjenja (G-XXXXXXXXXX). Prazno = brez merjenja in brez pasice za piškotke.
 # GA se naloži šele po kliku »Dovolim« (static/js/privolitev.js, Consent Mode v2). Podrobno: content/piskotki.html
-GA4_ID = os.environ.get('GA4_ID', '')
+GA4_ID = os.environ.get('GA4_ID', 'G-1P4BG1GT1C')
 
 BIZ = {
     'name': 'Popravim vse',

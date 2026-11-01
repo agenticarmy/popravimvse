@@ -302,6 +302,12 @@
    "opis": "Kako ravnam s fotografijami, videi, telefonsko številko in pogovori s pomočnikom (izbris po 90 dneh) ter kdo ima pravice do fotografij na strani."
   },
   {
+   "pot": "/piskotki/",
+   "url": "https://popravimvse.si/piskotki/",
+   "naslov": "Piškotki",
+   "opis": "Katere piškotke in podatke stran shrani v vaš brskalnik, kdaj merim obiske z Google Analytics (samo z vašim dovoljenjem) in kako svojo izbiro spremenite."
+  },
+  {
    "pot": "/povprasevanje/",
    "url": "https://popravimvse.si/povprasevanje/",
    "naslov": "Pokažite mi, kaj je treba popraviti",

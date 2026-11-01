@@ -269,7 +269,8 @@
       }).then(function (j) {
         if (!j || !j.ok) throw new Error((j && j.napaka) || 'Pošiljanje ni uspelo.');
         window.removeEventListener('beforeunload', guard);
-        location.href = j.stanje + '&novo=1';
+        var go = function () { location.href = j.stanje + '&novo=1'; };
+        if (window.pvDogodek) window.pvDogodek('generate_lead', { metoda: visible().some(function (i) { return i.kind === 'video'; }) ? 'video' : 'fotografija_ali_opis' }, go); else go();
       }).catch(function (e2) {
         submitting = false;
         sendBtn.disabled = false; sendBtn.textContent = 'Poskusi znova';

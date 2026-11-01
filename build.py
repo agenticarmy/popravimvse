@@ -13,6 +13,9 @@ OUT = ROOT / ('_preview' if os.environ.get('PREVIEW') == '1' else 'public')
 SITE = 'https://popravimvse.si'
 TODAY = date.today().isoformat()
 BUILT = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+# Google Analytics 4: ID merjenja (G-XXXXXXXXXX). Prazno = brez merjenja in brez pasice za piškotke.
+# GA se naloži šele po kliku »Dovolim« (static/js/privolitev.js, Consent Mode v2). Podrobno: content/piskotki.html
+GA4_ID = os.environ.get('GA4_ID', '')
 
 BIZ = {
     'name': 'Popravim vse',
@@ -62,7 +65,7 @@ AREAS = [
     ('hisni-mojster-ptuj', 'Ptuj z okolico', 'Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci'),
     ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
 ]
-OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost')]
+OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost'), ('piskotki', 'Piškotki')]
 FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
 REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda'),
         ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete')]
@@ -416,11 +419,19 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li></ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
   </div>
 </footer>
 <div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Video: posnemite težavo">{CAM}Video</a></div>'''
+
+
+def privolitev_box():
+    """Okvir z izbiro na /piskotki/: stanje in gumb (deluje z privolitev.js); brez GA4_ID samo obvestilo."""
+    if not GA4_ID:
+        return '<div class="privolitev-box"><p>Ta stran trenutno ne meri obiskov in ne uporablja piškotkov Google Analytics. Ko bo merjenje vključeno, vas bo stran najprej vprašala za dovoljenje.</p></div>'
+    return ('<div class="privolitev-box"><p>Trenutno stanje: <strong id="privolitev-stanje">za prikaz stanja je potreben JavaScript</strong>.</p>'
+            '<button type="button" data-privolitev>Spremeni izbiro</button></div>')
 
 
 def page(meta, main, path, extra_ld=()):
@@ -478,6 +489,7 @@ def page(meta, main, path, extra_ld=()):
 </main>
 {footer()}
 <script src="/static/js/klepet.js?v={asset_v("/static/js/klepet.js")}" data-css="/static/css/klepet.css?v={asset_v("/static/css/klepet.css")}" defer></script>
+{f'<script src="/static/js/privolitev.js?v={asset_v("/static/js/privolitev.js")}" data-ga="{esc(GA4_ID)}" defer></script>' if GA4_ID else ''}
 </body>
 </html>
 <!-- zgrajeno {BUILT} -->
@@ -757,6 +769,7 @@ def llms_txt(urls):
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video]({SITE}{FORM}): obrazec za video z glasom, fotografije in opis
 - [Zasebnost]({SITE}/zasebnost/): kako se obdelujejo podatki iz povpraševanj
+- [Piškotki]({SITE}/piskotki/): Google Analytics samo z dovoljenjem obiskovalca, brez oglasov; seznam podatkov v brskalniku
 '''
 
 
@@ -898,6 +911,8 @@ def main():
             meta['page_type'] = 'ProfilePage'
         elif slug == 'kontakt':
             meta['page_type'] = 'ContactPage'
+        if slug == 'piskotki':
+            body = body.replace('{{PRIVOLITEV}}', privolitev_box())
         m, ld = inner(meta, body, slug, [])
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.7', meta['modified'], meta))

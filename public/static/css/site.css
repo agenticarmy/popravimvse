@@ -603,3 +603,30 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .chapters { list-style: none; padding: 0; columns: 2 18rem; column-gap: 2rem; }
 .chapters li { break-inside: avoid; margin: 0 0 .35rem; display: grid; grid-template-columns: 3.4em minmax(0, 1fr); }
 .chapters time { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* Pasica za piškotke (static/js/privolitev.js) – enakovredna gumba, ne prekrije strani */
+.cookie-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+  background: var(--tile); color: var(--ink); border-top: 3px solid var(--ink);
+  box-shadow: 0 -6px 24px rgba(22, 35, 43, .18);
+  padding: 1rem max(1rem, env(safe-area-inset-right)) calc(1rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+.cookie-in { width: min(1180px, 100%); margin-inline: auto; display: flex; gap: 1rem 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.cookie-in p { margin: 0; flex: 1 1 32rem; min-width: 0; font-size: .97rem; max-width: 78ch; }
+.cookie-in a { color: var(--green); font-weight: 600; }
+.cookie-btns { display: flex; gap: .6rem; flex: 0 0 auto; }
+.cookie-btns button {
+  font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; min-width: 9rem; min-height: 2.9rem;
+  padding: .6rem 1.1rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--tile); color: var(--ink);
+}
+.cookie-btns button:hover { background: var(--ink); color: #fff; }
+@media (max-width: 640px) {
+  .cookie-btns { width: 100%; }
+  .cookie-btns button { flex: 1; min-width: 0; }
+}
+.site-foot button.link { font: inherit; color: #E9EFEC; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.site-foot button.link:hover { color: var(--level); text-decoration: underline; }
+.privolitev-box { border: 2px solid var(--ink); border-radius: var(--radius); background: var(--tile); padding: 1rem 1.2rem; display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: center; }
+.privolitev-box p { margin: 0; flex: 1 1 20rem; }
+.privolitev-box button { font: inherit; font-weight: 700; cursor: pointer; padding: .6rem 1.1rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--tile); color: var(--ink); }
+.privolitev-box button:hover { background: var(--ink); color: #fff; }

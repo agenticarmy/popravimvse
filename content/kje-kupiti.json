@@ -1,6 +1,6 @@
 {
   "_opomba": "Povezave na najcenejše ustrezne izdelke (Claude izbral 26. 10. 2026, Sebastjan potrdi). Cene se NE objavljajo – pogoji Bauhaus/Merkur. Uporablja build.py (seznami Kaj kupiti).",
-  "preverjeno": "2026-10-26",
+  "preverjeno": "2026-11-02",
   "trgovine": [
     {
       "id": "bauhaus",

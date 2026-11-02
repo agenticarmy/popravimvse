@@ -204,6 +204,8 @@ def video_ld(v, page_url, i=0):
                'width': v.get('width', 720), 'height': v.get('height', 1280), 'publisher': {'@id': BIZ_ID}}
         if v.get('transcript'):
             out['transcript'] = v['transcript']
+        if v.get('youtube_short'):
+            out['sameAs'] = f'https://www.youtube.com/shorts/{v["youtube_short"]}'
         return out
     if not v or not v.get('youtube_id'):
         return None
@@ -754,7 +756,7 @@ def llms_txt(urls):
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
-- Obrazec: {SITE}{FORM} – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): {SITE}{FORM}#primer
+- Obrazec: {SITE}{FORM} – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): {SITE}{FORM}#primer, tudi kot YouTube Short: https://www.youtube.com/shorts/HuUpVcwp1NE
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.

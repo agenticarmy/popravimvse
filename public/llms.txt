@@ -23,7 +23,7 @@
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
-- Obrazec: https://popravimvse.si/povprasevanje/ – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): https://popravimvse.si/povprasevanje/#primer
+- Obrazec: https://popravimvse.si/povprasevanje/ – kratek video s telefona, v katerem stranka pove, kaj je narobe (do 250 MB), fotografije in/ali opis; obvezen je samo telefon. Brez registracije. Primer dobrega videa (39 s, tuš kabina in zataknjena roleta, objavljen z dovoljenjem stranke): https://popravimvse.si/povprasevanje/#primer, tudi kot YouTube Short: https://www.youtube.com/shorts/HuUpVcwp1NE
 - Za agente: POST JSON na https://popravimvse.si/api/povprasevanje.php, opis polj v https://popravimvse.si/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.

@@ -68,7 +68,10 @@ AREAS = [
 OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost'), ('piskotki', 'Piškotki')]
 FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
 REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda'),
-        ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete')]
+        ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete'),
+        ('reference/zamasen-preliv-greznice', 'Zamašen preliv greznice'),
+        ('reference/dostop-do-greznice-pod-tlakovci', 'Greznica pod tlakovci'),
+        ('reference/zlomljena-mrezica-na-pipi', 'Zlomljena mrežica na pipi')]
 NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
 
 PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
@@ -749,6 +752,7 @@ def llms_txt(urls):
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; za vsako delo izda račun (popusta za delo brez računa ni); dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).
+- Za odtoke in kanalizacijo okoli hiše uporablja kanalizacijsko kamero z metrskimi oznakami in visokotlačni čistilec: najde mesto zamašitve ali poškodbe cevi (npr. preliv greznice, cev do iztoka) brez prekopavanja vrta. Praznjenja greznic ne opravlja (to je naloga komunale). Primer: {SITE}/reference/zamasen-preliv-greznice/
 - Na željo stranke ves čas dela snema z akcijsko kamero na prsih (dokaz za stranko in zanj, da med delom nič ne izgine); posnetek hrani 30 dni, na zahtevo stranka dobi kopijo. Za YouTube uporabi del posnetka samo s posebnim dovoljenjem stranke, ki ni pogoj za snemanje: le kader dela, brez ljudi in drugih prostorov, stranka ga vidi pred objavo. Podrobno: {SITE}/zasebnost/#snemanje
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.

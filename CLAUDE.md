@@ -11,6 +11,8 @@ Postopek:
    Deploy (`.cpanel.yml` kopira `public/` v `public_html`); dnevnik `/home/igvzfmyz/deploy.log`. Vse na `main` gre torej v živo v ≤ 10 min,
    zato spremembe strani pripravi na ločeni veji in jih na `main` prenesi šele, ko Sebastjan reče »objavi«. Po objavi preveri živo stran.
    Ročno (če cron ne dela): Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit.
+   Po vsakem Deployu `.cpanel.yml` zažene `api/_indexnow.php`: IndexNow (Bing, Yandex, Seznam …) dobi samo strani s spremenjeno vsebino
+   (ključ `root/0e6f1c85e2fd2860f1c9516442ade4d0.txt`, dnevnik `~/indexnow.log`, stanje `~/povprasevanja/indexnow.json`). Google IndexNow ne uporablja.
 
 Vsebinska pravila:
 - Preprost jezik, kratki citabilni stavki, konkretni primeri in številke. Ne izmišljuj dejstev.

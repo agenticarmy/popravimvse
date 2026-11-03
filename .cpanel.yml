@@ -1,6 +1,8 @@
-# cPanel Git Version Control: ob "Deploy HEAD Commit" kopira zgrajeno stran v public_html
+# cPanel Git Version Control: ob "Deploy HEAD Commit" kopira zgrajeno stran v public_html,
+# nato IndexNow (Bing, Yandex, Seznam …) sporoči spremenjene strani; napaka tu objave ne ustavi.
 ---
 deployment:
   tasks:
     - export DEPLOYPATH=$HOME/public_html/
     - /bin/cp -R public/. $DEPLOYPATH
+    - /usr/local/bin/php $DEPLOYPATH/api/_indexnow.php >> $HOME/indexnow.log 2>&1 || true

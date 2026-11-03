@@ -184,6 +184,14 @@
   "kolesnica-robotske-kosilnice": {
    "alt": "Roka v globoki kolesnici v travi, ki jo je naredila robotska kosilnica",
    "cap": "Kolesnica je tako globoka, da se kosilnica v njej zatakne."
+  },
+  "greznica-pod-tlakovci-obroba": {
+   "alt": "Okrogla jeklena obroba okoli pokrova greznice v tlakovani garaži, na pokrovu razporejeni tlakovci kot podpora",
+   "cap": "Jeklena obroba okoli pokrova greznice. Tlakovci na pokrovu so podpora in višinska izravnava za lesen pokrov."
+  },
+  "greznica-pod-tlakovci-pokrov": {
+   "alt": "Okrogel lesen pokrov iz desk z ročajema, ob njem odprtina z jekleno obrobo",
+   "cap": "Lesen pokrov iz desk, ki jih je gospa že imela. Z ročajema se dvigne, poravnan je s tlemi garaže."
   }
  },
  "galleries": {
@@ -275,6 +283,10 @@
   "robotska-kosilnica": [
    "robotska-kosilnica-ob-kolesnici",
    "kolesnica-robotske-kosilnice"
+  ],
+  "greznica-tlakovci": [
+   "greznica-pod-tlakovci-obroba",
+   "greznica-pod-tlakovci-pokrov"
   ]
  }
 }

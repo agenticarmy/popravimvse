@@ -775,6 +775,7 @@ def llms_txt(urls):
 - [Moja dela]({SITE}/reference/): fotografije opravljenih del po storitvah
 - [Prenova lesenega vikenda]({SITE}/reference/prenova-lesenega-vikenda/): kuhinja po meri, tla, kopalnica, ogrevanje, sanacija lesnega črva
 - [Robotska kosilnica se zakoplje]({SITE}/kosnja-in-urejanje-okolice/): dva videa na YouTubu – 1. del, vzrok (https://youtu.be/4AGaFRrJJFc), in 2. del, izvedba (https://youtu.be/nnKltgmSdh8); kolesnice ob razmejitveni žici zasute z zemljo s krtin, posejana trava, čez jeklena mreža z luknjicami 1 × 1 cm, pritrjena s klini od sredine proti robovom; material približno 25 €, sanacija okoli 15 minut, preostanek prve ure za druga drobna popravila pri stranki
+- [Filter akumulatorskega sesalca]({SITE}/drobna-popravila/#video): video na YouTubu (6 min, https://youtu.be/rBahNuYfl28); primer, kaj naredim v preostanku plačane prve ure: zamašen filter spiham s prenosnim kompresorjem v približno minuti, s ščetke s škarjami odstranim navite lase, skupaj približno deset minut dela; filter, ki ga nekajkrat na leto spihate, zdrži več let
 - [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 {lists_llms()}## Ostalo

@@ -25,7 +25,9 @@ BIZ = {
     'phone_e164': '+38670755355',
     'email': 'popravimvse@gmail.com',
     'rate': '35 €',
-    'same_as': ['https://www.youtube.com/@popravimvse'],  # + Google Business, Facebook … ko obstajajo
+    'same_as': ['https://www.youtube.com/@popravimvse', 'https://www.google.com/maps?cid=17974519320533287577'],  # YouTube, Google profil podjetja
+    'maps': 'https://www.google.com/maps?cid=17974519320533287577',
+    'hours': {'days': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '06:00', 'closes': '18:00'},  # enako kot Google profil
     'address': {'addressLocality': 'Pernica', 'postalCode': '2231'},  # izhodišče dela (brez ulice); sedež s.p. je v SEAT
     'geo': (46.5785, 15.7269),  # Pernica
     'seat': 'Ronkova ulica 4, 2380 Slovenj Gradec',
@@ -307,7 +309,7 @@ def hour_price():
     return {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitCode': 'HUR', 'unitText': 'ura',
             'eligibleQuantity': {'@type': 'QuantitativeValue', 'minValue': 1, 'unitCode': 'HUR'},
             'description': 'Čas se šteje od prihoda k stranki. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. '
-                           'Prevoz vključen, brez doplačil zvečer in ob vikendih. Potrošni material vključen; material kupi stranka. '
+                           'Prevoz vključen. Dela od ponedeljka do petka, od 6. do 18. ure. Potrošni material vključen; material kupi stranka. '
                            'Nadaljevanje drug dan brez nove prve ure. '
                            'Ni zavezanec za DDV, cena je končna.'}
 
@@ -332,8 +334,9 @@ def person_ld():
         'hasCredential': {'@type': 'EducationalOccupationalCredential', 'credentialCategory': 'degree',
                           'name': 'Univerzitetni diplomirani ekonomist'},
     }
-    if BIZ['same_as']:
-        d['sameAs'] = BIZ['same_as']
+    person_same = [u for u in BIZ['same_as'] if 'google.com/maps' not in u]  # Google profil je podjetje, ne oseba
+    if person_same:
+        d['sameAs'] = person_same
     return d
 
 
@@ -350,7 +353,7 @@ def business_ld():
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
                        'če okvare ne more odpraviti (tudi če dela ni mogoče dobiti ali gre za delo z obrtnim dovoljenjem), stranka ne plača nič; če se stranka odloči, da popravila, ki je mogoče, ne nadaljuje, ali ne želi kupiti potrebnega dela, plača porabljeni čas. Plačilo z gotovino na mestu. '
                        'Dela samo za posameznike in gospodinjstva. Termina se drži; brez predplačila; račun za vsako delo; '
-                       'če kaj ni prav, popravi brezplačno; brez doplačil zvečer in ob vikendih; material kupi stranka po njegovem nasvetu.',
+                       'če kaj ni prav, popravi brezplačno; dela od ponedeljka do petka od 6. do 18. ure; material kupi stranka po njegovem nasvetu.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
@@ -383,6 +386,11 @@ def business_ld():
     }
     if BIZ['same_as']:
         d['sameAs'] = BIZ['same_as']
+    if BIZ.get('maps'):
+        d['hasMap'] = BIZ['maps']
+    if BIZ.get('hours'):
+        h = BIZ['hours']
+        d['openingHoursSpecification'] = [{'@type': 'OpeningHoursSpecification', 'dayOfWeek': h['days'], 'opens': h['opens'], 'closes': h['closes']}]
     if BIZ['address']:
         d['address'] = {'@type': 'PostalAddress', 'addressCountry': 'SI', 'addressRegion': 'Podravska', **BIZ['address']}
         d['geo'] = {'@type': 'GeoCoordinates', 'latitude': BIZ['geo'][0], 'longitude': BIZ['geo'][1]}
@@ -772,7 +780,7 @@ def llms_txt(urls):
 - Če Sebastjan okvare ne more odpraviti (ne zna ali ne more, nadomestnega dela ni mogoče dobiti, potreben je pooblaščeni serviser ali se na kraju izkaže, da gre za delo z obrtnim dovoljenjem), stranka ne plača ne časa ne prevoza. Če se popravilo da opraviti, a se stranka odloči, da ga ne nadaljuje, ne želi kupiti potrebnega dela ali delo prekine, plača porabljeni čas (prva ura v celoti, nato na minuto). Preden preseže oceno, vpraša za soglasje. Podrobno: {SITE}/cenik/#jamstvo
 - Termina se drži; če je preveč zaseden, delo raje takoj odkloni, kot da bi dajal lažno upanje.
 - Če se po njegovem delu izkaže, da kaj ni prav (npr. silikon odstopi), pride in popravi brezplačno.
-- Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Brez doplačil zvečer, v soboto in nedeljo.
+- Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Dela od ponedeljka do petka, od 6. do 18. ure; zvečer ter ob sobotah in nedeljah ne dela.
 - Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
 - Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
@@ -784,6 +792,7 @@ def llms_txt(urls):
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}, obrazec s fotografijo, videom ali glasom: {SITE}{FORM}
 - YouTube kanal z videi popravil: https://www.youtube.com/@popravimvse
+- Google profil podjetja (ocene, zemljevid): {BIZ["maps"]}
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)

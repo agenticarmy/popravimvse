@@ -1,5 +1,5 @@
 /* »Sestavite svoj seznam popravil« (/drobna-popravila/) */
-.ds-form { max-width: var(--measure); margin: 1rem 0 2rem; padding: 1rem; background: var(--tile); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: 3px 3px 0 var(--ink); display: grid; gap: 1.1rem; }
+.ds-form { max-width: var(--measure); margin: 1rem 0 2rem; padding: 1rem; background: var(--tile); border: 2px solid var(--ink); border-radius: var(--radius); box-shadow: 3px 3px 0 var(--ink); display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
 .ds-group { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: .45rem; }
 .ds-group legend { font-weight: 800; font-size: 1.05rem; padding: 0; margin-bottom: .35rem; }
 .ds-group label { position: relative; display: block; }
@@ -16,5 +16,5 @@
 .ds-bar { display: grid; gap: .6rem; position: sticky; bottom: 0; background: var(--tile); padding: .6rem 0 calc(.2rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--grout); }
 .ds-count { margin: 0; font-weight: 700; color: var(--ink-soft); }
 .ds-has .ds-count { color: var(--green-deep); }
-.ds-send { width: 100%; justify-content: center; font-family: inherit; cursor: pointer; }
+.ds-send { width: 100%; justify-content: center; font-family: inherit; cursor: pointer; white-space: normal; text-align: center; }
 @media (max-width: 640px) { .ds-form { padding: .8rem; } }

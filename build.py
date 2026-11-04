@@ -25,7 +25,7 @@ BIZ = {
     'phone_e164': '+38670755355',
     'email': 'popravimvse@gmail.com',
     'rate': '35 €',
-    'same_as': [],  # povezave na Google Business, Facebook … ko obstajajo
+    'same_as': ['https://www.youtube.com/@popravimvse'],  # + Google Business, Facebook … ko obstajajo
     'address': {'addressLocality': 'Pernica', 'postalCode': '2231'},  # izhodišče dela (brez ulice); sedež s.p. je v SEAT
     'geo': (46.5785, 15.7269),  # Pernica
     'seat': 'Ronkova ulica 4, 2380 Slovenj Gradec',
@@ -233,6 +233,22 @@ IMG_LICENSE = {'copyrightNotice': '© Sebastjan Stjepanović', 'license': SITE +
                'acquireLicensePage': SITE + '/kontakt/'}
 
 
+def og_image(url, alt):
+    """JPEG različica (največ 1200 px) za predogled povezave v Viberju, WhatsAppu, Messengerju …, ki WebP ne prikažejo vsi."""
+    from PIL import Image
+    rel = url.replace(SITE, '')
+    name = Path(rel).stem.replace('-1600', '').replace('-960', '') + '.jpg'
+    dst = OUT / 'static' / 'img' / 'og' / name
+    if not dst.exists():
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        im = Image.open(ROOT / rel.lstrip('/')).convert('RGB')
+        im.thumbnail((1200, 1200))
+        im.save(dst, 'JPEG', quality=82, optimize=True, progressive=True)
+    with Image.open(dst) as im:
+        w, h = im.size
+    return {'url': f'{SITE}/static/img/og/{name}', 'w': w, 'h': h, 'alt': alt}
+
+
 def images_ld():
     out = []
     for sl in _used:
@@ -438,7 +454,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: videi popravil</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
   </div>
 </footer>
@@ -474,9 +490,10 @@ def page(meta, main, path, extra_ld=()):
         graph += imgs
         wp['primaryImageOfPage'] = {'@id': imgs[0]['@id']}
         wp['image'] = [{'@id': i['@id']} for i in imgs]
-    og_img = imgs[0]['contentUrl'] if imgs else PORTRAIT_URL
-    if meta.get('page_type') == 'ProfilePage':
-        og_img = PORTRAIT_URL
+    if imgs and meta.get('page_type') != 'ProfilePage':
+        og = og_image(imgs[0]['contentUrl'], imgs[0]['description'])
+    else:
+        og = og_image(PORTRAIT_URL, PORTRAIT['alt'])
     ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
     return f'''<!doctype html>
 <html lang="sl">
@@ -493,11 +510,19 @@ def page(meta, main, path, extra_ld=()):
 <meta property="og:description" content="{esc(meta["description"])}">
 <meta property="og:url" content="{url}">
 <meta name="author" content="{PERSON["name"]}">
-<meta property="og:image" content="{og_img}">
+<meta property="og:image" content="{og["url"]}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="{og["w"]}">
+<meta property="og:image:height" content="{og["h"]}">
+<meta property="og:image:alt" content="{esc(og["alt"])}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#16232B">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/static/fonts/archivo-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/static/fonts/archivo-sl-lat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/archivo-sl-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v={asset_v("/static/css/site.css")}">
 <script type="application/ld+json">{ld}</script>
 </head>
@@ -758,6 +783,7 @@ def llms_txt(urls):
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
 - Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}, obrazec s fotografijo, videom ali glasom: {SITE}{FORM}
+- YouTube kanal z videi popravil: https://www.youtube.com/@popravimvse
 - Jezik: slovenščina in tekoča nemščina.
 
 ## Povpraševanje (za ljudi in agente UI)
@@ -902,10 +928,12 @@ def main():
     write('/', page(meta, home_main(body), '/', [faq_ld(body)]))
     urls.append(('/', '1.0', meta['modified'], meta))
 
+    stories = {s: read(s.replace('/', '__'))[0] for s, _ in REFS if '/' in s}
     for slug, title, _ in SERVICES:
         reset_used()
         meta, body = read(slug)
         if meta is None: continue
+        body = stories_box(slug, body, stories)
         meta['kind'] = 'service'
         meta.setdefault('crumb', title)
         meta['published'], meta['modified'] = git_dates(slug)
@@ -1011,6 +1039,39 @@ def main():
     (OUT / 'llms.txt').write_text(llms, encoding='utf-8')
     ui_context(urls, llms)
     print(f'Zgrajeno: {len(urls)} strani v {OUT}')
+    check_font_chars()
+
+
+def stories_box(svc, body, stories):
+    """Notranje povezave: zgodbe s terena (REFS, 'about' ali ožji 'primer_za'), ki se tičejo storitve in jih vsebina še ne omenja."""
+    items = [(s, m) for s, m in stories.items() if m and svc in m.get('primer_za', m.get('about', [])) and f'/{s}/' not in body]
+    if not items:
+        return body
+    box = ('<h2 id="primeri">Primeri iz prakse</h2>\n<ul class="list-cards">'
+           + ''.join(f'<li><a href="/{s}/"><strong>{esc(m["h1"])}</strong><span>{esc(m["description"])}</span></a></li>' for s, m in items)
+           + '</ul>\n')
+    i = body.find('<h2>Pogosta vprašanja</h2>')
+    return body[:i] + box + body[i:] if i >= 0 else body + box
+
+
+def check_font_chars():
+    """Opozori, če so na straneh znaki, ki jih podmnožica pisave nima (takrat zaženi tools/pisava.py)."""
+    try:
+        from fontTools.ttLib import TTFont
+    except ImportError:
+        return
+    have = set()
+    for f in (ROOT / 'static' / 'fonts').glob('archivo-sl-*.woff2'):
+        have |= set(TTFont(f).getBestCmap())
+    seen = set()
+    for f in OUT.rglob('*.html'):
+        t = re.sub(r'<script.*?</script>|<style.*?</style>', '', f.read_text(encoding='utf-8'), flags=re.S)
+        seen |= set(html.unescape(re.sub(r'<[^>]+>', ' ', t)))
+    # puščice, kljukice ipd. namenoma prikaže nadomestna pisava
+    missing = sorted(c for c in seen if ord(c) > 0x7e and ord(c) not in have and not (0x2190 <= ord(c) <= 0x27bf or 0x2200 <= ord(c) <= 0x22ff)
+                     and ord(c) not in (0x2116,) and not c.isspace())
+    if missing:
+        print('OPOZORILO: pisava nima znakov', ''.join(missing), '→ python3 tools/pisava.py, nato build znova')
 
 
 if __name__ == '__main__':

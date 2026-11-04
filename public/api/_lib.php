@@ -290,7 +290,7 @@ const CONFIG_DEFAULTS = [
     'claude_kljuc' => '', 'claude_model' => 'claude-sonnet-5-5',
     'prepis_kljuc' => '', 'prepis_model' => 'gpt-4o-transcribe',
     'ical' => '',
-    'dnevi' => [1, 2, 3, 4, 5], 'od' => '08:00', 'do' => '18:00', 'rezerva' => 45, 'celodnevni_blokirajo' => true,
+    'dnevi' => [1, 2, 3, 4, 5], 'od' => '06:00', 'do' => '18:00', 'rezerva' => 45, 'celodnevni_blokirajo' => true,
 ];
 
 function config(): array

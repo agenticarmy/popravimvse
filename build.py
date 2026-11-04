@@ -416,7 +416,7 @@ def sl_date(iso):
 
 def author_box(modified):
     return f'''<aside class="author" aria-label="Avtor">
-  <img class="avatar" src="/static/img/sebastjan-avatar-160.webp" width="80" height="80" loading="lazy" decoding="async" alt="">
+  <img class="avatar" src="/static/img/sebastjan-avatar-160.webp" width="80" height="80" loading="lazy" decoding="async" alt="{PERSON["name"]}, hišni mojster">
   <div>
   <p><strong>Avtor: <a href="/o-meni/">{PERSON["name"]}</a></strong>, samouk hišni mojster z več kot 30 leti izkušenj v rokodelstvu. Dela, ki jih opisujem, opravljam na domovih strank v Mariboru, Slovenskih goricah, na Ptuju in v Slovenski Bistrici.</p>
   <p class="updated">Posodobljeno: <time datetime="{modified}">{sl_date(modified)}</time></p>

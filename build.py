@@ -422,7 +422,8 @@ def header(current):
       <details class="menu"><summary>Meni</summary><ul>{links}</ul></details>
     </nav>
   </div>
-</header>'''
+</header>
+<script>(function(){{var m=document.querySelector('details.menu');if(!m)return;m.addEventListener('click',function(e){{if(e.target.closest('a'))m.open=false}});document.addEventListener('click',function(e){{if(m.open&&!m.contains(e.target))m.open=false}});document.addEventListener('keydown',function(e){{if(e.key==='Escape'&&m.open){{m.open=false;m.querySelector('summary').focus()}}}})}})();</script>'''
 
 
 def footer():

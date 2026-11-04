@@ -12,8 +12,8 @@ Postopek:
    Mobilno preveri pri 320, 360 in 412 px: brez vodoravnega drsenja (mreže z `minmax(0, 1fr)`).
 4. Commit + push. Objava je samodejna: cron v cPanelu vsakih 30 minut (ob :00 in :30) naredi `git pull` z GitHuba (main) in, če je kaj novega,
    Deploy (`.cpanel.yml` kopira `public/` v `public_html`); dnevnik `/home/igvzfmyz/deploy.log`. Vse na `main` gre torej v živo v ≤ 30 min,
-   Hostko ne dovoli cron opravil pogosteje kot 1× na 30 min (splošni pogoji, razdelek Omejitve); krajši interval strežnik vsako uro sam vrne na `*/30`.
-   zato spremembe strani pripravi na ločeni veji in jih na `main` prenesi šele, ko Sebastjan reče »objavi«. Po objavi preveri živo stran.
+   zato spremembe strani pripravi na ločeni veji in jih na `main` prenesi šele, ko Sebastjan reče »objavi«.
+   Hostko ne dovoli cron opravil pogosteje kot 1× na 30 min (splošni pogoji, razdelek Omejitve); krajši interval strežnik vsako uro sam vrne na `*/30`. Po objavi preveri živo stran.
    Ročno (če cron ne dela): Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit.
    Po vsakem Deployu `.cpanel.yml` zažene `api/_indexnow.php`: IndexNow (Bing, Yandex, Seznam …) dobi samo strani s spremenjeno vsebino
    (ključ `root/0e6f1c85e2fd2860f1c9516442ade4d0.txt`, dnevnik `~/indexnow.log`, stanje `~/povprasevanja/indexnow.json`). Google IndexNow ne uporablja.

@@ -896,6 +896,9 @@ def ui_context(urls, llms):
         'seznami': [{'url': f'{SITE}/{KK}/{l["slug"]}/', 'naslov': l['h1'], 'storitev': l['service'],
                      'material': [{k: re.sub(r'<[^>]+>', '', str(x[k])) for k in ('ime', 'vrsta', 'kolicina', 'opomba')} for x in l['material']],
                      'prinese_mojster': l['prinesem']} for l in LISTS['lists'] if l['status'] == 'objavljeno'],
+        # nasveti, ki jih je Sebastjan potrdil iz lastnih izkušenj (predlogi komentarjev na YouTubu smejo omenjati samo te)
+        'iz_prakse': [{'tema': l['h1'], 'nasveti': [re.sub(r'<[^>]+>', '', str(t)) for t in l.get('iz_prakse', [])]}
+                      for l in LISTS['lists'] if l['status'] == 'objavljeno' and l.get('iz_prakse')],
     }
     (OUT / 'api' / '_kontekst.json').write_text(json.dumps(ctx, ensure_ascii=False, indent=1), encoding='utf-8')
 

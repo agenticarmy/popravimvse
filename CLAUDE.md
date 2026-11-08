@@ -32,4 +32,11 @@ potrošni material vključen; nakup materiala na poti k stranki brezplačen samo
 če kaj ni prav (npr. silikon odstopi), popravi brezplačno; na željo stranke snema ves čas dela (akcijska kamera na prsih, hramba 30 dni, kopija na zahtevo), YouTube samo s posebnim dovoljenjem (le kader dela, pred objavo pokaže stranki) – /zasebnost/#snemanje; v druge prostore NE obljubljaj spremstva stranke; termina se drži – če je preveč zaseden, raje takoj odkloni; brez predplačila.
 Pomočnik »Poskusite sami« (27. 10. 2026): UI klepet na vsaki strani (root/api/klepet.php, static/js/klepet.js), svetuje najcenejšo samopomoč, varnostna pravila (brez elektrike, vode pod tlakom, plina), predaja v obrazec; proračun 20 $/mesec (nastavitve), pogovori se shranijo samo s soglasjem 90 dni (/api/klepeti.php).
 Google profil podjetja (preverjen 4. 11. 2026): https://www.google.com/maps?cid=17974519320533287577 – v sameAs in hasMap; opis in storitve brez reguliranih del, usklajeni s stranjo.
+Komentarji na YouTubu (8. 11. 2026, veja yt-komentarji): /api/komentarji.php?k=… (ključ kot seznam), knjižnica root/api/_komentarji.php,
+jutranji cron `40 6 * * * /usr/local/bin/php /home/igvzfmyz/public_html/api/komentarji-cron.php >> /home/igvzfmyz/komentarji.log 2>&1`.
+Novi slovenski videi (spremljani kanali + iskanje) → hitri Claude razvrsti → Gemini si video ogleda prek povezave (brez prenosa) → Claude predlaga komentar
+in odgovore na vprašanja gledalcev → Sebastjan objavi s klikom (nikoli samodejno; pravila YouTube API III.E.3.d). Odločitve 8. 11.: brez povezav in omemb strani
+(kom_has_link zavrne), samo slovenski kanali, tudi odgovori gledalcem, do 5 predlogov na dan, največ 8 objav na dan. Povezati se sme samo kanal
+UCOO6ihJvxkvTwFfNguWNO7w (yt-oauth.php zavrne drugega). Izkušnje v 1. osebi samo iz nastavitev (kom_izkusnje) in »iz_prakse« (_kontekst.json). Podatki tujih videov 30 dni.
+Lokalni preizkus: PV_YT_URL, PV_GOOGLE_AUTH_URL, PV_GOOGLE_TOKEN_URL, PV_GOOGLE_REVOKE_URL, PV_GEMINI_URL (+ PV_ANTHROPIC_URL, PV_STORAGE, PV_MAIL_DIR).
 Glavna prednost (USP, 27. 10. 2026): en mojster namesto desetih – več drobnih popravil v enem obisku (/drobna-popravila/ s seznamom za obkljukanje).

@@ -291,6 +291,29 @@ const CONFIG_DEFAULTS = [
     'prepis_kljuc' => '', 'prepis_model' => 'gpt-4o-transcribe',
     'ical' => '',
     'dnevi' => [1, 2, 3, 4, 5], 'od' => '06:00', 'do' => '18:00', 'rezerva' => 45, 'celodnevni_blokirajo' => true,
+    // komentarji na YouTubu (komentarji.php): Google OAuth za kanal Sebastjan Popravi Vse, Gemini za ogled videa, Claude za predloge
+    'kom_vklop' => false, 'yt_client_id' => '', 'yt_client_secret' => '', 'yt_api_kljuc' => '',
+    'gemini_kljuc' => '', 'gemini_model' => 'gemini-3.1-flash-lite',
+    'kom_model' => 'claude-sonnet-5-5', 'kom_model_hitri' => 'claude-haiku-5-5',
+    'kom_na_dan' => 5, 'kom_objav_na_dan' => 8, 'kom_proracun' => 10, 'kom_iskanj' => 8, 'kom_max_min' => 40,
+    'kom_obdobje' => 7, 'kom_prvi_dni' => 60,
+    'kom_besede' => ['popravilo doma', 'naredi sam', 'obnova kopalnice', 'polaganje ploščic', 'polaganje laminata', 'fugiranje',
+        'menjava silikona', 'pleskanje stanovanja', 'obnova hiše', 'adaptacija stanovanja', 'mizarstvo', 'izdelki iz lesa',
+        'obrezovanje dreves', 'urejanje vrta', 'popravilo vrat', 'nastavitev oken', 'montaža kuhinje', 'knauf predelna stena',
+        'hišni mojster', 'kako popraviti'],
+    'kom_izkusnje' => [
+        'Več kot 30 let rokodelstva, samouk; 15 let sem živel in delal v Nemčiji.',
+        'Servis PVC balkonskih vrat in oken: okovje podmažem s silikonskim oljem, tesnila namažem z vazelinom; vrata nastavim z imbus ključem 4 mm, približno 5–10 minut na vrata.',
+        'Obnova fug: belilo za fuge se rado lušči, zato ga ne priporočam; pred novo fugo staro dobro očistim, ploščice zaščitim z lepilnim trakom.',
+        'Smrad iz tuš kanalete: očistil sem smradno zaporo, jo zatesnil in preizkusil z vodo.',
+        'Zlomljeno mrežico (perlator) na izlivu pipe sem odstranil z dvema viličastima ključema, ne da bi poškodoval pipo.',
+        'Popravljam zataknjene rolete in menjam obrabljen trak za dviganje rolete.',
+        'Za iskanje zamašitve v odtokih okoli hiše uporabljam kanalizacijsko kamero z metrskimi oznakami in visokotlačni čistilec.',
+        'Lesni črv v ostrešju: sanacija z vbrizgavanjem zaščitnega sredstva v izvrtine in premazom; v ostrešju je najpogosteje hišni kozliček.',
+        'Sajenje lovorikovca skozi kopreno proti plevelu (kvadratni izrez, robovi navznoter), približno 50 cm od tlakovcev; lovorikovec je strupen.',
+        'Prenova 40 let starega lesenega vikenda: kuhinja po meri iz lepljenega lesa (koti niso bili 90°), nova kopalnica z nizko tuš kadjo, ploščice na izravnana tla.',
+        'Sam sem zgradil lakirno kabino z odsesavanjem.',
+    ],
 ];
 
 function config(): array

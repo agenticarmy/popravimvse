@@ -231,6 +231,25 @@ def video_ld(v, page_url, i=0):
     return out
 
 
+def video_sitemap(v):
+    """Video oznake za sitemap.xml (Google video sitemap): YouTube prek player_loc, lastni video prek content_loc."""
+    x = lambda t: esc(re.sub(r'\s+', ' ', str(t)).strip())
+    if v.get('src'):
+        thumb, loc = SITE + v['poster'], f'<video:content_loc>{x(SITE + v["src"])}</video:content_loc>'
+    elif v.get('youtube_id'):
+        vid = v['youtube_id']
+        thumb, loc = f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg', f'<video:player_loc>https://www.youtube-nocookie.com/embed/{vid}</video:player_loc>'
+    else:
+        return ''
+    return ('<video:video>'
+            f'<video:thumbnail_loc>{x(thumb)}</video:thumbnail_loc><video:title>{x(v["name"])[:100]}</video:title>'
+            f'<video:description>{x(v["description"])[:2048]}</video:description>{loc}'
+            f'<video:duration>{int(v["seconds"])}</video:duration><video:publication_date>{v["upload_date"]}</video:publication_date>'
+            f'<video:family_friendly>yes</video:family_friendly><video:requires_subscription>no</video:requires_subscription>'
+            f'<video:uploader info="{SITE}/o-meni/">{x(PERSON["name"])}</video:uploader><video:live>no</video:live>'
+            '</video:video>')
+
+
 IMG_LICENSE = {'copyrightNotice': '© Sebastjan Stjepanović', 'license': SITE + '/zasebnost/#fotografije',
                'acquireLicensePage': SITE + '/kontakt/'}
 
@@ -1045,8 +1064,10 @@ def main():
     meta, body = read('404')
     if meta: (OUT / '404.html').write_text(page(meta, body, '/404.html'), encoding='utf-8')
 
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{mod}</lastmod><priority>{p}</priority></url>' for u, p, mod, _ in urls]
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">']
+    sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{mod}</lastmod><priority>{p}</priority>'
+           + ''.join(video_sitemap(v) for v in video_list(m or {})) + '</url>' for u, p, mod, m in urls]
     sm.append('</urlset>')
     (OUT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
     llms = llms_txt(urls)

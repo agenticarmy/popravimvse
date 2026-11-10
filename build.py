@@ -204,10 +204,20 @@ def video_anchor(i):
     return '#video' if i == 0 else f'#video-{i + 1}'
 
 
+def iso_dt(d):
+    """Google (VideoObject.uploadDate, video sitemap) zahteva datum s časom in časovnim pasom.
+    Če je podan samo datum (LLLL-MM-DD), uporabi poldne po ljubljanskem času s pravilnim zamikom (CET/CEST)."""
+    d = str(d)
+    if 'T' in d:
+        return d
+    from zoneinfo import ZoneInfo
+    return datetime.fromisoformat(d + 'T12:00:00').replace(tzinfo=ZoneInfo('Europe/Ljubljana')).isoformat()
+
+
 def video_ld(v, page_url, i=0):
     if v and v.get('src'):
         out = {'@type': 'VideoObject', '@id': page_url + video_anchor(i), 'name': v['name'], 'description': v['description'],
-               'thumbnailUrl': SITE + v['poster'], 'contentUrl': SITE + v['src'], 'uploadDate': v['upload_date'],
+               'thumbnailUrl': SITE + v['poster'], 'contentUrl': SITE + v['src'], 'uploadDate': iso_dt(v['upload_date']),
                'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S', 'inLanguage': 'sl-SI',
                'width': v.get('width', 720), 'height': v.get('height', 1280), 'publisher': {'@id': BIZ_ID}}
         if v.get('transcript'):
@@ -221,7 +231,7 @@ def video_ld(v, page_url, i=0):
     watch = f'https://www.youtube.com/watch?v={vid}'
     out = {'@type': 'VideoObject', '@id': page_url + video_anchor(i), 'name': v['name'], 'description': v['description'],
            'thumbnailUrl': [f'https://i.ytimg.com/vi/{vid}/maxresdefault.jpg', f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg'],
-           'uploadDate': v['upload_date'], 'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S',
+           'uploadDate': iso_dt(v['upload_date']), 'duration': f'PT{v["seconds"] // 60}M{v["seconds"] % 60}S',
            'embedUrl': f'https://www.youtube-nocookie.com/embed/{vid}', 'url': watch, 'inLanguage': 'sl-SI',
            'creator': {'@id': PERSON_ID}, 'publisher': {'@id': BIZ_ID}}
     if v.get('transcript'):
@@ -247,7 +257,7 @@ def video_sitemap(v):
     return ('<video:video>'
             f'<video:thumbnail_loc>{x(thumb)}</video:thumbnail_loc><video:title>{x(v["name"])[:100]}</video:title>'
             f'<video:description>{x(v["description"])[:2048]}</video:description>{loc}'
-            f'<video:duration>{int(v["seconds"])}</video:duration><video:publication_date>{v["upload_date"]}</video:publication_date>'
+            f'<video:duration>{int(v["seconds"])}</video:duration><video:publication_date>{iso_dt(v["upload_date"])}</video:publication_date>'
             f'<video:family_friendly>yes</video:family_friendly><video:requires_subscription>no</video:requires_subscription>'
             f'<video:uploader info="{SITE}/o-meni/">{x(PERSON["name"])}</video:uploader><video:live>no</video:live>'
             '</video:video>')

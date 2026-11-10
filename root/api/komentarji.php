@@ -53,6 +53,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
                 if ($name === '' && ($v = kom_video($vid))) $name = $v['kanal'];
                 $c['ime'] = $name;
                 $c['stanje'] = $a === 'spremljaj' ? 'spremljam' : 'blokiran';
+                if ($a === 'spremljaj') { // Sebastjanova odločitev velja pred samodejno oceno »tuj ali preveden kanal«
+                    if (!empty($c['samodejno']) || !empty($c['opozorilo'])) $c['prisilno'] = true;
+                    unset($c['razlog'], $c['samodejno'], $c['opozorilo']);
+                }
                 $c['osvezeno'] = date('c');
                 $kan[$ch] = $c;
                 if ($a === 'odstrani') unset($kan[$ch]); // ne spremljaj več (iskanje ga lahko znova predlaga)
@@ -72,7 +76,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
             if (!$id) $go($msgq(false, 'Kanala ni bilo mogoče dodati: ' . $err . '.') . '&pogled=kanali', 'kanali');
             if ($id === YT_KANAL) $go($msgq(false, 'To je vaš kanal.') . '&pogled=kanali', 'kanali');
             $kan = kom_kanali();
-            $kan[$id] = ['ime' => $name, 'handle' => $handle, 'stanje' => 'spremljam', 'dodan' => date('c'), 'vir' => 'rocno', 'osvezeno' => date('c')];
+            $kan[$id] = ['ime' => $name, 'handle' => $handle, 'stanje' => 'spremljam', 'dodan' => date('c'), 'vir' => 'rocno', 'osvezeno' => date('c'), 'prisilno' => true];
             kom_save_kanali($kan);
             $go($msgq(true, 'Kanal »' . $name . '« je dodan. Novi videi s tega kanala pridejo v predloge ob naslednjem iskanju.') . '&pogled=kanali', 'kanali');
         case 'izbrisi':
@@ -322,7 +326,8 @@ if ($view === 'kanali') {
     echo '<ul class="kom-chs">';
     foreach ($follow as $id => $c) {
         echo '<li><div><a href="https://www.youtube.com/channel/' . h($id) . '" target="_blank" rel="noopener"><b>' . h($c['ime'] ?: $id) . '</b></a>'
-            . (!empty($c['handle']) ? '<span class="pv-small">' . h($c['handle']) . '</span>' : '') . '</div>'
+            . (!empty($c['handle']) ? '<span class="pv-small">' . h($c['handle']) . '</span>' : '')
+            . (!empty($c['opozorilo']) ? '<span class="pv-small kom-bad">⚠ ' . h($c['opozorilo']) . ' – videov s tega kanala ne predlagam</span>' : '') . '</div>'
             . '<form method="post">' . $hid(['k' => $k, 'kanal' => $id, 'pogled' => 'kanali'])
             . '<button class="btn-plain" name="akcija" value="odstrani">Ne spremljaj</button></form></li>';
     }
@@ -334,7 +339,7 @@ if ($view === 'kanali') {
     if ($blocked) {
         echo '<details class="kom-more"><summary>Izločeni kanali (' . count($blocked) . ')</summary><ul class="kom-chs">';
         foreach ($blocked as $id => $c) {
-            echo '<li><div>' . h($c['ime'] ?: $id) . '</div><form method="post">' . $hid(['k' => $k, 'kanal' => $id, 'pogled' => 'kanali'])
+            echo '<li><div>' . h($c['ime'] ?: $id) . (!empty($c['razlog']) ? '<span class="pv-small">' . h($c['razlog']) . '</span>' : '') . '</div><form method="post">' . $hid(['k' => $k, 'kanal' => $id, 'pogled' => 'kanali'])
                 . '<button class="btn-plain" name="akcija" value="spremljaj">Vseeno spremljaj</button></form></li>';
         }
         echo '</ul></details>';

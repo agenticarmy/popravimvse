@@ -36,7 +36,7 @@ Komentarji na YouTubu (8. 11. 2026, veja yt-komentarji): /api/komentarji.php?k=�
 jutranji cron `40 6 * * * /usr/local/bin/php /home/igvzfmyz/public_html/api/komentarji-cron.php >> /home/igvzfmyz/komentarji.log 2>&1`.
 Novi slovenski videi (spremljani kanali + iskanje) → hitri Claude razvrsti → Gemini si video ogleda prek povezave (brez prenosa) → Claude predlaga komentar
 in odgovore na vprašanja gledalcev → Sebastjan objavi s klikom (nikoli samodejno; pravila YouTube API III.E.3.d). Odločitve 8. 11.: brez povezav in omemb strani
-(kom_has_link zavrne), samo slovenski kanali, tudi odgovori gledalcem, do 5 predlogov na dan, največ 8 objav na dan. Povezati se sme samo kanal
+(kom_has_link zavrne), samo slovenski kanali (10. 11.: govor po Geminiju ≠ sl ali strojni prevod → neprimerno brez klica Claude; tuji kanali in »uradni kanal @… v slovenščini« se ne predlagajo, spremljani dobijo opozorilo), tudi odgovori gledalcem, do 5 predlogov na dan, največ 8 objav na dan. Povezati se sme samo kanal
 UCOO6ihJvxkvTwFfNguWNO7w (yt-oauth.php zavrne drugega). Izkušnje v 1. osebi samo iz nastavitev (kom_izkusnje) in »iz_prakse« (_kontekst.json). Podatki tujih videov 30 dni.
 Lokalni preizkus: PV_YT_URL, PV_GOOGLE_AUTH_URL, PV_GOOGLE_TOKEN_URL, PV_GOOGLE_REVOKE_URL, PV_GEMINI_URL (+ PV_ANTHROPIC_URL, PV_STORAGE, PV_MAIL_DIR).
 Glavna prednost (USP, 27. 10. 2026): en mojster namesto desetih – več drobnih popravil v enem obisku (/drobna-popravila/ s seznamom za obkljukanje).

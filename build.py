@@ -187,7 +187,8 @@ def video_html(v):
     vid = v['youtube_id']
     chap = ''.join(f'<li><a href="https://www.youtube.com/watch?v={vid}&amp;t={c[0]}s" target="_blank" rel="noopener">'
                    f'<time>{yt_time(c[0])}</time></a> {esc(c[1])}</li>' for c in v.get('chapters', []))
-    return (f'<figure class="video"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
+    cls = 'video video-vertical' if v.get('vertical') else 'video'
+    return (f'<figure class="{cls}"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
             f'title="{esc(v["name"])}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
             f'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
             f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])}). <a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener">Odpri na YouTubu</a></figcaption></figure>'
@@ -853,6 +854,7 @@ def llms_txt(urls):
 - [Filter akumulatorskega sesalca]({SITE}/drobna-popravila/#video): video na YouTubu (6 min, https://youtu.be/rBahNuYfl28); primer, kaj naredim v preostanku plačane prve ure: zamašen filter spiham s prenosnim kompresorjem v približno minuti, s ščetke s škarjami odstranim navite lase, skupaj približno deset minut dela; filter, ki ga nekajkrat na leto spihate, zdrži več let
 - [Borovec: zastirka iz iglic]({SITE}/kosnja-in-urejanje-okolice/#borovec): video na YouTubu (7 min, https://youtu.be/7EdH-DIl5Ho); v preostanku plačane prve ure otresem borovec, odpadle iglice pograbim, razporedim okoli debla kot zastirko in obtežim z zemljo s krtin; nasvet: iglice zdrobite s sesalnikom za liste ali kosilnico s košem
 - [Obnova fug v kopalnici]({SITE}/obnova-fug-in-silikona/): videi na YouTubu – 1. del, odpadla fuga ob tušu zaščitena z lepilnim trakom kot strehico, da se posuši (https://youtu.be/zJiNR3F8qaY), in 2. del, priprava na fugiranje (https://youtu.be/pHP-ATCtUDA): lušči se belilo za fuge, ne fuga; belilo luknje ne zapolni in nova fuga se nanj ne prime, zato fugo očistim, izpraskam in ploščico med delom zaščitim s trakom
+- [Servis balkonskih vrat]({SITE}/popravilo-vrat-in-oken/#servis-balkonskih-vrat): video na YouTubu (13 min, 1. del, https://youtu.be/NYceOYdzCaQ) in Short (1 min, https://www.youtube.com/shorts/Ff7DT-kgxBk); stranka je poslala video, da se vrata na teraso težko zapirajo; pregledal sem osem balkonskih vrat in eno okno. Odrgnine na okovju so bile od vijaka, ki ni bil do konca privit – vrat ni bilo treba dvigovati. Vrata se niso zaskočila, zato jih je odpiral prepih: zatič na podboju sem povišal po največ milimeter naenkrat. Olje za okovje je potrošni material, vključen v ceno
 - [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 
 {lists_llms()}## Ostalo

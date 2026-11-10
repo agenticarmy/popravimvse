@@ -524,9 +524,19 @@ function kom_collect(array $cfg, callable $log): int
             $kanali[$it['id']]['osvezeno'] = date('c');
         }
     }
+    // tuji ali strojno prevedeni spremljani kanali: odprte predloge in kandidate umakni, novih videov ne beri
+    $flagged = array_filter($kanali, fn($k) => ($k['stanje'] ?? '') === 'spremljam' && !empty($k['opozorilo']));
+    if ($flagged) {
+        foreach (kom_videos(['predlog', 'primeren', 'cakam', 'nov']) as $x) {
+            if (!isset($flagged[$x['kanal_id']])) continue;
+            $x['stanje'] = 'izlocen';
+            $x['razlog'] = (string)$flagged[$x['kanal_id']]['opozorilo'];
+            kom_save_video($x);
+        }
+    }
     foreach ($follow as $cid) {
         $up = (string)($kanali[$cid]['uploads'] ?? '');
-        if ($up === '') continue;
+        if ($up === '' || !empty($kanali[$cid]['opozorilo'])) continue;
         $fresh = empty($kanali[$cid]['pregledan']);
         [, $j, $err] = yt_api($cfg, 'GET', '/playlistItems', ['part' => 'contentDetails', 'playlistId' => $up, 'maxResults' => $first || $fresh ? 25 : 10]);
         if ($err) { $log(($kanali[$cid]['ime'] ?? $cid) . ": $err"); continue; }

@@ -6,6 +6,9 @@
 .kom-tabs a { padding: .6rem .9rem; margin-bottom: -2px; border: 2px solid transparent; border-bottom: none; color: var(--ink); font-weight: 700; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .kom-tabs a[aria-current] { background: var(--tile); border-color: var(--grout); border-bottom: 2px solid var(--tile); }
 .kom-card { border-left: 6px solid var(--level); }
+.kom-note { border-left: 6px solid var(--green); }
+.kom-note p { margin: 0 0 .6rem; }
+.kom-run button[disabled] { opacity: .7; cursor: progress; }
 .kom-head { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: .9rem; align-items: start; margin: 0 0 .6rem; }
 .kom-thumb { position: relative; display: block; line-height: 0; }
 .kom-thumb img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--ink); border-radius: var(--radius); }

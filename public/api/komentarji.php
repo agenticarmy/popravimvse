@@ -84,52 +84,63 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
         case 'zazeni':
             if ($miss = kom_missing($cfg)) $go($msgq(false, 'Najprej uredite: ' . implode('; ', $miss) . '.'));
             if (!kom_budget_left($cfg)) $go($msgq(false, 'Mesečni proračun je porabljen. Povečate ga lahko v Nastavitvah.'));
-            $lock = kom_lock();
-            if (!$lock) $go($msgq(false, 'Iskanje že teče. Počakajte minuto in osvežite stran.'));
-            @set_time_limit(300);
-            ignore_user_abort(true);
-            $log = [];
-            try {
-                kom_housekeeping();
-                kom_collect($cfg, function ($m) use (&$log) { $log[] = $m; });
-                kom_triage($cfg, function ($m) use (&$log) { $log[] = $m; }, 2); // ostale razvrsti obdelava po korakih
-                kom_select($cfg);
-            } finally {
-                kom_unlock($lock);
-            }
-            $errs = array_filter($log, fn($m) => !preg_match('/^(novih videov|razvrščenih):/u', $m));
-            $go('&korak=1' . ($errs ? $msgq(false, implode(' · ', array_slice($errs, 0, 4))) : ''));
+            $go('&korak=1&iskanje=1'); // takoj pokaže »Iščem …«, delo se začne v naslednji zahtevi
     }
     $go();
 }
 
 /* ---------- obdelava po korakih (en video na zahtevo, stran se sama osvežuje) ---------- */
+$waitPage = function (string $title, string $text, string $next, int $sec = 1): never {
+    page_start($title . ' | Popravim vse', '<meta http-equiv="refresh" content="' . $sec . ';url=' . h($next) . '">');
+    echo '<div class="pv-card pv-ai-wait" role="status"><h1>' . h($title) . '</h1>' . $text
+        . '<p class="pv-small">Stran se osvežuje sama. Lahko jo zaprete – preostalo naredi jutranji zagon.</p></div>';
+    page_end();
+};
 if (isset($_GET['korak'])) {
+    // a) iskanje: najprej takoj pokaži »Iščem …«, v naslednji zahtevi poišči (zbiranje traja do 1–2 minuti)
+    if (($_GET['iskanje'] ?? '') === '1') {
+        $waitPage('Iščem nove videe …', '<p>Pregledujem spremljane kanale in iščem po ključnih besedah, nato videe razvrstim. To traja do dve minuti.</p>',
+            $base . '&korak=1&iskanje=2', 0);
+    }
+    if (($_GET['iskanje'] ?? '') === '2') {
+        $lock = kom_lock();
+        if (!$lock) $go($msgq(false, 'Iskanje že teče (morda jutranji zagon). Počakajte nekaj minut in osvežite stran.'));
+        @set_time_limit(300);
+        ignore_user_abort(true);
+        try {
+            kom_search_now($cfg);
+        } finally {
+            kom_unlock($lock);
+        }
+        $go('&korak=1');
+    }
+    // b) razvrščanje preostalih in priprava predlogov, en korak na zahtevo
     $lock = kom_lock();
     $done = null;
     if ($lock) {
         @set_time_limit(300);
         ignore_user_abort(true);
         try {
-            $tri = kom_videos(['nov']) ? kom_triage($cfg, fn($m) => null, 2) : 0; // prvi zagon: veliko videov za razvrščanje
+            $tri = kom_videos(['nov']) ? kom_triage($cfg, fn($m) => null, 2) : 0;
             kom_select($cfg);
             $done = $tri ? 'razvrščanje' : kom_process_one($cfg, fn($m) => null);
         } finally {
             kom_unlock($lock);
         }
     }
-    $left = count(kom_videos(['cakam'])) + count(kom_videos(['nov']));
+    $wait = count(kom_videos(['cakam']));
+    $unsorted = count(kom_videos(['nov']));
     $n = (int)($_GET['n'] ?? 0) + ($done && $done !== 'razvrščanje' ? 1 : 0);
-    if ($left === 0 || ($lock && !$done)) {
-        $t = $left && !kom_budget_left($cfg) ? 'Mesečni proračun je porabljen, preostali videi počakajo.' : 'Iskanje je končano.';
-        $go('&ok=' . rawurlencode($t . ($n ? ' Obdelanih videov: ' . $n . '.' : ' Novih predlogov ni.')), 'predlogi');
+    if ($wait + $unsorted === 0 || ($lock && !$done)) {
+        $p = kom_state()['povzetek'] ?? null;
+        $t = ($wait + $unsorted) && !kom_budget_left($cfg) ? 'Mesečni proračun je porabljen, preostali videi počakajo. ' : '';
+        $go('&ok=' . rawurlencode($t . ($p ? kom_summary_text($p) : 'Iskanje je končano.')), 'predlogi');
     }
-    $next = $base . '&korak=1&n=' . $n . (isset($_GET['napaka']) ? '&napaka=' . rawurlencode((string)$_GET['napaka']) : '');
-    page_start('Pripravljam predloge | Popravim vse', '<meta http-equiv="refresh" content="1;url=' . h($next) . '">');
-    echo '<div class="pv-card pv-ai-wait"><h1>Pripravljam predloge …</h1><p>Gemini si ogleda video, Claude napiše povzetek in predlog komentarja. En video traja približno minuto.</p>'
-        . '<p>Obdelanih: ' . $n . ' · še ' . $left . '</p>' . (isset($_GET['napaka']) ? '<p class="pv-small">' . h((string)$_GET['napaka']) . '</p>' : '')
-        . '<p class="pv-small">Stran se osvežuje sama. Lahko jo zaprete – preostale videe obdela jutranji zagon.</p></div>';
-    page_end();
+    $waitPage($unsorted ? 'Razvrščam videe …' : 'Pripravljam predloge …',
+        ($unsorted ? '<p>Hitri Claude preverja jezik in vsebino najdenih videov. Še ' . $unsorted . ' za razvrstiti.</p>'
+            : '<p>Gemini si ogleda video, Claude napiše povzetek in predlog komentarja. En video traja približno minuto.</p>')
+        . '<p>Pripravljenih predlogov: ' . $n . ($wait ? ' · še ' . $wait . ' v obdelavi' : '') . '</p>',
+        $base . '&korak=1&n=' . $n);
 }
 
 /* ---------- prikaz ---------- */
@@ -169,10 +180,14 @@ if ($cfg['gemini_kljuc'] === '') echo '<li class="kom-bad">Ključ Gemini ni nast
 if (empty($cfg['kom_vklop'])) echo '<li class="kom-bad">Jutranje iskanje ni vključeno (Nastavitve). Iščete lahko ročno.</li>';
 echo '<li>Ta mesec: ' . number_format(kom_spent(), 2, ',', '') . ' $ od ' . (int)$cfg['kom_proracun'] . ' $ · ' . (int)$u['videi'] . ' videov · ' . (int)$u['objave'] . ' objav</li>';
 echo '<li>Danes objavljenih: ' . kom_posts_today() . ' od največ ' . (int)$cfg['kom_objav_na_dan'] . '</li>';
-echo '<li>Zadnje iskanje: ' . (!empty($st['zadnji_zagon']) ? h(sl_time($st['zadnji_zagon'])) : 'še nikoli') . '</li></ul>';
+$sum = $st['povzetek'] ?? null;
+$backlog = count(array_filter($all, fn($v) => $v['stanje'] === 'primeren'));
+echo '<li>' . ($sum ? h(kom_summary_text($sum)) : 'Zadnje iskanje: ' . (!empty($st['zadnji_zagon']) ? h(sl_time($st['zadnji_zagon'])) : 'še nikoli')) . '</li>';
+foreach ($sum['napake'] ?? [] as $e) echo '<li class="kom-bad">' . h($e) . '</li>';
+echo '<li>Primernih videov za naslednje dni: ' . $backlog . ' · spremljanih kanalov: ' . count(array_filter($kan, fn($c) => ($c['stanje'] ?? '') === 'spremljam')) . '</li></ul>';
 echo '<div class="pv-actions">';
 if (!yt_connected() && $cfg['yt_client_id'] !== '') echo '<a class="call" href="/api/yt-oauth.php?k=' . h($k) . '&amp;zacni=1">Poveži YouTube</a>';
-echo '<form method="post"><input type="hidden" name="k" value="' . h($k) . '"><button class="btn-plain" name="akcija" value="zazeni">Poišči nove videe zdaj</button></form>';
+echo '<form method="post" class="kom-run"><input type="hidden" name="k" value="' . h($k) . '"><input type="hidden" name="akcija" value="zazeni"><button class="btn-plain">Poišči nove videe zdaj</button></form>';
 if ($waiting) echo '<a class="btn-plain" href="' . h($base . '&korak=1') . '">Obdelaj čakajoče (' . $waiting . ')</a>';
 echo '</div></section>';
 
@@ -195,9 +210,24 @@ $done = function (?array $o, string $vid, string $what) use ($hid, $k, $ytv): st
         . '<button class="btn-plain">Res izbriši z YouTuba</button></form></details>';
 };
 
+$following = count(array_filter($kan, fn($c) => ($c['stanje'] ?? '') === 'spremljam'));
 if ($view === 'predlogi') {
     echo '<section id="predlogi">';
-    if (!$open) echo '<p class="lead">Ni odprtih predlogov.' . ($waiting ? ' ' . $waiting . ' videov čaka na obdelavo.' : ' Novi pridejo z jutranjim iskanjem.') . '</p>';
+    if ($sugg) {
+        echo '<div class="pv-card kom-note"><p><b>' . count($sugg) . ' predlaganih kanalov čaka na vašo potrditev.</b> '
+            . ($following ? 'Spremljani kanali prinesejo nove videe vsak dan.' : 'Dokler ne spremljate nobenega kanala, sistem najde le videe iz iskanja, slovenskih novih videov o popravilih pa je malo.')
+            . ' Ko kanal potrdite, ob naslednjem iskanju pregledam tudi njegove videe zadnjih ' . (int)$cfg['kom_prvi_dni'] . ' dni.</p>'
+            . '<p><a class="call small" href="' . h($base . '&pogled=kanali') . '">Odpri predlagane kanale</a></p></div>';
+    }
+    if (!$open) {
+        echo '<p class="lead">Ni odprtih predlogov.' . ($waiting ? ' ' . $waiting . ' videov čaka na obdelavo.' : '') . '</p>';
+        if (!$waiting && $sum && (int)($sum['predlogov'] ?? 0) === 0) {
+            echo '<p>Zadnje iskanje ni našlo novih primernih videov: ' . ((int)($sum['novih'] ?? 0) === 0
+                ? 'vsi najdeni videi so bili že pregledani prej.' : 'novi videi niso bili v slovenščini ali niso o popravilih.')
+                . ' Novi slovenski videi o popravilih izidejo redko, zato je najboljši vir spremljanje kanalov.'
+                . ($backlog ? '' : ' Za več zadetkov lahko v Nastavitvah dodate ključne besede.') . '</p>';
+        }
+    }
     foreach ($open as $v) {
         $ui = $v['ui'] ?? [];
         $g = $v['gemini'] ?? null;
@@ -335,6 +365,12 @@ if ($view === 'objave') {
 echo '<p class="pv-small kom-foot">Komentar se objavi samo, ko kliknete »Objavi«. Podatki tujih videov se izbrišejo po ' . KOM_HRAMBA_DNI . ' dneh.</p>';
 ?>
 <script>
+document.querySelectorAll('.kom-run').forEach(function (f) {
+  f.addEventListener('submit', function () {
+    var b = f.querySelector('button');
+    if (b) { b.disabled = true; b.textContent = 'Iščem … (do 2 minuti)'; }
+  });
+});
 document.querySelectorAll('.kom-form').forEach(function (f) {
   var t = f.querySelector('textarea'), c = f.querySelector('.kom-count');
   function upd() { if (c) c.textContent = t.value.length + ' znakov' + (/https?:\/\/|www\.|\.si\b|\.com\b/i.test(t.value) ? ' · brez povezav, prosim' : ''); }

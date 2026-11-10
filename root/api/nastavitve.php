@@ -161,7 +161,7 @@ page_start('Nastavitve | Popravim vse');
     <legend>Komentarji na YouTubu</legend>
     <p class="pv-hint">Vsako jutro poišče nove slovenske videe o popravilih, Gemini si jih ogleda, Claude predlaga komentar. Objavite samo vi, s klikom na strani <a href="/api/komentarji.php?k=<?= h($k) ?>">Komentarji na YouTubu</a>. Uporablja isti ključ za Claude kot zgoraj.</p>
     <label class="pv-check"><input type="checkbox" name="kom_vklop" value="1" <?= $cfg['kom_vklop'] ? 'checked' : '' ?>> Vsako jutro poišči nove videe in pripravi predloge (e-pošta, ko so predlogi)</label>
-    <p class="pv-hint" style="overflow-wrap:anywhere"><b>Google Cloud</b> (račun popravimvse@gmail.com): projekt z vklopljenim »YouTube Data API v3«, zaslon za soglasje OAuth »External« in <b>»In production«</b> (v načinu Testing prijava poteče po 7 dneh), ključ OAuth vrste »Web application« z naslovom za preusmeritev:<br><code><?= h(yt_redirect_uri()) ?></code></p>
+    <p class="pv-hint" style="overflow-wrap:anywhere"><b>Google Cloud</b> (projekt »Popravim vse komentarji« na vašem Google računu): projekt z vklopljenim »YouTube Data API v3«, zaslon za soglasje OAuth »External« in <b>»In production«</b> (v načinu Testing prijava poteče po 7 dneh), ključ OAuth vrste »Web application« z naslovom za preusmeritev:<br><code><?= h(yt_redirect_uri()) ?></code></p>
     <label class="pv-label" for="yci">Client ID</label>
     <input id="yci" name="yt_client_id" type="text" value="<?= h($cfg['yt_client_id']) ?>" placeholder="….apps.googleusercontent.com" spellcheck="false" autocomplete="off">
     <label class="pv-label" for="ycs">Client secret <small><?= $mask($cfg['yt_client_secret']) ?></small></label>

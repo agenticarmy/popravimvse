@@ -25,6 +25,7 @@ const KOM_HRAMBA_DNI = 30;        // podatki tujih videov
 const KOM_NA_KANAL = 2;           // največ predlogov z istega kanala na dan
 const KOM_ENOTE_MAX = 9000;       // od 10.000 dnevnih enot YouTube API (rezerva za objave)
 const KOM_MAX_ODGOVOROV = 2;      // odgovorov na vprašanja gledalcev na video
+const KOM_OKNO_DNI = 21;          // iskanje: videi zadnjih 21 dni (manj kot hramba 30 dni, zato se isti video ne vrne)
 const KOM_MAX_ZNAKOV = 1500;
 const KOM_N = ['komentar', 'komentarja', 'komentarje', 'komentarjev'];
 const KOM_STANJA = ['nov', 'izlocen', 'primeren', 'cakam', 'predlog', 'neprimerno', 'napaka', 'objavljeno', 'preskoceno', 'poteklo'];
@@ -110,6 +111,36 @@ function kom_lock()
 }
 
 function kom_unlock($fh): void { if ($fh) { flock($fh, LOCK_UN); fclose($fh); } }
+
+/* ---------- povzetek zadnjega zagona (prikaz na strani) ---------- */
+/** Začne nov povzetek ($vir: jutro | rocno). */
+function kom_summary_start(string $vir): void
+{
+    $st = kom_state();
+    $st['povzetek'] = ['cas' => date('c'), 'vir' => $vir, 'kandidatov' => 0, 'novih' => 0, 'razvrscenih' => 0, 'primernih' => 0,
+        'predlogov' => 0, 'neprimernih' => 0, 'napake' => []];
+    kom_save_state($st);
+}
+
+/** Prišteje števce in doda napake v zadnji povzetek. */
+function kom_summary_add(array $n, array $errors = []): void
+{
+    $st = kom_state();
+    $p = $st['povzetek'] ?? ['cas' => date('c'), 'vir' => 'rocno', 'napake' => []];
+    foreach ($n as $k => $v) $p[$k] = (int)($p[$k] ?? 0) + (int)$v;
+    $p['napake'] = array_slice(array_values(array_unique(array_merge($p['napake'] ?? [], $errors))), 0, 6);
+    $st['povzetek'] = $p;
+    kom_save_state($st);
+}
+
+/** Zapisovalnik dnevnika, ki zbira napake za povzetek. */
+function kom_logger(?callable $out, array &$errors): callable
+{
+    return function (string $m) use ($out, &$errors) {
+        if ($out) $out($m);
+        if (!preg_match('/^(novih videov|razvrščenih|e-pošta|[A-Za-z0-9_-]{11}: (predlog|neprimerno|izlocen))/u', $m)) $errors[] = $m;
+    };
+}
 
 /* ---------- poraba in omejitve ---------- */
 function kom_month_file(): string { return kom_dir() . '/poraba-' . date('Y-m') . '.json'; }
@@ -462,7 +493,8 @@ function kom_collect(array $cfg, callable $log): int
 {
     $st = kom_state();
     $first = empty($st['zadnji_zagon']);
-    $since = time() - (int)($first ? $cfg['kom_prvi_dni'] : $cfg['kom_obdobje']) * 86400;
+    $since = time() - ($first ? (int)$cfg['kom_prvi_dni'] : KOM_OKNO_DNI) * 86400;
+    $sinceNew = time() - (int)$cfg['kom_prvi_dni'] * 86400; // novo spremljan kanal: prvič pogledamo dlje nazaj
     $kanali = kom_kanali();
     $ids = []; // videoId => vir
 
@@ -481,13 +513,15 @@ function kom_collect(array $cfg, callable $log): int
     foreach ($follow as $cid) {
         $up = (string)($kanali[$cid]['uploads'] ?? '');
         if ($up === '') continue;
-        [, $j, $err] = yt_api($cfg, 'GET', '/playlistItems', ['part' => 'contentDetails', 'playlistId' => $up, 'maxResults' => $first ? 25 : 10]);
+        $fresh = empty($kanali[$cid]['pregledan']);
+        [, $j, $err] = yt_api($cfg, 'GET', '/playlistItems', ['part' => 'contentDetails', 'playlistId' => $up, 'maxResults' => $first || $fresh ? 25 : 10]);
         if ($err) { $log(($kanali[$cid]['ime'] ?? $cid) . ": $err"); continue; }
         foreach ($j['items'] ?? [] as $it) {
             $vid = (string)($it['contentDetails']['videoId'] ?? '');
             $pub = strtotime((string)($it['contentDetails']['videoPublishedAt'] ?? '')) ?: 0;
-            if (kom_valid_vid($vid) && $pub >= $since) $ids[$vid] = 'kanal';
+            if (kom_valid_vid($vid) && $pub >= ($fresh ? $sinceNew : $since)) $ids[$vid] = 'kanal';
         }
+        $kanali[$cid]['pregledan'] = date('c');
     }
     kom_save_kanali($kanali);
 
@@ -512,6 +546,7 @@ function kom_collect(array $cfg, callable $log): int
     kom_save_state($st);
 
     // c) podrobnosti samo za videe, ki jih še nimamo (1 enota na 50 videov)
+    $found = count($ids);
     $ids = array_filter($ids, fn($vid) => !is_file(kom_vfile((string)$vid)), ARRAY_FILTER_USE_KEY);
     $new = 0;
     foreach (array_chunk(array_keys($ids), 50) as $chunk) {
@@ -538,6 +573,7 @@ function kom_collect(array $cfg, callable $log): int
         }
     }
     $log("novih videov: $new");
+    kom_summary_add(['kandidatov' => $found, 'novih' => $new]);
     return $new;
 }
 
@@ -560,6 +596,7 @@ function kom_triage(array $cfg, callable $log, int $maxBatches = 0): int
     if (!$nov) return 0;
     if (!kom_budget_left($cfg)) { $log('mesečni proračun je porabljen – razvrščanje preskočeno'); return 0; }
     $done = 0;
+    $ok = 0;
     foreach (array_chunk($nov, 40) as $b => $chunk) {
         if ($maxBatches > 0 && $b >= $maxBatches) break;
         $lines = [];
@@ -588,10 +625,12 @@ function kom_triage(array $cfg, callable $log, int $maxBatches = 0): int
             if ($v['stanje'] === 'izlocen') $v['razlog'] = $jez !== 'sl' ? 'ni v slovenščini' : 'premalo povezano s popravili';
             kom_save_video($v);
             $done++;
+            if ($v['stanje'] === 'primeren') $ok++;
             if ($v['vir'] === 'iskanje' && $jez === 'sl' && $v['triaza']['ocena'] >= 5) kom_suggest_channel($v);
         }
     }
     $log("razvrščenih: $done");
+    kom_summary_add(['razvrscenih' => $done, 'primernih' => $ok]);
     return $done;
 }
 
@@ -716,6 +755,7 @@ function kom_process_one(array $cfg, callable $log): ?string
     unset($v['napaka']);
     kom_save_video($v);
     kom_add_usage('videi', 1);
+    kom_summary_add($v['stanje'] === 'predlog' ? ['predlogov' => 1] : ['neprimernih' => 1]);
     $log("{$v['id']}: {$v['stanje']}" . ($v['odgovori'] ? ' + ' . count($v['odgovori']) . ' odgovori' : ''));
     return $v['id'];
 }
@@ -919,13 +959,16 @@ function kom_missing(array $cfg): array
 }
 
 /** Celoten jutranji zagon (komentarji-cron.php). */
-function kom_run(array $cfg, callable $log, bool $mail = true): void
+function kom_run(array $cfg, callable $out, bool $mail = true): void
 {
     $lock = kom_lock();
-    if (!$lock) { $log('drug zagon že teče'); return; }
+    if (!$lock) { $out('drug zagon že teče'); return; }
+    $errors = [];
+    $log = kom_logger($out, $errors);
     try {
         kom_housekeeping();
         if (empty($cfg['kom_vklop'])) { $log('komentarji niso vključeni (Nastavitve)'); return; }
+        kom_summary_start('jutro');
         if ($miss = kom_missing($cfg)) { $log('manjka: ' . implode('; ', $miss)); return; }
         kom_collect($cfg, $log);
         kom_triage($cfg, $log);
@@ -936,6 +979,31 @@ function kom_run(array $cfg, callable $log, bool $mail = true): void
         if (!kom_budget_left($cfg)) $log('mesečni proračun je porabljen');
         if ($mail) $log('e-pošta: ' . kom_mail() . ' predlogov');
     } finally {
+        kom_summary_add([], $errors);
         kom_unlock($lock);
     }
+}
+
+/** Ročno iskanje (prvi korak na strani): zbiranje, razvrščanje prvih paketov in izbor. */
+function kom_search_now(array $cfg): array
+{
+    $errors = [];
+    $log = kom_logger(null, $errors);
+    kom_housekeeping();
+    kom_summary_start('rocno');
+    kom_collect($cfg, $log);
+    kom_triage($cfg, $log, 2); // ostale razvrsti obdelava po korakih
+    kom_select($cfg);
+    kom_summary_add([], $errors);
+    return $errors;
+}
+
+/** Povzetek zadnjega zagona v enem stavku. */
+function kom_summary_text(?array $p): string
+{
+    if (!$p) return '';
+    $vir = ($p['vir'] ?? '') === 'jutro' ? 'jutranje iskanje' : 'ročno iskanje';
+    $t = ucfirst($vir) . ' ' . sl_time((string)$p['cas']) . ': ' . (int)($p['kandidatov'] ?? 0) . ' najdenih, od tega ' . (int)($p['novih'] ?? 0)
+        . ' še nevidenih; ' . (int)($p['primernih'] ?? 0) . ' primernih slovenskih; ' . (int)($p['predlogov'] ?? 0) . ' novih predlogov.';
+    return $t;
 }

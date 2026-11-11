@@ -215,6 +215,20 @@ def iso_dt(d):
     return datetime.fromisoformat(d + 'T12:00:00').replace(tzinfo=ZoneInfo('Europe/Ljubljana')).isoformat()
 
 
+LD_DATETIME_KEYS = ('datePublished', 'dateModified', 'dateCreated', 'uploadDate')
+
+
+def ld_datetimes(x):
+    """Google pri ProfilePage, Article, ImageObject … zahteva datum s časom in časovnim pasom (ISO 8601),
+    sicer GSC javi »Invalid datetime value«. Samo datume (LLLL-MM-DD) v teh poljih pretvori z iso_dt."""
+    if isinstance(x, list):
+        return [ld_datetimes(i) for i in x]
+    if isinstance(x, dict):
+        return {k: (iso_dt(v) if k in LD_DATETIME_KEYS and isinstance(v, str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}', v) else ld_datetimes(v))
+                for k, v in x.items()}
+    return x
+
+
 def video_ld(v, page_url, i=0):
     if v and v.get('src'):
         out = {'@type': 'VideoObject', '@id': page_url + video_anchor(i), 'name': v['name'], 'description': v['description'],
@@ -537,7 +551,7 @@ def page(meta, main, path, extra_ld=()):
         og = og_image(imgs[0]['contentUrl'], imgs[0]['description'])
     else:
         og = og_image(PORTRAIT_URL, PORTRAIT['alt'])
-    ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
+    ld = json.dumps({'@context': 'https://schema.org', '@graph': ld_datetimes(graph)}, ensure_ascii=False)
     return f'''<!doctype html>
 <html lang="sl">
 <head>

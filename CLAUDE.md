@@ -13,6 +13,12 @@ Postopek:
 4. Commit + push. Objava je samodejna: cron v cPanelu vsakih 30 minut (ob :00 in :30) naredi `git pull` z GitHuba (main) in, če je kaj novega,
    Deploy (`.cpanel.yml` kopira `public/` v `public_html`); dnevnik `/home/igvzfmyz/deploy.log`. Vse na `main` gre torej v živo v ≤ 30 min,
    zato spremembe strani pripravi na ločeni veji in jih na `main` prenesi šele, ko Sebastjan reče »objavi«.
+   IZJEMA – nov video (Sebastjan, 14. 11. 2026): ko Sebastjan sporoči, da je video na YouTubu objavljen, je to že »objavi« za vse,
+   kar ta video zadeva: vgradnja na ustrezno stran (VideoObject, poglavja, razdelek z id, FAQ, llms.txt, Short) gre takoj na `main`
+   (veja → ff → push → preveri živo stran), in v Google Business Profile objaviš post (3 ležeče izreze 4:3 iz videa, brez telefona v besedilu,
+   gumb »Learn more« na razdelek) ter dodaš fotografije dela. Ne sprašuj znova. Vprašaj samo, če kaj krši pravila za fotografije/regulirana dela
+   ali če gre za spremembo zunaj tega videa. Opisov JAVNIH videov na YouTubu brez potrditve še vedno ne spreminjaj; objavo na YouTubu klikne Sebastjan.
+   GBP: URL-ji in postopek v projektnem dokumentu claude/google-business-profile.md (file_upload samo iz /mnt/user-data/uploads po device_stage_files).
    Hostko ne dovoli cron opravil pogosteje kot 1× na 30 min (splošni pogoji, razdelek Omejitve); krajši interval strežnik vsako uro sam vrne na `*/30`. Po objavi preveri živo stran.
    Ročno (če cron ne dela): Git Version Control → Manage → Pull or Deploy → Update from Remote → Deploy HEAD Commit.
    Po vsakem Deployu `.cpanel.yml` zažene `api/_indexnow.php`: IndexNow (Bing, Yandex, Seznam …) dobi samo strani s spremenjeno vsebino

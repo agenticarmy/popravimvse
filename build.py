@@ -30,6 +30,7 @@ BIZ = {
     'rate': '35 €',
     'same_as': ['https://www.youtube.com/@popravimvse', 'https://www.google.com/maps?cid=17974519320533287577'],  # YouTube, Google profil podjetja
     'maps': 'https://www.google.com/maps?cid=17974519320533287577',
+    'review': 'https://search.google.com/local/writereview?placeid=ChIJAAAAAAAAAAARmULIxBZScvk',  # Google: napiši oceno (Place ID iz CID 0xf9725216c4c84299)
     'hours': {'days': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], 'opens': '06:00', 'closes': '18:00'},  # enako kot Google profil
     'address': {'addressLocality': 'Pernica', 'postalCode': '2231'},  # izhodišče dela (brez ulice); sedež s.p. je v SEAT
     'geo': (46.5785, 15.7269),  # Pernica
@@ -70,7 +71,7 @@ AREAS = [
     ('hisni-mojster-ptuj', 'Ptuj z okolico', 'Kidričevo, Hajdina, Videm, Markovci, Gorišnica, Destrnik, Juršinci'),
     ('hisni-mojster-slovenska-bistrica', 'Slovenska Bistrica', 'Poljčane, Makole, Oplotnica'),
 ]
-OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost'), ('piskotki', 'Piškotki')]
+OTHER = [('cenik', 'Cenik'), ('pred-obiskom', 'Priprava na obisk'), ('o-meni', 'O meni'), ('kontakt', 'Kontakt'), ('zasebnost', 'Zasebnost'), ('piskotki', 'Piškotki'), ('ocena', 'Ocenite moje delo')]
 FORM = '/povprasevanje/'  # obrazec za fotografije, video, glas in opis
 REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Prenova lesenega vikenda'),
         ('reference/smrad-iz-tus-kanalete', 'Smrad iz tuš kanalete'),
@@ -341,6 +342,7 @@ def call_btn(cls='call'):
     return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}Pokličite {BIZ["phone"]}</a>'
 
 
+ICONS_STAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>'
 CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="13.5" height="12" rx="2"/><path d="M16 10.5 21.5 7.5v9L16 13.5"/></svg>'
 
 
@@ -511,7 +513,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: videi popravil</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: videi popravil</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/ocena/">Ocenite moje delo</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}, matična številka {BIZ["ms"]}, davčna številka {BIZ["ds"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
   </div>
 </footer>
@@ -642,6 +644,8 @@ def inner(meta, body, slug, crumbs):
         f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
     is_form = meta.get('kind') == 'form'
     acts = '' if is_form else f'<div class="actions">{call_btn()}{sms_btn()}</div>'
+    if meta.get('head_actions'):
+        acts = f'<div class="actions">{meta["head_actions"]}</div>'
     main = f'''<div class="{"pv-form-page" if is_form else "std-page"}"><section class="page-head">
   <div class="wrap">
     {crumb_html}
@@ -879,6 +883,7 @@ def llms_txt(urls):
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video]({SITE}{FORM}): obrazec za video z glasom, fotografije in opis
 - [Zasebnost]({SITE}/zasebnost/): kako se obdelujejo podatki iz povpraševanj
+- [Ocenite moje delo]({SITE}/ocena/): stranke po končanem delu napišejo oceno v Google profilu podjetja ({BIZ['review']}); ocene preberete na {BIZ['maps']}
 - [Piškotki]({SITE}/piskotki/): Google Analytics samo z dovoljenjem obiskovalca, brez oglasov; seznam podatkov v brskalniku
 '''
 
@@ -1026,6 +1031,9 @@ def main():
             meta['page_type'] = 'ProfilePage'
         elif slug == 'kontakt':
             meta['page_type'] = 'ContactPage'
+        if slug == 'ocena':
+            meta['head_actions'] = f'<a class="call call-wrap" href="{BIZ["review"]}" target="_blank" rel="noopener">{ICONS_STAR}Napišite oceno na Googlu</a>'
+            body = body.replace('{{OCENA}}', BIZ['review']).replace('{{MAPS}}', BIZ['maps'])
         if slug == 'piskotki':
             body = body.replace('{{PRIVOLITEV}}', privolitev_box())
         m, ld = inner(meta, body, slug, [])

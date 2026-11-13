@@ -312,6 +312,12 @@
    "opis": "Katere piškotke in podatke stran shrani v vaš brskalnik, kdaj merim obiske z Google Analytics (samo z vašim dovoljenjem) in kako svojo izbiro spremenite."
   },
   {
+   "pot": "/ocena/",
+   "url": "https://popravimvse.si/ocena/",
+   "naslov": "Ocenite moje delo",
+   "opis": "Ste zadovoljni s popravilom? Napišite kratko oceno na Googlu. Tako drugi lažje najdejo zanesljivega hišnega mojstra v okolici Maribora."
+  },
+  {
    "pot": "/povprasevanje/",
    "url": "https://popravimvse.si/povprasevanje/",
    "naslov": "Pokažite mi, kaj je treba popraviti",

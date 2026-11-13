@@ -90,4 +90,5 @@ Material kupi stranka po Sebastjanovem nasvetu. Pri postavkah so povezave na naj
 - [Kontakt](https://popravimvse.si/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video](https://popravimvse.si/povprasevanje/): obrazec za video z glasom, fotografije in opis
 - [Zasebnost](https://popravimvse.si/zasebnost/): kako se obdelujejo podatki iz povpraševanj
+- [Ocenite moje delo](https://popravimvse.si/ocena/): stranke po končanem delu napišejo oceno v Google profilu podjetja (https://search.google.com/local/writereview?placeid=ChIJAAAAAAAAAAARmULIxBZScvk); ocene preberete na https://www.google.com/maps?cid=17974519320533287577
 - [Piškotki](https://popravimvse.si/piskotki/): Google Analytics samo z dovoljenjem obiskovalca, brez oglasov; seznam podatkov v brskalniku

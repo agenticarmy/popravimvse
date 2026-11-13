@@ -641,3 +641,5 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .privolitev-box p { margin: 0; flex: 1 1 20rem; }
 .privolitev-box button { font: inherit; font-weight: 700; cursor: pointer; padding: .6rem 1.1rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--tile); color: var(--ink); }
 .privolitev-box button:hover { background: var(--ink); color: #fff; }
+.qr { display: block; width: 220px; max-width: 100%; height: auto; background: #fff; padding: 8px; border: 5px solid var(--grout); border-radius: 2px; }
+.call.call-wrap { white-space: normal; text-align: left; }

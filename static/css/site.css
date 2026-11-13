@@ -83,9 +83,11 @@ strong { font-weight: 700; }
   border-bottom: 1px solid var(--grout);
 }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.25rem; }
-.brand { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); line-height: 1.05; }
+.brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); line-height: 1.05; }
+.brand-mark { flex: none; width: 38px; height: 38px; }
+.brand-t { display: flex; flex-direction: column; min-width: 0; }
 .brand b { font-stretch: 122%; font-weight: 850; font-size: 1.3rem; letter-spacing: -0.01em; }
-.brand span { font-size: 0.82rem; color: var(--ink-soft); }
+.brand-t span { font-size: 0.82rem; color: var(--ink-soft); }
 .nav { display: flex; align-items: center; gap: 1.6rem; }
 .nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
 .nav li { margin: 0; }
@@ -643,3 +645,5 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .privolitev-box button:hover { background: var(--ink); color: #fff; }
 .qr { display: block; width: 220px; max-width: 100%; height: auto; background: #fff; padding: 8px; border: 5px solid var(--grout); border-radius: 2px; }
 .call.call-wrap { white-space: normal; text-align: left; }
+.brand b { white-space: nowrap; }
+@media (max-width: 380px) { .brand { gap: 0.45rem; } .brand-mark { width: 30px; height: 30px; } .brand b { font-size: 1.12rem; } }

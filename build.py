@@ -409,6 +409,7 @@ def business_ld():
         'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
         'image': PORTRAIT_URL,
+        'logo': {'@type': 'ImageObject', '@id': SITE + '/#logo', 'url': SITE + '/static/img/logo-google.png', 'contentUrl': SITE + '/static/img/logo-google.png', 'width': 720, 'height': 720, 'caption': BIZ['short']},
         'telephone': BIZ['phone_e164'],
         'email': BIZ['email'],
         'priceRange': '35 € na uro',
@@ -490,7 +491,7 @@ def header(current):
     return f'''<a class="skip" href="#vsebina">Na vsebino</a>
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="/"><b>Popravim vse</b><span>Sebastjan, hišni mojster</span></a>
+    <a class="brand" href="/"><svg class="brand-mark" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true" focusable="false"><path d="M8 29 L32 8 L56 29 V56 H8 Z" fill="none" stroke="#16232B" stroke-width="5" stroke-linejoin="round"/><path d="M19 38 L28 47 L51 19" fill="none" stroke="#16232B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 38 L28 47 L51 19" fill="none" stroke="#F2C21B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-t"><b>Popravim vse</b><span>Sebastjan, hišni mojster</span></span></a>
     <nav class="nav" aria-label="Glavni meni">
       <ul>{links}</ul>
       <a class="call small" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}{BIZ["phone"]}</a>

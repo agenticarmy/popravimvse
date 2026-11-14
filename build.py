@@ -78,7 +78,7 @@ REFS = [('reference', 'Moja dela'), ('reference/prenova-lesenega-vikenda', 'Pren
         ('reference/zamasen-preliv-greznice', 'Zamašen preliv greznice'),
         ('reference/dostop-do-greznice-pod-tlakovci', 'Greznica pod tlakovci'),
         ('reference/zlomljena-mrezica-na-pipi', 'Zlomljena mrežica na pipi')]
-NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/kontakt/', 'Kontakt')]
+NAV = [('/#storitve', 'Storitve'), ('/reference/', 'Moja dela'), ('/cenik/', 'Cenik'), ('/o-meni/', 'O meni'), ('/ocena/', 'Ocenite me'), ('/kontakt/', 'Kontakt')]
 
 PHOTOS = json.loads((ROOT / 'photos.json').read_text(encoding='utf-8'))
 LISTS = json.loads((ROOT / 'content' / 'seznami.json').read_text(encoding='utf-8'))

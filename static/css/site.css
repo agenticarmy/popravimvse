@@ -519,8 +519,13 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .layout-solo { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 640px) {
   .callbar .sms { gap: .35rem; }
+  .callbar a { padding-inline: .9rem; min-width: 0; }
   .page-head .actions { gap: .6rem; }
   .page-head .actions a { flex: 1 1 100%; justify-content: center; }
+}
+/* ozki telefoni: v spodnji vrstici ostane številka, sicer gumb »Video« zleze čez rob (320–360 px) */
+@media (max-width: 400px) {
+  .callbar .cb-lbl { display: none; }
 }
 /* na strani z obrazcem je obrazec sam glavni gumb: spodnja vrstica bi prekrivala polja */
 @media (max-width: 640px) {

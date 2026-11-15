@@ -339,7 +339,7 @@ def esc(s):
 
 
 def call_btn(cls='call'):
-    return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}Pokličite {BIZ["phone"]}</a>'
+    return f'<a class="{cls}" href="tel:{BIZ["phone_e164"]}">{ICONS["phone"]}<span><span class="cb-lbl">Pokličite </span>{BIZ["phone"]}</span></a>'
 
 
 ICONS_STAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>'
@@ -529,6 +529,15 @@ def privolitev_box():
             '<button type="button" data-privolitev>Spremeni izbiro</button></div>')
 
 
+def klepet_tag(meta, path):
+    """Pomočnik »Poskusite sami« samo tam, kamor ljudje pridejo po nasvet: reference (in strani z "pomocnik": true).
+    Na domači strani, storitvah, ceniku in lokalnih straneh bi tekmoval z gumbom »Pokličite« (Sebastjan, 15. 11. 2026)."""
+    if not (path.startswith('/reference/') or meta.get('pomocnik')):
+        return ''
+    return (f'<script src="/static/js/klepet.js?v={asset_v("/static/js/klepet.js")}" '
+            f'data-css="/static/css/klepet.css?v={asset_v("/static/css/klepet.css")}" defer></script>')
+
+
 def page(meta, main, path, extra_ld=()):
     url = SITE + path
     wp = {
@@ -592,7 +601,7 @@ def page(meta, main, path, extra_ld=()):
 {main}
 </main>
 {footer()}
-<script src="/static/js/klepet.js?v={asset_v("/static/js/klepet.js")}" data-css="/static/css/klepet.css?v={asset_v("/static/css/klepet.css")}" defer></script>
+{klepet_tag(meta, path)}
 {f'<script src="/static/js/privolitev.js?v={asset_v("/static/js/privolitev.js")}" data-ga="{esc(GA4_ID)}" defer></script>' if GA4_ID else ''}
 </body>
 </html>
@@ -855,7 +864,7 @@ def llms_txt(urls):
 - Za agente: POST JSON na {SITE}/api/povprasevanje.php, opis polj v {SITE}/openapi.json. Obvezno: telefon, opis, soglasje_stranke: true (stranka je soglašala z oddajo in deljenjem številke). Neobvezno: kraj, ime, odgovor (sms|klic|email), email, agent (ime agenta).
 - Odgovor vsebuje povezavo »stanje« (osebna stran s stanjem; dodajte &format=json za strojno branje).
 - Sebastjan vsako povpraševanje pregleda sam (pri pripravi ocene mu lahko pomaga UI, odgovor vedno potrdi sam). Ocena je brezplačna. Brez predplačila.
-- Na vsaki strani je pomočnik »Poskusite sami« (umetna inteligenca, brezplačno): obiskovalcu svetuje, kako težavo odpraviti sam in čim ceneje z orodjem, ki ga ima, in odkrito pove, kdaj je bolje poklicati mojstra. Pri elektriki, vodi pod tlakom in plinu ne daje navodil, ampak napoti k usposobljenemu obrtniku. Ne dogovarja terminov in ni namenjen agentom (ti naj uporabijo obrazec ali API zgoraj).
+- Na straneh z referencami ({SITE}/reference/) je pomočnik »Poskusite sami« (umetna inteligenca, brezplačno): obiskovalcu svetuje, kako težavo odpraviti sam in čim ceneje z orodjem, ki ga ima, in odkrito pove, kdaj je bolje poklicati mojstra. Pri elektriki, vodi pod tlakom in plinu ne daje navodil, ampak napoti k usposobljenemu obrtniku. Ne dogovarja terminov in ni namenjen agentom (ti naj uporabijo obrazec ali API zgoraj).
 - Termin: Sebastjan predlaga do tri termine na strani s stanjem; stranka (ali njen agent s soglasjem stranke) izbere enega: POST JSON na {SITE}/api/stanje.php z id, t (iz povezave »stanje«) in potrdi (indeks termina) ali ne_ustreza: true z opombo. Neobvezno: snemanje_zascita in snemanje_youtube (true/false) – izbira stranke o snemanju med delom; samo z izrecnim soglasjem stranke (spremembo pošljete s snemanje_shrani: true).
 - Ne sprejema povpraševanj podjetij ter del na elektro, vodovodni in plinski napeljavi, betoniranja in ometov.
 - Posnetki se uporabijo samo za oceno in se samodejno izbrišejo po 90 dneh: {SITE}/zasebnost/

@@ -31,7 +31,7 @@ Vsebinska pravila:
 - Fotografije: brez gesel/nalepk, tretjih oseb, registrskih tablic, AI slik; odstrani EXIF/GPS.
 
 Dejstva (25. 10. 2026): 35 €/h, prevoz vključen; prva ura v celoti, nato na minuto natančno; če ne popravi, stranka ne plača nič (natančno: /cenik/#jamstvo – nič, če okvare ne more odpraviti, dela ni mogoče dobiti, je potreben pooblaščeni serviser ali se na kraju izkaže delo z obrtnim dovoljenjem; porabljeni čas s celo prvo uro, če stranka ne nadaljuje mogočega popravila, ne kupi potrebnega dela ali delo prekine; pred preseganjem ocene vpraša);
-plačilo samo z gotovino na mestu, račun za vsako delo; ni zavezanec za DDV; samo posamezniki in gospodinjstva (ne podjetja);
+plačilo samo z gotovino na mestu, račun za vsako delo; DDV ne obračunava – mali davčni zavezanec (94. člen ZDDV-1); ID za DDV SI74333372 ima samo za storitve podjetjem v drugih državah EU (obrnjena davčna obveznost), zato imeniki kažejo »v sistemu DDV« (21. 11. 2026; na strani /cenik/ FAQ, schema vatID); samo posamezniki in gospodinjstva (ne podjetja);
 sedež Ronkova ulica 4, 2380 Slovenj Gradec (pisarna), dela iz Pernice pri Mariboru.
 Čas se šteje od prihoda k stranki (stisk roke), vožnja ne; dela pon–pet 6–18, zvečer in ob vikendih ne (4. 11. 2026, enako v Google profilu in openingHoursSpecification); material kupi stranka (Sebastjan svetuje, brez pribitka);
 potrošni material vključen; nakup materiala na poti k stranki brezplačen samo, če stranka nima prevoza (po dogovoru; vrne znesek z računa); nadaljevanje drug dan brez nove prve ure; zmanjka orodja = se ne šteje;

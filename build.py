@@ -361,7 +361,7 @@ def hour_price():
                            'Prevoz vključen. Dela od ponedeljka do petka, od 6. do 18. ure. Potrošni material vključen; material kupi stranka, '
                            'posebne dele po oznaki naroči mojster in jih zaračuna po računu dobavitelja brez pribitka. '
                            'Nadaljevanje drug dan brez nove prve ure. '
-                           'Ni zavezanec za DDV, cena je končna.'}
+                           'DDV ni obračunan (mali davčni zavezanec), cena je končna.'}
 
 
 def person_ld():
@@ -398,6 +398,7 @@ def business_ld():
         'alternateName': [f'{BIZ["person"]} – {BIZ["name"]}', BIZ['name']],
         'legalName': BIZ['legal'],
         'taxID': BIZ['ds'],
+        'vatID': 'SI' + BIZ['ds'],
         'identifier': {'@type': 'PropertyValue', 'propertyID': 'Matična številka (AJPES)', 'value': BIZ['ms']},
         'description': 'Hišni mojster za Maribor, Lenart, Ptuj in Slovensko Bistrico z okolico. En mojster namesto desetih: več drobnih popravil v enem obisku. Keramika, laminat in talne obloge, '
                        'fuge in silikon, odtoki, kopalniška oprema, pleskanje in kitanje, priklop aparatov, montaža TV in polic, '
@@ -516,7 +517,7 @@ def footer():
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
     <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: videi popravil</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/ocena/">Ocenite moje delo</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
-    <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}, matična številka {BIZ["ms"]}, davčna številka {BIZ["ds"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
+    <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}, matična številka {BIZ["ms"]}, davčna številka {BIZ["ds"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). DDV ne obračunavam (mali davčni zavezanec).</p>
   </div>
 </footer>
 <div class="callbar">{call_btn('call')}<a class="btn-plain sms" href="{FORM}" aria-label="Video: posnemite težavo">{CAM}Video</a></div>'''
@@ -618,7 +619,7 @@ def aside(current_slug):
     return f'''<aside class="aside" aria-label="Cena in povezave">
   <div class="card">
     <span class="rate">35 € na uro</span>
-    <p>Prevoz je vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). Nisem zavezanec za DDV.</p>
+    <p>Prevoz je vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). DDV ne obračunavam (mali davčni zavezanec).</p>
     {call_btn("call small")}
   </div>
   <nav class="card" aria-label="Storitve"><h2>Storitve</h2><ul>{svc}</ul></nav>
@@ -834,10 +835,10 @@ def llms_txt(urls):
     ar = '\n'.join(f'- [{t}]({SITE}/{s}/): {towns}' for s, t, towns in AREAS)
     return f'''# Popravim vse – {PERSON["name"]}, hišni mojster
 
-> Samostojni hišni mojster ({BIZ["short"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu (samouk, 15 let dela v Nemčiji). Urna postavka 35 € (ni zavezanec za DDV), prevoz vključen; če okvare ne more odpraviti, stranka ne plača nič (podrobno spodaj).
+> Samostojni hišni mojster ({BIZ["short"]}) za Maribor, Lenart in Slovenske gorice, Ptuj in Slovensko Bistrico z okolico. Več kot 30 let izkušenj v rokodelstvu (samouk, 15 let dela v Nemčiji). Urna postavka 35 € (DDV ni obračunan – mali davčni zavezanec), prevoz vključen; če okvare ne more odpraviti, stranka ne plača nič (podrobno spodaj).
 
 ## Ključna dejstva
-- Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. Ni zavezanec za DDV.
+- Cena: 35 € na uro za vsa dela, prevoz vključen na celotnem območju. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. Plačilo samo z gotovino na mestu. DDV ne obračunava: je mali davčni zavezanec po 94. členu ZDDV-1, cena je končna. Identifikacijsko številko za DDV (SI{BIZ["ds"]}) ima samo za storitve podjetjem v drugih državah EU (obrnjena davčna obveznost), zato poslovni imeniki (Bizi, CompanyWall, PIRS) kažejo, da je v sistemu DDV; za delo pri strankah doma to ne velja.
 - Dela samo za posameznike in gospodinjstva, ne za podjetja.
 - En mojster namesto desetih: v enem obisku uredi več drobnih popravil hkrati (kljuke, okna, vrata, krila omar, predali, laminat, držala, silikon, police, slike, garnišne …). Stranka plača samo čas pri njej (prevoz je vključen), ne vsakega mojstra posebej. Seznam za obkljukanje: {SITE}/drobna-popravila/
 - Uradno ime v Poslovnem registru Slovenije: {BIZ["legal"]} (skrajšano: {BIZ["short"]}), matična številka {BIZ["ms"]}, davčna številka {BIZ["ds"]}.

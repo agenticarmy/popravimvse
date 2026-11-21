@@ -115,7 +115,7 @@ page_start('Nastavitve | Popravim vse');
   </fieldset>
 
   <fieldset class="pv-step">
-    <legend>Pomočnik »Poskusite sami« na vsaki strani</legend>
+    <legend>Pomočnik »Poskusite sami« (na straneh z referencami)</legend>
     <?php $u = kl_usage(); ?>
     <label class="pv-check"><input type="checkbox" name="klepet_vklop" value="1" <?= $cfg['klepet_vklop'] ? 'checked' : '' ?>> Vključen (obiskovalcem pomaga, da težavo odpravijo sami)</label>
     <p class="pv-hint">Ta mesec: <?= kl_n((int)$u['pogovori'], KL_POG) ?>, <?= kl_n((int)$u['odgovori'], KL_ODG) ?>, poraba <?= number_format((float)$u['usd'], 2, ',', '') ?> $ od <?= (int)$cfg['klepet_proracun'] ?> $. Ko je proračun porabljen, se pomočnik do naslednjega meseca sam izklopi. <a href="/api/klepeti.php?k=<?= h($k) ?>">Shranjeni pogovori</a></p>

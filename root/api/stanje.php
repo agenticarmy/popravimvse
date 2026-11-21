@@ -185,7 +185,7 @@ page_start('Stanje povpraševanja | Popravim vse');
   <h2>Kaj sledi</h2>
   <ul class="checks">
     <li>Povem vam, ali je delo zame in koliko ur okvirno pričakujem.</li>
-    <li>Če je treba kaj kupiti, vam napišem, kaj in koliko. Material kupite sami, po ceni iz trgovine.</li>
+    <li>Če je treba kaj kupiti, vam napišem, kaj in koliko. Material kupite sami, po ceni iz trgovine. Posebne dele, ki jih je treba izbrati po oznaki, naročim jaz (<a href="/cenik/#posebni-deli">kako poteka</a>).</li>
     <li>Predlagam termin. Termin velja šele, ko ga oba potrdiva.</li>
     <li>Cena je 35 € na uro, prevoz je vključen. Če okvare ne morem odpraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj to velja</a>).</li>
     <li>Če med delom vidim, da bo trajalo dlje od ocene, se ustavim in vas vprašam. Brez vašega soglasja ne nadaljujem.</li>

@@ -303,7 +303,7 @@ const CONFIG_DEFAULTS = [
         'hišni mojster', 'kako popraviti'],
     'kom_izkusnje' => [
         'Več kot 30 let rokodelstva, samouk; 15 let sem živel in delal v Nemčiji.',
-        'Servis PVC balkonskih vrat in oken: okovje podmažem s silikonskim oljem, tesnila namažem s silikonskim sredstvom za tesnila (v videu še z vazelinom, a ta je iz mineralnega olja, ki ga guma EPDM ne prenaša dobro); vrata nastavim z imbus ključem 4 mm, približno 5–10 minut na vrata.',
+        'Servis PVC balkonskih vrat in oken: okovje podmažem s silikonskim oljem, tesnila namažem s silikonskim sredstvom za tesnila; vrata nastavim z imbus ključem 4 mm, približno 5–10 minut na vrata.',
         'Obnova fug: belilo za fuge se rado lušči, zato ga ne priporočam; pred novo fugo staro dobro očistim, ploščice zaščitim z lepilnim trakom.',
         'Smrad iz tuš kanalete: očistil sem smradno zaporo, jo zatesnil in preizkusil z vodo.',
         'Zlomljeno mrežico (perlator) na izlivu pipe sem odstranil z dvema viličastima ključema, ne da bi poškodoval pipo.',

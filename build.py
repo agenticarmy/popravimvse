@@ -358,7 +358,8 @@ def hour_price():
     return {'@type': 'UnitPriceSpecification', 'price': '35', 'priceCurrency': 'EUR', 'unitCode': 'HUR', 'unitText': 'ura',
             'eligibleQuantity': {'@type': 'QuantitativeValue', 'minValue': 1, 'unitCode': 'HUR'},
             'description': 'Čas se šteje od prihoda k stranki. Prva ura se obračuna v celoti, vsaka naslednja na minuto natančno. '
-                           'Prevoz vključen. Dela od ponedeljka do petka, od 6. do 18. ure. Potrošni material vključen; material kupi stranka. '
+                           'Prevoz vključen. Dela od ponedeljka do petka, od 6. do 18. ure. Potrošni material vključen; material kupi stranka, '
+                           'posebne dele po oznaki naroči mojster in jih zaračuna po računu dobavitelja brez pribitka. '
                            'Nadaljevanje drug dan brez nove prve ure. '
                            'Ni zavezanec za DDV, cena je končna.'}
 
@@ -404,7 +405,7 @@ def business_ld():
                        '35 € na uro, prevoz vključen; prva ura se obračuna v celoti, nato na minuto natančno; '
                        'če okvare ne more odpraviti (tudi če dela ni mogoče dobiti ali gre za delo z obrtnim dovoljenjem), stranka ne plača nič; če se stranka odloči, da popravila, ki je mogoče, ne nadaljuje, ali ne želi kupiti potrebnega dela, plača porabljeni čas. Plačilo z gotovino na mestu. '
                        'Dela samo za posameznike in gospodinjstva. Termina se drži; brez predplačila; račun za vsako delo; '
-                       'če kaj ni prav, popravi brezplačno; dela od ponedeljka do petka od 6. do 18. ure; material kupi stranka po njegovem nasvetu.',
+                       'če kaj ni prav, popravi brezplačno; dela od ponedeljka do petka od 6. do 18. ure; material kupi stranka po njegovem nasvetu; posebne dele, ki jih je treba izbrati po oznaki in merah, naroči sam, stranka mu znesek vrne ob obisku po računu dobavitelja, brez pribitka.',
         'slogan': 'Če ne popravim, ne plačate nič.',
         'knowsLanguage': ['sl', 'de'],
         'url': SITE + '/',
@@ -847,6 +848,7 @@ def llms_txt(urls):
 - Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Dela od ponedeljka do petka, od 6. do 18. ure; zvečer ter ob sobotah in nedeljah ne dela.
 - Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
 - Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.
+- Posebni deli ({SITE}/cenik/#posebni-deli): dele, ki jih je treba izbrati natančno po oznaki in merah (npr. pogon okovja balkonskih vrat, ročni odpiralnik zgornjega okna), naroči Sebastjan, skupaj s pripadajočim materialom (npr. kljuko). Potek: stranka potrdi popravilo → Sebastjan sporoči točno ceno materiala → stranka potrdi ceno → naroči → termin, ko del prispe. Stranka znesek vrne ob obisku po računu dobavitelja (s poštnino), brez pribitka; predplačila ni.
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; za vsako delo izda račun (popusta za delo brez računa ni); dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).

@@ -468,6 +468,32 @@ def sl_date(iso):
     return f'{int(d)}. {int(m)}. {y}'
 
 
+# /ocena/: vprašanja, ki stranki pomagajo napisati oceno s SVOJIMI besedami (besedila ocen ne pripravljamo – Googlova pravila)
+OCENA_VPR = {
+    'drobna-popravila': 'Katera drobna dela sem uredil v enem obisku?',
+    'polaganje-keramike': 'Kje sem polagal ploščice in kako so videti zdaj?',
+    'polaganje-talnih-oblog': 'Kakšna tla sem položil in v katerem prostoru?',
+    'obnova-fug-in-silikona': 'Kje sem obnovil fuge ali silikon (tuš, kad, kuhinja)?',
+    'odmasevanje-odtokov': 'Kateri odtok je bil zamašen in kako odteka zdaj?',
+    'kopalniska-oprema': 'Kaj sem namestil v kopalnici (omarico, ogledalo, tuš steno)?',
+    'pleskanje-in-kitanje': 'Kaj sem prepleskal ali pokital in kako je videti zdaj?',
+    'priklop-aparatov': 'Kateri aparat sem priklopil ali vgradil in ali deluje?',
+    'montaza-tv-in-polic': 'Kaj sem obesil ali pritrdil na steno?',
+    'modem-in-termostat': 'Kaj sem nastavil (modem, Wi-Fi, termostat) in kako deluje zdaj?',
+    'popravilo-vrat-in-oken': 'Katera vrata ali okno, kaj je bilo narobe in kako se zapira zdaj?',
+    'tesarska-dela': 'Kaj sem sestavil, izdelal ali popravil?',
+    'selitve-in-prenosi': 'Kaj sem prepeljal ali prenesel?',
+    'kosnja-in-urejanje-okolice': 'Kaj sem uredil okoli hiše (trava, živa meja, dovoz materiala)?',
+}
+
+
+def ocena_dela():
+    rows = [(slug, name, OCENA_VPR[slug]) for slug, name, _ in SERVICES if slug in OCENA_VPR]
+    rows.append(('drugo', 'Nekaj drugega', 'Kaj je bilo narobe in kaj sem naredil?'))
+    return '\n'.join(f'  <label><input type="checkbox" value="{slug}" data-q="{esc(q)}"><span>{esc(name)}</span></label>'
+                     for slug, name, q in rows)
+
+
 def author_box(modified):
     return f'''<aside class="author" aria-label="Avtor">
   <img class="avatar" src="/static/img/sebastjan-avatar-160.webp" width="80" height="80" loading="lazy" decoding="async" alt="{PERSON["name"]}, hišni mojster">
@@ -897,7 +923,7 @@ def llms_txt(urls):
 - [Kontakt]({SITE}/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video]({SITE}{FORM}): obrazec za video z glasom, fotografije in opis
 - [Zasebnost]({SITE}/zasebnost/): kako se obdelujejo podatki iz povpraševanj
-- [Ocenite moje delo]({SITE}/ocena/): stranke po končanem delu napišejo oceno v Google profilu podjetja ({BIZ['review']}); ocene preberete na {BIZ['maps']}
+- [Ocenite moje delo]({SITE}/ocena/): stranke po končanem delu same napišejo oceno v Google profilu podjetja ({BIZ['review']}). Stran pomaga z vprašanji glede na opravljeno delo, narekom in kopiranjem v Google; besedil ocen ne pripravljam. Ocene preberete na {BIZ['maps']}
 - [Piškotki]({SITE}/piskotki/): Google Analytics samo z dovoljenjem obiskovalca, brez oglasov; seznam podatkov v brskalniku
 '''
 
@@ -1046,8 +1072,8 @@ def main():
         elif slug == 'kontakt':
             meta['page_type'] = 'ContactPage'
         if slug == 'ocena':
-            meta['head_actions'] = f'<a class="call call-wrap" href="{BIZ["review"]}" target="_blank" rel="noopener">{ICONS_STAR}Napišite oceno na Googlu</a>'
-            body = body.replace('{{OCENA}}', BIZ['review']).replace('{{MAPS}}', BIZ['maps'])
+            meta['head_actions'] = f'<a class="call call-wrap" href="#pomoc">{ICONS_STAR}Napišite oceno</a>'
+            body = body.replace('{{OCENA}}', BIZ['review']).replace('{{MAPS}}', BIZ['maps']).replace('{{OCENA_DELA}}', ocena_dela())
         if slug == 'piskotki':
             body = body.replace('{{PRIVOLITEV}}', privolitev_box())
         m, ld = inner(meta, body, slug, [])

@@ -1,0 +1,13 @@
+/* popravimvse.si – /ocena/: pomoč pri pisanju ocene (nadgradi seznam.css) */
+.oc-form .ds-group { grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+.oc-naslov { font-weight: 800; font-size: 1.05rem; margin: 0 0 .4rem; }
+.oc-vpr ul { margin: 0; padding-left: 1.25rem; }
+.oc-vpr li { margin: .3rem 0; font-size: 1.05rem; line-height: 1.4; }
+.oc-txt textarea { font-size: max(18px, 1.1rem); line-height: 1.45; min-height: 10rem; }
+.oc-mic { width: 100%; justify-content: center; margin-top: .7rem; min-height: 54px; font: inherit; font-weight: 800; font-size: 1.1rem; cursor: pointer; }
+.oc-mic svg { width: 1.4em; height: 1.4em; flex: none; }
+.oc-mic.oc-on, .oc-mic.oc-on:hover { background: #B3261E; border-color: #B3261E; color: #fff; }
+.oc-stanje { margin: .55rem 0 0; color: var(--ink-soft); }
+.oc-bar { position: static; border-top: 0; padding: 0; }
+.oc-bar .ds-send { min-height: 56px; font-size: 1.15rem; }
+.oc-ok { margin: 0; font-weight: 700; color: var(--green-deep); }

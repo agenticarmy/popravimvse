@@ -1,31 +1,81 @@
 <!--{
   "title": "Ocenite moje delo na Googlu | Popravim vse",
-  "description": "Ste zadovoljni s popravilom? Napišite kratko oceno na Googlu. Tako drugi lažje najdejo zanesljivega hišnega mojstra v okolici Maribora.",
+  "description": "Napišite kratko oceno na Googlu: izberite delo, odgovorite na nekaj vprašanj, lahko tudi na glas, besedilo kopirajte in ga prilepite v Google.",
   "h1": "Ocenite moje delo",
   "lead": "Hvala, ker ste mi zaupali popravilo. Kratka ocena na Googlu drugim pomaga, da me najdejo, ko potrebujejo hišnega mojstra.",
   "crumb": "Ocenite moje delo"
 }-->
-<h2>Kako napišete oceno</h2>
-<ol>
-  <li>Tapnite rumeni gumb »Napišite oceno na Googlu« zgoraj. Odpre se Google z mojim profilom »Popravim vse«.</li>
-  <li>Če niste prijavljeni, se prijavite s svojim Google računom, na primer z naslovom Gmail.</li>
-  <li>Izberite število zvezdic in v nekaj stavkih napišite, kaj sem popravil.</li>
-  <li>Tapnite »Objavi«.</li>
-</ol>
-<p>Ocena je javna in se prikaže z imenom vašega Google računa.</p>
+<link rel="stylesheet" href="/static/css/seznam.css?v={{V}}">
+<link rel="stylesheet" href="/static/css/ocena.css?v={{V}}">
+<h2 id="pomoc">Pomoč pri pisanju ocene</h2>
+<p>Oceno napišete ali poveste sami, s svojimi besedami. Ta stran vam pomaga z vprašanji in prenese besedilo v Google. Besedilo ostane na vašem telefonu, meni se nič ne pošlje.</p>
 
-<h2>Kaj lahko napišete</h2>
-<ul>
-  <li>Kaj je bilo pokvarjeno in kaj sem naredil, na primer »vrata na teraso se niso zapirala«.</li>
-  <li>V katerem kraju je bilo, na primer Maribor, Lenart ali Ptuj.</li>
-  <li>Ali sem prišel ob dogovorjenem času in pustil pospravljeno.</li>
-  <li>Koliko časa je delo trajalo.</li>
-</ul>
-<p>Napišite po resnici. Če kaj ni prav, na primer silikon odstopi, mi povejte in popravim brezplačno. Pokličite <a href="tel:+38670755355">070 755 355</a>.</p>
+<div class="ds-form oc-form" id="oc">
+<fieldset class="ds-group">
+  <legend>1. Kaj sem naredil pri vas?</legend>
+{{OCENA_DELA}}
+</fieldset>
+
+<div class="oc-vpr">
+  <p class="oc-naslov">2. Odgovorite na ta vprašanja</p>
+  <ul id="oc-vprasanja">
+    <li>Kaj je bilo narobe in kaj sem naredil?</li>
+    <li>V katerem kraju je bilo delo?</li>
+    <li>Kako je bilo s točnostjo, pospravljanjem in ceno?</li>
+    <li>Kaj vam je bilo všeč in kaj bi bilo lahko bolje?</li>
+  </ul>
+</div>
+
+<div class="ds-other oc-txt">
+  <label for="oc-besedilo">Vaša ocena <small>(s svojimi besedami)</small></label>
+  <textarea id="oc-besedilo" rows="7" placeholder="Na primer, kaj je bilo pokvarjeno, kaj sem naredil in kako deluje zdaj."></textarea>
+  <button type="button" class="btn-plain oc-mic" id="oc-mic" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></svg><span>Povejte na glas</span></button>
+  <p class="oc-stanje" id="oc-stanje" aria-live="polite">Ne želite tipkati? Na tipkovnici tapnite ikono mikrofona in govorite.</p>
+</div>
+
+<div class="ds-bar oc-bar">
+  <p class="oc-naslov">3. Prenesite besedilo v Google</p>
+  <a class="call ds-send" id="oc-pojdi" href="{{OCENA}}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"/></svg>Kopiraj in odpri Google</a>
+  <p class="oc-ok" id="oc-ok" aria-live="polite" hidden></p>
+</div>
+</div>
+
+<h2 id="google">Kako objavite oceno v Googlu</h2>
+<ol>
+  <li>Tapnite rumeni gumb »Kopiraj in odpri Google«. Odpre se Google z mojim profilom »Popravim vse«.</li>
+  <li>Če niste prijavljeni, se prijavite s svojim Google računom, na primer z naslovom Gmail.</li>
+  <li>Izberite število zvezdic.</li>
+  <li>Tapnite v polje za besedilo, pridržite prst in izberite »Prilepi«. Na telefonu Android se besedilo pokaže tudi nad tipkovnico, dovolj je en dotik.</li>
+  <li>Besedilo lahko še spremenite. Nato tapnite »Objavi«.</li>
+</ol>
+<p>Ocena je javna in se prikaže z imenom vašega Google računa. Ocene ne morem napisati ali objaviti namesto vas, ker mora biti vaša.</p>
+
+<h2>Pišite po resnici</h2>
+<p>Vesel sem vsake iskrene ocene, tudi če kaj ni bilo prav. Ne glede na oceno velja: če kaj ni prav, na primer silikon odstopi, me pokličite na <a href="tel:+38670755355">070 755 355</a> in popravim brezplačno.</p>
 
 <h2>Koda QR za drug telefon</h2>
-<p>Če stran gledate na mojem telefonu, kodo skenirajte s kamero svojega telefona. Odpre se ista stran za oceno na Googlu.</p>
+<p>Če stran gledate na mojem telefonu, kodo skenirajte s kamero svojega telefona. Odpre se Googlov obrazec za oceno.</p>
 <p><img class="qr" src="/static/img/qr-ocena-google.svg" width="220" height="220" alt="Koda QR: povezava za oceno podjetja Popravim vse na Googlu"></p>
 
 <h2>Preberite ocene drugih strank</h2>
 <p>Vse ocene so v mojem <a href="{{MAPS}}" target="_blank" rel="noopener">Google profilu podjetja</a>. Primere opravljenih del s fotografijami in videi najdete na strani <a href="/reference/">Moja dela</a>.</p>
+
+<h2>Pogosta vprašanja</h2>
+<details>
+<summary>Mi lahko besedilo ocene pripravite vi?</summary>
+<p>Ne. Ocena mora biti vaša, z vašimi besedami, tako zahtevajo tudi Googlova pravila. Na tej strani jo lahko poveste na glas in telefon jo zapiše namesto vas.</p>
+</details>
+<details>
+<summary>Ali potrebujem Google račun?</summary>
+<p>Da. Oceno na Googlu lahko napiše samo prijavljen uporabnik. Na telefonu Android ste navadno že prijavljeni, ker telefon uporablja Google račun. Na iPhonu se prijavite z naslovom Gmail.</p>
+</details>
+<details>
+<summary>Ali se bo videlo moje ime?</summary>
+<p>Da. Google oceno prikaže z imenom in sliko vašega Google računa.</p>
+</details>
+<details>
+<summary>Kam gre besedilo, ki ga napišem na tej strani?</summary>
+<p>Nikamor. Ostane na vašem telefonu, dokler ga ne prilepite v Google. Na mojo stran se ne pošlje in ga ne shranim. Več na strani <a href="/zasebnost/#ocena">Zasebnost</a>.</p>
+</details>
+
+<script src="/static/js/ocena.js?v={{V}}" defer></script>

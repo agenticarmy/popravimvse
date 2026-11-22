@@ -615,8 +615,9 @@ def page(meta, main, path, extra_ld=()):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#16232B">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="icon" href="/static/img/icon-192.png?v=2" sizes="192x192" type="image/png">
+<link rel="icon" href="/static/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-sl-lat.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/static/fonts/archivo-sl-ext.woff2" as="font" type="font/woff2" crossorigin>

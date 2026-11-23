@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Izklopljena varovalka za bojler</title><rect width="300" height="300" fill="#F5F7F6"/>
+<rect x="24" y="40" width="252" height="200" rx="16" fill="#FFFFFF" stroke="#16232B" stroke-width="5"></rect>
+<g stroke="#16232B" stroke-width="3.5">
+<rect x="44" y="70" width="36" height="120" rx="6" fill="#FFFFFF"></rect>
+<rect x="88" y="70" width="36" height="120" rx="6" fill="#FFFFFF"></rect>
+<rect x="132" y="70" width="36" height="120" rx="6" fill="#F2C21B"></rect>
+<rect x="176" y="70" width="36" height="120" rx="6" fill="#FFFFFF"></rect>
+<rect x="220" y="70" width="36" height="120" rx="6" fill="#FFFFFF"></rect>
+</g>
+<g fill="#16232B">
+<rect x="55" y="84" width="14" height="34" rx="4"></rect>
+<rect x="99" y="84" width="14" height="34" rx="4"></rect>
+<rect x="143" y="142" width="14" height="34" rx="4"></rect>
+<rect x="187" y="84" width="14" height="34" rx="4"></rect>
+<rect x="231" y="84" width="14" height="34" rx="4"></rect>
+</g>
+<path d="M150 88 V128 M141 119 L150 128 L159 119" fill="none" stroke="#16232B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+<text x="150" y="216" text-anchor="middle" font-size="17" font-weight="800" fill="#16232B">BOJLER</text>
+<circle cx="244" cy="250" r="32" fill="#FFFFFF" stroke="#C8432B" stroke-width="4"></circle>
+<path d="M248 230 L234 254 H246 L240 272 L256 246 H244 Z" fill="#16232B"></path>
+<path d="M221 227 L267 273" fill="none" stroke="#C8432B" stroke-width="5" stroke-linecap="round"></path>
+</svg>

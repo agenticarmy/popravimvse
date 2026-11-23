@@ -55,6 +55,7 @@ SERVICES = [
     ('polaganje-talnih-oblog', 'Laminat in talne obloge', 'floor'),
     ('obnova-fug-in-silikona', 'Obnova fug in silikona', 'drop'),
     ('odmasevanje-odtokov', 'Odmaševanje odtokov', 'drain'),
+    ('ciscenje-bojlerja', 'Čiščenje bojlerja in anoda', 'boiler'),
     ('kopalniska-oprema', 'Kopalniška oprema', 'mirror'),
     ('pleskanje-in-kitanje', 'Pleskanje in kitanje', 'roller'),
     ('priklop-aparatov', 'Priklop aparatov', 'oven'),
@@ -315,6 +316,7 @@ ICONS = {
     'tiles': f'<svg viewBox="0 0 24 24" {S}><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>',
     'drop': f'<svg viewBox="0 0 24 24" {S}><path d="M12 3c3 4 5 6.6 5 9.2a5 5 0 0 1-10 0C7 9.6 9 7 12 3z"/><path d="M3 21c2-1.2 4-1.2 6 0s4 1.2 6 0 4-1.2 6 0"/></svg>',
     'drain': f'<svg viewBox="0 0 24 24" {S}><circle cx="12" cy="12" r="8.5"/><path d="M8.5 8h7M7 11h10M7 14h10M8.5 17h7"/></svg>',
+    'boiler': f'<svg viewBox="0 0 24 24" {S}><rect x="6" y="2.5" width="12" height="16" rx="4"/><circle cx="12" cy="8" r="1.8"/><path d="M10 12.5h4M10 18.5v3M14 18.5v3"/></svg>',
     'tap': f'<svg viewBox="0 0 24 24" {S}><path d="M3 8v6"/><path d="M3 10h10a4 4 0 0 1 4 4v1"/><path d="M8 10V6h5"/><path d="M17 18.5v.5M17 21.5v.5"/></svg>',
     'oven': f'<svg viewBox="0 0 24 24" {S}><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M4 8h16"/><path d="M7.5 5.5h.01M10.5 5.5h.01"/><rect x="7" y="11" width="10" height="7"/></svg>',
     'bulb': f'<svg viewBox="0 0 24 24" {S}><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.4 10.9c.6.5.9 1.2.9 2V16h5v-.1c0-.8.3-1.5.9-2A6 6 0 0 0 12 3z"/></svg>',
@@ -475,6 +477,7 @@ OCENA_VPR = {
     'polaganje-talnih-oblog': 'Kakšna tla sem položil in v katerem prostoru?',
     'obnova-fug-in-silikona': 'Kje sem obnovil fuge ali silikon (tuš, kad, kuhinja)?',
     'odmasevanje-odtokov': 'Kateri odtok je bil zamašen in kako odteka zdaj?',
+    'ciscenje-bojlerja': 'Kateri bojler sem očistil in kako greje zdaj?',
     'kopalniska-oprema': 'Kaj sem namestil v kopalnici (omarico, ogledalo, tuš steno)?',
     'pleskanje-in-kitanje': 'Kaj sem prepleskal ali pokital in kako je videti zdaj?',
     'priklop-aparatov': 'Kateri aparat sem priklopil ali vgradil in ali deluje?',
@@ -729,8 +732,9 @@ def inner(meta, body, slug, crumbs):
 def home_main(body):
     body = expand(body)
     tiles = ''.join(f'<li><a href="/{s}/">{ICONS[i]}<span>{t}</span></a></li>' for s, t, i in SERVICES)
-    tiles += '<li><a href="/kontakt/" class="tile-ask"><svg viewBox="0 0 24 24" ' + S + '><path d="M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.5V14"/><path d="M12 17.5h.01"/></svg><span>Česa ni na seznamu? Vprašajte</span></a></li>'
+    # 15 storitev + cena, nato »Vprašajte« čez celo vrsto: polna mreža pri 4, 3 (cena skrita) in 2 stolpcih
     tiles += '<li><div class="tile-note"><b>35 €/h</b>Prevoz vključen</div></li>'
+    tiles += '<li class="tile-ask-row"><a href="/kontakt/" class="tile-ask"><svg viewBox="0 0 24 24" ' + S + '><path d="M9 9a3 3 0 1 1 4 2.8c-.6.3-1 .9-1 1.5V14"/><path d="M12 17.5h.01"/></svg><span>Česa ni na seznamu? Vprašajte</span></a></li>'
     return body.replace('{{TILES}}', tiles).replace('{{CALL}}', call_btn()).replace('{{SMS}}', sms_btn()) \
                .replace('{{AREAS}}', ''.join(
         f'<div class="area"><h3><a href="/{s}/">{t}</a></h3><p>{towns}</p></div>' for s, t, towns in AREAS)) \
@@ -876,14 +880,15 @@ def llms_txt(urls):
 - Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Dela od ponedeljka do petka, od 6. do 18. ure; zvečer ter ob sobotah in nedeljah ne dela.
 - Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.
 - Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.
-- Posebni deli ({SITE}/cenik/#posebni-deli): dele, ki jih je treba izbrati natančno po oznaki in merah (npr. pogon okovja balkonskih vrat, ročni odpiralnik zgornjega okna), naroči Sebastjan, skupaj s pripadajočim materialom (npr. kljuko). Potek: stranka potrdi popravilo → Sebastjan sporoči točno ceno materiala → stranka potrdi ceno → naroči → termin, ko del prispe. Stranka znesek vrne ob obisku po računu dobavitelja (s poštnino), brez pribitka; predplačila ni.
+- Posebni deli ({SITE}/cenik/#posebni-deli): dele, ki jih je treba izbrati natančno po oznaki in merah (npr. pogon okovja balkonskih vrat, ročni odpiralnik zgornjega okna, anoda in tesnilo prirobnice bojlerja), naroči Sebastjan, skupaj s pripadajočim materialom (npr. kljuko). Potek: stranka potrdi popravilo → Sebastjan sporoči točno ceno materiala → stranka potrdi ceno → naroči → termin, ko del prispe. Stranka znesek vrne ob obisku po računu dobavitelja (s poštnino), brez pribitka; predplačila ni.
 - Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.
 - Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; za vsako delo izda račun (popusta za delo brez računa ni); dela sam (plača se ena oseba).
 - Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).
 - Za odtoke in kanalizacijo okoli hiše uporablja kanalizacijsko kamero z metrskimi oznakami in visokotlačni čistilec: najde mesto zamašitve ali poškodbe cevi (npr. preliv greznice, cev do iztoka) brez prekopavanja vrta. Praznjenja greznic ne opravlja (to je naloga komunale). Primer: {SITE}/reference/zamasen-preliv-greznice/
 - Na željo stranke ves čas dela snema z akcijsko kamero na prsih (dokaz za stranko in zanj, da med delom nič ne izgine); posnetek hrani 30 dni, na zahtevo stranka dobi kopijo. Za YouTube uporabi del posnetka samo s posebnim dovoljenjem stranke, ki ni pogoj za snemanje: le kader dela, brez ljudi in drugih prostorov, stranka ga vidi pred objavo. Podrobno: {SITE}/zasebnost/#snemanje
 - Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.
-- Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
+- Čiščenje električnega bojlerja: bojler izprazni, odstrani vodni kamen ter zamenja magnezijevo anodo in tesnilo prirobnice. Anodo in tesnilo naroči sam (posebni deli) po štirih fotografijah, ki mu jih stranka pošlje pred obiskom na {BIZ["email"]}; bojlerja stranki ni treba prazniti. Navodila za fotografije: {SITE}/ciscenje-bojlerja/#fotografije
+- Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, priklop in menjava bojlerja), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.
 - Kontakt: telefon {BIZ["phone"]} ({BIZ["phone_e164"]}), SMS na isto številko, e-pošta {BIZ["email"]}, obrazec s fotografijo, videom ali glasom: {SITE}{FORM}
 - YouTube kanal z videi popravil: https://www.youtube.com/@popravimvse
 - Google profil podjetja (ocene, zemljevid): {BIZ["maps"]}

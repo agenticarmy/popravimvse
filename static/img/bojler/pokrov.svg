@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Spodnji pokrov bojlerja z vijaki</title><rect width="320" height="320" fill="#F5F7F6"/>
+<circle cx="160" cy="160" r="146" fill="#FFFFFF" stroke="#16232B" stroke-width="5"></circle>
+<circle cx="100" cy="92" r="26" fill="#FFFFFF" stroke="#C8432B" stroke-width="9"></circle>
+<circle cx="100" cy="92" r="10" fill="#16232B"></circle>
+<circle cx="220" cy="92" r="26" fill="#FFFFFF" stroke="#2E6FB7" stroke-width="9"></circle>
+<circle cx="220" cy="92" r="10" fill="#16232B"></circle>
+<circle cx="160" cy="196" r="74" fill="#F5F7F6" stroke="#16232B" stroke-width="4"></circle>
+<rect x="126" y="166" width="68" height="40" rx="4" fill="#FFFFFF" stroke="#16232B" stroke-width="2.5"></rect>
+<path d="M134 178 H176 M134 186 H186 M134 194 H170" fill="none" stroke="#16232B" stroke-width="2.5" stroke-linecap="round"></path>
+<circle cx="104" cy="236" r="10" fill="#F2C21B" stroke="#16232B" stroke-width="3"></circle>
+<path d="M98 236 H110" fill="none" stroke="#16232B" stroke-width="2.5" stroke-linecap="round"></path>
+<circle cx="216" cy="236" r="10" fill="#F2C21B" stroke="#16232B" stroke-width="3"></circle>
+<path d="M210 236 H222" fill="none" stroke="#16232B" stroke-width="2.5" stroke-linecap="round"></path>
+<path d="M104 210 A26 26 0 0 0 78 236" fill="none" stroke="#1D6A58" stroke-width="4" stroke-linecap="round"></path>
+<path d="M71 228 L78 237 L85 228" fill="none" stroke="#1D6A58" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M218 238 L262 284" fill="none" stroke="#4B5A62" stroke-width="6" stroke-linecap="round"></path>
+<path d="M262 284 L290 312" fill="none" stroke="#1D6A58" stroke-width="20" stroke-linecap="round"></path>
+</svg>

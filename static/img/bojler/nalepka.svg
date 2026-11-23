@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Nalepka s podatki bojlerja</title><rect width="320" height="320" fill="#F5F7F6"/>
+<g fill="none" stroke="#1D6A58" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M28 76 V28 H76"></path>
+<path d="M244 28 H292 V76"></path>
+<path d="M28 244 V292 H76"></path>
+<path d="M292 244 V292 H244"></path>
+</g>
+<rect x="62" y="82" width="196" height="156" rx="12" fill="#FFFFFF" stroke="#16232B" stroke-width="4"></rect>
+<rect x="80" y="98" width="70" height="12" rx="3" fill="#16232B"></rect>
+<rect x="74" y="122" width="172" height="30" rx="6" fill="#F2C21B" opacity="0.6"></rect>
+<rect x="74" y="158" width="172" height="30" rx="6" fill="#F2C21B" opacity="0.6"></rect>
+<rect x="74" y="194" width="172" height="30" rx="6" fill="#F2C21B" opacity="0.6"></rect>
+<text x="84" y="143" font-size="16" font-weight="700" fill="#16232B">Model</text>
+<text x="84" y="179" font-size="16" font-weight="700" fill="#16232B">Koda</text>
+<text x="84" y="215" font-size="16" font-weight="700" fill="#16232B">Ser. št.</text>
+<rect x="160" y="132" width="76" height="10" rx="3" fill="#16232B" opacity="0.45"></rect>
+<rect x="160" y="168" width="60" height="10" rx="3" fill="#16232B" opacity="0.45"></rect>
+<rect x="160" y="204" width="76" height="10" rx="3" fill="#16232B" opacity="0.45"></rect>
+</svg>

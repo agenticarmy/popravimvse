@@ -11,14 +11,15 @@
   "Čas se začne šteti ob prihodu k stranki (vožnja se ne šteje). Dela od ponedeljka do petka, od 6. do 18. ure; zvečer ter ob sobotah in nedeljah ne dela.",
   "Potrošni material (brusni papir, folija, lepilni trak, izravnalne sponke za ploščice, obraba svedrov) je vključen v urno postavko; material, ki ostane pri stranki, kupi stranka po ceni iz trgovine. Nasvet pred obiskom je brezplačen.",
   "Če stranka nima prevoza, kupi material na poti k njej brezplačno; stranka vrne znesek z računa trgovine.",
-  "Posebni deli (https://popravimvse.si/cenik/#posebni-deli): dele, ki jih je treba izbrati natančno po oznaki in merah (npr. pogon okovja balkonskih vrat, ročni odpiralnik zgornjega okna), naroči Sebastjan, skupaj s pripadajočim materialom (npr. kljuko). Potek: stranka potrdi popravilo → Sebastjan sporoči točno ceno materiala → stranka potrdi ceno → naroči → termin, ko del prispe. Stranka znesek vrne ob obisku po računu dobavitelja (s poštnino), brez pribitka; predplačila ni.",
+  "Posebni deli (https://popravimvse.si/cenik/#posebni-deli): dele, ki jih je treba izbrati natančno po oznaki in merah (npr. pogon okovja balkonskih vrat, ročni odpiralnik zgornjega okna, anoda in tesnilo prirobnice bojlerja), naroči Sebastjan, skupaj s pripadajočim materialom (npr. kljuko). Potek: stranka potrdi popravilo → Sebastjan sporoči točno ceno materiala → stranka potrdi ceno → naroči → termin, ko del prispe. Stranka znesek vrne ob obisku po računu dobavitelja (s poštnino), brez pribitka; predplačila ni.",
   "Nepredviden material med delom: stranka izbere (on gre in čas šteje / gre stranka / drug dan). Nadaljevanje drug dan nima nove prve ure. Če njemu zmanjka orodja, se ta čas ne šteje.",
   "Brez predplačila: delo se plača ob koncu; brez dodatkov k urni postavki; pred dodatnim delom vpraša za soglasje; za vsako delo izda račun (popusta za delo brez računa ni); dela sam (plača se ena oseba).",
   "Okvirno oceno časa stranka dobi vnaprej po opisu ali fotografiji. Material kupi stranka; Sebastjan vnaprej svetuje, kaj kupiti (brez pribitka na material).",
   "Za odtoke in kanalizacijo okoli hiše uporablja kanalizacijsko kamero z metrskimi oznakami in visokotlačni čistilec: najde mesto zamašitve ali poškodbe cevi (npr. preliv greznice, cev do iztoka) brez prekopavanja vrta. Praznjenja greznic ne opravlja (to je naloga komunale). Primer: https://popravimvse.si/reference/zamasen-preliv-greznice/",
   "Na željo stranke ves čas dela snema z akcijsko kamero na prsih (dokaz za stranko in zanj, da med delom nič ne izgine); posnetek hrani 30 dni, na zahtevo stranka dobi kopijo. Za YouTube uporabi del posnetka samo s posebnim dovoljenjem stranke, ki ni pogoj za snemanje: le kader dela, brez ljudi in drugih prostorov, stranka ga vidi pred objavo. Podrobno: https://popravimvse.si/zasebnost/#snemanje",
   "Ne pije alkohola in ne kadi; delovišče zapusti čisto in urejeno; med delom je telefon tiho (čas plača stranka); je odgovorno odškodninsko zavarovan.",
-  "Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, bojlerji), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.",
+  "Čiščenje električnega bojlerja: bojler izprazni, odstrani vodni kamen ter zamenja magnezijevo anodo in tesnilo prirobnice. Anodo in tesnilo naroči sam (posebni deli) po štirih fotografijah, ki mu jih stranka pošlje pred obiskom na popravimvse@gmail.com; bojlerja stranki ni treba prazniti. Navodila za fotografije: https://popravimvse.si/ciscenje-bojlerja/#fotografije",
+  "Ne izvaja (regulirane dejavnosti z obrtnim dovoljenjem): del na električni, vodovodni in plinski napeljavi (luči, vtičnice, pipe, priklop in menjava bojlerja), betoniranja, ometov in novih predelnih sten; prav tako ne polaga tlakovcev.",
   "Kontakt: telefon 070 755 355 (+38670755355), SMS na isto številko, e-pošta popravimvse@gmail.com, obrazec s fotografijo, videom ali glasom: https://popravimvse.si/povprasevanje/",
   "YouTube kanal z videi popravil: https://www.youtube.com/@popravimvse",
   "Google profil podjetja (ocene, zemljevid): https://www.google.com/maps?cid=17974519320533287577",
@@ -54,6 +55,12 @@
    "ime": "Odmaševanje odtokov",
    "url": "https://popravimvse.si/odmasevanje-odtokov/",
    "opis": "Čiščenje in odmaševanje odtokov v kuhinji, kopalnici in WC ter čiščenje sifonov. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "slug": "ciscenje-bojlerja",
+   "ime": "Čiščenje bojlerja in anoda",
+   "url": "https://popravimvse.si/ciscenje-bojlerja/",
+   "opis": "Čiščenje vodnega kamna iz električnega bojlerja ter menjava anode in tesnila prirobnice. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
   },
   {
    "slug": "kopalniska-oprema",
@@ -197,6 +204,12 @@
    "url": "https://popravimvse.si/odmasevanje-odtokov/",
    "naslov": "Čiščenje in odmaševanje odtokov",
    "opis": "Čiščenje in odmaševanje odtokov v kuhinji, kopalnici in WC ter čiščenje sifonov. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj, Slovenska Bistrica."
+  },
+  {
+   "pot": "/ciscenje-bojlerja/",
+   "url": "https://popravimvse.si/ciscenje-bojlerja/",
+   "naslov": "Čiščenje bojlerja in menjava anode",
+   "opis": "Čiščenje vodnega kamna iz električnega bojlerja ter menjava anode in tesnila prirobnice. 35 € na uro, prevoz vključen. Maribor, Ptuj, Lenart."
   },
   {
    "pot": "/kopalniska-oprema/",

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="936" height="340" viewBox="0 0 936 340" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Prirobnica z metrom čez sredino; telefon vzporedno s prirobnico</title><rect width="936" height="340" fill="#F5F7F6"/>
+<circle cx="290" cy="185" r="125" fill="#DDE3E0" stroke="#16232B" stroke-width="5"></circle>
+<g fill="#FFFFFF" stroke="#16232B" stroke-width="3" stroke-linejoin="round">
+<polygon points="390.6,235.0 383.6,247.1 369.6,247.1 362.6,235.0 369.6,222.9 383.6,222.9"></polygon>
+<polygon points="304.0,285.0 297.0,297.1 283.0,297.1 276.0,285.0 283.0,272.9 297.0,272.9"></polygon>
+<polygon points="217.4,235.0 210.4,247.1 196.4,247.1 189.4,235.0 196.4,222.9 210.4,222.9"></polygon>
+<polygon points="217.4,135.0 210.4,147.1 196.4,147.1 189.4,135.0 196.4,122.9 210.4,122.9"></polygon>
+<polygon points="304.0,85.0 297.0,97.1 283.0,97.1 276.0,85.0 283.0,72.9 297.0,72.9"></polygon>
+<polygon points="390.6,135.0 383.6,147.1 369.6,147.1 362.6,135.0 369.6,122.9 383.6,122.9"></polygon>
+<polygon points="303.0,185.0 296.5,196.3 283.5,196.3 277.0,185.0 283.5,173.7 296.5,173.7"></polygon>
+</g>
+<g fill="none" stroke="#1D6A58" stroke-width="3" stroke-linecap="round">
+<path d="M165 40 V160" stroke-dasharray="6 7"></path>
+<path d="M415 40 V160" stroke-dasharray="6 7"></path>
+</g>
+<g fill="none" stroke="#1D6A58" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M167 30 H413"></path>
+<path d="M179 22 L167 30 L179 38"></path>
+<path d="M401 22 L413 30 L401 38"></path>
+</g>
+<text x="432" y="40" font-size="28" font-weight="800" fill="#1D6A58">Ø ?</text>
+<rect x="140" y="167" width="290" height="36" rx="3" fill="#F2C21B" stroke="#16232B" stroke-width="3"></rect>
+<g fill="none" stroke="#16232B" stroke-width="2.5" stroke-linecap="round">
+<path d="M165 167 V185"></path>
+<path d="M190 167 V177"></path>
+<path d="M215 167 V177"></path>
+<path d="M240 167 V177"></path>
+<path d="M265 167 V177"></path>
+<path d="M290 167 V185"></path>
+<path d="M315 167 V177"></path>
+<path d="M340 167 V177"></path>
+<path d="M365 167 V177"></path>
+<path d="M390 167 V177"></path>
+<path d="M415 167 V185"></path>
+</g>
+<g font-size="14" font-weight="800" fill="#16232B" text-anchor="middle">
+<text x="165" y="199">0</text>
+<text x="290" y="199">5</text>
+<text x="415" y="199">10</text>
+</g>
+<rect x="430" y="155" width="70" height="60" rx="12" fill="#16232B"></rect>
+<circle cx="465" cy="185" r="10" fill="#F2C21B"></circle>
+<path d="M560 30 V310" fill="none" stroke="#C9D1CD" stroke-width="2"></path>
+<rect x="640" y="40" width="160" height="10" rx="2" fill="#16232B"></rect>
+<g fill="none" stroke="#4B5A62" stroke-width="2" stroke-dasharray="5 6">
+<path d="M690 118 L642 52"></path>
+<path d="M750 118 L798 52"></path>
+</g>
+<rect x="670" y="118" width="100" height="14" rx="4" fill="#16232B"></rect>
+<text x="720" y="166" text-anchor="middle" font-size="20" font-weight="800" fill="#1D6A58">vzporedno</text>
+<circle cx="862" cy="90" r="26" fill="#1D6A58"></circle>
+<path d="M850 90 L859 99 L875 81" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+<rect x="640" y="200" width="160" height="10" rx="2" fill="#16232B"></rect>
+<rect x="670" y="268" width="100" height="14" rx="4" fill="#16232B" transform="rotate(-32 720 275)"></rect>
+<text x="720" y="326" text-anchor="middle" font-size="20" font-weight="800" fill="#C8432B">postrani</text>
+<circle cx="862" cy="258" r="26" fill="#C8432B"></circle>
+<path d="M852 248 L872 268 M872 248 L852 268" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"></path>
+</svg>

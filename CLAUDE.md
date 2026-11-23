@@ -26,7 +26,8 @@ Postopek:
 
 Vsebinska pravila:
 - Preprost jezik, kratki citabilni stavki, konkretni primeri in številke. Ne izmišljuj dejstev.
-- Brez reguliranih del (elektro, vodovod, plin, ometi, betoniranje); v primerih ne omenjaj vtičnic, luči, pip, bojlerjev.
+- Brez reguliranih del (elektro, vodovod, plin, ometi, betoniranje); v primerih ne omenjaj vtičnic, luči, pip, priklopa ali menjave bojlerjev.
+- Čiščenje bojlerja in menjava anode (Sebastjan, 23. 11. 2026): JE storitev (/ciscenje-bojlerja/, navodila za 4 fotografije #fotografije, pošiljanje na popravimvse@gmail.com); anoda in tesnilo prirobnice sta posebna dela (naroči on). Priklopa in menjave bojlerja NE dela.
 - V referenci o vikendu ohrani omembo električnega bojlerja in preureditve ogrevanja.
 - Fotografije: brez gesel/nalepk, tretjih oseb, registrskih tablic, AI slik; odstrani EXIF/GPS.
 

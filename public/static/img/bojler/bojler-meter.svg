@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Bojler od spredaj z metrom ob strani</title><rect width="320" height="320" fill="#F5F7F6"/>
+<rect x="110" y="26" width="124" height="226" rx="34" fill="#FFFFFF" stroke="#16232B" stroke-width="5"></rect>
+<circle cx="172" cy="90" r="15" fill="none" stroke="#16232B" stroke-width="4"></circle>
+<path d="M172 90 L181 81" fill="none" stroke="#16232B" stroke-width="4" stroke-linecap="round"></path>
+<path d="M150 254 V298" fill="none" stroke="#C8432B" stroke-width="10" stroke-linecap="round"></path>
+<path d="M194 254 V298" fill="none" stroke="#2E6FB7" stroke-width="10" stroke-linecap="round"></path>
+<rect x="52" y="26" width="26" height="226" rx="3" fill="#F2C21B" stroke="#16232B" stroke-width="3"></rect>
+<g stroke="#16232B" stroke-width="2.5" stroke-linecap="round">
+<path d="M52 46 H70"></path>
+<path d="M52 66 H61"></path>
+<path d="M52 86 H70"></path>
+<path d="M52 106 H61"></path>
+<path d="M52 126 H70"></path>
+<path d="M52 146 H61"></path>
+<path d="M52 166 H70"></path>
+<path d="M52 186 H61"></path>
+<path d="M52 206 H70"></path>
+<path d="M52 226 H61"></path>
+</g>
+<rect x="40" y="252" width="50" height="46" rx="10" fill="#16232B"></rect>
+<circle cx="65" cy="275" r="8" fill="#F2C21B"></circle>
+<g fill="none" stroke="#1D6A58" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path d="M268 28 V250"></path>
+<path d="M256 26 H280"></path>
+<path d="M256 252 H280"></path>
+<path d="M260 40 L268 28 L276 40"></path>
+<path d="M260 238 L268 250 L276 238"></path>
+</g>
+<text x="298" y="139" transform="rotate(-90 298 139)" text-anchor="middle" font-size="20" font-weight="700" fill="#1D6A58">višina</text>
+</svg>

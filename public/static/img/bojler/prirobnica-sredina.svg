@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" font-family="Archivo, Arial, Helvetica, sans-serif"><title>Sredina prirobnice in matice od blizu</title><rect width="300" height="300" fill="#F5F7F6"/>
+<circle cx="150" cy="150" r="125" fill="#DDE3E0" stroke="#16232B" stroke-width="5"></circle>
+<g fill="#F2C21B" stroke="#16232B" stroke-width="3" stroke-linejoin="round">
+<polygon points="251.6,200.0 244.1,213.0 229.1,213.0 221.6,200.0 229.1,187.0 244.1,187.0"></polygon>
+<polygon points="165.0,250.0 157.5,263.0 142.5,263.0 135.0,250.0 142.5,237.0 157.5,237.0"></polygon>
+<polygon points="78.4,200.0 70.9,213.0 55.9,213.0 48.4,200.0 55.9,187.0 70.9,187.0"></polygon>
+<polygon points="78.4,100.0 70.9,113.0 55.9,113.0 48.4,100.0 55.9,87.0 70.9,87.0"></polygon>
+<polygon points="165.0,50.0 157.5,63.0 142.5,63.0 135.0,50.0 142.5,37.0 157.5,37.0"></polygon>
+<polygon points="251.6,100.0 244.1,113.0 229.1,113.0 221.6,100.0 229.1,87.0 244.1,87.0"></polygon>
+</g>
+<circle cx="150" cy="150" r="56" fill="#FFFFFF" stroke="#1D6A58" stroke-width="7"></circle>
+<polygon points="168.0,150.0 159.0,165.6 141.0,165.6 132.0,150.0 141.0,134.4 159.0,134.4" fill="#F2C21B" stroke="#16232B" stroke-width="3" stroke-linejoin="round"></polygon>
+<circle cx="150" cy="150" r="7" fill="none" stroke="#16232B" stroke-width="3"></circle>
+<path d="M190 190 L232 232" fill="none" stroke="#1D6A58" stroke-width="16" stroke-linecap="round"></path>
+</svg>

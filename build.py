@@ -177,13 +177,15 @@ def yt_time(sec):
     return f'{sec // 60}:{sec % 60:02d}'
 
 
-def video_html(v):
+def video_html(v, watch=None):
     """YouTube video (youtube-nocookie) in seznam poglavij s povezavami na čas v videu.
-    Video na lastnem strežniku: 'src' (+ 'poster', 'width', 'height') namesto 'youtube_id'."""
+    Video na lastnem strežniku: 'src' (+ 'poster', 'width', 'height') namesto 'youtube_id'.
+    watch: pot do lastne strani videa (/video/…/), če video na tej strani ni glavna vsebina."""
+    wl = f' <a href="{watch}">Celoten video s povzetkom</a>.' if watch else ''
     if v and v.get('src'):
         return (f'<figure class="video video-own"><video controls playsinline preload="none" poster="{v["poster"]}" '
                 f'width="{v.get("width", 720)}" height="{v.get("height", 1280)}"><source src="{v["src"]}" type="video/mp4"></video>'
-                f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])})</figcaption></figure>')
+                f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])}).{wl}</figcaption></figure>')
     if not v or not v.get('youtube_id'):
         return ''
     vid = v['youtube_id']
@@ -193,7 +195,7 @@ def video_html(v):
     return (f'<figure class="{cls}"><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
             f'title="{esc(v["name"])}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
             f'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-            f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])}). <a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener">Odpri na YouTubu</a></figcaption></figure>'
+            f'<figcaption>{esc(v["name"])} ({yt_time(v["seconds"])}). <a href="https://www.youtube.com/watch?v={vid}" target="_blank" rel="noopener">Odpri na YouTubu</a>.{wl}</figcaption></figure>'
             + (f'<h3>Vsebina videa</h3><ol class="chapters">{chap}</ol>' if chap else ''))
 
 
@@ -205,6 +207,74 @@ def video_list(meta):
 
 def video_anchor(i):
     return '#video' if i == 0 else f'#video-{i + 1}'
+
+
+VIDEO_HUB = '/video/'
+WATCH = {}    # ključ videa (youtube_id ali src) → pot do strani, kjer je video glavna vsebina
+VIDEOS = []   # vsi videi na strani: {'v', 'key', 'watch', 'page', 'name', 'crumb', 'desc', 'anchor', 'own', 'src_name'}
+
+
+def video_key(v):
+    return v.get('youtube_id') or v.get('src')
+
+
+def slugify(t, n=70):
+    t = t.lower().translate(str.maketrans('čćšžđ', 'ccszd'))
+    t = re.sub(r'[^a-z0-9]+', '-', t).strip('-')
+    if len(t) > n:
+        t = t[:n].rsplit('-', 1)[0]
+    return t
+
+
+def collect_videos():
+    """Pred gradnjo poišče vse videe v content/*.html. Google video indeksira samo na strani, kjer je video glavna vsebina
+    (»Video isn't on a watch page«), zato vsak video s strani storitve dobi svojo stran /video/<ime>/.
+    Videi na zgodbah (reference/…) so že glavna vsebina strani – ti ostanejo tam."""
+    WATCH.clear(); VIDEOS.clear()
+    srcs = ([(f'/{x[0]}/', x[0], x[1]) for x in SERVICES + AREAS] + [(f'/{x[0]}/', x[0], x[1]) for x in OTHER]
+            + [(FORM, 'povprasevanje', 'Posnemite video')] + [(f'/{s}/', s.replace('/', '__'), t) for s, t in REFS if '/' in s])
+    used = set()
+    for path, name, crumb in sorted(srcs, key=lambda x: not x[0].startswith('/reference/')):
+        meta, body = read(name)
+        if not meta:
+            continue
+        for i, v in enumerate(video_list(meta)):
+            key = video_key(v)
+            if not key or key in WATCH:
+                continue
+            own = path.startswith('/reference/') and len(video_list(meta)) == 1
+            ph = '{{VIDEO}}' if i == 0 else '{{VIDEO%d}}' % (i + 1)
+            pos = body.find(ph)
+            ids = re.findall(r'id="([^"]+)"', body[:pos]) if pos > 0 else []
+            anchor = f'#{ids[-1]}' if ids else ''
+            if own:
+                watch = path
+            else:
+                sl = v.get('watch') or slugify(v['name'])
+                while sl in used:
+                    sl += '-2'
+                used.add(sl)
+                watch = f'{VIDEO_HUB}{sl}/'
+            WATCH[key] = watch
+            VIDEOS.append({'v': v, 'key': key, 'watch': watch, 'page': path, 'anchor': anchor, 'own': own, 'src_name': name,
+                           'crumb': meta.get('crumb', crumb), 'desc': meta.get('description', '')})
+    VIDEOS.sort(key=lambda x: iso_dt(x['v']['upload_date']), reverse=True)
+
+
+def short_text(t, n):
+    """Skrajša besedilo na največ n znakov na meji stavka ali besede (za title in meta description)."""
+    t = re.sub(r'\s+', ' ', t).strip()
+    if len(t) <= n:
+        return t
+    cut = t[:n - 2]
+    i = cut.rfind('. ')
+    if i >= n * 0.55:
+        return cut[:i + 1]
+    return cut[:cut.rfind(' ')].rstrip(',;:–-') + ' …'
+
+
+def video_thumb(v):
+    return f'https://i.ytimg.com/vi/{v["youtube_id"]}/hqdefault.jpg' if v.get('youtube_id') else v.get('poster', '')
 
 
 def iso_dt(d):
@@ -545,7 +615,7 @@ def footer():
     </div>
     <div><h2>Storitve</h2><ul>{svc}</ul></div>
     <div><h2>Območje</h2><ul>{ar}</ul></div>
-    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: videi popravil</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/ocena/">Ocenite moje delo</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
+    <div><h2>Več</h2><ul><li><a href="/reference/">Moja dela</a></li><li><a href="/cenik/">Cenik</a></li>{'<li><a href="/kaj-kupiti/">Kaj kupiti</a></li>' if lists_visible() else ''}<li><a href="/pred-obiskom/">Priprava na obisk</a></li><li><a href="/o-meni/">O meni</a></li><li><a href="{FORM}">Posnemite video</a></li><li><a href="{VIDEO_HUB}">Videi popravil</a></li><li><a href="https://www.youtube.com/@popravimvse" target="_blank" rel="me noopener">YouTube: @popravimvse</a></li><li><a href="/kontakt/">Kontakt</a></li><li><a href="/ocena/">Ocenite moje delo</a></li><li><a href="/zasebnost/">Zasebnost</a></li><li><a href="/piskotki/">Piškotki</a></li>{'<li><button type="button" class="link" data-privolitev>Nastavitve piškotkov</button></li>' if GA4_ID else ''}</ul></div>
     <p class="legal">{BIZ["legal"]}, sedež: {BIZ["seat"]}, matična številka {BIZ["ms"]}, davčna številka {BIZ["ds"]}. Delam iz Pernice pri Mariboru. Urna postavka {BIZ["rate"]}, prevoz vključen. Če popravila ne morem opraviti, ne plačate nič (<a href="/cenik/#jamstvo">kdaj velja</a>). DDV ne obračunavam (mali davčni zavezanec).</p>
   </div>
 </footer>
@@ -581,6 +651,8 @@ def page(meta, main, path, extra_ld=()):
         wp['dateModified'] = meta['modified']
     if meta.get('page_type') == 'ProfilePage':
         wp['mainEntity'] = {'@id': PERSON_ID}
+    if meta.get('main_entity'):
+        wp['mainEntity'] = {'@id': meta['main_entity']}
     graph = [business_ld(), person_ld(), wp,
              {'@type': 'WebSite', '@id': SITE + '/#splet', 'url': SITE + '/', 'name': 'Popravim vse', 'inLanguage': 'sl-SI',
               'publisher': {'@id': BIZ_ID}}]
@@ -677,7 +749,8 @@ def buy_box(slug):
 def inner(meta, body, slug, crumbs):
     body = expand(body)
     for i, v in enumerate(video_list(meta)):
-        body = body.replace('{{VIDEO}}' if i == 0 else '{{VIDEO%d}}' % (i + 1), video_html(v))
+        w = WATCH.get(video_key(v))
+        body = body.replace('{{VIDEO}}' if i == 0 else '{{VIDEO%d}}' % (i + 1), video_html(v, w if w and w != f'/{slug}/' else None))
     if meta.get('kind') == 'service':
         box = buy_box(slug)
         if box:
@@ -685,7 +758,7 @@ def inner(meta, body, slug, crumbs):
     crumb_html = '<nav class="crumbs" aria-label="Drobtinice"><ol><li><a href="/">Domov</a></li>' + ''.join(
         f'<li><a href="{h}">{t}</a></li>' for h, t in crumbs) + f'<li aria-current="page">{esc(meta["crumb"])}</li></ol></nav>'
     is_form = meta.get('kind') == 'form'
-    acts = '' if is_form else f'<div class="actions">{call_btn()}{sms_btn()}</div>'
+    acts = '' if is_form or meta.get('kind') == 'video' else f'<div class="actions">{call_btn()}{sms_btn()}</div>'
     if meta.get('head_actions'):
         acts = f'<div class="actions">{meta["head_actions"]}</div>'
     main = f'''<div class="{"pv-form-page" if is_form else "std-page"}"><section class="page-head">
@@ -924,7 +997,7 @@ def llms_txt(urls):
 - [Smrad iz tuš kanalete]({SITE}/reference/smrad-iz-tus-kanalete/): video na YouTubu (15 min, https://youtu.be/DNtkLge0jFk) in fotografije pred/po; vzrok je bila privzdignjena smradna zapora, ki ni tesnila, zato je voda odtekla in smrad iz kanalizacije je prihajal v kopalnico; očiščeno, tesnilo ovito s teflonom, preizkušeno z vodo
 - [Pregled odzračevalne cevi kanalizacije]({SITE}/odmasevanje-odtokov/#pregled-odzracevalne-cevi): video na YouTubu (12 min, https://youtu.be/WEBhGqdnmY8); z endoskopsko kamero (7 m kabla, samo za suhe cevi) sem v zadnjem kolenu odzračevalne cevi v zemlji našel vodo, kjer bi moralo biti suho – odboj luči in mokra konica kamere; možna vzroka: posedeno koleno ali jez iz usedlin pri drugem odtoku; naslednji korak je pregled s kanalizacijsko kamero iz jaška
 
-{lists_llms()}## Ostalo
+{videos_llms()}{lists_llms()}## Ostalo
 - [Cenik]({SITE}/cenik/): urna postavka in kako se obračuna
 - [Priprava na obisk]({SITE}/pred-obiskom/): kako stranka prihrani čas in denar (material, prostor, dostop, drobna popravila)
 - [O meni]({SITE}/o-meni/): kdo je Sebastjan Stjepanović
@@ -1039,6 +1112,7 @@ def main():
         else:
             shutil.copy(f, OUT / f.name)
     urls = []
+    collect_videos()
 
     reset_used()
     meta, body = read('index')
@@ -1118,6 +1192,8 @@ def main():
         write(f'/{slug}/', page(meta, m, f'/{slug}/', ld))
         urls.append((f'/{slug}/', '0.8', meta['modified'], meta))
 
+    video_pages(urls)
+
     ls = lists_visible()
     if ls:
         hub = dict(LISTS['hub'])
@@ -1156,7 +1232,7 @@ def main():
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">']
     sm += [f'  <url><loc>{SITE}{u}</loc><lastmod>{mod}</lastmod><priority>{p}</priority>'
-           + ''.join(video_sitemap(v) for v in video_list(m or {})) + '</url>' for u, p, mod, m in urls]
+           + ''.join(video_sitemap(v) for v in video_list(m or {}) if WATCH.get(video_key(v), u) == u) + '</url>' for u, p, mod, m in urls]
     sm.append('</urlset>')
     (OUT / 'sitemap.xml').write_text('\n'.join(sm) + '\n', encoding='utf-8')
     llms = llms_txt(urls)
@@ -1164,6 +1240,69 @@ def main():
     ui_context(urls, llms)
     print(f'Zgrajeno: {len(urls)} strani v {OUT}')
     check_font_chars()
+
+
+def video_pages(urls):
+    """Stran za vsak video (/video/<ime>/), kjer je video glavna vsebina, in pregled /video/."""
+    for x in VIDEOS:
+        if x['own']:
+            continue
+        v = x['v']
+        reset_used()
+        sib = [y for y in VIDEOS if y['page'] == x['page'] and y is not x]
+        pub, mod = git_dates(x['src_name'])
+        up = iso_dt(v['upload_date'])[:10]
+        meta = {'title': short_text(v['name'], 65), 'description': short_text(v['description'], 160), 'h1': esc(v['name']),
+                'lead': esc(re.split(r'(?<=[.!?])\s', v['description'].strip())[0]), 'kind': 'video', 'crumb': short_text(v['name'], 60), 'nav': VIDEO_HUB, 'video': [v],
+                'page_type': 'ItemPage', 'published': up, 'modified': max(mod, up)}
+        meta['main_entity'] = f'{SITE}{x["watch"]}#video'
+        body = '{{VIDEO}}\n'
+        if v.get('transcript'):
+            body += f'<h2>Kaj pokažem v videu</h2>\n<p>{esc(v["transcript"])}</p>\n'
+        if v.get('youtube_short'):
+            body += (f'<p>Isto na kratko: <a href="https://www.youtube.com/shorts/{v["youtube_short"]}" target="_blank" rel="noopener">'
+                     f'Short na YouTubu</a>.</p>\n')
+        body += (f'<h2>Več o tem delu</h2>\n<ul class="list-cards"><li><a href="{x["page"]}{x["anchor"]}"><strong>{esc(x["crumb"])}</strong>'
+                 f'<span>{esc(x["desc"])}</span></a></li></ul>\n')
+        if sib:
+            body += ('<h2>Povezani videi</h2>\n<ul class="list-cards">' + ''.join(
+                f'<li><a href="{y["watch"]}"><strong>{esc(y["v"]["name"])}</strong><span>{yt_time(y["v"]["seconds"])} · '
+                f'{sl_date(iso_dt(y["v"]["upload_date"])[:10])}</span></a></li>' for y in sib) + '</ul>\n')
+        body += f'<p><a href="{VIDEO_HUB}">Vsi videi popravil</a> · <a href="{FORM}">Posnemite svojo težavo</a> in pošljite video.</p>\n'
+        slug = x['watch'].strip('/')
+        m, ld = inner(meta, body, slug, [(VIDEO_HUB, 'Videi')])
+        write(x['watch'], page(meta, m, x['watch'], ld))
+        urls.append((x['watch'], '0.6', meta['modified'], meta))
+    if not VIDEOS:
+        return
+    reset_used()
+    hub = {'title': 'Videi popravil – hišni mojster Popravim vse',
+           'description': 'Videi mojih popravil od začetka do konca: vrata in okna, fuge, odtoki, košnja in drobna popravila. Vsak video s povzetkom in poglavji.',
+           'h1': 'Videi popravil', 'crumb': 'Videi', 'nav': VIDEO_HUB, 'page_type': 'CollectionPage',
+           'lead': 'Snemam pri strankah, ki to dovolijo: kaj je bilo narobe, kako sem poiskal vzrok in kako sem ga odpravil. Vsak video ima svojo stran s povzetkom, poglavji in povezavo na storitev.'}
+    hub['published'] = min(iso_dt(x['v']['upload_date'])[:10] for x in VIDEOS)
+    hub['modified'] = max(iso_dt(x['v']['upload_date'])[:10] for x in VIDEOS)
+    cards = ''.join(
+        f'<li><a href="{x["watch"]}"><img src="{video_thumb(x["v"])}" alt="" width="480" height="360" loading="lazy">'
+        f'<strong>{esc(x["v"]["name"])}</strong><span>{yt_time(x["v"]["seconds"])} · {sl_date(iso_dt(x["v"]["upload_date"])[:10])} · '
+        f'{esc(x["crumb"])}</span></a></li>' for x in VIDEOS)
+    hbody = (f'<ul class="list-cards video-cards">{cards}</ul>\n<p>Vse videe najdete tudi na YouTubu: '
+             f'<a href="https://www.youtube.com/@popravimvse" target="_blank" rel="noopener">@popravimvse</a>.</p>\n')
+    m, ld = inner(hub, hbody, VIDEO_HUB.strip('/'), [])
+    ld.append({'@type': 'ItemList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': i, 'url': SITE + x['watch'], 'name': x['v']['name']} for i, x in enumerate(VIDEOS, 1)]})
+    write(VIDEO_HUB, page(hub, m, VIDEO_HUB, ld))
+    urls.append((VIDEO_HUB, '0.7', hub['modified'], hub))
+
+
+def videos_llms():
+    if not VIDEOS:
+        return ''
+    return ('## Videi\n'
+            f'- [Videi popravil]({SITE}{VIDEO_HUB}): vsi videi; vsak ima svojo stran s povzetkom, poglavji in povezavo na storitev\n'
+            + ''.join(f'- [{x["v"]["name"]}]({SITE}{x["watch"]}): {yt_time(x["v"]["seconds"])}, '
+                      + (f'https://youtu.be/{x["v"]["youtube_id"]}' if x['v'].get('youtube_id') else SITE + x['v']['src'])
+                      + f'; storitev: {SITE}{x["page"]}\n' for x in VIDEOS) + '\n')
 
 
 def stories_box(svc, body, stories):

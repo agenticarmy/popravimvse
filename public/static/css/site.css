@@ -382,6 +382,10 @@ mark.confirm { background: var(--level); padding: 0 .2em; }
 .list-cards a:hover { border-color: var(--ink); }
 .list-cards strong { display: block; font-size: 1.12rem; margin-bottom: .3rem; }
 .list-cards span { color: var(--ink-soft); }
+.video-cards { max-width: none; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+.video-cards a { padding: 0 0 .9rem; border-left-width: 1px; border-top: 6px solid var(--green); }
+.video-cards img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: .7rem; background: var(--ink); }
+.video-cards strong, .video-cards span { padding: 0 1rem; }
 @media print {
   .list-tools, .page-head .actions, .site-foot, .author, .faq summary::after { display: none; }
   .layout { display: block; }

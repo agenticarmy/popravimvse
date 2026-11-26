@@ -114,7 +114,7 @@
    "slug": "kosnja-in-urejanje-okolice",
    "ime": "Košnja in urejanje okolice",
    "url": "https://popravimvse.si/kosnja-in-urejanje-okolice/",
-   "opis": "Košnja trave, obrezovanje žive meje in prevoz gramoza, peska ali zemlje z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
+   "opis": "Košnja trave, obrezovanje in sajenje žive meje (lovorikovec), prevoz gramoza z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
   }
  ],
  "obmocja": [
@@ -263,7 +263,7 @@
    "pot": "/kosnja-in-urejanje-okolice/",
    "url": "https://popravimvse.si/kosnja-in-urejanje-okolice/",
    "naslov": "Košnja trave, obrezovanje žive meje in urejanje okolice",
-   "opis": "Košnja trave, obrezovanje žive meje in prevoz gramoza, peska ali zemlje z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
+   "opis": "Košnja trave, obrezovanje in sajenje žive meje (lovorikovec), prevoz gramoza z mini demperjem. 35 € na uro, prevoz vključen. Maribor, Lenart, Ptuj."
   },
   {
    "pot": "/hisni-mojster-maribor/",
@@ -372,6 +372,12 @@
    "url": "https://popravimvse.si/reference/zlomljena-mrezica-na-pipi/",
    "naslov": "Zlomljena mrežica na pipi: kako sem jo odstranil, ne da bi poškodoval pipo",
    "opis": "Mrežica (perlator) na pipi se je zlomila v navoju. Odstranil sem jo, ne da bi poškodoval pipo, in pokazal, katero orodje uporabiti naslednjič."
+  },
+  {
+   "pot": "/video/sajenje-lovorikovca-30-sadik-ob-dovozu-skozi-kopreno-proti-plevelu/",
+   "url": "https://popravimvse.si/video/sajenje-lovorikovca-30-sadik-ob-dovozu-skozi-kopreno-proti-plevelu/",
+   "naslov": "Sajenje lovorikovca: 30 sadik ob dovozu skozi kopreno proti plevelu",
+   "opis": "Hišni mojster Sebastjan Stjepanović ob dovozu posadi 30 lovorikovcev skozi kopreno proti plevelu: odmakne kamenje, v kopreno izreže kvadratek, posadi sadiko …"
   },
   {
    "pot": "/video/kanalizacija-se-ne-odzracuje-endoskopska-kamera-najde-vodo-v-cevi/",

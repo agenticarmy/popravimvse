@@ -192,6 +192,22 @@
   "greznica-pod-tlakovci-pokrov": {
    "alt": "Okrogel lesen pokrov iz desk z ročajema, ob njem odprtina z jekleno obrobo",
    "cap": "Lesen pokrov iz desk, ki jih je gospa že imela. Z ročajema se dvigne, poravnan je s tlemi garaže."
+  },
+  "lovorikovec-pred-sajenjem-sadike": {
+   "alt": "Sadike lovorikovca v loncih ob dovozu pred sajenjem, ob robu kamenje in tlakovci",
+   "cap": "Sadike lovorikovca čakajo ob dovozu. Dan prej so dobro zalite."
+  },
+  "lovorikovec-pred-sajenjem-dovoz": {
+   "alt": "Dovoz iz tlakovcev s pasom kamenja na kopreni proti plevelu pred sajenjem žive meje",
+   "cap": "Pred sajenjem: pod kamenjem ob dovozu je koprena proti plevelu."
+  },
+  "lovorikovec-po-sajenju-dovoz": {
+   "alt": "Vrsta posajenih lovorikovcev v kamenju ob dovozu iz tlakovcev",
+   "cap": "Po sajenju: sadike so 50 cm od tlakovcev, kamenje je vrnjeno na kopreno."
+  },
+  "lovorikovec-po-sajenju-vrsta": {
+   "alt": "Živa meja iz 30 mladih lovorikovcev ob vijugastem dovozu do hiše",
+   "cap": "30 lovorikovcev ob dovozu, posajenih v približno 4 urah."
   }
  },
  "galleries": {
@@ -287,6 +303,12 @@
   "greznica-tlakovci": [
    "greznica-pod-tlakovci-obroba",
    "greznica-pod-tlakovci-pokrov"
+  ],
+  "lovorikovec": [
+   "lovorikovec-pred-sajenjem-dovoz",
+   "lovorikovec-pred-sajenjem-sadike",
+   "lovorikovec-po-sajenju-dovoz",
+   "lovorikovec-po-sajenju-vrsta"
   ]
  }
 }

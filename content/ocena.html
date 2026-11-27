@@ -30,7 +30,8 @@
   <label for="oc-besedilo">Vaša ocena <small>(s svojimi besedami)</small></label>
   <textarea id="oc-besedilo" rows="7" placeholder="Na primer, kaj je bilo pokvarjeno, kaj sem naredil in kako deluje zdaj."></textarea>
   <button type="button" class="btn-plain oc-mic" id="oc-mic" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></svg><span>Povejte na glas</span></button>
-  <p class="oc-stanje" id="oc-stanje" aria-live="polite">Ne želite tipkati? Na tipkovnici tapnite ikono mikrofona in govorite.</p>
+  <p class="oc-stanje" id="oc-stanje" aria-live="polite">Ne želite tipkati? Tapnite v polje zgoraj, na tipkovnici tapnite ikono mikrofona in govorite.</p>
+  <div class="oc-pomoc" id="oc-pomoc" role="alert" tabindex="-1" hidden></div>
 </div>
 
 <div class="ds-bar oc-bar">
@@ -64,6 +65,10 @@
 <details>
 <summary>Mi lahko besedilo ocene pripravite vi?</summary>
 <p>Ne. Ocena mora biti vaša, z vašimi besedami, tako zahtevajo tudi Googlova pravila. Na tej strani jo lahko poveste na glas in telefon jo zapiše namesto vas.</p>
+</details>
+<details>
+<summary>Kaj naredim, če »Povejte na glas« ne deluje?</summary>
+<p>Najpogosteje telefon tej strani ni dovolil mikrofona. Stran vam pokaže korake za vaš brskalnik. V Chromu na telefonu Android zgoraj tapnite ikono levo od naslova strani, nato »Dovoljenja«, in vklopite »Mikrofon«. Na iPhonu v Safariju tapnite »Aa« levo od naslova, nato »Nastavitve spletnega mesta«, in pri mikrofonu izberite »Dovoli«. Če ste stran odprli v Vibru, Messengerju ali Gmailu, jo odprite v brskalniku. Oceno lahko poveste tudi z mikrofonom na tipkovnici ali jo napišete.</p>
 </details>
 <details>
 <summary>Ali potrebujem Google račun?</summary>

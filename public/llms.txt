@@ -114,5 +114,5 @@ Material kupi stranka po Sebastjanovem nasvetu. Pri postavkah so povezave na naj
 - [Kontakt](https://popravimvse.si/kontakt/): telefon, SMS, e-pošta
 - [Posnemite video](https://popravimvse.si/povprasevanje/): obrazec za video z glasom, fotografije in opis
 - [Zasebnost](https://popravimvse.si/zasebnost/): kako se obdelujejo podatki iz povpraševanj
-- [Ocenite moje delo](https://popravimvse.si/ocena/): stranke po končanem delu same napišejo oceno v Google profilu podjetja (https://search.google.com/local/writereview?placeid=ChIJAAAAAAAAAAARmULIxBZScvk). Stran pomaga z vprašanji glede na opravljeno delo, narekom in kopiranjem v Google; besedil ocen ne pripravljam. Ocene preberete na https://www.google.com/maps?cid=17974519320533287577
+- [Ocenite moje delo](https://popravimvse.si/ocena/): stranke po končanem delu same napišejo oceno v Google profilu podjetja. Gumb »Napišite oceno« neposredno odpre Googlov obrazec za oceno (https://search.google.com/local/writereview?placeid=ChIJAAAAAAAAAAARmULIxBZScvk); besedil ocen ne pripravljam. Ocene preberete na https://www.google.com/maps?cid=17974519320533287577
 - [Piškotki](https://popravimvse.si/piskotki/): Google Analytics samo z dovoljenjem obiskovalca, brez oglasov; seznam podatkov v brskalniku
